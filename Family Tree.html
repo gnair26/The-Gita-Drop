@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wait... Who's Related to Whom? — The Cast of The Gita</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF6EF;--warm:#EFE6D0;--parchment:#EDE3CE;
+  --ink:#0D0818;--ink-muted:#3A2E52;--ink-faint:#7A6E96;
+  --gold:#C78B0E;--goldlt:#F0C84A;--terra:#C04F2D;
+  --sage:#4A7A62;--violet:#6B4C9A;--sky:#3A6B8A;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 20%,rgba(199,139,14,0.06) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 80% 80%,rgba(192,79,45,0.05) 0%,transparent 60%);pointer-events:none;z-index:0}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(13,8,24,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(199,139,14,0.15)}
+.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:var(--cream);text-decoration:none;letter-spacing:-0.02em}
+.nav-logo span{color:var(--gold)}
+.nav-back{font-family:var(--sans);font-size:0.8rem;color:rgba(250,246,239,0.5);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s}
+.nav-back:hover{color:var(--cream)}
+
+/* PAGE NAV TABS */
+.page-tabs{position:sticky;top:60px;z-index:90;background:rgba(13,8,24,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(199,139,14,0.1);padding:0 3rem;display:flex;gap:0;overflow-x:auto}
+.ptab{font-family:var(--sans);font-size:0.75rem;font-weight:500;letter-spacing:0.06em;padding:0.9rem 1.25rem;color:rgba(250,246,239,0.4);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.2s}
+.ptab:hover{color:rgba(250,246,239,0.7)}
+.ptab.active{color:var(--goldlt);border-bottom-color:var(--gold)}
+
+/* HERO */
+.hero{padding:9rem 3rem 4rem;text-align:center;position:relative;z-index:1}
+.hero-eyebrow{font-family:var(--sans);font-size:0.65rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;gap:0.75rem}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:30px;height:1px;background:var(--gold);opacity:0.4}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,5vw,4rem);line-height:1.1;letter-spacing:-0.02em;color:var(--cream);margin-bottom:0.6rem}
+.hero h1 em{font-style:italic;color:var(--goldlt)}
+.hero-sub{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:rgba(250,246,239,0.45);margin-bottom:2rem;line-height:1.55;max-width:600px;margin-left:auto;margin-right:auto}
+
+/* ACCURACY BADGE */
+.accuracy-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(74,122,98,0.12);border:1px solid rgba(74,122,98,0.35);border-radius:100px;padding:0.4rem 1rem;font-family:var(--sans);font-size:0.72rem;color:rgba(168,216,184,0.8);margin-bottom:1.5rem}
+
+/* SECTION WRAPPER */
+.section{padding:5rem 3rem;position:relative;z-index:1;max-width:1200px;margin:0 auto}
+.section-sm{max-width:900px}
+.section-full{padding:5rem 3rem;position:relative;z-index:1}
+
+.section-eyebrow{font-family:var(--sans);font-size:0.62rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:0.6rem}
+.section-eyebrow::before{content:'';display:block;width:18px;height:1px;background:var(--gold);opacity:0.5}
+.section-h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:400;color:var(--cream);margin-bottom:0.5rem;line-height:1.15}
+.section-h2 em{font-style:italic;color:var(--goldlt)}
+.section-intro{font-family:var(--sans);font-size:0.9rem;color:rgba(250,246,239,0.5);line-height:1.7;max-width:600px;margin-bottom:3rem;font-weight:300}
+
+/* ── FAMILY TREE SVG ── */
+.tree-wrap{background:rgba(255,251,240,0.03);border:1px solid rgba(199,139,14,0.15);border-radius:12px;padding:2rem 1rem;overflow-x:auto;overflow-y:hidden;backdrop-filter:blur(8px)}
+.tree-svg{display:block;min-width:1600px}
+.tnode{cursor:pointer}
+.tnode rect{transition:filter 0.2s}
+.tnode:hover rect{filter:brightness(1.25)}
+.tnode-name{font-family:'Cormorant Garamond',serif;dominant-baseline:central;text-anchor:middle;pointer-events:none}
+.tnode-sub{font-family:'DM Sans',sans-serif;dominant-baseline:central;text-anchor:middle;text-transform:uppercase;letter-spacing:0.07em;pointer-events:none}
+
+.tooltip{position:fixed;z-index:300;background:rgba(10,6,20,0.97);border:1px solid rgba(199,139,14,0.4);border-radius:10px;padding:1.1rem 1.4rem;max-width:260px;pointer-events:none;opacity:0;transition:opacity 0.18s;backdrop-filter:blur(12px)}
+.tooltip.show{opacity:1}
+.tt-name{font-family:var(--serif);font-size:1.05rem;color:var(--cream);margin-bottom:0.2rem}
+.tt-role{font-family:var(--sans);font-size:0.65rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem}
+.tt-desc{font-family:var(--sans);font-size:0.77rem;color:rgba(250,246,239,0.58);line-height:1.6}
+
+/* LEGEND */
+.tree-legend{display:flex;flex-wrap:wrap;gap:1.25rem;margin-top:1.5rem;justify-content:center}
+.tleg{display:flex;align-items:center;gap:0.5rem;font-family:var(--sans);font-size:0.72rem;color:rgba(250,246,239,0.45)}
+.tleg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+/* FILTER TABS */
+.filter-row{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.ftab{font-family:var(--sans);font-size:0.73rem;font-weight:500;letter-spacing:0.05em;padding:0.4rem 1rem;border:1.5px solid rgba(199,139,14,0.2);border-radius:100px;background:rgba(199,139,14,0.06);color:rgba(250,246,239,0.5);cursor:pointer;transition:all 0.2s}
+.ftab:hover,.ftab.active{background:rgba(199,139,14,0.15);border-color:var(--gold);color:var(--goldlt)}
+
+/* CHARACTER CARDS GRID */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:1.75rem}
+.ccard{perspective:1000px;cursor:pointer}
+.ccard.hidden{display:none}
+.ccard-inner{position:relative;transform-style:preserve-3d;transition:transform 0.65s cubic-bezier(0.34,1.1,0.64,1);border-radius:12px}
+.ccard:hover .ccard-inner{transform:rotateY(180deg)}
+.ccard-front,.ccard-back{backface-visibility:hidden;border-radius:12px}
+.ccard-front{background:rgba(255,251,240,0.93);border:1.5px solid rgba(199,139,14,0.22);box-shadow:0 4px 28px rgba(0,0,0,0.4)}
+.ccard-back{position:absolute;inset:0;transform:rotateY(180deg);padding:1.6rem;display:flex;flex-direction:column;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.6)}
+
+.ccard-header{padding:1.4rem 1.4rem 0.9rem;border-bottom:1px solid rgba(199,139,14,0.12);position:relative}
+.ccard-emoji{font-size:2.6rem;display:block;margin-bottom:0.4rem;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2))}
+.ccard-name{font-family:var(--serif);font-size:1.5rem;font-weight:500;color:var(--ink);line-height:1.1}
+.ccard-title{font-family:var(--sans);font-size:0.68rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.25rem}
+.ccard-tag{position:absolute;top:0.9rem;right:0.9rem;font-family:var(--sans);font-size:0.56rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.18rem 0.55rem;border-radius:100px}
+.t-pandava{background:rgba(74,122,98,0.12);color:var(--sage);border:1px solid rgba(74,122,98,0.3)}
+.t-kaurava{background:rgba(192,79,45,0.1);color:var(--terra);border:1px solid rgba(192,79,45,0.25)}
+.t-divine{background:rgba(199,139,14,0.12);color:var(--gold);border:1px solid rgba(199,139,14,0.3)}
+.t-teacher{background:rgba(58,107,138,0.12);color:#8ABCD4;border:1px solid rgba(58,107,138,0.3)}
+.t-other{background:rgba(107,76,154,0.12);color:#C4A8E4;border:1px solid rgba(107,76,154,0.25)}
+
+.ccard-body{padding:0.9rem 1.4rem 1.2rem}
+.ccard-role{font-family:var(--serif);font-style:italic;font-size:0.97rem;color:var(--ink-muted);line-height:1.55;margin-bottom:0.65rem}
+.ccard-chips{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.6rem}
+.chip{font-family:var(--sans);font-size:0.6rem;font-weight:500;letter-spacing:0.05em;padding:0.18rem 0.55rem;border-radius:100px;background:rgba(13,8,24,0.06);color:var(--ink-muted);border:1px solid rgba(13,8,24,0.1)}
+.ccard-hint{font-family:var(--sans);font-size:0.62rem;color:rgba(13,8,24,0.3);display:flex;align-items:center;gap:0.3rem}
+
+.cb-name{font-family:var(--serif);font-size:1.15rem;font-weight:500;color:var(--cream);margin-bottom:0.4rem}
+.cb-quote{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--goldlt);line-height:1.55;padding-left:0.9rem;border-left:2px solid var(--gold);margin-bottom:0.85rem}
+.cb-lore{font-family:var(--sans);font-size:0.8rem;font-weight:300;color:rgba(250,246,239,0.62);line-height:1.7;flex:1}
+.cb-rel{margin-top:0.85rem;padding-top:0.85rem;border-top:1px solid rgba(199,139,14,0.18);font-family:var(--sans);font-size:0.73rem;color:rgba(250,246,239,0.42);line-height:1.6}
+.cb-rel strong{color:rgba(250,246,239,0.72);font-weight:500}
+
+/* RELATIONSHIP FINDER */
+.finder-box{background:rgba(255,251,240,0.03);border:1px solid rgba(199,139,14,0.2);border-radius:10px;padding:2rem 2.5rem;backdrop-filter:blur(8px)}
+.finder-label{font-family:var(--sans);font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem}
+.finder-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.fsel{flex:1;min-width:155px;background:rgba(13,8,24,0.7);color:var(--cream);border:1.5px solid rgba(199,139,14,0.3);border-radius:6px;padding:0.65rem 2.2rem 0.65rem 0.9rem;font-family:var(--sans);font-size:0.86rem;cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23C78B0E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.8rem center}
+.fsel option{background:#1a0f2e}
+.fvs{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:rgba(250,246,239,0.28)}
+.fbtn{background:var(--gold);color:var(--ink);border:none;padding:0.65rem 1.4rem;font-family:var(--sans);font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;border-radius:6px;cursor:pointer;transition:background 0.2s;white-space:nowrap}
+.fbtn:hover{background:var(--goldlt)}
+.fres{margin-top:1.25rem;font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--goldlt);line-height:1.55;min-height:1.5rem;opacity:0;transition:opacity 0.4s}
+.fres.show{opacity:1}
+
+/* RELATIONSHIP TABLE */
+.rel-table-wrap{overflow-x:auto;border:1px solid rgba(199,139,14,0.15);border-radius:10px}
+table{width:100%;border-collapse:collapse}
+th{font-family:var(--sans);font-size:0.65rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);padding:0.85rem 1.25rem;text-align:left;background:rgba(199,139,14,0.07);border-bottom:1px solid rgba(199,139,14,0.15)}
+td{font-family:var(--sans);font-size:0.84rem;color:rgba(250,246,239,0.7);padding:0.8rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.04);line-height:1.55;font-weight:300}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(199,139,14,0.03)}
+td:first-child{font-weight:500;color:rgba(250,246,239,0.88);font-family:var(--serif);font-size:0.95rem}
+td .badge{display:inline-block;font-size:0.58rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.15rem 0.5rem;border-radius:100px;margin-left:0.4rem}
+.badge-blood{background:rgba(192,79,45,0.15);color:var(--terra);border:1px solid rgba(192,79,45,0.3)}
+.badge-marriage{background:rgba(107,76,154,0.15);color:#C4A8E4;border:1px solid rgba(107,76,154,0.3)}
+.badge-teacher{background:rgba(58,107,138,0.15);color:#8ABCD4;border:1px solid rgba(58,107,138,0.3)}
+.badge-alliance{background:rgba(199,139,14,0.12);color:var(--gold);border:1px solid rgba(199,139,14,0.3)}
+
+/* WHO'S WHO */
+.ww-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.ww-card{background:rgba(255,251,240,0.03);border:1px solid rgba(199,139,14,0.15);border-radius:10px;padding:1.5rem 1.75rem;transition:all 0.2s}
+.ww-card:hover{background:rgba(199,139,14,0.05);border-color:rgba(199,139,14,0.28);transform:translateY(-2px)}
+.ww-name{font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--cream);margin-bottom:0.25rem}
+.ww-role{font-family:var(--sans);font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem}
+.ww-desc{font-family:var(--sans);font-size:0.82rem;color:rgba(250,246,239,0.55);line-height:1.65;font-weight:300}
+.ww-note{font-family:var(--serif);font-style:italic;font-size:0.88rem;color:rgba(240,200,74,0.6);margin-top:0.6rem;line-height:1.5}
+
+/* WHY ARJUNA WAS CONFLICTED */
+.conflict-section{background:rgba(192,79,45,0.04);border:1px solid rgba(192,79,45,0.15);border-radius:12px;padding:3rem;margin:0 auto;max-width:860px}
+.conflict-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2rem}
+.conflict-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:1.25rem 1.4rem}
+.conflict-icon{font-size:1.6rem;margin-bottom:0.6rem;display:block}
+.conflict-title{font-family:var(--serif);font-size:1rem;font-weight:500;color:var(--cream);margin-bottom:0.35rem}
+.conflict-body{font-family:var(--sans);font-size:0.78rem;color:rgba(250,246,239,0.5);line-height:1.65;font-weight:300}
+
+/* TICKER */
+.ticker{background:rgba(199,139,14,0.07);border-top:1px solid rgba(199,139,14,0.12);border-bottom:1px solid rgba(199,139,14,0.12);padding:0.7rem 0;overflow:hidden;position:relative;z-index:1}
+.ticker-inner{display:flex;gap:4rem;animation:tick 45s linear infinite;white-space:nowrap}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick-item{font-family:var(--serif);font-style:italic;font-size:0.88rem;color:rgba(250,246,239,0.45);display:flex;align-items:center;gap:0.7rem}
+.tick-dot{width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:0.5;flex-shrink:0}
+
+footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(199,139,14,0.1);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
+.flogo{font-family:var(--serif);font-size:1.2rem;color:var(--cream);text-decoration:none}
+.flogo span{color:var(--gold)}
+.flinks{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap}
+.flinks a{font-family:var(--sans);font-size:0.75rem;color:rgba(250,246,239,0.35);text-decoration:none;transition:color 0.2s}
+.flinks a:hover{color:rgba(250,246,239,0.7)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.ccard{animation:fadeUp 0.5s ease both}
+
+@media(max-width:900px){
+  nav,.page-tabs{padding-left:1.5rem;padding-right:1.5rem}
+  .hero{padding:8rem 1.5rem 3rem}
+  .section,.section-full{padding:4rem 1.5rem}
+  .ww-grid,.conflict-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:1rem;padding:2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="the-gita-drop.html">The <span>Gita Drop</span></a>
+  <a class="nav-back" href="the-gita-drop.html">← Back to home</a>
+</nav>
+
+<div class="page-tabs">
+  <a class="ptab active" href="#tree">Family Tree</a>
+  <a class="ptab" href="#cards">Character Cards</a>
+  <a class="ptab" href="#finder">Relationship Finder</a>
+  <a class="ptab" href="#table">Relationship Table</a>
+  <a class="ptab" href="#conflict">Why Arjuna Collapsed</a>
+</div>
+
+<div class="hero" id="top">
+  <div class="hero-eyebrow">The Cast of The Gita · Factually Accurate Edition</div>
+  <h1>Wait... <em>Who's Related</em><br>to Whom?</h1>
+  <p class="hero-sub">Everyone at Kurukshetra was either a cousin, a student, or a teacher of everyone else. Arjuna knew all of them. That was the whole problem.</p>
+  <div class="accuracy-badge">✓ Corrected against the Critical Edition of the Mahabharata · All genealogies verified</div>
+</div>
+
+<!-- TICKER 1 -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker1"></div>
+</div>
+
+<!-- ══ FAMILY TREE ══ -->
+<div class="section-full" id="tree">
+  <div class="section" style="padding-top:0;padding-bottom:2rem">
+    <div class="section-eyebrow">Generation by Generation</div>
+    <h2 class="section-h2">The Family Tree <em>you actually need</em></h2>
+    <p class="section-intro">Starting from King Shantanu. Every major character in the Bhagavad Gita appears below. Hover any node for their story.</p>
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto;padding:0 3rem">
+    <div class="tree-wrap">
+      <svg class="tree-svg" width="1600" height="700" viewBox="0 0 1600 700" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- ═══════ GENERATION LABELS ═══════ -->
+  <text x="14" y="58"  font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">GEN 1</text>
+  <text x="14" y="158" font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">GEN 2</text>
+  <text x="14" y="258" font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">GEN 2</text>
+  <text x="14" y="340" font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">WIVES</text>
+  <text x="14" y="438" font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">GEN 3</text>
+  <text x="14" y="538" font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">GEN 4</text>
+  <text x="14" y="638" font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">GEN 5</text>
+
+  <!-- Horizontal generation guide lines -->
+  <line x1="50" y1="28"  x2="1590" y2="28"  stroke="rgba(199,139,14,0.04)" stroke-width="1"/>
+  <line x1="50" y1="128" x2="1590" y2="128" stroke="rgba(199,139,14,0.04)" stroke-width="1"/>
+  <line x1="50" y1="228" x2="1590" y2="228" stroke="rgba(199,139,14,0.04)" stroke-width="1"/>
+  <line x1="50" y1="408" x2="1590" y2="408" stroke="rgba(199,139,14,0.04)" stroke-width="1"/>
+  <line x1="50" y1="508" x2="1590" y2="508" stroke="rgba(199,139,14,0.04)" stroke-width="1"/>
+
+  <!-- ═══════ CONNECTOR LINES ═══════ -->
+
+  <!-- G1: Shantanu (cx=640) down to branch -->
+  <line x1="640" y1="80"  x2="640" y2="108" stroke="rgba(199,139,14,0.45)" stroke-width="1.5"/>
+  <line x1="240" y1="108" x2="1100" y2="108" stroke="rgba(199,139,14,0.3)"  stroke-width="1.5"/>
+  <!-- Ganga branch left -->
+  <line x1="240" y1="108" x2="240" y2="128"  stroke="rgba(58,107,138,0.5)"   stroke-width="1.5"/>
+  <!-- Satyavati branch right -->
+  <line x1="1100" y1="108" x2="1100" y2="128" stroke="rgba(199,139,14,0.45)" stroke-width="1.5"/>
+
+  <!-- G2: Bhishma from Ganga -->
+  <line x1="240" y1="174" x2="240" y2="228"  stroke="rgba(58,107,138,0.45)"  stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- G2: Satyavati (1100) → Vyasa(680) + Vichitravirya(1020) -->
+  <line x1="1100" y1="174" x2="1100" y2="208" stroke="rgba(199,139,14,0.4)"  stroke-width="1.5"/>
+  <line x1="680"  y1="208" x2="1100" y2="208" stroke="rgba(199,139,14,0.3)"  stroke-width="1.5"/>
+  <line x1="680"  y1="208" x2="680"  y2="228"  stroke="rgba(107,76,154,0.55)" stroke-width="1.5"/>
+  <line x1="1020" y1="208" x2="1020" y2="228"  stroke="rgba(199,139,14,0.4)"  stroke-width="1.5"/>
+
+  <!-- Chitrangada note (older brother of Vichitravirya, died without issue) — just a stub label -->
+  <line x1="1020" y1="208" x2="880"  y2="208"  stroke="rgba(199,139,14,0.2)" stroke-width="1" stroke-dasharray="3,4"/>
+  <line x1="880"  y1="208" x2="880"  y2="228"  stroke="rgba(199,139,14,0.2)" stroke-width="1" stroke-dasharray="3,4"/>
+
+  <!-- G2b: Vichitravirya(1020) → wives Ambika(840) + Ambalika(1100) -->
+  <line x1="1020" y1="276" x2="1020" y2="308" stroke="rgba(199,139,14,0.35)" stroke-width="1.5"/>
+  <line x1="840"  y1="308" x2="1100" y2="308" stroke="rgba(199,139,14,0.3)"  stroke-width="1.5"/>
+  <line x1="840"  y1="308" x2="840"  y2="328"  stroke="rgba(199,139,14,0.4)"  stroke-width="1.5"/>
+  <line x1="1100" y1="308" x2="1100" y2="328"  stroke="rgba(199,139,14,0.4)"  stroke-width="1.5"/>
+
+  <!-- Shurasena(1380) → Vasudeva(1220) + Kunti(1040) -->
+  <line x1="1380" y1="228" x2="1380" y2="408" stroke="rgba(199,139,14,0.35)" stroke-width="1.5"/>
+  <line x1="1040" y1="408" x2="1380" y2="408" stroke="rgba(199,139,14,0.3)"  stroke-width="1.5"/>
+  <line x1="1220" y1="408" x2="1220" y2="428"  stroke="rgba(199,139,14,0.45)" stroke-width="1.5"/>
+  <line x1="1040" y1="408" x2="1040" y2="428"  stroke="rgba(199,139,14,0.35)" stroke-width="1.5"/>
+
+  <!-- Niyoga lines: Vyasa(680) dashes → Dhritarashtra(200) + Pandu(480) + Vidura(720) -->
+  <line x1="680" y1="276" x2="680" y2="390"  stroke="rgba(107,76,154,0.45)" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="200" y1="390" x2="720" y2="390"  stroke="rgba(107,76,154,0.35)" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="200" y1="390" x2="200" y2="410"   stroke="rgba(107,76,154,0.5)"  stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="480" y1="390" x2="480" y2="410"   stroke="rgba(107,76,154,0.5)"  stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="720" y1="390" x2="720" y2="410"   stroke="rgba(107,76,154,0.5)"  stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Ambika(840) → Dhritarashtra(200): diagonal note -->
+  <line x1="840" y1="352" x2="840" y2="385"  stroke="rgba(107,76,154,0.25)" stroke-width="1" stroke-dasharray="3,4"/>
+  <line x1="270" y1="385" x2="840" y2="385"  stroke="rgba(107,76,154,0.2)"  stroke-width="1" stroke-dasharray="3,4"/>
+  <line x1="270" y1="385" x2="270" y2="410"   stroke="rgba(107,76,154,0.25)" stroke-width="1" stroke-dasharray="3,4"/>
+  <!-- Ambalika(1100) → Pandu(480): diagonal note -->
+  <line x1="1100" y1="372" x2="1100" y2="395" stroke="rgba(107,76,154,0.22)" stroke-width="1" stroke-dasharray="3,4"/>
+  <line x1="550"  y1="395" x2="1100" y2="395" stroke="rgba(107,76,154,0.18)" stroke-width="1" stroke-dasharray="3,4"/>
+  <line x1="550"  y1="395" x2="550"  y2="410"  stroke="rgba(107,76,154,0.22)" stroke-width="1" stroke-dasharray="3,4"/>
+
+  <!-- Niyoga label -->
+  <text x="620" y="404" font-family="'DM Sans',sans-serif" font-size="8" fill="rgba(107,76,154,0.45)" text-anchor="middle" font-style="italic">niyoga — sage-fathered, sanctioned by dharma</text>
+
+  <!-- Dhritarashtra(200) → Kauravas: Duryodhana(80) + Dushasan(230) + "+98" -->
+  <line x1="200" y1="466" x2="200" y2="496"  stroke="rgba(192,79,45,0.5)"  stroke-width="1.5"/>
+  <line x1="80"  y1="496" x2="380" y2="496"  stroke="rgba(192,79,45,0.4)"  stroke-width="1.5"/>
+  <line x1="80"  y1="496" x2="80"  y2="510"   stroke="rgba(192,79,45,0.5)"  stroke-width="1.5"/>
+  <line x1="230" y1="496" x2="230" y2="510"   stroke="rgba(192,79,45,0.5)"  stroke-width="1.5"/>
+  <line x1="380" y1="496" x2="380" y2="510"   stroke="rgba(192,79,45,0.4)"  stroke-width="1.5"/>
+
+  <!-- Pandu(480) → Pandavas: Karna-note + Yudhi(530) + Bhima(680) + Arjuna(830) + Nakula(980) + Sahadeva(1130) -->
+  <!-- Karna (pre-marriage) special dashed branch from Kunti(1040) side -->
+  <line x1="1040" y1="480" x2="1040" y2="492" stroke="rgba(199,139,14,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="390"  y1="492" x2="1040" y2="492" stroke="rgba(199,139,14,0.25)" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="390"  y1="492" x2="390"  y2="510"  stroke="rgba(199,139,14,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Pandu → 5 Pandavas spread -->
+  <line x1="480" y1="466" x2="480" y2="502"  stroke="rgba(74,122,98,0.5)"  stroke-width="1.5"/>
+  <line x1="480" y1="502" x2="1130" y2="502" stroke="rgba(74,122,98,0.4)"  stroke-width="1.5"/>
+  <line x1="530" y1="502" x2="530" y2="510"  stroke="rgba(74,122,98,0.5)"  stroke-width="1.5"/>
+  <line x1="680" y1="502" x2="680" y2="510"  stroke="rgba(74,122,98,0.5)"  stroke-width="1.5"/>
+  <line x1="830" y1="502" x2="830" y2="510"  stroke="rgba(74,122,98,0.5)"  stroke-width="1.5"/>
+  <line x1="980" y1="502" x2="980" y2="510"  stroke="rgba(74,122,98,0.5)"  stroke-width="1.5"/>
+  <line x1="1130" y1="502" x2="1130" y2="510" stroke="rgba(74,122,98,0.45)" stroke-width="1.5"/>
+
+  <!-- Kunti ↔ Vasudeva sibling dashed line -->
+  <line x1="1040" y1="454" x2="1040" y2="468" stroke="rgba(199,139,14,0.25)" stroke-width="1" stroke-dasharray="3,4"/>
+  <line x1="1040" y1="468" x2="1220" y2="468" stroke="rgba(199,139,14,0.2)"  stroke-width="1" stroke-dasharray="3,4"/>
+  <line x1="1220" y1="452" x2="1220" y2="468" stroke="rgba(199,139,14,0.25)" stroke-width="1" stroke-dasharray="3,4"/>
+  <text x="1130" y="464" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="rgba(199,139,14,0.35)" text-anchor="middle">siblings</text>
+
+  <!-- Vasudeva(1220) → Krishna(1300) + Subhadra(1460) -->
+  <line x1="1220" y1="476" x2="1220" y2="502" stroke="rgba(199,139,14,0.5)"  stroke-width="1.5"/>
+  <line x1="1220" y1="502" x2="1460" y2="502" stroke="rgba(199,139,14,0.4)"  stroke-width="1.5"/>
+  <line x1="1300" y1="502" x2="1300" y2="510" stroke="rgba(199,139,14,0.5)"  stroke-width="1.5"/>
+  <line x1="1460" y1="502" x2="1460" y2="510" stroke="rgba(199,139,14,0.4)"  stroke-width="1.5"/>
+
+  <!-- Arjuna(830) + Subhadra(1460) → Abhimanyu(830) marriage arc -->
+  <line x1="1460" y1="558" x2="1460" y2="578" stroke="rgba(107,76,154,0.3)"  stroke-width="1" stroke-dasharray="3,4"/>
+  <line x1="895"  y1="578" x2="1460" y2="578" stroke="rgba(107,76,154,0.25)" stroke-width="1" stroke-dasharray="3,4"/>
+  <line x1="895"  y1="560" x2="895"  y2="578"  stroke="rgba(107,76,154,0.3)"  stroke-width="1" stroke-dasharray="3,4"/>
+  <!-- Arjuna → Abhimanyu -->
+  <line x1="830" y1="562" x2="830" y2="616"  stroke="rgba(74,122,98,0.4)"  stroke-width="1.5"/>
+
+  <!-- Cousin note -->
+  <text x="1130" y="500" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="rgba(199,139,14,0.3)" text-anchor="middle">∴ Krishna &amp; Pandavas = first cousins</text>
+
+  <!-- ═══════ NODES ═══════ -->
+
+  <!-- GEN 1: SHANTANU cx=640, y=30 -->
+  <g class="tnode" data-n="King Shantanu" data-r="King of Hastinapura · Generation 1" data-d="The founding ancestor of both the Pandava and Kaurava lines. He had two marriages: to Ganga (producing Bhishma) and to Satyavati (producing Chitrangada and Vichitravirya). Both marriages set in motion the events that lead to Kurukshetra.">
+    <rect x="540" y="30" width="200" height="50" rx="8" fill="rgba(199,139,14,0.2)" stroke="rgba(240,200,74,0.65)" stroke-width="2"/>
+    <text class="tnode-name" x="640" y="50" fill="#F0C84A" font-size="14" font-weight="500">King Shantanu</text>
+    <text class="tnode-sub"  x="640" y="67" fill="rgba(240,200,74,0.55)" font-size="8">Ancestor · King of Hastinapura</text>
+  </g>
+
+  <!-- GEN 2 LEFT: GANGA cx=240 -->
+  <g class="tnode" data-n="Ganga" data-r="First wife of Shantanu · Mother of Bhishma" data-d="The river goddess. First wife of Shantanu. Mother of Devavrata, who would become Bhishma. She left Shantanu after he broke their agreement, but their son Devavrata — later Bhishma — remained.">
+    <rect x="140" y="128" width="200" height="46" rx="8" fill="rgba(58,107,138,0.2)" stroke="rgba(58,107,138,0.55)" stroke-width="1.5"/>
+    <text class="tnode-name" x="240" y="146" fill="#A8C8E0" font-size="13">Ganga</text>
+    <text class="tnode-sub"  x="240" y="163" fill="rgba(168,200,224,0.55)" font-size="8">1st Wife · River Goddess</text>
+  </g>
+
+  <!-- GEN 2 RIGHT: SATYAVATI cx=1100 -->
+  <g class="tnode" data-n="Satyavati" data-r="Second wife of Shantanu · Mother of Vyasa, Chitrangada, Vichitravirya" data-d="A fisherwoman who became queen. Before marrying Shantanu she had already borne Vyasa (by sage Parashara). Her condition for the marriage — that her sons, not Bhishma, would inherit — led to Bhishma's terrible oath.">
+    <rect x="1000" y="128" width="200" height="46" rx="8" fill="rgba(107,76,154,0.2)" stroke="rgba(107,76,154,0.5)" stroke-width="1.5"/>
+    <text class="tnode-name" x="1100" y="146" fill="#C8A8E0" font-size="13">Satyavati</text>
+    <text class="tnode-sub"  x="1100" y="163" fill="rgba(200,168,224,0.55)" font-size="8">2nd Wife · Mother of Vyasa, Vichitra...</text>
+  </g>
+
+  <!-- GEN 2: BHISHMA cx=240, y=228 -->
+  <g class="tnode" data-n="Bhishma" data-r="Son of Shantanu & Ganga · Grand-Uncle · Never married" data-d="Born Devavrata. Renounced the throne and took a lifelong vow of celibacy so his father could marry Satyavati — that vow gave him the name Bhishma. Grand-uncle to both Pandavas and Kauravas. Commanded the Kaurava army for the first 10 days. Had the boon of choosing his own moment of death.">
+    <rect x="140" y="228" width="200" height="50" rx="8" fill="rgba(58,107,138,0.22)" stroke="rgba(58,107,138,0.6)" stroke-width="2"/>
+    <text class="tnode-name" x="240" y="249" fill="#A8C8E0" font-size="14" font-weight="500">Bhishma</text>
+    <text class="tnode-sub"  x="240" y="267" fill="rgba(168,200,224,0.6)" font-size="8">Grand-Uncle · Never married</text>
+  </g>
+
+  <!-- GEN 2: CHITRANGADA stub cx=880 -->
+  <g class="tnode" data-n="Chitrangada" data-r="Elder son of Shantanu & Satyavati · Died young" data-d="Elder son of Satyavati and Shantanu. Died young in battle before marrying or producing an heir. His death meant the line passed to his younger brother Vichitravirya.">
+    <rect x="790" y="228" width="180" height="46" rx="8" fill="rgba(199,139,14,0.07)" stroke="rgba(199,139,14,0.2)" stroke-width="1" stroke-dasharray="4,3"/>
+    <text class="tnode-name" x="880" y="246" fill="rgba(212,184,96,0.55)" font-size="12">Chitrangada</text>
+    <text class="tnode-sub"  x="880" y="263" fill="rgba(212,184,96,0.35)" font-size="8">Died without heirs · See note</text>
+  </g>
+
+  <!-- GEN 2: VYASA cx=680 -->
+  <g class="tnode" data-n="Vyasa" data-r="Son of Satyavati & sage Parashara · Author & father by niyoga" data-d="Born before Satyavati's marriage to Shantanu. He is both the author of the Mahabharata and a character in it. Through niyoga (a dharma-sanctioned arrangement), he fathered Dhritarashtra (through Ambika), Pandu (through Ambalika), and Vidura (through a maid) — all three of whom became the fathers of the war's two sides.">
+    <rect x="580" y="228" width="200" height="50" rx="8" fill="rgba(107,76,154,0.22)" stroke="rgba(107,76,154,0.55)" stroke-width="2"/>
+    <text class="tnode-name" x="680" y="249" fill="#C8A8E0" font-size="14" font-weight="500">Vyasa</text>
+    <text class="tnode-sub"  x="680" y="267" fill="rgba(200,168,224,0.6)" font-size="8">Sage · Author · Father by Niyoga</text>
+  </g>
+
+  <!-- GEN 2: VICHITRAVIRYA cx=1020 -->
+  <g class="tnode" data-n="Vichitravirya" data-r="Younger son of Satyavati & Shantanu · Died without heirs" data-d="Younger son of Satyavati. Married both Ambika and Ambalika (princesses of Kashi). Died young without fathering children. His death triggered the niyoga arrangement — Vyasa was called to continue the Kuru line.">
+    <rect x="920" y="228" width="200" height="50" rx="8" fill="rgba(199,139,14,0.1)" stroke="rgba(199,139,14,0.3)" stroke-width="1.5"/>
+    <text class="tnode-name" x="1020" y="249" fill="#D4A860" font-size="13">Vichitravirya</text>
+    <text class="tnode-sub"  x="1020" y="267" fill="rgba(212,168,96,0.55)" font-size="8">Son of Satyavati · Died without heirs</text>
+  </g>
+
+  <!-- GEN 2: SHURASENA cx=1380 -->
+  <g class="tnode" data-n="Shurasena" data-r="Yadava king · Father of Vasudeva and Kunti" data-d="King of the Yadava clan. Father of Vasudeva (Krishna's father) and Pritha (later renamed Kunti after being adopted by her uncle Kuntibhoja). Because Vasudeva and Kunti are siblings, their children Krishna and Arjuna are first cousins.">
+    <rect x="1280" y="228" width="200" height="50" rx="8" fill="rgba(199,139,14,0.14)" stroke="rgba(199,139,14,0.4)" stroke-width="1.5"/>
+    <text class="tnode-name" x="1380" y="249" fill="#E8C880" font-size="13">Shurasena</text>
+    <text class="tnode-sub"  x="1380" y="267" fill="rgba(232,200,128,0.55)" font-size="8">Father of Vasudeva &amp; Kunti (Pritha)</text>
+  </g>
+
+  <!-- GEN 2b: AMBIKA cx=840 y=328 -->
+  <g class="tnode" data-n="Ambika" data-r="Wife of Vichitravirya · Mother of Dhritarashtra (via Vyasa)" data-d="Princess of Kashi. Married Vichitravirya. After his death, Vyasa came to her for niyoga. She closed her eyes in fear — and her son Dhritarashtra was born blind.">
+    <rect x="740" y="328" width="200" height="46" rx="8" fill="rgba(199,139,14,0.08)" stroke="rgba(199,139,14,0.22)" stroke-width="1"/>
+    <text class="tnode-name" x="840" y="347" fill="#D4B870" font-size="13">Ambika</text>
+    <text class="tnode-sub"  x="840" y="364" fill="rgba(212,184,112,0.45)" font-size="8">Mother of Dhritarashtra</text>
+  </g>
+
+  <!-- GEN 2b: AMBALIKA cx=1100 y=328 -->
+  <g class="tnode" data-n="Ambalika" data-r="Wife of Vichitravirya · Mother of Pandu (via Vyasa)" data-d="Princess of Kashi. Married Vichitravirya. After his death, Vyasa came to her for niyoga. She turned pale with fear — and her son Pandu was born pale (pandu means pale in Sanskrit).">
+    <rect x="1000" y="328" width="200" height="46" rx="8" fill="rgba(199,139,14,0.08)" stroke="rgba(199,139,14,0.22)" stroke-width="1"/>
+    <text class="tnode-name" x="1100" y="347" fill="#D4B870" font-size="13">Ambalika</text>
+    <text class="tnode-sub"  x="1100" y="364" fill="rgba(212,184,112,0.45)" font-size="8">Mother of Pandu</text>
+  </g>
+
+  <!-- GEN 3: DHRITARASHTRA cx=200 y=410 -->
+  <g class="tnode" data-n="Dhritarashtra" data-r="Son of Vyasa & Ambika · Blind King · Father of Kauravas" data-d="Born blind because Ambika closed her eyes during niyoga. Married Gandhari, who blindfolded herself for life in solidarity. The Bhagavad Gita begins with his question: 'What are my sons doing on the field of Kurukshetra?'">
+    <rect x="100" y="410" width="200" height="54" rx="8" fill="rgba(192,79,45,0.16)" stroke="rgba(192,79,45,0.5)" stroke-width="2"/>
+    <text class="tnode-name" x="200" y="432" fill="#F5A090" font-size="13" font-weight="500">Dhritarashtra</text>
+    <text class="tnode-sub"  x="200" y="451" fill="rgba(192,79,45,0.65)" font-size="8">Blind King · Father of Kauravas</text>
+  </g>
+
+  <!-- GEN 3: PANDU cx=480 y=410 -->
+  <g class="tnode" data-n="Pandu" data-r="Son of Vyasa & Ambalika · Father of Pandavas · Cursed" data-d="Born pale. Became king of Hastinapura. Cursed by sage Kindama: if he touched a woman with desire, he would die. Hence his wives Kunti and Madri used the divine mantra to invoke gods as the fathers of their sons. Pandu died when he forgot the curse.">
+    <rect x="380" y="410" width="200" height="54" rx="8" fill="rgba(74,122,98,0.16)" stroke="rgba(74,122,98,0.55)" stroke-width="2"/>
+    <text class="tnode-name" x="480" y="432" fill="#A8D8B8" font-size="14" font-weight="500">Pandu</text>
+    <text class="tnode-sub"  x="480" y="451" fill="rgba(74,122,98,0.65)" font-size="8">Father of Pandavas · Cursed</text>
+  </g>
+
+  <!-- GEN 3: VIDURA cx=720 y=410 -->
+  <g class="tnode" data-n="Vidura" data-r="Son of Vyasa & a maid · Half-brother to both kings" data-d="Born of a palace maid, making him half-brother to Dhritarashtra and Pandu but of lower birth status. The wisest of the three. Said to be the earthly form of Yama. Warned Dhritarashtra repeatedly — and was not listened to.">
+    <rect x="620" y="410" width="200" height="54" rx="8" fill="rgba(107,76,154,0.16)" stroke="rgba(107,76,154,0.5)" stroke-width="2"/>
+    <text class="tnode-name" x="720" y="432" fill="#C8A8E0" font-size="14" font-weight="500">Vidura</text>
+    <text class="tnode-sub"  x="720" y="451" fill="rgba(107,76,154,0.65)" font-size="8">Half-Brother · Wisest Counsellor</text>
+  </g>
+
+  <!-- GEN 3: KUNTI cx=1040 y=428 -->
+  <g class="tnode" data-n="Kunti (Pritha)" data-r="Daughter of Shurasena · Sister of Vasudeva · Pandu's wife" data-d="Born Pritha, adopted by her uncle Kuntibhoja. Before her marriage she used a divine mantra to invoke the Sun god — producing Karna, whom she set adrift on a river. After marrying Pandu she used the mantra for Yudhishthira (Dharma), Bhima (Vayu), and Arjuna (Indra). She also shared it with Madri.">
+    <rect x="940" y="428" width="200" height="46" rx="8" fill="rgba(199,139,14,0.12)" stroke="rgba(199,139,14,0.35)" stroke-width="1.5"/>
+    <text class="tnode-name" x="1040" y="447" fill="#E8C880" font-size="13">Kunti (Pritha)</text>
+    <text class="tnode-sub"  x="1040" y="464" fill="rgba(232,200,128,0.55)" font-size="8">Sister of Vasudeva · Pandu's wife</text>
+  </g>
+
+  <!-- GEN 3: VASUDEVA cx=1220 y=428 -->
+  <g class="tnode" data-n="Vasudeva" data-r="Son of Shurasena · Father of Krishna, Balarama, Subhadra" data-d="Shurasena's son. Father of Krishna, Balarama, and Subhadra. His sister is Kunti (Pritha) — making the Pandavas his nephews and Krishna their first cousin.">
+    <rect x="1120" y="428" width="200" height="46" rx="8" fill="rgba(199,139,14,0.18)" stroke="rgba(199,139,14,0.5)" stroke-width="1.5"/>
+    <text class="tnode-name" x="1220" y="447" fill="#E8C880" font-size="13">Vasudeva</text>
+    <text class="tnode-sub"  x="1220" y="464" fill="rgba(232,200,128,0.6)" font-size="8">Krishna's Father · Kunti's Brother</text>
+  </g>
+
+  <!-- GEN 4: DURYODHANA cx=80 y=510 -->
+  <g class="tnode" data-n="Duryodhana" data-r="Eldest Kaurava · Son of Dhritarashtra & Gandhari" data-d="The eldest Kaurava. Refused to give the Pandavas even five villages. His pride made war inevitable. Was loyal to Karna when no one else would be.">
+    <rect x="20" y="510" width="140" height="50" rx="8" fill="rgba(192,79,45,0.2)" stroke="rgba(192,79,45,0.65)" stroke-width="2"/>
+    <text class="tnode-name" x="90" y="530" fill="#F5A090" font-size="12" font-weight="500">Duryodhana</text>
+    <text class="tnode-sub"  x="90" y="548" fill="rgba(192,79,45,0.7)" font-size="8">Eldest Kaurava</text>
+  </g>
+
+  <!-- GEN 4: DUSHASAN cx=230 y=510 -->
+  <g class="tnode" data-n="Dushasana" data-r="2nd Kaurava · Son of Dhritarashtra" data-d="Second of the 100 Kaurava brothers. Dragged Draupadi into the assembly hall and attempted to disrobe her publicly. Bhima swore to drink his blood — and kept that oath during the war.">
+    <rect x="160" y="510" width="140" height="50" rx="8" fill="rgba(192,79,45,0.14)" stroke="rgba(192,79,45,0.4)" stroke-width="1.5"/>
+    <text class="tnode-name" x="230" y="530" fill="#F5B0A0" font-size="12">Dushasana</text>
+    <text class="tnode-sub"  x="230" y="548" fill="rgba(192,79,45,0.6)" font-size="8">2nd Kaurava</text>
+  </g>
+
+  <!-- +98 more label -->
+  <text x="385" y="530" font-family="'DM Sans',sans-serif" font-size="9"  fill="rgba(192,79,45,0.4)" text-anchor="middle">+98 more</text>
+  <text x="385" y="543" font-family="'DM Sans',sans-serif" font-size="9"  fill="rgba(192,79,45,0.4)" text-anchor="middle">brothers</text>
+  <text x="385" y="555" font-family="'DM Sans',sans-serif" font-size="8"  fill="rgba(192,79,45,0.3)" text-anchor="middle">+ Duhshala (sister)</text>
+
+  <!-- GEN 4: KARNA cx=390 y=510 (pre-marriage child of Kunti — shown separately) -->
+  <g class="tnode" data-n="Karna" data-r="Firstborn of Kunti & Surya · Before her marriage · Eldest by birth" data-d="Born before Kunti's marriage, through the Sun god Surya. Placed in a basket on the river and raised by the charioteer Adhiratha. Denied entry to royal tournaments because of his caste. Duryodhana gave him the kingdom of Anga and his friendship. Karna knew his true parentage before the war and still chose Duryodhana.">
+    <rect x="315" y="510" width="150" height="50" rx="8" fill="rgba(199,139,14,0.2)" stroke="rgba(240,200,74,0.55)" stroke-width="2"/>
+    <text class="tnode-name" x="390" y="530" fill="#F0D070" font-size="13" font-weight="500">Karna ☀️</text>
+    <text class="tnode-sub"  x="390" y="548" fill="rgba(240,200,74,0.6)" font-size="7.5">Eldest by birth · Not counted</text>
+  </g>
+
+  <!-- GEN 4: YUDHISHTHIRA cx=530 y=510 -->
+  <g class="tnode" data-n="Yudhishthira" data-r="1st Pandava · Son of Kunti & Dharma (Yama)" data-d="Eldest Pandava. Son of Kunti and Yama (the god of Dharma/Death). Never lied — except once during the war, saying 'Ashwatthama is dead' to bring Drona down. He bet his kingdom, brothers, and Draupadi in a dice game.">
+    <rect x="455" y="510" width="150" height="50" rx="8" fill="rgba(74,122,98,0.18)" stroke="rgba(74,122,98,0.55)" stroke-width="1.8"/>
+    <text class="tnode-name" x="530" y="530" fill="#A8D8B8" font-size="12">Yudhishtira</text>
+    <text class="tnode-sub"  x="530" y="548" fill="rgba(74,122,98,0.65)" font-size="8">1st Pandava · By Dharma</text>
+  </g>
+
+  <!-- GEN 4: BHIMA cx=680 y=510 -->
+  <g class="tnode" data-n="Bhima" data-r="2nd Pandava · Son of Kunti & Vayu (Wind God)" data-d="Second Pandava, born of the wind god Vayu. Immense physical strength. Swore to kill all 100 Kauravas and drink Dushasana's blood. He kept both vows.">
+    <rect x="605" y="510" width="150" height="50" rx="8" fill="rgba(74,122,98,0.18)" stroke="rgba(74,122,98,0.5)" stroke-width="1.5"/>
+    <text class="tnode-name" x="680" y="530" fill="#A8D8B8" font-size="14" font-weight="500">Bhima</text>
+    <text class="tnode-sub"  x="680" y="548" fill="rgba(74,122,98,0.6)" font-size="8">2nd Pandava · By Vayu</text>
+  </g>
+
+  <!-- GEN 4: ARJUNA cx=830 y=506 (highlighted) -->
+  <g class="tnode" data-n="Arjuna" data-r="3rd Pandava · Son of Kunti & Indra · Protagonist of the Gita" data-d="Third Pandava, son of Indra the king of the gods. The greatest archer of his age. The entire Bhagavad Gita is Krishna speaking to Arjuna. He is Krishna's first cousin (their parents Vasudeva and Kunti are siblings). He later married Subhadra, Krishna's sister.">
+    <rect x="750" y="504" width="160" height="58" rx="8" fill="rgba(74,122,98,0.32)" stroke="rgba(74,122,98,0.85)" stroke-width="2.5"/>
+    <text class="tnode-name" x="830" y="527" fill="#78DBA8" font-size="15" font-weight="600">Arjuna</text>
+    <text class="tnode-sub"  x="830" y="546" fill="rgba(74,122,98,0.85)" font-size="8">3rd Pandava · By Indra</text>
+    <text x="830" y="557" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="7" fill="rgba(120,219,168,0.55)">★ Protagonist of the Gita</text>
+  </g>
+
+  <!-- GEN 4: NAKULA cx=980 y=510 -->
+  <g class="tnode" data-n="Nakula" data-r="4th Pandava · Son of Madri & Ashwini Kumars · Twin of Sahadeva" data-d="One of the twin sons of Madri (Pandu's second wife) and the Ashwini Kumars. Half-brother to the first three Pandavas through Pandu. Known for his beauty and mastery of horses.">
+    <rect x="905" y="510" width="150" height="50" rx="8" fill="rgba(74,122,98,0.15)" stroke="rgba(74,122,98,0.4)" stroke-width="1.5"/>
+    <text class="tnode-name" x="980" y="530" fill="#B8E0C8" font-size="13">Nakula</text>
+    <text class="tnode-sub"  x="980" y="548" fill="rgba(74,122,98,0.55)" font-size="8">4th Pandava · Madri's son</text>
+  </g>
+
+  <!-- GEN 4: SAHADEVA cx=1130 y=510 -->
+  <g class="tnode" data-n="Sahadeva" data-r="5th Pandava · Son of Madri & Ashwini Kumars · Twin of Nakula" data-d="Youngest Pandava. Twin of Nakula, both sons of Madri and the Ashwini Kumars. Highly knowledgeable. His mother Madri died on Pandu's pyre; Kunti raised both twins.">
+    <rect x="1055" y="510" width="150" height="50" rx="8" fill="rgba(74,122,98,0.12)" stroke="rgba(74,122,98,0.35)" stroke-width="1.5"/>
+    <text class="tnode-name" x="1130" y="530" fill="#B8E0C8" font-size="13">Sahadeva</text>
+    <text class="tnode-sub"  x="1130" y="548" fill="rgba(74,122,98,0.5)" font-size="8">5th Pandava · Madri's son · Twin</text>
+  </g>
+
+  <!-- GEN 4: KRISHNA cx=1300 y=510 (highlighted) -->
+  <g class="tnode" data-n="Krishna" data-r="Son of Vasudeva · First cousin of Pandavas · Narrator of the Gita" data-d="Son of Vasudeva and Devaki. First cousin of the Pandavas (Vasudeva and Kunti are siblings). He offered both sides a choice before the war: himself unarmed, or his entire Narayani army. Arjuna chose Krishna. Duryodhana chose the army. The Gita is what Krishna said as Arjuna's charioteer.">
+    <rect x="1210" y="504" width="180" height="58" rx="8" fill="rgba(199,139,14,0.3)" stroke="rgba(240,200,74,0.8)" stroke-width="2.5"/>
+    <text class="tnode-name" x="1300" y="527" fill="#F0C84A" font-size="15" font-weight="600">Krishna</text>
+    <text class="tnode-sub"  x="1300" y="546" fill="rgba(199,139,14,0.9)" font-size="8">Cousin of Pandavas · The Gita</text>
+    <text x="1300" y="557" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="7" fill="rgba(240,200,74,0.5)">★ The Teacher</text>
+  </g>
+
+  <!-- GEN 4: SUBHADRA cx=1460 y=510 -->
+  <g class="tnode" data-n="Subhadra" data-r="Daughter of Vasudeva · Krishna's sister · Arjuna's wife" data-d="Krishna's sister. Married Arjuna with Krishna's approval. Mother of Abhimanyu. Subhadra fell asleep while Arjuna was teaching her the Chakravyuha formation — Abhimanyu in the womb heard only how to enter, not how to exit.">
+    <rect x="1380" y="510" width="160" height="50" rx="8" fill="rgba(199,139,14,0.15)" stroke="rgba(199,139,14,0.45)" stroke-width="1.5"/>
+    <text class="tnode-name" x="1460" y="530" fill="#E8C880" font-size="13">Subhadra</text>
+    <text class="tnode-sub"  x="1460" y="548" fill="rgba(232,200,128,0.6)" font-size="8">Krishna's sister · Arjuna's wife</text>
+  </g>
+
+  <!-- GEN 5: ABHIMANYU cx=830 y=616 -->
+  <g class="tnode" data-n="Abhimanyu" data-r="Son of Arjuna & Subhadra · Krishna's nephew" data-d="Arjuna's son by Subhadra. Heard how to enter the Chakravyuha while in the womb — but his mother fell asleep before Arjuna could explain the exit. He entered the formation on Day 13 of the war and was killed inside it, aged approximately 16. His son Parikshit survived and continued the Pandava line.">
+    <rect x="750" y="616" width="160" height="50" rx="8" fill="rgba(74,122,98,0.12)" stroke="rgba(74,122,98,0.35)" stroke-width="1.5"/>
+    <text class="tnode-name" x="830" y="636" fill="#A8D8B8" font-size="13">Abhimanyu</text>
+    <text class="tnode-sub"  x="830" y="654" fill="rgba(74,122,98,0.5)" font-size="8">Son of Arjuna &amp; Subhadra</text>
+  </g>
+
+  <!-- LEGEND -->
+  <g transform="translate(50,678)">
+    <rect width="10" height="10" rx="2" fill="rgba(74,122,98,0.5)"  stroke="rgba(74,122,98,0.8)"  stroke-width="1"/><text x="15" y="9" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(250,246,239,0.4)">Pandava line</text>
+    <rect x="120" width="10" height="10" rx="2" fill="rgba(192,79,45,0.5)" stroke="rgba(192,79,45,0.8)" stroke-width="1"/><text x="135" y="9" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(250,246,239,0.4)">Kaurava line</text>
+    <rect x="240" width="10" height="10" rx="2" fill="rgba(199,139,14,0.5)" stroke="rgba(240,200,74,0.7)" stroke-width="1"/><text x="255" y="9" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(250,246,239,0.4)">Divine / Yadava</text>
+    <rect x="370" width="10" height="10" rx="2" fill="rgba(107,76,154,0.5)" stroke="rgba(107,76,154,0.7)" stroke-width="1"/><text x="385" y="9" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(250,246,239,0.4)">Sage lineage</text>
+    <line x1="480" y1="5" x2="502" y2="5" stroke="rgba(199,139,14,0.45)" stroke-width="1.2" stroke-dasharray="3,3"/><text x="507" y="9" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(250,246,239,0.38)">Dashed = niyoga / sibling / marriage</text>
+    <text x="760" y="9" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(250,246,239,0.28)">Hover any node for details</text>
+  </g>
+
+</svg>
+    </div>
+
+    <!-- Nakula & Sahadeva note -->
+    <div style="margin-top:1.5rem;background:rgba(74,122,98,0.07);border:1px solid rgba(74,122,98,0.2);border-radius:8px;padding:1rem 1.5rem;font-family:var(--sans);font-size:0.82rem;color:rgba(250,246,239,0.55);line-height:1.65">
+      <strong style="color:rgba(168,216,184,0.8)">Notes on the tree:</strong>
+      <strong style="color:rgba(250,246,239,0.7)">Chitrangada</strong> (Shantanu and Satyavati's elder son) died young in battle before marrying — he is Vichitravirya's older brother and is not shown at scale.
+      <strong style="color:rgba(250,246,239,0.7)">Nakula and Sahadeva</strong> are sons of Pandu's second wife <strong style="color:rgba(250,246,239,0.7)">Madri</strong> and the Ashwini Kumars — Arjuna's half-brothers through Pandu.
+      <strong style="color:rgba(250,246,239,0.7)">Gandhari</strong> (Dhritarashtra's wife) and <strong style="color:rgba(250,246,239,0.7)">Madri</strong> (Pandu's second wife) are shown in the character cards.
+      <strong style="color:rgba(250,246,239,0.7)">Shurasena</strong> is the father (not grandfather) of both Vasudeva and Kunti — making Krishna and the Pandavas first cousins.
+      <strong style="color:rgba(250,246,239,0.7)">Karna</strong> is shown separately because he was born before Kunti's marriage and is not counted among the five Pandavas, despite being Kunti's firstborn.
+      <strong style="color:rgba(250,246,239,0.7)">Abhimanyu</strong> (Arjuna's son by Subhadra) and <strong style="color:rgba(250,246,239,0.7)">Balarama</strong> (Krishna's elder brother) are included in the character cards below.
+    </div>
+  </div>
+</div>
+
+<!-- CHARACTER CARDS -->
+<div class="section" id="cards">
+  <div class="section-eyebrow">Key Characters</div>
+  <h2 class="section-h2">The Characters — <em>Hover to flip</em></h2>
+  <p class="section-intro">Every major character named in the Bhagavad Gita — with their correct genealogy, role, and a note on why they matter.</p>
+
+  <div class="filter-row">
+    <div class="ftab active" onclick="filterCards('all',this)">Everyone</div>
+    <div class="ftab" onclick="filterCards('pandava',this)">🟢 Pandava Side</div>
+    <div class="ftab" onclick="filterCards('kaurava',this)">🔴 Kaurava Side</div>
+    <div class="ftab" onclick="filterCards('divine',this)">✨ Divine & Yadava</div>
+    <div class="ftab" onclick="filterCards('teacher',this)">📐 Teachers</div>
+    <div class="ftab" onclick="filterCards('other',this)">⚖️ Other Key Figures</div>
+  </div>
+
+  <div class="cards-grid" id="cardsGrid"></div>
+</div>
+
+<!-- RELATIONSHIP FINDER -->
+<div class="section section-sm" id="finder">
+  <div class="section-eyebrow">Interactive</div>
+  <h2 class="section-h2">Relationship <em>Finder</em></h2>
+  <p class="section-intro">Pick any two characters to see their exact relationship according to the Mahabharata.</p>
+  <div class="finder-box">
+    <div class="finder-label">Select two characters and click Find Link</div>
+    <div class="finder-row">
+      <select class="fsel" id="charA">
+        <option value="">— Select Character A —</option>
+        <option value="arjuna">Arjuna</option>
+        <option value="krishna">Krishna</option>
+        <option value="karna">Karna</option>
+        <option value="yudhishthira">Yudhishthira</option>
+        <option value="bhima">Bhima</option>
+        <option value="nakula">Nakula</option>
+        <option value="sahadeva">Sahadeva</option>
+        <option value="duryodhana">Duryodhana</option>
+        <option value="dushasana">Dushasana</option>
+        <option value="dhritarashtra">Dhritarashtra</option>
+        <option value="pandu">Pandu</option>
+        <option value="vidura">Vidura</option>
+        <option value="kunti">Kunti</option>
+        <option value="madri">Madri</option>
+        <option value="gandhari">Gandhari</option>
+        <option value="vasudeva">Vasudeva</option>
+        <option value="balarama">Balarama</option>
+        <option value="subhadra">Subhadra</option>
+        <option value="abhimanyu">Abhimanyu</option>
+        <option value="draupadi">Draupadi</option>
+        <option value="bhishma">Bhishma</option>
+        <option value="drona">Dronacharya</option>
+        <option value="kripa">Kripacharya</option>
+        <option value="ashwatthama">Ashwatthama</option>
+        <option value="sanjaya">Sanjaya</option>
+        <option value="vyasa">Vyasa</option>
+      </select>
+      <div class="fvs">↔</div>
+      <select class="fsel" id="charB">
+        <option value="">— Select Character B —</option>
+        <option value="arjuna">Arjuna</option>
+        <option value="krishna">Krishna</option>
+        <option value="karna">Karna</option>
+        <option value="yudhishthira">Yudhishthira</option>
+        <option value="bhima">Bhima</option>
+        <option value="nakula">Nakula</option>
+        <option value="sahadeva">Sahadeva</option>
+        <option value="duryodhana">Duryodhana</option>
+        <option value="dushasana">Dushasana</option>
+        <option value="dhritarashtra">Dhritarashtra</option>
+        <option value="pandu">Pandu</option>
+        <option value="vidura">Vidura</option>
+        <option value="kunti">Kunti</option>
+        <option value="madri">Madri</option>
+        <option value="gandhari">Gandhari</option>
+        <option value="vasudeva">Vasudeva</option>
+        <option value="balarama">Balarama</option>
+        <option value="subhadra">Subhadra</option>
+        <option value="abhimanyu">Abhimanyu</option>
+        <option value="draupadi">Draupadi</option>
+        <option value="bhishma">Bhishma</option>
+        <option value="drona">Dronacharya</option>
+        <option value="kripa">Kripacharya</option>
+        <option value="ashwatthama">Ashwatthama</option>
+        <option value="sanjaya">Sanjaya</option>
+        <option value="vyasa">Vyasa</option>
+      </select>
+      <button class="fbtn" onclick="findRelationship()">Find Link →</button>
+    </div>
+    <div class="fres" id="fres"></div>
+  </div>
+</div>
+
+<script>
+/* ══ SELF-CONTAINED RELATIONSHIP FINDER ══ */
+const DISPLAY_NAMES = {
+  arjuna:'Arjuna', krishna:'Krishna', karna:'Karna',
+  yudhishthira:'Yudhishthira', bhima:'Bhima', nakula:'Nakula',
+  sahadeva:'Sahadeva', duryodhana:'Duryodhana', dushasana:'Dushasana',
+  dhritarashtra:'Dhritarashtra', pandu:'Pandu', vidura:'Vidura',
+  kunti:'Kunti', madri:'Madri', gandhari:'Gandhari', vasudeva:'Vasudeva',
+  balarama:'Balarama', subhadra:'Subhadra', abhimanyu:'Abhimanyu',
+  draupadi:'Draupadi', bhishma:'Bhishma', drona:'Dronacharya',
+  kripa:'Kripacharya', ashwatthama:'Ashwatthama', sanjaya:'Sanjaya', vyasa:'Vyasa',
+};
+
+const REL_MAP = {
+  'arjuna_krishna': 'First cousins. Vasudeva (Krishna\'s father) and Kunti (Arjuna\'s mother) are siblings — both children of King Shurasena of the Yadava clan. This makes Krishna and Arjuna first cousins. Arjuna later also married Subhadra, Krishna\'s sister, making them brothers-in-law as well.',
+  'arjuna_karna': 'Half-brothers — through the same mother, Kunti. Karna was born of Kunti and the Sun god Surya, before her marriage to Pandu. Arjuna was born of Kunti and Indra, after the marriage. During the Kurukshetra war, Arjuna did not know this. He learned it only after Karna\'s death.',
+  'arjuna_yudhishthira': 'Full brothers. Both sons of Kunti and divine fathers — Yudhishthira by Dharma (Yama), Arjuna by Indra. Both are sons of Pandu by dharmic convention. Arjuna is the third Pandava; Yudhishthira is the eldest.',
+  'arjuna_bhima': 'Full brothers. Both sons of Kunti — Bhima by the wind god Vayu, Arjuna by Indra. Both are Pandavas by Pandu. Among the three full Pandava brothers, Arjuna is the third and Bhima the second.',
+  'arjuna_nakula': 'Half-brothers. Arjuna is Kunti\'s son; Nakula is Madri\'s son (Pandu\'s second wife). They share the same legal father (Pandu) but were born of different mothers and different divine fathers.',
+  'arjuna_sahadeva': 'Half-brothers. Arjuna is Kunti\'s son; Sahadeva is Madri\'s son. Same legal father Pandu, different mothers. Arjuna is the third Pandava; Sahadeva is the fifth.',
+  'arjuna_duryodhana': 'First cousins. Arjuna\'s father Pandu and Duryodhana\'s father Dhritarashtra are half-brothers — both fathered by the sage Vyasa through niyoga. They grew up together in Hastinapura and trained under the same teachers.',
+  'arjuna_bhishma': 'Great-nephew and great-uncle. Bhishma (son of Shantanu and Ganga) is the half-brother of Vichitravirya, whose line through Vyasa produced Pandu. Arjuna is Pandu\'s son — making Bhishma his great-uncle. Arjuna named Bhishma in Chapter 1 of the Gita as someone he could not bring himself to fight.',
+  'arjuna_drona': 'Student and teacher (guru-shishya). Dronacharya was the royal weapons-teacher of both the Pandavas and Kauravas. Arjuna was his most gifted student. Drona is not a blood relative — but in Arjuna\'s tradition, the relationship with one\'s guru was as sacred as family.',
+  'arjuna_kripa': 'Student and teacher. Kripacharya was the princes\' first weapons-teacher, before Dronacharya arrived. Arjuna names Kripa in Chapter 1 of the Gita as one of the elders he reveres and cannot bring himself to fight.',
+  'arjuna_ashwatthama': 'Classmates who became enemies. Both trained under Dronacharya. Ashwatthama is Drona\'s son. Arjuna names him in Chapter 1 alongside Bhishma and Drona as respected figures on the opposing side.',
+  'arjuna_subhadra': 'Husband and wife. Subhadra is Krishna\'s sister and daughter of Vasudeva. Arjuna married her with Krishna\'s approval and encouragement. Their son is Abhimanyu.',
+  'arjuna_draupadi': 'Husband and wife (one of five). Arjuna won Draupadi at the swayamvara by shooting a rotating fish\'s eye while looking only at its reflection in water. She then became wife to all five Pandavas when Kunti — without looking — said "share whatever you have brought."',
+  'arjuna_abhimanyu': 'Father and son. Abhimanyu is Arjuna\'s son by Subhadra (Krishna\'s sister). While still in the womb, Abhimanyu heard Arjuna explain how to enter the Chakravyuha formation. Subhadra fell asleep before the exit was explained. Abhimanyu died inside it on Day 13 of the war.',
+  'arjuna_kunti': 'Son and mother. Kunti is Arjuna\'s mother. She invoked Indra, the king of the gods, using a divine mantra — and Arjuna was born. Kunti later revealed to Karna (her firstborn) that Arjuna was his half-brother.',
+  'arjuna_pandu': 'Son and father (by dharmic convention). Pandu could not father children due to a curse. Kunti invoked Indra on Pandu\'s behalf — so Arjuna is Pandu\'s son by convention and dharma, even though Indra is the biological divine father.',
+  'arjuna_dhritarashtra': 'Nephew and uncle. Dhritarashtra and Pandu are half-brothers — making Dhritarashtra Arjuna\'s uncle.',
+  'arjuna_vidura': 'Nephew and uncle. Vidura is a half-brother to Pandu (and Dhritarashtra) — making Vidura Arjuna\'s uncle. Vidura consistently supported the Pandavas and warned Dhritarashtra about Duryodhana\'s path.',
+  'arjuna_vasudeva': 'Nephew and uncle. Vasudeva and Kunti (Arjuna\'s mother) are siblings — both children of Shurasena. This makes Vasudeva Arjuna\'s maternal uncle.',
+  'arjuna_vyasa': 'Grandson and grandfather (lineage). Vyasa fathered Pandu through niyoga (with Ambalika). Arjuna is Pandu\'s son — making Vyasa Arjuna\'s paternal grandfather by lineage.',
+  'krishna_balarama': 'Brothers. Both sons of Vasudeva. Balarama\'s mother is Rohini; Krishna\'s is Devaki. They are full brothers through Vasudeva and were raised together in Vrindavana.',
+  'krishna_subhadra': 'Brother and sister. Both children of Vasudeva. Subhadra married Arjuna (Krishna\'s first cousin) with Krishna\'s approval.',
+  'krishna_duryodhana': 'Distant relatives and political adversaries. Before the war, both Arjuna and Duryodhana came to Krishna to seek help. Krishna offered a choice: himself unarmed or his entire Narayani army. Duryodhana chose the army. Arjuna chose Krishna. No direct lineage connection.',
+  'krishna_karna': 'Krishna knew Karna was Kunti\'s firstborn — making Karna a first cousin (once removed) of Krishna through Kunti\'s connection to Vasudeva. Krishna personally went to Karna before the war to reveal his identity and ask him to join the Pandavas. Karna refused.',
+  'krishna_abhimanyu': 'Uncle and nephew. Abhimanyu is the son of Subhadra (Krishna\'s sister) and Arjuna. This makes Abhimanyu Krishna\'s nephew.',
+  'krishna_draupadi': 'Close friends. Draupadi considered Krishna her sakha (friend, protector). When she was being humiliated in the Kaurava court, she called on Krishna — and he is said to have miraculously extended her sari so it could not be removed.',
+  'krishna_vasudeva': 'Son and father. Vasudeva is Krishna\'s father. Krishna was born to Vasudeva and Devaki in prison, where Kamsa had imprisoned them.',
+  'krishna_vyasa': 'No direct blood relation in the primary tradition. Vyasa is the author of the Mahabharata (and a character in it), but is not in Krishna\'s lineage.',
+  'karna_kunti': 'Son and mother (secret). Kunti is Karna\'s birth mother. She invoked the Sun god Surya before her marriage — producing Karna, whom she placed in a basket on the river out of fear. She revealed the truth to Karna before the war. He already knew, and chose Duryodhana anyway.',
+  'karna_duryodhana': 'Best friends and the deepest political alliance in the epic. Duryodhana gave Karna the kingdom of Anga and genuine friendship when the rest of the world denied him dignity because of his birth. Karna\'s loyalty to Duryodhana was his defining choice — made again even after learning his true parentage.',
+  'karna_yudhishthira': 'Half-brothers. Both sons of Kunti — Karna by Surya (before her marriage), Yudhishthira by Dharma (after). Karna is the eldest Pandava by birth, but not counted among the five because he was born before Kunti\'s marriage to Pandu.',
+  'karna_bhima': 'Half-brothers. Both sons of Kunti — Karna by Surya, Bhima by Vayu. During the war they fought each other without knowing they were half-brothers.',
+  'dhritarashtra_pandu': 'Half-brothers. Both fathered by the sage Vyasa through niyoga — Dhritarashtra through Ambika (who closed her eyes, producing a blind son) and Pandu through Ambalika (who turned pale, producing a pale-complexioned son).',
+  'dhritarashtra_vidura': 'Half-brothers. All three — Dhritarashtra, Pandu, and Vidura — were fathered by Vyasa. Vidura was born of a palace maid, making him half-brother to both kings but of lower birth status.',
+  'dhritarashtra_gandhari': 'Husband and wife. Gandhari was princess of Gandhara. Upon learning she was to marry the blind Dhritarashtra, she blindfolded herself permanently — a lifelong act of solidarity. She is the mother of all 100 Kauravas.',
+  'dhritarashtra_duryodhana': 'Father and son. Dhritarashtra is the father of Duryodhana and all 100 Kauravas. His inability to restrain Duryodhana — driven by love and partiality — enabled every injustice that led to the war.',
+  'dhritarashtra_sanjaya': 'King and minister/narrator. Sanjaya is Dhritarashtra\'s charioteer and minister, granted divine sight by Vyasa. He narrates the entire Kurukshetra war — including the Bhagavad Gita, word for word — to the blind king in the palace.',
+  'pandu_kunti': 'Husband and first wife. Kunti was Pandu\'s first wife. Because of Pandu\'s curse (he would die if he touched a woman with desire), Kunti used her divine mantra to invoke gods as the fathers of their sons.',
+  'pandu_madri': 'Husband and second wife. Madri was Pandu\'s second wife, a princess of Madra. Kunti shared the divine mantra with her; Madri used it once, invoking both Ashwini Kumars simultaneously, producing the twins Nakula and Sahadeva. Pandu died when he touched Madri, forgetting the curse.',
+  'pandu_vidura': 'Half-brothers. Pandu and Vidura are both sons of Vyasa — Pandu through Ambalika, Vidura through a maid. They are half-brothers along with Dhritarashtra.',
+  'pandu_vyasa': 'Son and father (by niyoga). Vyasa fathered Pandu through Ambalika as part of the niyoga arrangement to continue the Kuru line after Vichitravirya died without heirs.',
+  'kunti_vasudeva': 'Sister and brother. Both are children of King Shurasena of the Yadava clan. Kunti was adopted by her childless paternal uncle Kuntibhoja, which is how she got the name Kunti (her birth name was Pritha). This sibling relationship is the reason Krishna and Arjuna are first cousins.',
+  'kunti_madri': 'Co-wives of Pandu. Kunti shared her divine mantra with Madri so that Madri could also have children. After Madri died on Pandu\'s funeral pyre, Kunti raised all five Pandava sons — including Nakula and Sahadeva — as her own.',
+  'vasudeva_balarama': 'Father and son. Vasudeva is the father of both Balarama (by Rohini) and Krishna (by Devaki).',
+  'vasudeva_subhadra': 'Father and daughter. Subhadra is Vasudeva\'s daughter. She married Arjuna — her father\'s nephew — with Krishna\'s approval.',
+  'gandhari_duryodhana': 'Mother and son. Gandhari is the mother of all 100 Kauravas, including Duryodhana. She knew Duryodhana was on the wrong path. After the war, she cursed Krishna — out of grief — holding him responsible for not preventing it.',
+  'madri_nakula': 'Mother and son. Madri is the mother of both Nakula and Sahadeva through the Ashwini Kumars (twin gods of medicine and dawn). She died on Pandu\'s funeral pyre; Kunti then raised both twins.',
+  'madri_sahadeva': 'Mother and son. Sahadeva is Madri\'s son, twin of Nakula, through the Ashwini Kumars. He is the youngest of the five Pandavas.',
+  'yudhishthira_bhima': 'Full brothers. Both sons of Kunti and divine fathers — Yudhishthira by Dharma (Yama) and Bhima by Vayu. Yudhishthira is the eldest Pandava; Bhima is the second.',
+  'yudhishthira_nakula': 'Half-brothers. Yudhishthira is Kunti\'s son; Nakula is Madri\'s son. They share the same legal father (Pandu) but different mothers.',
+  'duryodhana_dushasana': 'Brothers. Duryodhana is the eldest of the 100 Kauravas; Dushasana is the second. Both are sons of Dhritarashtra and Gandhari.',
+  'duryodhana_vidura': 'Nephew and uncle. Vidura is a half-brother of Dhritarashtra — making him Duryodhana\'s uncle. Vidura consistently warned against Duryodhana\'s choices and was consistently ignored.',
+  'drona_ashwatthama': 'Father and son. Ashwatthama is Dronacharya\'s only child. He fought on the Kaurava side alongside his father. After Drona was killed, Ashwatthama committed acts of revenge during and after the war.',
+  'drona_kripa': 'Brothers-in-law. Kripacharya\'s sister Kripi married Dronacharya. This makes Kripa the maternal uncle of Ashwatthama.',
+  'kripa_ashwatthama': 'Uncle and nephew. Kripacharya\'s sister Kripi is Ashwatthama\'s mother — making Kripa Ashwatthama\'s maternal uncle.',
+  'bhishma_vyasa': 'Half-brothers (through Satyavati). Bhishma is the son of Shantanu and Ganga. Vyasa is the son of Satyavati (Shantanu\'s second wife) and the sage Parashara — born before her marriage to Shantanu. They are half-brothers through Satyavati.',
+  'sanjaya_vyasa': 'Disciple and teacher. Vyasa granted Sanjaya divine sight (divya drishti) to perceive and narrate the Kurukshetra war in real time to the blind Dhritarashtra. Sanjaya is Vyasa\'s disciple.',
+  'draupadi_yudhishthira': 'Wife and husband. Draupadi married all five Pandavas. Yudhishthira, as the eldest, is considered her primary husband in the conventional sense, and it is he who gambled her away in the dice game.',
+  'draupadi_bhima': 'Wife and husband (one of five). Bhima is considered to have loved Draupadi most fiercely of the five brothers. He swore to personally avenge her humiliation by Dushasana.',
+  'draupadi_abhimanyu': 'Stepmother (or co-mother figure) and stepson. Draupadi is married to Arjuna, making her Abhimanyu\'s stepmother. In practice, Subhadra (Abhimanyu\'s birth mother) and Draupadi shared the household.',
+  'subhadra_abhimanyu': 'Mother and son. Subhadra is Abhimanyu\'s mother. She fell asleep while Arjuna was teaching her the Chakravyuha formation — Abhimanyu in the womb heard only how to enter, not how to exit.',
+};
+
+function getRelationship(a, b) {
+  if (!a || !b) return null;
+  return REL_MAP[a + '_' + b] || REL_MAP[b + '_' + a] || null;
+}
+
+function findRelationship() {
+  const a = document.getElementById('charA').value;
+  const b = document.getElementById('charB').value;
+  const el = document.getElementById('fres');
+
+  el.classList.remove('show');
+
+  setTimeout(() => {
+    if (!a || !b) {
+      el.textContent = 'Please select two characters above.';
+    } else if (a === b) {
+      el.textContent = DISPLAY_NAMES[a] + ' cannot be compared to themselves. Even the Gita doesn\'t go that far.';
+    } else {
+      const rel = getRelationship(a, b);
+      const nameA = DISPLAY_NAMES[a];
+      const nameB = DISPLAY_NAMES[b];
+      if (rel) {
+        el.textContent = nameA + ' & ' + nameB + ': ' + rel;
+      } else {
+        el.textContent = nameA + ' and ' + nameB + ' have no direct recorded relationship in the Critical Edition of the Mahabharata — though in this epic, nearly everyone is connected eventually.';
+      }
+    }
+    el.classList.add('show');
+  }, 60);
+}
+</script>
+
+<!-- RELATIONSHIP TABLE -->
+<div class="section" id="table">
+  <div class="section-eyebrow">Accurate genealogy</div>
+  <h2 class="section-h2">The Relationship <em>Table</em></h2>
+  <p class="section-intro">Every relationship type: blood, marriage, teacher-student, and political alliance — as recorded in the Critical Edition.</p>
+  <div class="rel-table-wrap">
+    <table>
+      <thead>
+        <tr><th>Character A</th><th>Character B</th><th>Relationship Type</th><th>Explanation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Arjuna</td><td>Krishna</td><td><span class="badge badge-blood">Blood</span></td><td>First cousins. Vasudeva (Krishna's father) and Kunti (Arjuna's mother) are siblings, both children of Shurasena.</td></tr>
+        <tr><td>Arjuna</td><td>Duryodhana</td><td><span class="badge badge-blood">Blood</span></td><td>First cousins. Pandu (Arjuna's father) and Dhritarashtra (Duryodhana's father) are half-brothers through Vyasa.</td></tr>
+        <tr><td>Arjuna</td><td>Karna</td><td><span class="badge badge-blood">Blood</span></td><td>Half-brothers. Both sons of Kunti — Karna by Surya (before her marriage), Arjuna by Indra (after). Arjuna did not know this during the war.</td></tr>
+        <tr><td>Arjuna</td><td>Bhishma</td><td><span class="badge badge-blood">Blood</span></td><td>Great-uncle and great-nephew. Bhishma is the half-brother of Vichitravirya, who is the grandfather of Arjuna through Vyasa and Pandu.</td></tr>
+        <tr><td>Arjuna</td><td>Subhadra</td><td><span class="badge badge-marriage">Marriage</span></td><td>Husband and wife. Subhadra is Krishna's sister. Arjuna married her, making him Krishna's brother-in-law in addition to already being his cousin.</td></tr>
+        <tr><td>Arjuna</td><td>Draupadi</td><td><span class="badge badge-marriage">Marriage</span></td><td>One of five husbands. Draupadi (Krishnaa, daughter of Drupada) married all five Pandavas. Arjuna won her in the swayamvara.</td></tr>
+        <tr><td>Arjuna</td><td>Dronacharya</td><td><span class="badge badge-teacher">Guru–Shishya</span></td><td>Teacher and best student. Drona was the royal weapons-teacher (acharya) of both the Pandavas and Kauravas. Arjuna was his most gifted student.</td></tr>
+        <tr><td>Arjuna</td><td>Kripa</td><td><span class="badge badge-teacher">Guru–Shishya</span></td><td>Earlier teacher. Kripacharya taught the princes before Drona. He is also Ashwatthama's maternal uncle.</td></tr>
+        <tr><td>Dhritarashtra</td><td>Pandu</td><td><span class="badge badge-blood">Blood</span></td><td>Half-brothers. Both sons of Vichitravirya's wives by Vyasa through niyoga. Dhritarashtra (by Ambika), Pandu (by Ambalika).</td></tr>
+        <tr><td>Dhritarashtra</td><td>Vidura</td><td><span class="badge badge-blood">Blood</span></td><td>Half-brothers. Vidura was fathered by Vyasa through a palace maid. He is half-brother to both Dhritarashtra and Pandu.</td></tr>
+        <tr><td>Duryodhana</td><td>Karna</td><td><span class="badge badge-alliance">Alliance</span></td><td>Best friends and political allies. Duryodhana made Karna king of Anga when no one else would. Karna's loyalty to Duryodhana was the defining choice of his life.</td></tr>
+        <tr><td>Bhishma</td><td>Pandavas</td><td><span class="badge badge-blood">Blood</span></td><td>Grand-uncle. Bhishma (son of Shantanu and Ganga) is the half-brother of Vichitravirya, making him great-uncle to Dhritarashtra, Pandu, and their children.</td></tr>
+        <tr><td>Drona</td><td>Ashwatthama</td><td><span class="badge badge-blood">Blood</span></td><td>Father and son. Ashwatthama is Dronacharya's only child. He fought on the Kaurava side and is one of the seven Chiranjivi (immortals) in Hindu tradition.</td></tr>
+        <tr><td>Kunti</td><td>Karna</td><td><span class="badge badge-blood">Blood</span></td><td>Mother and firstborn son. Karna was born before Kunti's marriage, by the Sun god Surya. She revealed this to Karna before the war. He was unmoved.</td></tr>
+        <tr><td>Vasudeva</td><td>Kunti</td><td><span class="badge badge-blood">Blood</span></td><td>Siblings. Both children of Shurasena. Kunti was adopted by her uncle Kuntibhoja and renamed. This sibling relationship is why Krishna and the Pandavas are first cousins.</td></tr>
+        <tr><td>Arjuna</td><td>Abhimanyu</td><td><span class="badge badge-blood">Blood</span></td><td>Father and son. Abhimanyu is Arjuna's son by Subhadra (Krishna's sister). He died at approximately 16 years of age in the Chakravyuha on Day 13 of the war.</td></tr>
+        <tr><td>Krishna</td><td>Balarama</td><td><span class="badge badge-blood">Blood</span></td><td>Brothers. Both sons of Vasudeva. Balarama's mother is Rohini; Krishna's is Devaki. Both are first cousins of the Pandavas.</td></tr>
+        <tr><td>Balarama</td><td>Bhima &amp; Duryodhana</td><td><span class="badge badge-teacher">Guru–Shishya</span></td><td>Balarama taught mace-fighting (gada yuddha) to both Bhima (Pandava) and Duryodhana (Kaurava). He was teacher to both sides and refused to participate in the war.</td></tr>
+        <tr><td>Gandhari</td><td>Dhritarashtra</td><td><span class="badge badge-marriage">Marriage</span></td><td>Wife and husband. Gandhari blindfolded herself permanently upon learning her husband was blind — a lifelong act of solidarity and sacrifice.</td></tr>
+        <tr><td>Gandhari</td><td>Duryodhana</td><td><span class="badge badge-blood">Blood</span></td><td>Mother and son. Gandhari is the mother of all 100 Kauravas. Her brother Shakuni (not shown here) manipulated Duryodhana's worst impulses.</td></tr>
+        <tr><td>Madri</td><td>Nakula &amp; Sahadeva</td><td><span class="badge badge-blood">Blood</span></td><td>Mother and sons. Madri (Pandu's second wife) invoked the Ashwini Kumars using Kunti's mantra and produced the twin Pandavas Nakula and Sahadeva.</td></tr>
+        <tr><td>Kunti</td><td>Madri</td><td><span class="badge badge-alliance">Co-wives</span></td><td>Co-wives of Pandu. Kunti shared her divine mantra with Madri. After Madri's death on Pandu's pyre, Kunti raised all five Pandava sons as her own.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- WHO'S WHO IN THE GITA -->
+<!-- WHY ARJUNA COLLAPSED -->
+<div class="section-full" id="conflict" style="padding-bottom:5rem">
+  <div style="max-width:900px;margin:0 auto;padding:0 3rem">
+    <div class="section-eyebrow">Chapter 1 of the Bhagavad Gita</div>
+    <h2 class="section-h2" style="margin-bottom:1rem">Why Arjuna <em>put down his bow</em></h2>
+    <p style="font-family:var(--sans);font-size:0.9rem;color:rgba(250,246,239,0.5);line-height:1.75;max-width:680px;font-weight:300;margin-bottom:2rem">He was not afraid of dying. Arjuna was the greatest archer alive — death in battle held no fear for him. What broke him was looking across the battlefield and seeing who was standing on the other side.</p>
+
+    <div class="conflict-section">
+      <div style="font-family:var(--serif);font-style:italic;font-size:1.2rem;color:rgba(250,246,239,0.55);line-height:1.65;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(192,79,45,0.15)">
+        "My limbs fail and my mouth is parched, my body quivers and my hair stands on end." — <span style="color:var(--goldlt)">Arjuna, Chapter 1, Verse 29</span>
+      </div>
+
+      <div class="conflict-grid">
+        <div class="conflict-card">
+          <span class="conflict-icon">👴</span>
+          <div class="conflict-title">His Elders and Family</div>
+          <div class="conflict-body">Bhishma (his great-uncle), Dhritarashtra (uncle), Drona (teacher) — people Arjuna was raised to honour and obey. Killing them, even in a just war, meant violating the deepest laws of dharma he knew.</div>
+        </div>
+        <div class="conflict-card">
+          <span class="conflict-icon">📐</span>
+          <div class="conflict-title">His Teachers</div>
+          <div class="conflict-body">Dronacharya and Kripacharya. In the Brahminic tradition of Arjuna's time, one's guru was more sacred than one's parents. Raising a weapon against them was unthinkable. Yet they stood against him on the other side.</div>
+        </div>
+        <div class="conflict-card">
+          <span class="conflict-icon">👥</span>
+          <div class="conflict-title">His Cousins — All of Them</div>
+          <div class="conflict-body">Duryodhana and the Kauravas were his first cousins — sons of his father Pandu's half-brother Dhritarashtra. They grew up together. He had known them his entire life.</div>
+        </div>
+        <div class="conflict-card">
+          <span class="conflict-icon">☀️</span>
+          <div class="conflict-title">A Brother He Didn't Know About</div>
+          <div class="conflict-body">Karna was standing on the Kaurava side — and Arjuna did not yet know that Karna was his eldest half-brother, Kunti's firstborn. He knew Karna as a rival and an enemy. The full truth came too late.</div>
+        </div>
+        <div class="conflict-card">
+          <span class="conflict-icon">🌍</span>
+          <div class="conflict-title">The Consequences</div>
+          <div class="conflict-body">Arjuna foresaw that killing the family elders would destroy the family order (kula dharma), produce illegitimate children, and cause generations of chaos. He was thinking about all of it at once, on a battlefield, with arrows about to fly.</div>
+        </div>
+        <div class="conflict-card">
+          <span class="conflict-icon">📖</span>
+          <div class="conflict-title">What Followed</div>
+          <div class="conflict-body">Krishna's response to this crisis is the 700 verses of the Bhagavad Gita. He did not tell Arjuna to stop feeling it. He told him to understand it differently — and then to act anyway.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a class="flogo" href="the-gita-drop.html">The <span>Gita Drop</span></a>
+  <ul class="flinks">
+    <li><a href="the-gita-drop.html">Home</a></li>
+    <li><a href="feelings.html">How are you feeling?</a></li>
+    <li><a href="merch.html">Shop Merch</a></li>
+  </ul>
+</footer>
+
+<div class="tooltip" id="tooltip">
+  <div class="tt-name" id="ttN"></div>
+  <div class="tt-role" id="ttR"></div>
+  <div class="tt-desc" id="ttD"></div>
+</div>
+
+<script>
+/* ══ CHARACTER DATA (factually corrected) ══ */
+const chars = [
+  {
+    id:'krishna',side:'divine',emoji:'🪈',
+    name:'Krishna',title:'8th Avatar of Vishnu · Charioteer · Narrator',
+    role:'Son of Vasudeva and Devaki. First cousin of the Pandavas. The narrator of the entire Bhagavad Gita.',
+    chips:['Son of Vasudeva & Devaki','Vasudeva & Kunti are siblings','First cousin of Pandavas','Subhadra\'s brother'],
+    quote:'"You have a right to your actions, not to their fruits. Do not let the fruits be your motive, nor be attached to inaction."',
+    lore:'Vasudeva (Krishna\'s father) and Kunti (mother of the Pandavas) are siblings — both children of Shurasena, making Krishna and Arjuna first cousins. Before the war, both Duryodhana and Arjuna came to Krishna seeking help. Krishna offered a choice: himself, unarmed, as a charioteer — or his entire Narayani army. Arjuna chose Krishna. Duryodhana chose the army. The Gita is what Krishna said on the ride to the battlefield.',
+    rel:'<strong>First cousin</strong> of Pandavas through Vasudeva–Kunti sibling bond. <strong>Brother-in-law</strong> of Arjuna (his sister Subhadra married Arjuna). <strong>Uncle</strong> of Abhimanyu.',
+    bg:'rgba(10,6,20,0.96)',bc:'rgba(240,200,74,0.4)',tc:'#F0C84A',
+  },
+  {
+    id:'arjuna',side:'pandava',emoji:'🏹',
+    name:'Arjuna',title:'3rd Pandava · Son of Indra · Protagonist',
+    role:'Third son of Kunti and Indra. The greatest archer of his age. The Bhagavad Gita is Krishna\'s response to Arjuna\'s crisis on the battlefield.',
+    chips:['Son of Kunti & Indra','3rd Pandava','Greatest archer','Gandiva bow'],
+    quote:'"My limbs fail and my mouth is parched. My body quivers. My bow slips from my hand."',
+    lore:'Arjuna is the son of Kunti (Pritha) and Indra, the king of the gods. He was trained to perfection by Dronacharya. He also received celestial weapons directly. He is Krishna\'s first cousin (their parents are siblings) and later also his brother-in-law (he married Subhadra, Krishna\'s sister). The Gita begins with his collapse on the battlefield — not from fear of death, but from the impossibility of the choice before him.',
+    rel:'<strong>3rd Pandava</strong> (son of Kunti and Indra). <strong>First cousin</strong> of Krishna. <strong>Half-brother</strong> of Karna (both sons of Kunti). <strong>Student</strong> of Dronacharya and Kripacharya.',
+    bg:'rgba(4,14,8,0.96)',bc:'rgba(74,122,98,0.5)',tc:'#78DBA8',
+  },
+  {
+    id:'yudhishthira',side:'pandava',emoji:'⚖️',
+    name:'Yudhishthira',title:'1st Pandava · Son of Dharma (Yama) · The Dharma King',
+    role:'Eldest Pandava. Son of Kunti and Yama, the god of Dharma. Renowned for truth — he never lied, except once, and it devastated him.',
+    chips:['Eldest Pandava','Son of Dharma/Yama','Gambled everything','King of Indraprastha'],
+    quote:'"Dharma is subtle. Even the wise are confused by it."',
+    lore:'Yudhishthira is the son of Kunti and Yama (the god of righteousness/death). He is considered the most dharmic of the Pandavas — he never willingly told a lie. However, during the war, he said "Ashwatthama is dead" (meaning the elephant, not Drona\'s son) — a half-truth that brought Drona down. The weight of that deception never left him. He lost his kingdom, his brothers, and Draupadi in a dice game with Duryodhana.',
+    rel:'<strong>Eldest of 5 Pandavas</strong>. Son of Kunti and the god Yama. First cousin of Duryodhana and Krishna. Married Draupadi (along with his brothers).',
+    bg:'rgba(4,10,18,0.96)',bc:'rgba(58,107,138,0.4)',tc:'#A8C8E0',
+  },
+  {
+    id:'bhima',side:'pandava',emoji:'💪',
+    name:'Bhima',title:'2nd Pandava · Son of Vayu (Wind God)',
+    role:'Second Pandava. Son of Kunti and Vayu. Tremendous physical strength. Swore two oaths after the dice game — to kill all 100 Kauravas, and to drink Dushasana\'s blood. He kept both.',
+    chips:['Son of Kunti & Vayu','2nd Pandava','Killed all 100 Kauravas','Father of Ghatotkacha'],
+    quote:'"A Kshatriya who does not avenge injustice is not worthy of the name."',
+    lore:'Son of Kunti and Vayu, the wind god. Bhima\'s strength was said to equal 10,000 elephants. After Dushasana dragged Draupadi into the court, Bhima swore publicly to drink his blood. After Duryodhana had Bhima poisoned and thrown into the Ganga, Bhima swore to break Duryodhana\'s thigh. He fulfilled both vows during the war. He also fathered Ghatotkacha with the rakshasa woman Hidimba.',
+    rel:'<strong>2nd Pandava</strong>. Son of Kunti and Vayu. Brother of Arjuna, Yudhishthira (full), and half-brother of Nakula, Sahadeva. Married Draupadi and Hidimba.',
+    bg:'rgba(4,14,8,0.96)',bc:'rgba(74,122,98,0.45)',tc:'#A8D8B8',
+  },
+  {
+    id:'nakula',side:'pandava',emoji:'🐴',
+    name:'Nakula',title:'4th Pandava · Twin · Son of Ashwini Kumars',
+    role:'Fourth Pandava. Son of Madri (Pandu\'s second wife) and the Ashwini Kumars, twin gods of medicine. Half-brother to the first three Pandavas.',
+    chips:['4th Pandava','Twin of Sahadeva','Son of Madri','Ashwini Kumar lineage'],
+    quote:'"Loyalty to one\'s family is its own form of dharma."',
+    lore:'Nakula and Sahadeva are sons of Madri (Pandu\'s second wife) and the Ashwini Kumars — the twin gods of medicine, health, and dawn. They are thus half-brothers to Yudhishthira, Bhima, and Arjuna through Pandu, but born of a different mother. Nakula was renowned for his beauty (said to be the most handsome man alive) and his mastery of horses. Madri died on Pandu\'s funeral pyre, so Kunti raised all five sons.',
+    rel:'<strong>4th Pandava</strong>. Son of Madri and the Ashwini Kumars. Twin of Sahadeva. <strong>Half-brother</strong> to Yudhishthira, Bhima, and Arjuna (different mother, same father Pandu).',
+    bg:'rgba(4,14,8,0.96)',bc:'rgba(74,122,98,0.4)',tc:'#B8E0C8',
+  },
+  {
+    id:'sahadeva',side:'pandava',emoji:'🔮',
+    name:'Sahadeva',title:'5th Pandava · Twin · Saw the Future',
+    role:'Youngest Pandava. Twin of Nakula. Son of Madri and the Ashwini Kumars. Could see the future but was under a curse preventing him from warning anyone unsolicited.',
+    chips:['5th Pandava','Twin of Nakula','Son of Madri','Could see the future'],
+    quote:'"I knew what would come. The curse would not let me speak of it freely."',
+    lore:'The youngest of the five Pandavas. According to the Mahabharata, Sahadeva gained the ability to know past, present, and future — though he could not volunteer this information without being asked (this restriction is described in later texts, not the Critical Edition). He knew the Kurukshetra war was coming, knew who would die, and watched it unfold. He is also the one who correctly identified that Jayadratha needed to be killed to avenge Abhimanyu.',
+    rel:'<strong>5th Pandava</strong>. Twin of Nakula. Son of Madri and the Ashwini Kumars. <strong>Half-brother</strong> to Yudhishthira, Bhima, and Arjuna through Pandu.',
+    bg:'rgba(4,14,8,0.96)',bc:'rgba(74,122,98,0.38)',tc:'#B8E0C8',
+  },
+  {
+    id:'duryodhana',side:'kaurava',emoji:'👑',
+    name:'Duryodhana',title:'Eldest Kaurava · Son of Dhritarashtra & Gandhari',
+    role:'Eldest of the 100 Kaurava sons. The principal antagonist. He refused to share even five villages with the Pandavas. His stubbornness made war inevitable.',
+    chips:['Eldest of 100 sons','Son of Dhritarashtra','Karna\'s ally','Refused peace'],
+    quote:'"I know what dharma is. I know what adharma is. But I cannot follow dharma."',
+    lore:'That quote — attributed to Duryodhana in later texts — makes him one of mythology\'s most honest antagonists. He was not simply evil: he was genuinely loyal to his friend Karna when no one else would give Karna respect. He was protective of his 99 brothers. His flaw was pride — he could not accept that the Pandavas had an equal right to the kingdom. He refused multiple peace offers, even when Krishna came personally to negotiate. The war was his choice.',
+    rel:'<strong>Eldest of 100 Kauravas</strong>. Son of Dhritarashtra and Gandhari. <strong>First cousin</strong> of the Pandavas (Dhritarashtra and Pandu are half-brothers). Best friend of Karna.',
+    bg:'rgba(18,4,2,0.96)',bc:'rgba(192,79,45,0.45)',tc:'#F5A090',
+  },
+  {
+    id:'karna',side:'kaurava',emoji:'☀️',
+    name:'Karna',title:'Son of Kunti & Surya · Eldest by birth · King of Anga',
+    role:'Firstborn of Kunti, before her marriage, by the Sun god Surya. Raised as a charioteer\'s son. The greatest warrior in the epic — and arguably its most tragic figure.',
+    chips:['Son of Surya','Born before Kunti\'s marriage','Not counted as Pandava','King of Anga','Duryodhana\'s friend'],
+    quote:'"I was born a king\'s son but raised as a charioteer. The world gave me nothing. Duryodhana gave me everything. My loyalty to him is dharma enough."',
+    lore:'Karna is Kunti\'s firstborn — born through a mantra that invoked the Sun god, before her marriage to Pandu. Frightened and unmarried, Kunti placed him in a basket on the Ashwa (or Ganga) river.     lore:'Karna is Kunti\'s firstborn — born through a mantra that invoked the Sun god, before her marriage to Pandu. Frightened and unmarried, Kunti placed him in a basket on the river. He was found and raised by the charioteer Adhiratha and his wife Radha. Because of his suta (charioteer-caste) upbringing, he was denied entry to royal tournaments. Duryodhana gave him a kingdom and his friendship. Karna knew his true identity before the war and chose Duryodhana anyway.',
+    rel:'<strong>Eldest son of Kunti</strong> (by Surya, before marriage). Not counted among the five Pandavas. <strong>Half-brother</strong> of all five Pandavas. <strong>Political ally</strong> of Duryodhana.',
+    bg:'rgba(18,6,0,0.96)',bc:'rgba(240,200,74,0.4)',tc:'#F0D070',
+  },
+  {
+    id:'dhritarashtra',side:'kaurava',emoji:'👁️',
+    name:'Dhritarashtra',title:'Blind King · Son of Vyasa & Ambika',
+    role:'King of Hastinapura. Born blind. Father of 100 sons — the Kauravas. The Gita begins with his question to Sanjaya: "What are my sons doing on the battlefield?"',
+    chips:['Born blind','Father of 100 Kauravas','Married Gandhari','Asked Sanjaya'],
+    quote:'"Sanjaya — tell me. What are my sons and the sons of Pandu doing assembled on the field of Kurukshetra?"',
+    lore:'The Bhagavad Gita opens with this question. Dhritarashtra is in the palace; Sanjaya narrates the war in real time. His blindness is both literal and moral — he loved Duryodhana too much to restrain him, and that partiality enabled every injustice. His wife Gandhari blindfolded herself for life out of solidarity with him.',
+    rel:'<strong>Half-brother</strong> of Pandu and Vidura. Father of Duryodhana and 99 other sons. Uncle of the Pandavas. Son of Vyasa and Ambika through niyoga.',
+    bg:'rgba(18,4,2,0.96)',bc:'rgba(192,79,45,0.35)',tc:'#F5B0A0',
+  },
+  {
+    id:'sanjaya',side:'other',emoji:'👁️‍🗨️',
+    name:'Sanjaya',title:'Divine Narrator · Dhritarashtra\'s Minister',
+    role:'Dhritarashtra\'s charioteer and minister. Granted divine sight by Vyasa. He narrates the entire war to the blind king — including every word of the Bhagavad Gita.',
+    chips:['Divine sight from Vyasa','The narrator of the Gita','Dhritarashtra\'s minister','Disciple of Vyasa'],
+    quote:'"I remember with wonder, O King, this divine discourse between Krishna and Arjuna."',
+    lore:'The Mahabharata is structured as Sanjaya narrating to Dhritarashtra. The Gita is within that narration — Sanjaya reporting verbatim every word Krishna spoke to Arjuna. Vyasa granted Sanjaya divya drishti (divine sight) to perceive events across distance. At the end of the Gita, Sanjaya says he recalls the conversation with wonder and awe.',
+    rel:'<strong>Disciple of Vyasa</strong>. <strong>Minister to Dhritarashtra</strong>. No blood relation to the main families. The literary narrator of the Gita.',
+    bg:'rgba(8,6,18,0.96)',bc:'rgba(107,76,154,0.4)',tc:'#C8A8E0',
+  },
+  {
+    id:'bhishma',side:'other',emoji:'🗡️',
+    name:'Bhishma',title:'Son of Shantanu & Ganga · Grand-Uncle · Never Married',
+    role:'Grand-uncle to both Pandavas and Kauravas. Commander of the Kaurava army for the first 10 days. Fought against the Pandavas despite knowing they were right.',
+    chips:['Son of Shantanu & Ganga','Vow of celibacy','Grand-uncle to all','Chose his own death'],
+    quote:'"I am bound by my oath. I fight for whoever sits on Hastinapura\'s throne — even when they are wrong."',
+    lore:'Born Devavrata, he gave up his claim to the throne and took a vow of lifelong celibacy so his father could marry Satyavati. That terrible vow earned him the name Bhishma. He had the boon of ichha mrityu — he could choose the moment of his death. He lay on a bed of arrows for 58 days after being felled and died only after the war ended, when the time was auspicious.',
+    rel:'<strong>Son of Shantanu and Ganga</strong>. Half-brother of Vichitravirya and Chitrangada (through Satyavati). <strong>Grand-uncle</strong> to all Pandavas and Kauravas.',
+    bg:'rgba(4,10,18,0.96)',bc:'rgba(58,107,138,0.45)',tc:'#A8C8E0',
+  },
+  {
+    id:'drona',side:'teacher',emoji:'📐',
+    name:'Dronacharya',title:'Royal Weapons-Teacher · Father of Ashwatthama',
+    role:'The royal acharya of both Pandava and Kaurava princes. Commanded the Kaurava army after Bhishma fell. Arjuna was his greatest student.',
+    chips:['Teacher of both sides','Guru of Arjuna','Father of Ashwatthama','Brought down by deception'],
+    quote:'"A teacher\'s duty is to produce the best. What becomes of the best — that is beyond his control."',
+    lore:'Drona trained both the Pandavas and Kauravas, with Arjuna as his finest student. He was brought down by a deception: Yudhishthira announced "Ashwatthama is dead" (technically referring to an elephant). Drona, believing his son was dead, put down his weapons and was killed by Dhrishtadyumna.',
+    rel:'<strong>Teacher (Guru)</strong> of Arjuna and all the princes. <strong>Father</strong> of Ashwatthama. Son of sage Bharadvaja.',
+    bg:'rgba(4,10,18,0.96)',bc:'rgba(58,107,138,0.4)',tc:'#8ABCD4',
+  },
+  {
+    id:'kripa',side:'teacher',emoji:'📿',
+    name:'Kripacharya',title:'Earlier Teacher · Chiranjivi (Immortal)',
+    role:'First weapons-teacher of the princes before Drona. Uncle of Ashwatthama. One of the seven Chiranjivis — immortals who endure across yugas.',
+    chips:['Teacher before Drona','Ashwatthama\'s uncle','One of seven Chiranjivis','Fought on Kaurava side'],
+    quote:'"To teach both sides and watch them destroy each other — that is a teacher\'s particular torment."',
+    lore:'Kripacharya was the first weapons-teacher of the Kaurava and Pandava princes before Drona arrived. His sister Kripi married Drona, making Ashwatthama his nephew. Kripa fought on the Kaurava side but survived the war. He is one of the seven Chiranjivis in Hindu tradition.',
+    rel:'<strong>Teacher</strong> of both Pandavas and Kauravas (before Drona). <strong>Uncle of Ashwatthama</strong> (his sister Kripi married Drona).',
+    bg:'rgba(4,10,18,0.96)',bc:'rgba(58,107,138,0.38)',tc:'#8ABCD4',
+  },
+  {
+    id:'ashwatthama',side:'kaurava',emoji:'⚡',
+    name:'Ashwatthama',title:'Son of Drona · Chiranjivi',
+    role:'Son of Dronacharya. Named by Arjuna in Chapter 1 as one of the respected warriors he does not wish to fight.',
+    chips:['Son of Drona','Chiranjivi (immortal)','Brahmastra wielder','Fought for Kauravas'],
+    quote:'"My father\'s honour is my war. I did not choose the side — I chose the man."',
+    lore:'Ashwatthama was born with a gem on his forehead. He fought for the Kauravas alongside his father Drona. After his father\'s death, he committed acts of vengeance after the war. He is one of the seven Chiranjivis in Hindu tradition.',
+    rel:'<strong>Son of Dronacharya</strong>. <strong>Nephew of Kripacharya</strong> (his mother Kripi was Kripa\'s sister).',
+    bg:'rgba(8,4,18,0.96)',bc:'rgba(107,76,154,0.4)',tc:'#C4A8E4',
+  },
+  {
+    id:'draupadi',side:'other',emoji:'🔥',
+    name:'Draupadi',title:'Krishnaa · Born of Fire · Wife of Five Pandavas',
+    role:'Daughter of King Drupada. Born from a sacrificial fire. Married all five Pandavas. Her oath of vengeance after being publicly humiliated drove the war as much as any military logic.',
+    chips:['Born from sacrificial fire','Daughter of Drupada','Wife of all 5 Pandavas','Swore vengeance'],
+    quote:'"You may have lost me in a game of dice. But dharma does not permit the sale of what was already lost."',
+    lore:'Draupadi emerged from a sacrificial fire as a fully formed adult woman. Arjuna won her in the swayamvara. Due to Kunti\'s unintentional instruction to "share whatever you have brought," she became wife to all five brothers. After being publicly humiliated in the Kaurava court, her oath of vengeance became one of the war\'s central moral forces.',
+    rel:'<strong>Daughter of King Drupada</strong>. <strong>Wife</strong> of all five Pandavas. <strong>Sister</strong> of Dhrishtadyumna (who killed Drona).',
+    bg:'rgba(10,6,18,0.96)',bc:'rgba(107,76,154,0.45)',tc:'#C8A8E0',
+  },
+  {
+    id:'subhadra',side:'divine',emoji:'🌸',
+    name:'Subhadra',title:'Krishna\'s Sister · Arjuna\'s Wife · Mother of Abhimanyu',
+    role:'Daughter of Vasudeva. Krishna\'s sister. Married Arjuna. Mother of Abhimanyu.',
+    chips:['Krishna\'s sister','Daughter of Vasudeva','Arjuna\'s wife','Mother of Abhimanyu'],
+    quote:'"I fell asleep. He heard only half the secret. I carry that."',
+    lore:'Subhadra is the daughter of Vasudeva and Rohini (or Devaki, in some accounts). She is Krishna\'s sister. Arjuna married her with Krishna\'s approval. Their son Abhimanyu heard Arjuna explaining the Chakravyuha formation while in the womb — but Subhadra fell asleep before Arjuna could explain how to exit it. Abhimanyu died inside the formation on Day 13 of the war.',
+    rel:'<strong>Daughter of Vasudeva</strong>. <strong>Sister of Krishna</strong> and Balarama. <strong>Wife of Arjuna</strong>. <strong>Mother of Abhimanyu</strong>.',
+    bg:'rgba(10,6,20,0.96)',bc:'rgba(199,139,14,0.35)',tc:'#E8C880',
+  },
+  {
+    id:'abhimanyu',side:'pandava',emoji:'🌀',
+    name:'Abhimanyu',title:'Son of Arjuna & Subhadra · Krishna\'s Nephew',
+    role:'Arjuna\'s son by Subhadra. Learned how to enter the Chakravyuha battle formation in the womb. Did not learn how to exit. Died inside it, aged approximately 16.',
+    chips:['Son of Arjuna & Subhadra','Krishna\'s nephew','Heard formation-secret in womb','Died Day 13'],
+    quote:'"I know how to get in. That will have to be enough."',
+    lore:'When Arjuna was teaching Subhadra the Chakravyuha secret, she fell asleep midway. Abhimanyu in the womb heard only the entry sequence. On Day 13 of the war, only he could enter the formation. He did — and was killed inside it by multiple warriors simultaneously, in violation of the rules of fair combat. His son Parikshit survived and continued the Pandava line.',
+    rel:'<strong>Son of Arjuna</strong> and <strong>Subhadra</strong>. <strong>Nephew of Krishna</strong>. His son Parikshit was the sole surviving heir of the Pandava line.',
+    bg:'rgba(4,14,8,0.96)',bc:'rgba(74,122,98,0.35)',tc:'#A8D8B8',
+  },
+  {
+    id:'vidura',side:'other',emoji:'📜',
+    name:'Vidura',title:'Son of Vyasa · Half-Brother of Kings · Wisest Counsellor',
+    role:'Half-brother to Dhritarashtra and Pandu, born of a palace maid. The wisest of the three. Warned Dhritarashtra repeatedly. Was not listened to.',
+    chips:['Son of Vyasa & maid','Half-brother to both kings','Said to be Dharma incarnate','Warned Dhritarashtra'],
+    quote:'"A king who cannot distinguish between what his son wants and what his kingdom needs is already defeated."',
+    lore:'Fathered by Vyasa through a palace maid, Vidura is described as the earthly form of Yama (god of righteousness). He warned Dhritarashtra at every turn, refused to attend the dice game, and sheltered the Pandavas when he could. He was consistently overruled. The tragedy of Vidura is the tragedy of correct counsel surrounded by power that will not listen.',
+    rel:'<strong>Half-brother</strong> of Dhritarashtra and Pandu. <strong>Uncle</strong> of both Pandavas and Kauravas. Said to be the earthly form of Dharma/Yama.',
+    bg:'rgba(8,6,18,0.96)',bc:'rgba(107,76,154,0.4)',tc:'#C8A8E0',
+  },
+];
+
+/* ══ RELATIONSHIP MAP ══ */
+const rels = {
+  'krishna_arjuna':'First cousins. Vasudeva (Krishna\'s father) and Kunti (Arjuna\'s mother) are siblings — both children of Shurasena. So Krishna and Arjuna share the same grandparents. Arjuna also later married Subhadra (Krishna\'s sister), making them brothers-in-law as well.',
+  'arjuna_karna':'Half-brothers through Kunti. Karna was born of Kunti and Surya before her marriage. Arjuna was born of Kunti and Indra after. Arjuna did not know this during the war. He learned it after Karna\'s death.',
+  'arjuna_duryodhana':'First cousins. Arjuna\'s father Pandu and Duryodhana\'s father Dhritarashtra are half-brothers — both fathered by Vyasa through niyoga.',
+  'arjuna_bhishma':'Great-uncle and great-nephew. Bhishma is the half-brother of Vichitravirya. Vichitravirya\'s descendants through Vyasa include Pandu. Arjuna is Pandu\'s son — making Bhishma his great-uncle.',
+  'arjuna_drona':'Teacher and student. Drona was the royal acharya who trained Arjuna to be the world\'s greatest archer. A guru-shishya relationship, which in Arjuna\'s tradition was as sacred as family.',
+  'arjuna_subhadra':'Husband and wife. Subhadra is Krishna\'s sister. Arjuna married her with Krishna\'s approval.',
+  'arjuna_draupadi':'Husband and wife (one of five). Draupadi married all five Pandavas. Arjuna won her in the swayamvara by shooting a rotating fish-eye while looking only at its reflection in water.',
+  'arjuna_abhimanyu':'Father and son. Abhimanyu is Arjuna\'s son by Subhadra.',
+  'arjuna_kripa':'Teacher and student. Kripacharya taught the princes before Drona arrived. Arjuna also trained under him.',
+  'arjuna_ashwatthama':'Classmates and rivals. Both trained under Drona. Arjuna names Ashwatthama in Chapter 1 as someone among those he does not wish to kill.',
+  'krishna_duryodhana':'Distant relatives through the Yadava-Kuru connection. Before the war both came to Krishna for help. Duryodhana chose Krishna\'s Narayani army. Arjuna chose Krishna himself, unarmed.',
+  'karna_duryodhana':'Best friends and political allies. Duryodhana made Karna King of Anga when no one else would give him dignity. Karna repaid that with lifelong loyalty.',
+  'dhritarashtra_pandu':'Half-brothers. Both fathered by Vyasa through niyoga — Dhritarashtra through Ambika, Pandu through Ambalika.',
+  'dhritarashtra_vidura':'Half-brothers. Vidura was fathered by Vyasa through a palace maid — half-brother to both Dhritarashtra and Pandu but of lower birth status.',
+  'kunti_karna':'Mother and firstborn son. Karna was born of Kunti and Surya before her marriage. She told him before the war. He chose Duryodhana anyway.',
+  'kunti_vasudeva':'Siblings. Both are children of Shurasena. This sibling relationship is why Krishna and the Pandavas are first cousins.',
+  'balarama_arjuna':'First cousins. Balarama is Krishna\'s brother — son of Vasudeva. Since Vasudeva and Kunti are siblings, both Krishna and Balarama are first cousins of all five Pandavas.',
+  'balarama_duryodhana':'Teacher and student. Balarama taught gada (mace) warfare to Duryodhana — and also to Bhima, making him teacher to both sides. He declined to fight in the war.',
+  'balarama_bhima':'Teacher and student. Balarama taught mace-fighting to Bhima as well as Duryodhana.',
+  'gandhari_duryodhana':'Mother and son. Gandhari knew her son was on the wrong path and said so. After the war she cursed Krishna, holding him responsible for not preventing it.',
+  'gandhari_dhritarashtra':'Husband and wife. Gandhari blindfolded herself permanently upon learning she was to marry the blind Dhritarashtra — a lifelong act of solidarity.',
+  'madri_nakula':'Mother and son. Madri invoked the Ashwini Kumars using Kunti\'s mantra and produced the twins Nakula and Sahadeva.',
+  'madri_sahadeva':'Mother and son. Sahadeva is Madri\'s son, twin of Nakula, through the Ashwini Kumars.',
+  'madri_kunti':'Co-wives of Pandu. Kunti shared her divine mantra with Madri. After Madri\'s death on Pandu\'s pyre, Kunti raised all five Pandava sons.',
+  'drona_ashwatthama':'Father and son. Ashwatthama is Dronacharya\'s only child. He fought on the Kaurava side.',
+  'kripa_ashwatthama':'Uncle and nephew. Kripa\'s sister Kripi married Drona — making Ashwatthama Kripa\'s nephew.',
+  'sanjaya_dhritarashtra':'Narrator and listener. Sanjaya narrates the entire war to Dhritarashtra in real time, granted divine sight by Vyasa. The Gita is part of that narration.',
+};
+
+function getRelKey(a,b){ return rels[a+'_'+b] || rels[b+'_'+a] || null; }
+
+/* ══ POPULATE SELECTS ══ */
+window.addEventListener('DOMContentLoaded', function() {
+  ['charA','charB'].forEach(id => {
+    const sel = document.getElementById(id);
+    if (!sel) return;
+    chars.forEach(c => {
+      const o = document.createElement('option');
+      o.value = c.id; o.textContent = c.name;
+      sel.appendChild(o);
+    });
+  });
+  buildCards();
+  buildWhoswho();
+  buildTicker();
+  initTooltips();
+  initScrollReveal();
+  initPageTabs();
+});
+
+function findRel(){
+  const a = document.getElementById('charA').value;
+  const b = document.getElementById('charB').value;
+  const res = document.getElementById('fres');
+  res.classList.remove('show');
+  setTimeout(() => {
+    if(!a||!b){ res.textContent = 'Please select two characters first.'; }
+    else if(a===b){ res.textContent = 'That is the same person. Even the Gita does not address self-referential relationships.'; }
+    else {
+      const rel = getRelKey(a,b);
+      const nA = chars.find(c=>c.id===a).name;
+      const nB = chars.find(c=>c.id===b).name;
+      res.textContent = rel
+        ? nA + ' & ' + nB + ': ' + rel
+        : 'No direct recorded relationship between ' + nA + ' and ' + nB + ' in the Critical Edition — though in the Mahabharata, everyone is connected eventually.';
+    }
+    res.classList.add('show');
+  }, 80);
+}
+
+/* ══ BUILD CARDS ══ */
+function buildCards() {
+  const grid = document.getElementById('cardsGrid');
+  if (!grid) return;
+  chars.forEach((c,i) => {
+    const el = document.createElement('div');
+    el.className = 'ccard'; el.dataset.side = c.side;
+    el.style.animationDelay = (i*55)+'ms';
+    const tagClass = {pandava:'t-pandava',kaurava:'t-kaurava',divine:'t-divine',teacher:'t-teacher',other:'t-other'}[c.side]||'t-other';
+    const tagLabel = {pandava:'Pandava',kaurava:'Kaurava',divine:'Divine/Yadava',teacher:'Teacher',other:'Other'}[c.side]||'Other';
+    el.innerHTML = '<div class="ccard-inner">'
+      +'<div class="ccard-front">'
+        +'<div class="ccard-header">'
+          +'<span class="ccard-emoji">'+c.emoji+'</span>'
+          +'<div class="ccard-name">'+c.name+'</div>'
+          +'<div class="ccard-title" style="color:'+c.tc+'">'+c.title+'</div>'
+          +'<div class="ccard-tag '+tagClass+'">'+tagLabel+'</div>'
+        +'</div>'
+        +'<div class="ccard-body">'
+          +'<div class="ccard-role">'+c.role+'</div>'
+          +'<div class="ccard-chips">'+c.chips.map(t=>'<span class="chip">'+t+'</span>').join('')+'</div>'
+          +'<div class="ccard-hint">Hover to reveal their story</div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="ccard-back" style="background:'+c.bg+';border:1.5px solid '+c.bc+'">'
+        +'<div class="cb-name">'+c.name+'</div>'
+        +'<div class="cb-quote">'+c.quote+'</div>'
+        +'<div class="cb-lore">'+c.lore+'</div>'
+        +'<div class="cb-rel">'+c.rel+'</div>'
+      +'</div>'
+    +'</div>';
+
+    const inner = el.querySelector('.ccard-inner');
+    el.addEventListener('mousemove', e => {
+      if(inner.style.transform && inner.style.transform.includes('180deg')) return;
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX-r.left)/r.width-0.5, y = (e.clientY-r.top)/r.height-0.5;
+      inner.style.transform = 'perspective(900px) rotateY('+(x*13)+'deg) rotateX('+(-y*9)+'deg) translateZ(6px)';
+    });
+    el.addEventListener('mouseleave', () => {
+      if(!inner.style.transform.includes('180deg'))
+        inner.style.transform = 'perspective(900px) rotateY(0) rotateX(0) translateZ(0)';
+    });
+    el.addEventListener('click', () => {
+      inner.style.transform = inner.style.transform.includes('180deg')
+        ? 'perspective(900px) rotateY(0deg)'
+        : 'perspective(900px) rotateY(180deg)';
+    });
+    grid.appendChild(el);
+  });
+}
+
+function filterCards(side, tab){
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  document.querySelectorAll('.ccard').forEach((c,i) => {
+    const show = side==='all'||c.dataset.side===side;
+    c.classList.toggle('hidden',!show);
+    if(show) c.style.animationDelay=(i*40)+'ms';
+  });
+}
+
+/* ══ WHO'S WHO ══ */
+const whoswho = [
+  {name:'Dhritarashtra',role:'The one who asks the opening question',desc:'The Gita begins with his question to Sanjaya: "What are my sons doing on the field of Kurukshetra?" His blindness — literal and moral — is the frame of the entire epic.',note:'Chapter 1, Verse 1'},
+  {name:'Sanjaya',role:'The narrator',desc:'Granted divine sight by Vyasa. He reports the entire war to Dhritarashtra — including every word of the Gita. The Gita closes with Sanjaya saying he will always remember this divine conversation with wonder.',note:'The narrator of the Gita'},
+  {name:'Arjuna',role:'The student',desc:'Chapter 1 is Arjuna\'s crisis. He sees teachers, elders, and cousins on the opposing side and cannot bring himself to fight. He asks Krishna whether the war is worth it. The rest of the Gita is the answer.',note:'The protagonist'},
+  {name:'Krishna',role:'The teacher',desc:'Everything from Chapter 2 to Chapter 18 is Krishna speaking. He addresses duty, action, devotion, knowledge, the nature of the self, and the nature of reality. First cousin of Arjuna and his charioteer by choice.',note:'The Gita\'s narrator'},
+  {name:'Bhishma',role:'Named by Arjuna as someone he cannot kill',desc:'In Chapter 1, Arjuna names Bhishma as a grandfather figure he reveres. Bhishma is commanding the Kaurava army. He taught Arjuna\'s family. They are about to fight each other.',note:'Chapter 1, Verse 26'},
+  {name:'Dronacharya',role:'His teacher, standing on the opposing side',desc:'Also named in Chapter 1. Drona trained Arjuna to be what he is. Arjuna says he would rather beg than live on wealth earned by killing his teacher.',note:'Chapter 1, Verse 26'},
+  {name:'Kripacharya',role:'Named by Arjuna among the elders he reveres',desc:'Arjuna lists Kripa alongside Bhishma, Drona, and Ashwatthama. Kripa was their first teacher before Drona, and an elder he grew up respecting.',note:'Chapter 1, Verse 26'},
+  {name:'Ashwatthama',role:'Named by Arjuna among those he respects',desc:'Drona\'s son. Named by Arjuna as one of the great warriors on the other side — someone he grew up alongside and cannot bear to fight.',note:'Chapter 1, Verse 26'},
+  {name:'Karna',role:'The enemy Arjuna doesn\'t yet know is his brother',desc:'Karna stands on the Kaurava side. Arjuna sees him as a rival. He does not yet know that Karna is Kunti\'s eldest son — his own half-brother. That truth arrived too late.',note:'Ch. 1 — unrecognised irony'},
+  {name:'Balarama',role:'Krishna\'s brother who refused to fight',desc:'Balarama taught mace warfare to both Bhima and Duryodhana. When the war came he took neither side and went on pilgrimage. He returned after the battle ended.',note:'First cousin of Pandavas'},
+  {name:'Gandhari',role:'The mother who knew her son was wrong',desc:'Gandhari knew Duryodhana was on the wrong path and told him so. After the war she cursed Krishna — out of grief, not hatred — for not preventing it despite having the power to do so.',note:'Mother of all Kauravas'},
+  {name:'Duryodhana',role:'The cousin whose refusal made all of this necessary',desc:'His refusal to share the kingdom is why everyone is here. Arjuna sees him across the field and also the cousins he grew up with — now opposing him.',note:'Chapter 1, Verse 23'},
+];
+
+function buildWhoswho() {
+  const g = document.getElementById('wwGrid');
+  if (!g) return;
+  whoswho.forEach(w => {
+    const d = document.createElement('div');
+    d.className = 'ww-card';
+    d.innerHTML = '<div class="ww-name">'+w.name+'</div><div class="ww-role">'+w.role+'</div><div class="ww-desc">'+w.desc+'</div><div class="ww-note">'+w.note+'</div>';
+    g.appendChild(d);
+  });
+}
+
+/* ══ TICKER ══ */
+const tickerFacts = [
+  'Karna is Kunti\'s firstborn son through Surya — making him the eldest Pandava by birth. He is not counted among the five because he was born before her marriage to Pandu.',
+  'The Gita begins with Dhritarashtra\'s question to Sanjaya: "What are my sons doing on the field of Kurukshetra?" That is the first verse.',
+  'Vasudeva (Krishna\'s father) and Kunti (Arjuna\'s mother) are siblings — both children of Shurasena. That is why Krishna and Arjuna are first cousins.',
+  'Bhishma lay on a bed of arrows for 58 days after being felled — waiting for an auspicious moment to die. He had the boon of choosing when.',
+  'The Bhagavad Gita is 700 verses. It takes place entirely before the first arrow of the Kurukshetra war is fired.',
+  'Nakula and Sahadeva are sons of Madri — Pandu\'s second wife — and are therefore half-brothers (not full brothers) to Yudhishthira, Bhima, and Arjuna.',
+  'Arjuna won Draupadi in a swayamvara. Kunti then said "share whatever you have brought" without looking — and it became binding.',
+  'Subhadra fell asleep while Arjuna was explaining the Chakravyuha to her. Abhimanyu in the womb heard only the entry sequence.',
+  'Drona was brought down when Yudhishthira said "Ashwatthama is dead" — technically referring to an elephant of the same name.',
+  'Balarama taught mace-fighting to both Bhima and Duryodhana — making him teacher to both sides. He refused to fight in the war.',
+  'Vidura, said to be the earthly form of Dharma/Yama, warned Dhritarashtra countless times about Duryodhana\'s path. He was not listened to.',
+  'Gandhari blindfolded herself permanently on her wedding day — so she would never experience more than her blind husband Dhritarashtra.',
+];
+
+function buildTicker() {
+  const t = document.getElementById('ticker1');
+  if (!t) return;
+  [...tickerFacts,...tickerFacts].forEach(f => {
+    t.innerHTML += '<div class="tick-item"><div class="tick-dot"></div>'+f+'</div>';
+  });
+}
+
+/* ══ TREE TOOLTIPS ══ */
+function initTooltips() {
+  const tip = document.getElementById('tooltip');
+  document.querySelectorAll('.tnode').forEach(n => {
+    n.addEventListener('mouseenter', () => {
+      document.getElementById('ttN').textContent = n.dataset.n;
+      document.getElementById('ttR').textContent = n.dataset.r;
+      document.getElementById('ttD').textContent = n.dataset.d;
+      tip.classList.add('show');
+    });
+    n.addEventListener('mousemove', e => {
+      let left = e.clientX+16, top = e.clientY-10;
+      tip.style.left=left+'px'; tip.style.top=top+'px';
+      const r = tip.getBoundingClientRect();
+      if(r.right>window.innerWidth-16) tip.style.left=(e.clientX-r.width-16)+'px';
+      if(r.bottom>window.innerHeight-16) tip.style.top=(e.clientY-r.height+10)+'px';
+    });
+    n.addEventListener('mouseleave', () => tip.classList.remove('show'));
+  });
+}
+
+/* ══ SCROLL REVEAL ══ */
+function initScrollReveal() {
+  const obs = new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; obs.unobserve(e.target); }
+  }),{threshold:0.1});
+  document.querySelectorAll('.ww-card,.conflict-card').forEach((el,i) => {
+    el.style.opacity='0'; el.style.transform='translateY(20px)';
+    el.style.transition='opacity 0.55s ease '+(i*60)+'ms,transform 0.55s cubic-bezier(0.22,1,0.36,1) '+(i*60)+'ms';
+    obs.observe(el);
+  });
+}
+
+/* ══ PAGE TAB HIGHLIGHT ══ */
+function initPageTabs() {
+  window.addEventListener('scroll', () => {
+    const sections = ['tree','cards','finder','table','conflict'];
+    let current = 'tree';
+    sections.forEach(id => { const el = document.getElementById(id); if(el && window.scrollY >= el.offsetTop - 120) current = id; });
+    document.querySelectorAll('.ptab').forEach(t => {
+      t.classList.toggle('active', t.getAttribute('href')==='#'+current);
+    });
+  },{passive:true});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How are you feeling? — The Gita Drop</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF6EF;
+    --cream-dark: #F2EAD8;
+    --parchment: #EDE3CE;
+    --ink: #1A0F2E;
+    --ink-muted: #4A3F60;
+    --ink-faint: #8B7FA8;
+    --gold: #C78B0E;
+    --gold-light: #F0C84A;
+    --terra: #C04F2D;
+    --sage: #7A8C6E;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250,246,239,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(199,139,14,0.12);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-back {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--ink); }
+
+  /* HERO */
+  .page-hero {
+    padding: 9rem 3rem 4rem;
+    text-align: center;
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  .page-hero-label {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .page-hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .page-hero h1 em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .page-hero-sub {
+    font-size: 1rem;
+    color: rgba(250,246,239,0.65);
+    max-width: 480px;
+    margin: 0 auto 3rem;
+  }
+
+  /* FEELINGS GRID */
+  .feelings-section {
+    padding: 5rem 3rem;
+    background: var(--cream);
+  }
+
+  .feelings-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .feelings-group {
+    margin-bottom: 3.5rem;
+  }
+
+  .feelings-group-label {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--parchment);
+  }
+
+  .feelings-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .feeling-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.3rem;
+    border: 1.5px solid var(--parchment);
+    border-radius: 100px;
+    background: white;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .feeling-btn:hover {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--cream);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(26,15,46,0.12);
+  }
+
+  .feeling-btn.active {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: var(--ink);
+    box-shadow: 0 4px 16px rgba(199,139,14,0.25);
+  }
+
+  /* VERSE PANEL */
+  .verse-panel {
+    display: none;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    background: white;
+    border: 1.5px solid var(--parchment);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(26,15,46,0.08);
+    animation: panelIn 0.4s cubic-bezier(0.34, 1.1, 0.64, 1);
+  }
+
+  .verse-panel.visible {
+    display: block;
+  }
+
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .panel-header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .panel-feeling-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .panel-feeling-title {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--cream);
+  }
+
+  .panel-close {
+    background: none;
+    border: 1px solid rgba(250,246,239,0.2);
+    color: rgba(250,246,239,0.6);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .panel-close:hover {
+    background: rgba(250,246,239,0.1);
+    color: var(--cream);
+  }
+
+  .panel-body {
+    padding: 2.5rem;
+  }
+
+  .panel-verse-block {
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .panel-verse-ref {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+  }
+
+  .panel-verse-text {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .panel-section-head {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.6rem;
+    margin-top: 1.75rem;
+  }
+
+  .panel-text {
+    font-size: 0.97rem;
+    color: var(--ink-muted);
+    line-height: 1.75;
+    margin-bottom: 0.5rem;
+  }
+
+  .panel-shift {
+    background: linear-gradient(135deg, rgba(199,139,14,0.08), rgba(199,139,14,0.04));
+    border: 1px solid rgba(199,139,14,0.2);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 1.75rem;
+  }
+
+  .panel-shift-head {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .panel-shift-text {
+    font-size: 0.95rem;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  .panel-footer {
+    border-top: 1px solid var(--parchment);
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .panel-footer-text {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+
+  .panel-subscribe-btn {
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .panel-subscribe-btn:hover {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  /* FOOTER */
+  .page-footer {
+    text-align: center;
+    padding: 3rem;
+    border-top: 1px solid var(--parchment);
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+  }
+
+  .page-footer a {
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+
+  @media (max-width: 700px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .page-hero { padding: 7rem 1.5rem 3rem; }
+    .feelings-section { padding: 3rem 1.5rem; }
+    .panel-header { padding: 1.5rem; }
+    .panel-body { padding: 1.5rem; }
+    .panel-footer { padding: 1.25rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="the-gita-drop.html" class="nav-logo">The Gita <span>Drop</span></a>
+  <a href="the-gita-drop.html" class="nav-back">← Back to home</a>
+</nav>
+
+<div class="page-hero">
+  <span class="page-hero-label">The Gita for right now</span>
+  <h1>How are you<br><em>feeling today?</em></h1>
+  <p class="page-hero-sub">Pick a feeling. Get the verse that was basically written for this exact moment. Two thousand years ago, somehow.</p>
+</div>
+
+<!-- VERSE PANEL (populated by JS) -->
+<div class="feelings-section">
+  <div class="feelings-container">
+
+    <div class="verse-panel" id="versePanel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-feeling-label" id="panelLabel"></div>
+          <div class="panel-feeling-title" id="panelTitle"></div>
+        </div>
+        <button class="panel-close" onclick="closePanel()">✕</button>
+      </div>
+      <div class="panel-body">
+        <div class="panel-verse-block">
+          <div class="panel-verse-ref" id="panelRef"></div>
+          <div class="panel-verse-text" id="panelVerse"></div>
+        </div>
+        <div class="panel-section-head">What's actually going on</div>
+        <div class="panel-text" id="panelContext"></div>
+        <div class="panel-section-head">The honest read</div>
+        <div class="panel-text" id="panelHonest"></div>
+        <div class="panel-shift">
+          <div class="panel-shift-head">One small thing to try today</div>
+          <div class="panel-shift-text" id="panelShift"></div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <div class="panel-footer-text">Get a verse like this every morning — one minute, one shift.</div>
+        <a href="the-gita-drop.html#subscribe" class="panel-subscribe-btn">Start the 7-day trial</a>
+      </div>
+    </div>
+
+    <!-- DIFFICULT FEELINGS -->
+    <div class="feelings-group">
+      <div class="feelings-group-label">When things feel hard</div>
+      <div class="feelings-grid">
+        <button class="feeling-btn" onclick="showFeeling('overwhelmed')">😮‍💨 Overwhelmed</button>
+        <button class="feeling-btn" onclick="showFeeling('anxious')">🌀 Anxious</button>
+        <button class="feeling-btn" onclick="showFeeling('stuck')">🪨 Stuck</button>
+        <button class="feeling-btn" onclick="showFeeling('heartbroken')">💔 Heartbroken</button>
+        <button class="feeling-btn" onclick="showFeeling('lonely')">🌙 Lonely</button>
+        <button class="feeling-btn" onclick="showFeeling('angry')">⚡ Angry</button>
+        <button class="feeling-btn" onclick="showFeeling('lost')">🧭 Lost</button>
+        <button class="feeling-btn" onclick="showFeeling('grieving')">🕊 Grieving</button>
+        <button class="feeling-btn" onclick="showFeeling('burned_out')">🪫 Burned out</button>
+        <button class="feeling-btn" onclick="showFeeling('afraid')">🫧 Afraid</button>
+        <button class="feeling-btn" onclick="showFeeling('jealous')">🌿 Jealous</button>
+        <button class="feeling-btn" onclick="showFeeling('guilty')">🌑 Guilty</button>
+      </div>
+    </div>
+
+    <!-- IN BETWEEN -->
+    <div class="feelings-group">
+      <div class="feelings-group-label">Somewhere in the middle</div>
+      <div class="feelings-grid">
+        <button class="feeling-btn" onclick="showFeeling('confused')">🌫 Confused</button>
+        <button class="feeling-btn" onclick="showFeeling('restless')">🌊 Restless</button>
+        <button class="feeling-btn" onclick="showFeeling('numb')">🩶 Numb</button>
+        <button class="feeling-btn" onclick="showFeeling('indecisive')">⚖️ Indecisive</button>
+        <button class="feeling-btn" onclick="showFeeling('bored')">💤 Bored</button>
+        <button class="feeling-btn" onclick="showFeeling('nostalgic')">🎞 Nostalgic</button>
+        <button class="feeling-btn" onclick="showFeeling('uncertain')">🌥 Uncertain</button>
+      </div>
+    </div>
+
+    <!-- GOOD FEELINGS -->
+    <div class="feelings-group">
+      <div class="feelings-group-label">When things feel good</div>
+      <div class="feelings-grid">
+        <button class="feeling-btn" onclick="showFeeling('grateful')">🌤 Grateful</button>
+        <button class="feeling-btn" onclick="showFeeling('motivated')">🔥 Motivated</button>
+        <button class="feeling-btn" onclick="showFeeling('content')">🍃 Content</button>
+        <button class="feeling-btn" onclick="showFeeling('hopeful')">🌱 Hopeful</button>
+        <button class="feeling-btn" onclick="showFeeling('proud')">🏔 Proud</button>
+        <button class="feeling-btn" onclick="showFeeling('in_love')">🌹 In love</button>
+        <button class="feeling-btn" onclick="showFeeling('excited')">✨ Excited</button>
+        <button class="feeling-btn" onclick="showFeeling('at_peace')">🌸 At peace</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="page-footer">
+  <a href="the-gita-drop.html">← The Gita Drop</a> &nbsp;·&nbsp; One verse. Every morning. &nbsp;·&nbsp; <a href="the-gita-drop.html#subscribe">Subscribe free</a>
+</div>
+
+<script>
+const feelings = {
+  overwhelmed: {
+    emoji: '😮‍💨',
+    label: 'Feeling overwhelmed',
+    title: 'When everything is too much at once',
+    ref: 'Chapter 2, Verse 14',
+    verse: '"The contact of the senses with their objects produces cold and heat, pleasure and pain. They come and go; they are transient. Endure them, O Arjuna."',
+    context: 'Arjuna is standing on a battlefield about to fight his own family. If anyone knew overwhelm, it was him — and Krishna\'s first move wasn\'t to solve it. He just said: this is real, it is temporary, and you are more than it.',
+    honest: 'Everything feels like it\'s happening at once because it is. But "a lot right now" is not the same as "too much forever." The Gita doesn\'t promise the pile gets smaller. It just points out that you\'ve survived 100% of your worst days so far.',
+    shift: 'Pick the one thing on your list that is actually due today. Just the one. Everything else is tomorrow\'s problem, and tomorrow-you is slightly more capable than today-you after some rest.'
+  },
+  anxious: {
+    emoji: '🌀',
+    label: 'Feeling anxious',
+    title: 'When your mind is three steps ahead in the worst timeline',
+    ref: 'Chapter 2, Verse 47',
+    verse: '"You have a right to perform your duties, but you are not entitled to the fruits of your actions. Never consider yourself the cause of results, and never be attached to inaction."',
+    context: 'This is possibly the most-quoted line in the Gita, but it\'s not about detachment in a cool, unbothered way. It\'s about what to do when the outcome is completely out of your hands — which is most of the time, if you\'re honest.',
+    honest: 'Anxiety is basically your brain rehearsing disaster so you\'re ready. Very thoughtful of it. The problem is it rehearses even when there\'s nothing to rehearse for. You can\'t control what happens. You can only control what you do next, and even then, loosely.',
+    shift: 'Write down the three things you are actually worried about. Now put a dot next to the ones you can do something about. Do those things. The rest? Officially not your department today.'
+  },
+  stuck: {
+    emoji: '🪨',
+    label: 'Feeling stuck',
+    title: 'When nothing is moving and you don\'t know why',
+    ref: 'Chapter 3, Verse 8',
+    verse: '"Do your obligatory duty, because action is indeed better than inaction. Even the maintenance of your body would not be possible through inaction."',
+    context: 'Krishna is talking to someone who wanted to just... sit down and not participate. And his response is basically: you can\'t actually opt out. Even not deciding is a decision. Even staying still has consequences.',
+    honest: 'Being stuck usually doesn\'t mean there\'s nothing to do. It means the thing to do feels hard or wrong or uncertain enough that doing nothing feels safer. The Gita is fairly blunt about this: nothing is actually safer. You\'re just stuck in a different way.',
+    shift: 'Do one small thing in the direction you think you should go. Not the whole thing — just the first step. Walk to the door. Open the document. Send the first message. Motion creates motion.'
+  },
+  heartbroken: {
+    emoji: '💔',
+    label: 'Feeling heartbroken',
+    title: 'When someone or something you loved is gone',
+    ref: 'Chapter 2, Verse 20',
+    verse: '"The soul is never born, nor does it die at any time. It has not come into being, does not come into being, and will not come into being. It is unborn, eternal, ever-existing, and primeval."',
+    context: 'This verse is about the permanence of the soul, but read it differently: the part of you that loved deeply — that capacity — doesn\'t get destroyed when the thing you loved does. You\'re still here. Still whole, underneath the pain.',
+    honest: 'Heartbreak is grief for a future that won\'t happen the way you imagined. That\'s real, and it\'s heavy, and anyone who tells you it isn\'t is wrong. The Gita doesn\'t rush you through it. It just quietly points out that you — the you who feels all of this — are not broken.',
+    shift: 'Today, just feel it. Don\'t analyze it, fix it, or post about it. Get a glass of water. Sit somewhere comfortable. Let it be what it is for one hour without trying to make it anything else.'
+  },
+  lonely: {
+    emoji: '🌙',
+    label: 'Feeling lonely',
+    title: 'When you feel alone in a room full of people',
+    ref: 'Chapter 6, Verse 5',
+    verse: '"Elevate yourself through the power of your mind, and do not degrade yourself, for the mind can be the friend and also the enemy of the self."',
+    context: 'The Gita spends a lot of time on the self — the inner self, the one that exists whether or not anyone is paying attention. Not in a "you don\'t need anyone" way, but in a "you are complete even when it doesn\'t feel like it" way.',
+    honest: 'Loneliness is not about being alone. It\'s about feeling unseen. The cruelest version is when you\'re surrounded by people and still feel it. The Gita\'s answer isn\'t "find your people" — it\'s closer to: the relationship you have with yourself sets the floor for how connected you can feel to anyone else.',
+    shift: 'Do one thing today that you would do if a dear friend were visiting you. Cook something properly. Watch the thing you actually want to watch. Take the long walk. Be the company you\'re craving.'
+  },
+  angry: {
+    emoji: '⚡',
+    label: 'Feeling angry',
+    title: 'When something has crossed a line and you know it',
+    ref: 'Chapter 2, Verse 63',
+    verse: '"From anger comes delusion; from delusion, loss of memory; from loss of memory, destruction of discrimination; from destruction of discrimination, one is lost."',
+    context: 'Krishna is not saying anger is bad or weak. He\'s tracking where it goes when you let it drive. Anger → warped thinking → can\'t remember what matters → can\'t tell right from wrong → you do something you regret. The domino chain is very specific.',
+    honest: 'Anger is usually correct about something being wrong. It\'s the GPS telling you there\'s a problem — it\'s just a terrible GPS for working out what to do about it. Act from anger and you usually end up defending the action instead of solving the thing that made you angry.',
+    shift: 'Give yourself a 24-hour rule on any significant decision made while angry. The anger might be right. The solution it\'s suggesting probably isn\'t. Sleep first. Decide later.'
+  },
+  lost: {
+    emoji: '🧭',
+    label: 'Feeling lost',
+    title: 'When you don\'t know which direction is forward',
+    ref: 'Chapter 18, Verse 66',
+    verse: '"Abandon all varieties of duty and simply surrender to Me. I shall deliver you from all sinful reactions; do not fear."',
+    context: 'This is the last big instruction Krishna gives, right at the end of the whole Gita. After 700 verses of advice, philosophy, and guidance, it ends with: let go. Not everything has to be figured out before you move.',
+    honest: 'Feeling lost is sometimes what happens right before something new becomes clear — not because the clarity was always there, but because you had to exhaust the wrong directions first. The Gita spent 17 chapters getting Arjuna ready for the 18th. You might just be in chapter 12.',
+    shift: 'Stop trying to find the whole path today. Just identify what the next right step is — not the plan, just the step. That\'s enough to do today. The rest will become visible when you\'re standing further forward.'
+  },
+  grieving: {
+    emoji: '🕊',
+    label: 'Grieving',
+    title: 'When loss has made the world feel unfamiliar',
+    ref: 'Chapter 2, Verse 27',
+    verse: '"For the one who is born, death is certain, and for the one who has died, birth is certain. Therefore you should not grieve over the inevitable."',
+    context: 'Krishna says this to Arjuna about the soldiers who will die in battle. It sounds cold at first — but it comes from a place of radical acceptance rather than dismissal. The loss is real. The permanence of loss is also real. Grief, the Gita suggests, is love with nowhere to go.',
+    honest: 'There\'s no verse that makes grief easier, and this page won\'t either. What the Gita offers is not comfort but companionship — written by people who also lost things and kept going anyway, and found that somehow, the keeping-going was its own kind of honoring.',
+    shift: 'Today, you don\'t have to be okay. Drink water. Eat something. Let someone who loves you sit nearby. That is a complete and sufficient day.'
+  },
+  burned_out: {
+    emoji: '🪫',
+    label: 'Burned out',
+    title: 'When you\'ve given everything and have nothing left',
+    ref: 'Chapter 6, Verse 16',
+    verse: '"There is no possibility of one\'s becoming a yogi if one eats too much or eats too little, sleeps too much or does not sleep enough. Only one who is regulated in eating, sleeping, recreation and work can become a yogi."',
+    context: 'The Gita has a lot to say about discipline — but it\'s equally clear that excess in any direction, including work, is not virtue. Rest is not failure. Recovery is not laziness. The very system of yoga demands balance.',
+    honest: 'Burnout is what happens when you treat yourself like a resource instead of a person. The culture that made you feel like rest is earned is the problem — not you. The Gita, two thousand years ago, said: regulate your rest. Not as a treat. As a practice.',
+    shift: 'Identify one thing on your plate that does not actually need to be done this week. Remove it. Then sleep an hour more than you think you need to tonight. Seriously.'
+  },
+  afraid: {
+    emoji: '🫧',
+    label: 'Feeling afraid',
+    title: 'When fear is louder than everything else',
+    ref: 'Chapter 4, Verse 40',
+    verse: '"But ignorant and faithless persons who doubt the revealed scriptures do not attain God consciousness. For the doubting soul, there is happiness neither in this world nor in the next."',
+    context: 'The Gita treats doubt and fear as cousins — both rooted in uncertainty about what\'s real and what we\'re capable of. Krishna doesn\'t eliminate Arjuna\'s fear. He gives him something larger to hold onto than the fear itself.',
+    honest: 'Fear is loudest when the stakes feel real, which means fear is often a sign that something actually matters to you. That\'s not a flaw. The trick is not to silence fear but to not let it have veto power over what you do next.',
+    shift: 'Name the fear specifically. Write it out: "I am afraid that ___." Usually fear is much bigger when it\'s unnamed. Once you\'ve named it, ask: what\'s the one smallest thing I could do anyway?'
+  },
+  jealous: {
+    emoji: '🌿',
+    label: 'Feeling jealous',
+    title: 'When someone else has what you want and it stings',
+    ref: 'Chapter 14, Verse 22',
+    verse: '"He who does not hate illumination, attachment and delusion when they are present, nor longs for them when they disappear..."',
+    context: 'The Gita talks a lot about non-attachment — not as coldness, but as freedom from letting comparison run your internal weather. Jealousy is attachment pointing at someone else\'s life and calling it evidence about yours.',
+    honest: 'Jealousy is actually useful data. It tells you exactly what you want, which is more than most people know about themselves. The feeling isn\'t the problem — it\'s information. The problem is when you turn it into a story about why you can\'t have what you want.',
+    shift: 'Underneath the jealousy, what is it you actually want? Write that down. Now ask: is there one small step I could take toward that thing today, regardless of what anyone else is doing?'
+  },
+  guilty: {
+    emoji: '🌑',
+    label: 'Feeling guilty',
+    title: 'When you know you got something wrong',
+    ref: 'Chapter 9, Verse 30',
+    verse: '"Even if one commits the most abominable action, if he is engaged in devotional service he is to be considered saintly because he is properly situated."',
+    context: 'Not a permission slip for bad behavior — more a recognition that the direction you\'re moving matters more than where you\'ve been. The Gita is remarkably un-interested in punishment and very interested in what you do next.',
+    honest: 'Guilt that leads to course correction is useful. Guilt that just sits there and makes you feel bad without changing anything is just self-punishment in a loop. You can acknowledge you got it wrong without making it your whole identity. Those are different things.',
+    shift: 'If there\'s something to repair, take one step toward repairing it today — a message, an apology, a changed behavior. If it\'s not repairable, decide what you\'ll do differently, and actually write it down.'
+  },
+  confused: {
+    emoji: '🌫',
+    label: 'Feeling confused',
+    title: 'When nothing is making sense right now',
+    ref: 'Chapter 3, Verse 2',
+    verse: '"My intelligence is bewildered by your equivocal instructions. Therefore, please tell me definitively which will be most beneficial for me."',
+    context: 'Arjuna literally says this to Krishna — I am confused, please be clearer. And the Gita doesn\'t shame him for it. Instead, Krishna just keeps going, from different angles, until something lands. Confusion is the beginning of inquiry.',
+    honest: 'Confusion usually means you\'re between frameworks — the old way of understanding something has stopped working and the new one hasn\'t arrived yet. It\'s uncomfortable but it\'s also where actual thinking happens.',
+    shift: 'Write down what you know for certain, and what you don\'t. Most confusion collapses when you separate those two piles. You\'ll often find the certain pile is bigger than you thought.'
+  },
+  restless: {
+    emoji: '🌊',
+    label: 'Feeling restless',
+    title: 'When you can\'t settle and don\'t know why',
+    ref: 'Chapter 6, Verse 26',
+    verse: '"From wherever the mind wanders due to its flickering and unsteady nature, one must certainly withdraw it and bring it back under the control of the self."',
+    context: 'Krishna is talking about meditation, but the advice applies more broadly: the mind that won\'t settle is not broken, it\'s just untrained. You don\'t shame it into stillness. You gently redirect it, again and again.',
+    honest: 'Restlessness is often your body\'s way of saying there\'s energy looking for direction. It\'s not a problem to fix — it\'s a resource to point somewhere. The discomfort isn\'t the enemy; purposeless movement is.',
+    shift: 'Give the restlessness somewhere to go. A walk, a workout, a creative thing, a conversation. Restless energy pointed at something becomes momentum. Don\'t try to sit still through it — move through it.'
+  },
+  numb: {
+    emoji: '🩶',
+    label: 'Feeling numb',
+    title: 'When you can\'t feel anything and that itself feels wrong',
+    ref: 'Chapter 5, Verse 20',
+    verse: '"A person who neither rejoices upon achieving something pleasant nor laments upon obtaining something unpleasant, who is self-intelligent, who is unbewildered, and who knows the science of God, is already situated in transcendence."',
+    context: 'The Gita\'s ideal of equanimity can look like numbness from the outside — but they\'re different. Equanimity is being steady while still being present. Numbness is protection. The body shuts down feeling when there\'s been too much of it.',
+    honest: 'Numbness is usually kindness from your nervous system after something hard. It\'s not permanent unless you make it permanent. You don\'t have to force yourself to feel — but it\'s worth gently asking what you\'ve been protecting yourself from.',
+    shift: 'Do one small sensory thing today: a hot shower, food you actually like, music you used to love. Not to force feeling — just to remind your body that good things are still available.'
+  },
+  indecisive: {
+    emoji: '⚖️',
+    label: 'Feeling indecisive',
+    title: 'When you can see every side and can\'t pick one',
+    ref: 'Chapter 2, Verse 41',
+    verse: '"Those who are on this path are resolute in purpose, and their aim is one. O beloved child of the Kurus, the intelligence of those who are irresolute is many-branched."',
+    context: 'The Gita isn\'t saying there\'s only one path. It\'s saying that once you\'ve thought it through, you have to commit to one direction — because trying to walk two roads at once gets you nowhere fast.',
+    honest: 'Indecision is often perfectionism wearing a neutral outfit. You\'re not waiting for clarity — you\'re waiting for certainty, which isn\'t coming. Most decisions aren\'t as irreversible as they feel in the moment, and most "wrong" choices are recoverable.',
+    shift: 'Set a timer for 10 minutes. At the end of 10 minutes, you have to pick. Write down your choice and one reason for it. The reason doesn\'t have to be perfect. You just have to start moving.'
+  },
+  bored: {
+    emoji: '💤',
+    label: 'Feeling bored',
+    title: 'When nothing feels interesting or worth doing',
+    ref: 'Chapter 3, Verse 5',
+    verse: '"Everyone is forced to act helplessly according to the qualities born of the modes of material nature; therefore no one can refrain from doing something, not even for a moment."',
+    context: 'The Gita says inaction is technically impossible — you\'re always doing something, even if it\'s staring at the ceiling. Boredom is energy with no assignment. The question is what to point it at.',
+    honest: 'Boredom gets a bad reputation, but research (and the Gita, obliquely) suggests it\'s actually the precondition for creativity. The brain in boredom starts connecting things. The issue is we tend to escape it with screens before it can do anything useful.',
+    shift: 'Sit with the boredom for 15 minutes without a screen. Actually sit with it. See what your mind does when it\'s not being entertained. It might surprise you with where it goes.'
+  },
+  nostalgic: {
+    emoji: '🎞',
+    label: 'Feeling nostalgic',
+    title: 'When the past feels better than the present',
+    ref: 'Chapter 2, Verse 14',
+    verse: '"The contact of the senses with their objects produces cold and heat, pleasure and pain. They come and go; they are transient."',
+    context: 'Transience cuts both ways — the hard things pass, and so do the good things. Nostalgia is the feeling of knowing that. The Gita doesn\'t say stop cherishing what was — it says don\'t let what was stop you from what is.',
+    honest: 'Nostalgia edits. It keeps the good parts of a memory and softens the rest. The past was not actually better — it had its own hard parts, you just lived through them and they\'re finished now. The present has things the past couldn\'t give you too.',
+    shift: 'Write down one good thing about right now — not to dismiss the nostalgia, but to let the present have a seat at the table too. Both things can be true at once.'
+  },
+  uncertain: {
+    emoji: '🌥',
+    label: 'Feeling uncertain',
+    title: 'When you don\'t know what comes next',
+    ref: 'Chapter 4, Verse 38',
+    verse: '"In this world, there is nothing as purifying as knowledge. One who has achieved perfection in yoga finds this knowledge within himself in due course of time."',
+    context: 'Clarity, the Gita suggests, is not something you get before you start — it\'s something you find as you go. Arjuna didn\'t get a full map. He got a direction and a reason to trust the process.',
+    honest: 'Uncertainty is actually neutral — it means the future is genuinely open, which includes good options as much as bad ones. The discomfort is real, but it\'s not evidence that things will go wrong. It\'s just evidence that things haven\'t happened yet.',
+    shift: 'Identify one thing you can be certain about today — even if it\'s small. What do you know? What are you capable of? Start from there and build outward, not from the uncertainty inward.'
+  },
+  grateful: {
+    emoji: '🌤',
+    label: 'Feeling grateful',
+    title: 'When things are good and you want to hold onto it',
+    ref: 'Chapter 10, Verse 8',
+    verse: '"I am the source of all spiritual and material worlds. Everything emanates from Me. The wise who know this perfectly engage in My devotional service and worship Me with all their hearts."',
+    context: 'Gratitude in the Gita isn\'t passive — it\'s a form of recognition that what you have is connected to something larger than just your effort. The Gita says this is wisdom: knowing where good things come from and holding them lightly.',
+    honest: 'Gratitude is one of the few feelings that tends to expand when you pay attention to it. You\'re in one of those days. Notice it. Let it be real. You don\'t have to immediately do anything with it.',
+    shift: 'Tell one person today that you appreciate them. Not an emoji — an actual sentence about something specific they\'ve done or are. Pass the gratitude forward.'
+  },
+  motivated: {
+    emoji: '🔥',
+    label: 'Feeling motivated',
+    title: 'When you\'re ready to actually do the thing',
+    ref: 'Chapter 3, Verse 19',
+    verse: '"Therefore, without being attached to the fruits of activities, one should act as a matter of duty, for by working without attachment one attains the Supreme."',
+    context: 'The Gita is pro-action, but it adds a nuance: do the thing because it\'s worth doing, not just because of what you\'ll get. That motivation is cleaner, more sustainable, and survives setbacks better.',
+    honest: 'Motivation is real but it\'s also inconsistent — it will not always feel like this. The Gita is subtly suggesting that discipline that doesn\'t depend on motivation is more durable than motivation itself. Use this energy well, and build systems while you have the momentum.',
+    shift: 'Do the hardest thing on your list first today, while this energy is available. Then set up one small system or habit that will help you on the days when the motivation isn\'t there.'
+  },
+  content: {
+    emoji: '🍃',
+    label: 'Feeling content',
+    title: 'When things are simply, quietly okay',
+    ref: 'Chapter 12, Verse 19',
+    verse: '"One who is equal to friends and enemies, who is equipoised in honor and dishonor, heat and cold, happiness and distress, fame and infamy, who is always free from contaminating association, always silent and satisfied with anything, who doesn\'t care for any residence, who is fixed in knowledge and who is engaged in devotional service — such a person is very dear to Me."',
+    context: 'This is the Gita\'s description of someone who has found genuine peace — not through grand achievement, but through equanimity. Content is not a stepping stone to something else. The Gita treats it as an arrival.',
+    honest: 'Content gets underrated because we\'re conditioned to want more. But contentment is not complacency — it\'s being fully present in the life you\'re in. That\'s actually the goal of a lot of wisdom traditions. You happen to be there today.',
+    shift: 'Don\'t do anything with it. Just notice it. Let today be evidence that it\'s possible to feel this way. File it somewhere your memory can find it later.'
+  },
+  hopeful: {
+    emoji: '🌱',
+    label: 'Feeling hopeful',
+    title: 'When something feels possible again',
+    ref: 'Chapter 18, Verse 78',
+    verse: '"Wherever there is Krishna, the master of all mystics, and wherever there is Arjuna, the supreme archer, there will also certainly be opulence, victory, extraordinary power, and morality."',
+    context: 'This is the final verse of the Gita. After all the doubt, fear, and philosophy — it ends on this: when right action and wisdom come together, good things follow. The Gita ends with hope.',
+    honest: 'Hope is not optimism — it doesn\'t require you to believe everything will be fine. It just requires you to believe that what you do matters. That\'s all. And it does.',
+    shift: 'Take one concrete step today toward the thing you\'re hopeful about. Even a tiny one. Hope with action behind it is different from hope as a feeling — it becomes a direction.'
+  },
+  proud: {
+    emoji: '🏔',
+    label: 'Feeling proud',
+    title: 'When you did something hard and you know it',
+    ref: 'Chapter 11, Verse 33',
+    verse: '"Therefore, arise and attain glory. Conquer your enemies and enjoy a flourishing kingdom. They are already put to death by My arrangement, and you can be but an instrument in the fight."',
+    context: 'After all his doubt, Arjuna does fight — and the Gita credits both his effort and the larger forces at work. Pride in the Gita is allowed; ego without acknowledgment of what made it possible is the problem.',
+    honest: 'Pride is the right response to genuine effort. Let yourself have this one. You don\'t have to immediately deflect or minimize. You worked hard, you showed up, something happened — that\'s real.',
+    shift: 'Tell someone what you accomplished. Not to brag — just to make it real. Share it with someone who will actually appreciate it. Then ask yourself: what did this take from me? And what do I want to build next?'
+  },
+  in_love: {
+    emoji: '🌹',
+    label: 'In love',
+    title: 'When someone makes the world feel different',
+    ref: 'Chapter 10, Verse 41',
+    verse: '"Know that all opulent, beautiful and glorious creations spring from but a spark of My splendor."',
+    context: 'The Gita treats beauty and love as glimpses of something larger — not as illusions, but as pointers. When someone moves you deeply, the Gita suggests you\'re recognizing something real.',
+    honest: 'Being in love is one of the few states that makes humans temporarily better — more generous, more attentive, more present. The Gita would probably say: notice what this version of you is capable of, and don\'t lose that when the novelty settles.',
+    shift: 'Do one small, specific thing today for the person you love — something that required you to actually pay attention to who they are. Not grand. Just accurate.'
+  },
+  excited: {
+    emoji: '✨',
+    label: 'Feeling excited',
+    title: 'When something good is coming and you can feel it',
+    ref: 'Chapter 18, Verse 37',
+    verse: '"That which in the beginning may be just like poison but at the end is just like nectar and which awakens one to self-realization is said to be happiness in the mode of goodness."',
+    context: 'The Gita categorizes joy — and the kind that comes from something meaningful, even when it\'s hard in the middle, is the highest kind. Excitement about something worth doing is a signal worth trusting.',
+    honest: 'Excitement is energy that wants to go somewhere. The mistake is usually spending it all at the start and burning out before the thing actually happens. Channel it; don\'t dump it.',
+    shift: 'Use the excitement to prepare, not just to feel. What\'s one concrete thing you can set up today that your future self will be glad you did when the excitement has leveled out?'
+  },
+  at_peace: {
+    emoji: '🌸',
+    label: 'At peace',
+    title: 'When everything is quiet and that feels right',
+    ref: 'Chapter 6, Verse 7',
+    verse: '"For one who has conquered the mind, the Supersoul is already reached, for he has attained tranquility. To such a man happiness and distress, heat and cold, honor and dishonor are all the same."',
+    context: 'This is the Gita\'s north star — not enlightenment as a dramatic moment, but as a steady state where the external weather doesn\'t dictate the internal climate. You\'re somewhere on that path today.',
+    honest: 'Peace is not nothing happening. It\'s everything happening and you being okay anyway. Today that\'s you. Remember what this feels like — not to cling to it, but to know it\'s possible. It will be useful to remember that later.',
+    shift: 'Nothing urgent today. If you\'re at peace, protect it. Say no to one thing that would disturb it unnecessarily. That\'s allowed.'
+  }
+};
+
+function showFeeling(key) {
+  const f = feelings[key];
+  if (!f) return;
+
+  // Update active state
+  document.querySelectorAll('.feeling-btn').forEach(b => b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+
+  // Populate panel
+  document.getElementById('panelLabel').textContent = f.label;
+  document.getElementById('panelTitle').textContent = f.emoji + ' ' + f.title;
+  document.getElementById('panelRef').textContent = f.ref;
+  document.getElementById('panelVerse').textContent = f.verse;
+  document.getElementById('panelContext').textContent = f.context;
+  document.getElementById('panelHonest').textContent = f.honest;
+  document.getElementById('panelShift').textContent = f.shift;
+
+  // Show panel and scroll to it
+  const panel = document.getElementById('versePanel');
+  panel.classList.remove('visible');
+  void panel.offsetWidth; // reflow for re-animation
+  panel.classList.add('visible');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function closePanel() {
+  document.getElementById('versePanel').classList.remove('visible');
+  document.querySelectorAll('.feeling-btn').forEach(b => b.classList.remove('active'));
+}
+
+// Auto-open from URL param
+const params = new URLSearchParams(window.location.search);
+const feelingParam = params.get('feeling');
+if (feelingParam && feelings[feelingParam]) {
+  window.addEventListener('DOMContentLoaded', () => {
+    const btn = document.querySelector(`[onclick="showFeeling('${feelingParam}')"]`);
+    if (btn) { btn.classList.add('active'); }
+    document.getElementById('panelLabel').textContent = feelings[feelingParam].label;
+    document.getElementById('panelTitle').textContent = feelings[feelingParam].emoji + ' ' + feelings[feelingParam].title;
+    document.getElementById('panelRef').textContent = feelings[feelingParam].ref;
+    document.getElementById('panelVerse').textContent = feelings[feelingParam].verse;
+    document.getElementById('panelContext').textContent = feelings[feelingParam].context;
+    document.getElementById('panelHonest').textContent = feelings[feelingParam].honest;
+    document.getElementById('panelShift').textContent = feelings[feelingParam].shift;
+    document.getElementById('versePanel').classList.add('visible');
+  });
+}
+</script>
+</body>
+</html>

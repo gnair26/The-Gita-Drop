@@ -1,0 +1,2497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Gita Drop — One verse. One minute. One shift.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --cream: #FAF6EF;
+    --cream-dark: #F2EAD8;
+    --parchment: #EDE3CE;
+    --ink: #1A0F2E;
+    --ink-muted: #4A3F60;
+    --ink-faint: #8B7FA8;
+    --gold: #C78B0E;
+    --gold-light: #F0C84A;
+    --terra: #C04F2D;
+    --terra-light: #E8724A;
+    --sage: #7A8C6E;
+    --sage-light: #A8BCA0;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250,246,239,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(199,139,14,0.12);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--terra); }
+
+  /* HERO */
+  .hero {
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -15%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(199,139,14,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(192,79,45,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-content {
+    /* left column */
+  }
+
+  .hero-video-col {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-chariot-img {
+    width: 115%;
+    max-width: none;
+    height: auto;
+    display: block;
+    /* blend the parchment background of the image into the cream page */
+    mix-blend-mode: multiply;
+    opacity: 0.9;
+    filter: sepia(0.08) contrast(0.95);
+    transform: translateX(4%);
+  }
+
+  /* subtle vignette overlay to blend with page */
+  .hero-video-col::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, var(--cream) 0%, transparent 18%),
+      linear-gradient(to bottom, var(--cream) 0%, transparent 12%, transparent 75%, var(--cream) 100%),
+      linear-gradient(to left, var(--cream) 0%, transparent 15%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--terra);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--ink-muted);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    max-width: 440px;
+  }
+
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 440px;
+    border: 1.5px solid var(--ink);
+    border-radius: 2px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+
+  .signup-form input[type="text"],
+  .signup-form input[type="email"] {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: none;
+    border-bottom: 1px solid var(--cream-dark);
+    outline: none;
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: transparent;
+  }
+
+  .signup-form input[type="email"] {
+    border-bottom: none;
+  }
+
+  .signup-form input::placeholder { color: var(--ink-faint); }
+
+  .signup-form button {
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    padding: 1rem 1.5rem;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+    width: 100%;
+    text-align: center;
+  }
+
+  .signup-form button:hover { background: var(--terra); }
+
+  .hero-footnote {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+  }
+
+  /* HERO SAMPLE CARD (right column) */
+  .verse-preview-card {
+    background: white;
+    border: 1.5px solid var(--parchment);
+    border-radius: 3px;
+    padding: 2.5rem;
+    box-shadow: 8px 8px 0 var(--parchment), 8px 8px 0 1px rgba(199,139,14,0.2);
+    position: relative;
+    animation: floatCard 6s ease-in-out infinite;
+  }
+
+  @keyframes floatCard {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .card-meta {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .card-chapter {
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    background: var(--cream);
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+  }
+
+  .verse-sanskrit {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+  }
+
+  .verse-divider {
+    width: 40px;
+    height: 1.5px;
+    background: var(--gold);
+    margin: 1.25rem 0;
+  }
+
+  .verse-meaning {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+
+  .verse-context {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+    background: var(--cream);
+    border-left: 3px solid var(--terra);
+    border-radius: 0 2px 2px 0;
+  }
+
+  .verse-today {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  .verse-today strong {
+    color: var(--terra);
+    font-weight: 500;
+  }
+
+  /* SECTION WRAPPER */
+  .section {
+    padding: 6rem 3rem;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  .section-full {
+    padding: 6rem 3rem;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  h2 em { font-style: italic; color: var(--terra); }
+
+  .lead-text {
+    font-size: 1.1rem;
+    color: var(--ink-muted);
+    line-height: 1.75;
+    font-weight: 300;
+    max-width: 520px;
+  }
+
+  /* DIVIDER */
+  .ornament-divider {
+    text-align: center;
+    padding: 2rem 0;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.5rem;
+    opacity: 0.5;
+  }
+
+  /* WHAT YOU GET */
+  .features-strip {
+    background: var(--ink);
+    padding: 5rem 3rem;
+  }
+
+  .features-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  .features-inner .section-label { color: var(--gold-light); }
+  .features-inner .section-label::before { background: var(--gold-light); }
+  .features-inner h2 { color: var(--cream); }
+  .features-inner .lead-text { color: rgba(250,246,239,0.6); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .feature-item {
+    padding: 2rem;
+    border: 1px solid rgba(199,139,14,0.2);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .feature-item:hover { border-color: rgba(199,139,14,0.5); }
+
+  .feature-num {
+    font-family: var(--serif);
+    font-size: 4rem;
+    font-weight: 300;
+    color: rgba(199,139,14,0.15);
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    line-height: 1;
+  }
+
+  .feature-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(199,139,14,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+  }
+
+  .feature-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .feature-desc {
+    font-size: 0.875rem;
+    color: rgba(250,246,239,0.55);
+    line-height: 1.65;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials-bg {
+    background: var(--cream-dark);
+    padding: 6rem 3rem;
+  }
+
+  .testimonials-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .testimonial {
+    background: white;
+    padding: 2rem 2rem 1.75rem;
+    border-radius: 2px;
+    border: 1.5px solid var(--parchment);
+    position: relative;
+  }
+
+  .testimonial::before {
+    content: '\201C';
+    font-family: var(--serif);
+    font-size: 5rem;
+    line-height: 0.8;
+    color: var(--gold);
+    opacity: 0.3;
+    position: absolute;
+    top: 1.25rem;
+    left: 1.5rem;
+  }
+
+  .testimonial-text {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    padding-top: 2rem;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-top: 1px solid var(--cream-dark);
+    padding-top: 1rem;
+  }
+
+  .author-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .author-desc {
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    margin-top: 2px;
+  }
+
+  /* HOW IT WORKS */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 4rem;
+  }
+
+  .how-step {
+    position: relative;
+  }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 5rem;
+    font-weight: 300;
+    color: var(--parchment);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .step-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+
+  .step-desc {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+  }
+
+  /* FINAL CTA */
+  .cta-section {
+    background: linear-gradient(135deg, #1A0F2E 0%, #2D1A4A 50%, #1A0F2E 100%);
+    padding: 7rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(199,139,14,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-inner .section-label {
+    justify-content: center;
+    color: var(--gold-light);
+  }
+
+  .cta-inner .section-label::before { background: var(--gold-light); }
+
+  .cta-inner h2 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .cta-inner .lead-text {
+    color: rgba(250,246,239,0.65);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .cta-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 480px;
+    margin: 0 auto;
+    border: 1.5px solid rgba(199,139,14,0.5);
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(199,139,14,0.15);
+    background: white;
+  }
+
+  .cta-form input[type="text"],
+  .cta-form input[type="email"] {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: none;
+    border-bottom: 1px solid rgba(242,234,216,0.8);
+    outline: none;
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: transparent;
+  }
+
+  .cta-form input[type="email"] {
+    border-bottom: none;
+  }
+
+  .cta-form input::placeholder { color: var(--ink-faint); }
+
+  .cta-form button {
+    background: var(--gold);
+    color: white;
+    border: none;
+    padding: 1rem 1.75rem;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+    width: 100%;
+  }
+
+  .cta-form button:hover { background: var(--terra); }
+
+  .cta-footnote {
+    margin-top: 1.25rem;
+    font-size: 0.8rem;
+    color: rgba(250,246,239,0.4);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(199,139,14,0.15);
+  }
+
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: rgba(250,246,239,0.8);
+    text-decoration: none;
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-tagline {
+    font-size: 0.8rem;
+    color: rgba(250,246,239,0.3);
+    margin-top: 0.25rem;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.8rem;
+    color: rgba(250,246,239,0.4);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* STORY SECTION */
+  .story-section {
+    padding: 6rem 3rem;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Video background — subtle, blended */
+  .story-video-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    opacity: 0.07;
+    mix-blend-mode: multiply;
+    filter: sepia(0.4) saturate(0.6) contrast(0.85);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Cream overlay to further soften — ensures text always reads clearly */
+  .story-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, var(--cream) 0%, rgba(250,246,239,0.82) 30%, rgba(250,246,239,0.82) 70%, var(--cream) 100%),
+      linear-gradient(to right, var(--cream) 0%, transparent 15%, transparent 85%, var(--cream) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .story-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--parchment), transparent);
+    z-index: 2;
+  }
+
+  /* Ensure all story content sits above overlays */
+  .story-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 3;
+  }
+
+  .story-left {
+    margin-bottom: 3rem;
+  }
+
+  .story-pull-quote {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    max-width: 680px;
+  }
+
+  .story-pull-quote em {
+    font-style: italic;
+    color: var(--terra);
+  }
+
+  .story-sidebar-note {
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+    line-height: 1.65;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--parchment);
+    max-width: 560px;
+  }
+
+  .story-right {}
+
+  .story-body {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.85;
+  }
+
+  .story-body p { margin-bottom: 1.5rem; }
+  .story-body p:last-child { margin-bottom: 0; }
+
+  .story-body strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .story-body em {
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .story-callout {
+    margin: 2rem 0;
+    padding: 1.75rem 2rem;
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .story-callout p {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(250,246,239,0.9);
+    margin-bottom: 0 !important;
+  }
+
+  .story-callout-attr {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 1rem !important;
+    font-style: normal !important;
+  }
+
+  .story-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 2.5rem 0;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding-bottom: 1.75rem;
+    position: relative;
+  }
+
+  .timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 24px;
+    bottom: 0;
+    width: 1px;
+    background: var(--parchment);
+  }
+
+  .timeline-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--cream-dark);
+    border: 1.5px solid var(--gold);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .timeline-dot-inner {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .timeline-text {
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    padding-top: 2px;
+  }
+
+  .timeline-text strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    font-family: var(--sans);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 900px) {
+    .story-left { margin-bottom: 2rem; }
+    .story-section { padding: 4rem 1.5rem; }
+  }
+  .stats-row {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--parchment);
+    justify-content: center;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* FEELINGS TEASER */
+  .feelings-teaser {
+    padding: 6rem 3rem;
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+  }
+
+  .feelings-teaser-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .feelings-teaser .section-label {
+    color: var(--gold);
+    border-color: rgba(199,139,14,0.3);
+  }
+
+  .feelings-teaser h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .feelings-teaser h2 em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .feelings-teaser .lead-text {
+    color: var(--ink-faint);
+    margin: 0 auto 2.5rem;
+    color: rgba(250,246,239,0.65);
+  }
+
+  .feelings-preview-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .feeling-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.1rem;
+    border: 1px solid rgba(250,246,239,0.18);
+    border-radius: 100px;
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    color: var(--cream);
+    text-decoration: none;
+    background: rgba(250,246,239,0.06);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .feeling-chip:hover {
+    background: rgba(199,139,14,0.15);
+    border-color: var(--gold);
+    color: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  .feelings-explore-link {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(199,139,14,0.4);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .feelings-explore-link:hover {
+    color: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  .fade-in-1 { animation-delay: 0.1s; }
+  .fade-in-2 { animation-delay: 0.25s; }
+  .fade-in-3 { animation-delay: 0.4s; }
+  .fade-in-4 { animation-delay: 0.55s; }
+  .fade-in-5 { animation-delay: 0.7s; }
+
+  /* MID-PAGE INLINE CTA */
+  .inline-cta {
+    background: var(--cream-dark);
+    border-top: 1px solid var(--parchment);
+    border-bottom: 1px solid var(--parchment);
+    padding: 3.5rem 3rem;
+  }
+
+  .inline-cta-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .inline-cta-text {}
+
+  .inline-cta-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .inline-cta-heading {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+
+  .inline-cta-heading em { font-style: italic; color: var(--terra); }
+
+  .inline-cta-form {
+    display: flex;
+    flex-shrink: 0;
+    border: 1.5px solid var(--ink);
+    border-radius: 2px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  .inline-cta-form input[type="email"] {
+    width: 220px;
+    padding: 0.85rem 1rem;
+    border: none;
+    outline: none;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: transparent;
+  }
+
+  .inline-cta-form input::placeholder { color: var(--ink-faint); }
+
+  .inline-cta-form button {
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    padding: 0.85rem 1.25rem;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  .inline-cta-form button:hover { background: var(--terra); }
+
+  @media (max-width: 900px) {
+    .inline-cta { padding: 3rem 1.5rem; }
+    .inline-cta-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .inline-cta-form { width: 100%; }
+    .inline-cta-form input[type="email"] { flex: 1; width: auto; }
+  }
+
+  /* CTA STRIP */
+  .cta-strip {
+    background: var(--terra);
+    padding: 2rem 3rem;
+  }
+
+  .cta-strip-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .cta-strip-text {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: white;
+    line-height: 1.3;
+  }
+
+  .cta-strip-text em { font-style: italic; opacity: 0.85; }
+
+  .cta-strip-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    color: var(--terra);
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: opacity 0.2s;
+  }
+
+  .cta-strip-link:hover { opacity: 0.9; }
+
+  @media (max-width: 700px) {
+    .cta-strip { padding: 2rem 1.5rem; }
+    .cta-strip-inner { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* EMAIL MOCKUP SECTION */
+  .email-preview-section {
+    padding: 6rem 3rem;
+    background: var(--cream);
+  }
+
+  .email-preview-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .email-window {
+    background: white;
+    border: 1.5px solid var(--parchment);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(26,15,46,0.12);
+    margin-top: 3rem;
+  }
+
+  .email-window-bar {
+    background: var(--cream-dark);
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--parchment);
+  }
+
+  .email-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .email-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+
+  .email-dot-r { background: #FF5F57; }
+  .email-dot-y { background: #FFBD2E; }
+  .email-dot-g { background: #28C840; }
+
+  .email-subject-bar {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--parchment);
+    border-radius: 4px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    font-family: var(--sans);
+  }
+
+  .email-body {
+    padding: 2.5rem 3rem 3rem;
+    max-height: 540px;
+    overflow-y: auto;
+  }
+
+  .email-from {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .email-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+
+  .email-sender-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .email-sender-addr {
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+  }
+
+  .email-greeting {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .email-intro {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .email-verse-block {
+    background: var(--ink);
+    border-radius: 6px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .email-verse-sanskrit {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(250,246,239,0.9);
+    line-height: 1.75;
+    margin-bottom: 0.5rem;
+  }
+
+  .email-verse-ref {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .email-section-head {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .email-para {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+    font-family: var(--sans);
+  }
+
+  .email-shift-box {
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.25rem;
+    border-radius: 0 4px 4px 0;
+    margin: 1.25rem 0;
+  }
+
+  .email-shift-box p {
+    font-size: 0.9rem;
+    color: var(--ink);
+    line-height: 1.65;
+    font-family: var(--sans);
+    font-style: italic;
+  }
+
+  .email-parting {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    line-height: 1.7;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--cream-dark);
+    font-family: var(--sans);
+  }
+
+  .email-fade {
+    position: relative;
+  }
+
+  .email-fade::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(transparent, white);
+    pointer-events: none;
+  }
+
+  .email-see-more {
+    text-align: center;
+    padding: 1rem 0 0.5rem;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    font-family: var(--sans);
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  @media (max-width: 900px) {
+    .email-preview-section { padding: 4rem 1.5rem; }
+    .email-body { padding: 1.75rem 1.5rem 2rem; }
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1rem 2rem;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    font-family: var(--sans);
+    border-left: 3px solid var(--gold);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    z-index: 999;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; min-height: auto; }
+    .hero-inner { grid-template-columns: 1fr; gap: 0; }
+    .hero-video-col { order: -1; margin-bottom: -2rem; }
+    .hero-chariot-img { width: 90%; transform: translateX(5%); }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .how-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .section { padding: 4rem 1.5rem; }
+    .section-full { padding: 4rem 1.5rem; }
+    .features-strip { padding: 4rem 1.5rem; }
+    .testimonials-bg { padding: 4rem 1.5rem; }
+    .cta-section { padding: 5rem 1.5rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2.5rem 1.5rem; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    .stats-row { flex-wrap: wrap; gap: 2rem; }
+  }
+
+  /* ═══ KIDS SECTION ═══ */
+  .kids-section {
+    background: #FFFBF0;
+    position: relative;
+    overflow: hidden;
+    border-top: 3px dashed #F0C84A;
+    border-bottom: 3px dashed #F0C84A;
+  }
+
+  .kids-wave-top,.kids-wave-bottom{line-height:0;display:block;overflow:hidden}
+  .kids-wave-top svg,.kids-wave-bottom svg{width:100%;height:52px;display:block}
+
+  .kids-wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 4rem 3rem 5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* top label */
+  .kids-new-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #1A0F2E;
+    color: #F0C84A;
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+
+  /* big headline */
+  .kids-h {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+
+  .kids-h .kids-h-colour { color: #C04F2D; font-style: italic; }
+
+  .kids-h-sub {
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    max-width: 100%;
+    margin-bottom: 3rem;
+  }
+
+  /* two-column layout */
+  .kids-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* LEFT: reasons */
+  .kids-reasons { display: flex; flex-direction: column; gap: 1rem; }
+
+  .kids-reason {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: white;
+    border: 2px solid #EDE3CE;
+    border-radius: 14px;
+    padding: 1.25rem 1.4rem;
+    box-shadow: 3px 3px 0 #EDE3CE;
+    transition: transform 0.18s, box-shadow 0.18s;
+    position: relative;
+  }
+  .kids-reason:hover {
+    transform: translate(-2px,-2px);
+    box-shadow: 5px 5px 0 #EDE3CE;
+  }
+
+  .kids-reason-ico {
+    font-size: 1.85rem;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 0.1rem;
+  }
+
+  .kids-reason-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+  }
+
+  .kids-reason-body {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  /* RIGHT: illustration + quote */
+  .kids-right-col {}
+
+  .kids-illu-wrap {
+    position: relative;
+    margin-bottom: 1.75rem;
+  }
+
+  /* floating doodle tags */
+  .kids-float-tag {
+    position: absolute;
+    background: white;
+    border: 2px solid #1A0F2E;
+    border-radius: 10px;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #1A0F2E;
+    padding: 0.4rem 0.85rem;
+    box-shadow: 2px 2px 0 #1A0F2E;
+    white-space: nowrap;
+    z-index: 5;
+  }
+  .kids-float-tag-a {
+    top: 8px;
+    left: -12px;
+    transform: rotate(-3deg);
+  }
+  .kids-float-tag-b {
+    bottom: 20px;
+    right: -12px;
+    transform: rotate(2deg);
+  }
+
+  /* quote card */
+  .kids-quote-card {
+    background: white;
+    border: 2px solid #E8C97A;
+    border-radius: 14px;
+    padding: 1.4rem 1.5rem;
+    box-shadow: 3px 3px 0 #E8C97A;
+    margin-bottom: 1.75rem;
+  }
+
+  .kids-quote-mark {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    line-height: 0.5;
+    color: #C78B0E;
+    opacity: 0.3;
+    display: block;
+    margin-bottom: 0.6rem;
+    user-select: none;
+  }
+
+  .kids-quote-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink);
+    line-height: 1.65;
+    margin-bottom: 0.6rem;
+  }
+
+  .kids-quote-attr {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+  }
+
+  /* CTA */
+  .kids-cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .kids-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #C04F2D;
+    color: white;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    border-radius: 100px;
+    border: 2px solid #C04F2D;
+    box-shadow: 3px 3px 0 #1A0F2E;
+    transition: all 0.18s;
+  }
+  .kids-cta-link:hover {
+    background: #1A0F2E;
+    border-color: #1A0F2E;
+    transform: translate(-1px,-1px);
+    box-shadow: 4px 4px 0 #C04F2D;
+  }
+
+  .kids-cta-fine {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 860px) {
+    .kids-cols { grid-template-columns: 1fr; gap: 2.5rem; }
+    .kids-wrap { padding: 3rem 1.5rem 4rem; }
+    .kids-float-tag-a { left: 4px; }
+    .kids-float-tag-b { right: 4px; }
+  }
+
+    @media (max-width: 600px) {
+    .features-grid { grid-template-columns: 1fr; }
+    .signup-form, .cta-form { flex-direction: column; box-shadow: none; }
+    .signup-form button, .cta-form button { width: 100%; padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">The <span>Gita Drop</span></a>
+  <div style="display:flex;align-items:center;gap:1.5rem;">
+    <a href="merch.html" style="font-family:var(--sans);font-size:0.85rem;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:0.04em;opacity:0.7;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Shop Merch</a>
+    <a href="the-gita-drop.html#kids" style="font-family:var(--sans);font-size:0.85rem;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:0.04em;opacity:0.7;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">The Gita Droplet</a>
+    <a href="gift.html" style="font-family:var(--sans);font-size:0.85rem;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:0.04em;opacity:0.7;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Gift the Gita</a>
+    <a href="characters.html" style="font-family:var(--sans);font-size:0.85rem;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:0.04em;opacity:0.7;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">The Cast</a>
+    <a class="nav-cta" href="#subscribe">Subscribe Free →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+    <h1 class="fade-in fade-in-2">
+      One verse from<br>
+      The Gita.<br>
+      <em>Every morning.</em>
+    </h1>
+    <p class="hero-sub fade-in fade-in-3">
+      The Bhagavad Gita is one of the world's oldest and most quoted texts — but most people have never actually read it.
+    </p>
+    <p class="hero-sub fade-in fade-in-3" style="margin-top: 1rem;">
+      The Gita Drop sends you one verse a day, in plain English, with the story behind it and a clear, honest look at what it means for your life today.
+    </p>
+    <form class="signup-form fade-in fade-in-4" onsubmit="handleSignup(event, 'hero')">
+      <input type="text" placeholder="your name" required>
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">7-Day Free Trial</button>
+    </form>
+    <div style="margin-top:0.75rem;max-width:440px;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+      <p style="font-size:0.78rem;color:var(--ink-faint);font-family:var(--sans);">No credit card needed for trial.</p>
+      <p style="font-size:0.78rem;font-weight:500;color:var(--gold);font-family:var(--sans);white-space:nowrap;">₹599/- · 700 days · Lifetime Access</p>
+    </div>
+
+    </div><!-- end .hero-content -->
+
+    <div class="hero-video-col fade-in fade-in-3">
+      <img src="chariot.png" alt="Arjuna and Krishna on the chariot" class="hero-chariot-img">
+    </div>
+
+  </div>
+</section>
+
+<!-- STORY SECTION -->
+<section class="story-section">
+
+  <!-- Subtle background video — blended with cream overlay -->
+  <video
+    class="story-video-bg"
+    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260511_131941_d136af49-e243-493a-be14-6ff3f24e09e6.mp4"
+    autoplay muted loop playsinline
+    crossorigin="anonymous"
+  ></video>
+
+  <div class="story-inner">
+
+    <div class="story-left">
+      <div class="section-label">The story behind the text</div>
+      <div class="story-pull-quote">
+        The world's most famous conversation happened on <em>a battlefield,</em> between two people who really didn't want to be there.
+      </div>
+      <p class="story-sidebar-note">
+        The Bhagavad Gita is 18 chapters and 700 verses long. It was composed somewhere between 400 BCE and 200 CE. It has never, in two thousand years, stopped being relevant.
+      </p>
+    </div>
+
+    <div class="story-right">
+      <div class="story-body">
+        <p>Picture this: <strong>two massive armies, face to face.</strong> Hundreds of thousands of soldiers. Chariots, war elephants, conches blaring. The greatest war in human history is about to begin.</p>
+
+        <p>In the middle of it all, one man asks his charioteer to drive him to the centre — to no man's land — so he can see both sides before the battle begins. When he gets there, he looks out and sees his teachers, his cousins, his uncles, his friends. <em>On both sides.</em></p>
+
+        <p>His name is Arjuna. He is the greatest archer alive. And he drops his bow.</p>
+
+        <div class="story-callout">
+          <p>"My limbs fail and my mouth is parched. My body quivers and my hair stands on end. My bow slips from my hand... I am unable to stand. My mind seems to whirl."</p>
+          <p class="story-callout-attr">— Arjuna, Bhagavad Gita, Chapter 1</p>
+        </div>
+
+        <p>His charioteer watches this calmly. Then begins to talk. That charioteer is Krishna — and what follows is <strong>one of the longest, most layered pep talks ever recorded.</strong></p>
+
+        <p>But here's the thing: <em>it is not about war.</em> It never was. It's about duty, identity, fear, action, purpose, mortality, and what it means to be a human being who has to do hard things anyway. Arjuna just happened to need this conversation on a battlefield. <strong>Most of us need it at 9 pm on a Sunday before a difficult week.</strong></p>
+
+        <p>The Gita asks one question, really: <strong>knowing what you have to do, will you show up?</strong> Every verse is just a different angle on that question. The Gita Drop delivers one angle, every morning.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div class="section-full" style="background: var(--cream);">
+  <div class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="section-label">How it works</div>
+    <h2>Simple as it should be.</h2>
+    <p class="lead-text">No app to download. No schedule to keep. Just one short read each morning.</p>
+
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="step-num">01</div>
+        <div class="step-title">You subscribe</div>
+        <p class="step-desc">Enter your email and name. That's genuinely all. No preferences survey, no "tell us about yourself."</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Everyday, a verse arrives</div>
+        <p class="step-desc">One verse from the Gita, with its meaning, context, and a modern read. Takes two minutes. Stays with you all day.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">03</div>
+        <div class="step-title">You finish the Gita</div>
+        <p class="step-desc">In a little under two years, you'll have read all 700 verses. Without realising it, you read a whole ancient classic — one thoughtful morning at a time.</p>
+      </div>
+    </div>
+
+    <div class="ornament-divider">— ◆ —</div>
+  </div>
+</div>
+
+<!-- INLINE CTA AFTER EMAIL PREVIEW -->
+<div class="inline-cta">
+  <div class="inline-cta-inner">
+    <div class="inline-cta-text">
+      <div class="inline-cta-label">Start tomorrow</div>
+      <div class="inline-cta-heading">Verse 1 could be waiting<br><em>in your inbox by morning.</em></div>
+    </div>
+    <form class="inline-cta-form" onsubmit="handleSignup(event, 'inline1')">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Subscribe Free</button>
+    </form>
+  </div>
+</div>
+
+<!-- KIDS SECTION -->
+<section class="kids-section">
+
+  <div class="kids-wave-top">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,26 C200,52 400,0 600,26 C800,52 1000,0 1200,26 C1320,40 1400,18 1440,26 L1440,52 L0,52Z" fill="#FFFBF0"/>
+    </svg>
+  </div>
+
+  <div class="kids-wrap">
+
+    <div class="kids-new-tag">✦ New &nbsp;·&nbsp; The Little Chariot Club &nbsp;·&nbsp; Ages 6–12</div>
+
+    <h2 class="kids-h">
+      The best thing you can give a curious kid is
+      <span class="kids-h-colour">a really good story.</span>
+    </h2>
+
+    <p class="kids-h-sub">
+      Warriors. Best friends. Impossible choices. The Gita is full of the stuff kids are already obsessed with —
+      it just needs someone to open the door.
+    </p>
+
+    <div class="kids-cols">
+
+      <!-- LEFT: 4 reasons -->
+      <div class="kids-reasons">
+
+        <div class="kids-reason">
+          <div class="kids-reason-ico">🌙</div>
+          <div>
+            <div class="kids-reason-title">The world's best bedtime story</div>
+            <div class="kids-reason-body">Short enough to read before lights out. The story of a warrior who didn't know what to do — kids understand that feeling better than adults do.</div>
+          </div>
+        </div>
+
+        <div class="kids-reason">
+          <div class="kids-reason-ico">🧠</div>
+          <div>
+            <div class="kids-reason-title">Wisdom before it's needed</div>
+            <div class="kids-reason-body">The best time to learn courage, honesty, and calm is before the hard moment arrives. Not after. Plant the idea now — it grows quietly.</div>
+          </div>
+        </div>
+
+        <div class="kids-reason">
+          <div class="kids-reason-ico">💬</div>
+          <div>
+            <div class="kids-reason-title">Conversations you didn't plan for</div>
+            <div class="kids-reason-body">One verse leads to one question leads to the kind of conversation you'll both remember. It happens every time, somehow.</div>
+          </div>
+        </div>
+
+        <div class="kids-reason">
+          <div class="kids-reason-ico">⏳</div>
+          <div>
+            <div class="kids-reason-title">No rush. Ever.</div>
+            <div class="kids-reason-body">One verse a day. Paced for a child's mind. In two years, they'll have lived the whole Gita without ever feeling like they were studying.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: illustration + quote + CTA -->
+      <div class="kids-right-col">
+
+        <div class="kids-illu-wrap">
+
+
+          <!-- Storybook open-book illustration -->
+          <svg width="100%" viewBox="0 0 480 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+            <!-- Book pages -->
+            <path d="M30 285 Q30 55 240 70 Q450 55 450 285Z" fill="#FFF8EC" stroke="#E8C97A" stroke-width="2.5"/>
+            <!-- Spine -->
+            <line x1="240" y1="70" x2="240" y2="285" stroke="#C78B0E" stroke-width="3"/>
+            <!-- Page curl hints -->
+            <path d="M30 285 Q60 276 80 282" stroke="#E8C97A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M450 285 Q420 276 400 282" stroke="#E8C97A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+            <!-- LEFT PAGE: Arjuna, overwhelmed, cartoon -->
+
+            <!-- Chariot wheel chunky -->
+            <circle cx="130" cy="238" r="30" fill="none" stroke="#C78B0E" stroke-width="3"/>
+            <circle cx="130" cy="238" r="9" fill="#C78B0E" opacity="0.25"/>
+            <!-- spokes -->
+            <line x1="130" y1="208" x2="130" y2="229" stroke="#C78B0E" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="130" y1="247" x2="130" y2="268" stroke="#C78B0E" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="100" y1="238" x2="121" y2="238" stroke="#C78B0E" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="139" y1="238" x2="160" y2="238" stroke="#C78B0E" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="109" y1="217" x2="123" y2="229" stroke="#C78B0E" stroke-width="2" stroke-linecap="round"/>
+            <line x1="137" y1="247" x2="151" y2="259" stroke="#C78B0E" stroke-width="2" stroke-linecap="round"/>
+            <line x1="109" y1="259" x2="123" y2="247" stroke="#C78B0E" stroke-width="2" stroke-linecap="round"/>
+            <line x1="137" y1="229" x2="151" y2="217" stroke="#C78B0E" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- Chariot body -->
+            <rect x="96" y="192" width="86" height="44" rx="8" fill="#FFF0C8" stroke="#C78B0E" stroke-width="2"/>
+
+            <!-- Arjuna body (round, cute) -->
+            <ellipse cx="138" cy="180" rx="18" ry="20" fill="#F5DEB3" stroke="#C78B0E" stroke-width="1.8"/>
+            <!-- Arjuna head -->
+            <circle cx="138" cy="152" r="20" fill="#F5DEB3" stroke="#C78B0E" stroke-width="2"/>
+            <!-- Crown -->
+            <path d="M120 143 L125 128 L132 138 L138 122 L144 138 L151 128 L156 143Z" fill="#C78B0E" opacity="0.75"/>
+            <!-- Eyes: wide, worried -->
+            <circle cx="131" cy="149" r="4" fill="#1A0F2E"/>
+            <circle cx="145" cy="149" r="4" fill="#1A0F2E"/>
+            <circle cx="132.2" cy="147.5" r="1.4" fill="white"/>
+            <circle cx="146.2" cy="147.5" r="1.4" fill="white"/>
+            <!-- Worried brows -->
+            <path d="M126 142 Q131 139 136 142" stroke="#1A0F2E" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <path d="M140 142 Q145 139 150 142" stroke="#1A0F2E" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <!-- Worried mouth (wobbly) -->
+            <path d="M131 160 Q135 157 141 160 Q137 164 133 163Z" fill="#C04F2D" opacity="0.55"/>
+            <!-- Hands on cheeks -->
+            <ellipse cx="118" cy="158" rx="8" ry="6" fill="#F5DEB3" stroke="#C78B0E" stroke-width="1.5"/>
+            <ellipse cx="158" cy="158" rx="8" ry="6" fill="#F5DEB3" stroke="#C78B0E" stroke-width="1.5"/>
+
+            <!-- Thought bubble -->
+            <circle cx="162" cy="128" r="4.5" fill="white" stroke="#C78B0E" stroke-width="1.2"/>
+            <circle cx="172" cy="116" r="7" fill="white" stroke="#C78B0E" stroke-width="1.2"/>
+            <circle cx="183" cy="102" r="12" fill="white" stroke="#C78B0E" stroke-width="1.5"/>
+            <text x="183" y="107" text-anchor="middle" font-size="13">😰</text>
+
+            <!-- Scattered ?s on left page -->
+            <text x="62" y="115" font-family="serif" font-size="20" fill="#C78B0E" opacity="0.3">?</text>
+            <text x="195" y="175" font-family="serif" font-size="14" fill="#C78B0E" opacity="0.2">?</text>
+            <text x="54" y="200" font-family="serif" font-size="12" fill="#C78B0E" opacity="0.18">?</text>
+
+            <!-- Page caption -->
+            <text x="140" y="298" text-anchor="middle" font-family="sans-serif" font-size="7.5" font-weight="600" letter-spacing="1.8" fill="#C78B0E" opacity="0.45">ARJUNA'S PROBLEM</text>
+
+            <!-- RIGHT PAGE: Krishna, calm, glowing -->
+
+            <!-- Glow -->
+            <circle cx="350" cy="148" r="42" fill="#FFFBE8" opacity="0.6"/>
+            <circle cx="350" cy="148" r="26" fill="#FFF5CC" opacity="0.5"/>
+
+            <!-- Body -->
+            <ellipse cx="350" cy="196" rx="20" ry="24" fill="#D6F5E6" stroke="#4A9A6A" stroke-width="1.8"/>
+            <!-- Head -->
+            <circle cx="350" cy="164" r="22" fill="#D6F5E6" stroke="#4A9A6A" stroke-width="2"/>
+            <!-- Peacock crown -->
+            <path d="M334 144 Q340 128 350 124 Q360 128 366 144" fill="#4A9A6A" opacity="0.25" stroke="#4A9A6A" stroke-width="1.5" fill="none"/>
+            <circle cx="350" cy="122" r="5" fill="#C78B0E" opacity="0.85"/>
+            <circle cx="340" cy="127" r="3" fill="#4A9A6A" opacity="0.6"/>
+            <circle cx="360" cy="127" r="3" fill="#4A9A6A" opacity="0.6"/>
+            <!-- Calm smile-eyes (crescents) -->
+            <path d="M341 162 Q345 158 349 162" stroke="#1A0F2E" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M351 162 Q355 158 359 162" stroke="#1A0F2E" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- Big smile -->
+            <path d="M340 174 Q350 181 360 174" stroke="#1A0F2E" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- Hand raised -->
+            <ellipse cx="372" cy="184" rx="8" ry="10" fill="#D6F5E6" stroke="#4A9A6A" stroke-width="1.8"/>
+            <!-- Sparkles around Krishna -->
+            <path d="M386 182 L387 178.5 L388 182 L391.5 183 L388 184 L387 187.5 L386 184 L382.5 183Z" fill="#C78B0E" opacity="0.65"/>
+            <path d="M272 195 L273 192.5 L274 195 L276.5 196 L274 197 L273 199.5 L272 197 L269.5 196Z" fill="#4A9A6A" opacity="0.5"/>
+            <path d="M300 250 L301.5 246 L303 250 L307 251.5 L303 253 L301.5 257 L300 253 L296 251.5Z" fill="#C78B0E" opacity="0.4"/>
+
+            <!-- Page caption -->
+            <text x="350" y="298" text-anchor="middle" font-family="sans-serif" font-size="7.5" font-weight="600" letter-spacing="1.8" fill="#4A9A6A" opacity="0.45">KRISHNA'S ANSWER</text>
+
+          </svg>
+
+        </div>
+
+        <!-- Parent quote -->
+        <div class="kids-quote-card">
+          <span class="kids-quote-mark">"</span>
+          <p class="kids-quote-text">My 8-year-old asked me why Arjuna was scared of fighting his own cousins. We talked for an hour. Best conversation we've had all year.</p>
+          <div class="kids-quote-attr">— Parent · Gita Drop Kids subscriber</div>
+        </div>
+
+        <!-- CTA -->
+        <div class="kids-cta-wrap">
+          <a href="#subscribe" class="kids-cta-link">Start reading with your child →</a>
+          <div class="kids-cta-fine">7-day free trial &nbsp;·&nbsp; Ages 6–12 &nbsp;·&nbsp; No credit card needed</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="kids-wave-bottom">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,26 C200,0 400,52 600,26 C800,0 1000,52 1200,26 C1320,12 1400,34 1440,26 L1440,0 L0,0Z" fill="#FFFBF0"/>
+    </svg>
+  </div>
+
+</section>
+
+
+
+<!-- FEELINGS TEASER -->
+<section class="feelings-teaser">
+  <div class="feelings-teaser-inner">
+    <div class="section-label">The Gita for right now</div>
+    <h2>Having a moment?<br><em>There's a verse for that.</em></h2>
+    <p class="lead-text" style="max-width:560px;">The Gita was written for people mid-crisis. Pick what you're feeling — we'll find the verse that fits.</p>
+
+    <div class="feelings-preview-grid">
+      <a href="feelings.html?feeling=overwhelmed" class="feeling-chip">😮‍💨 Overwhelmed</a>
+      <a href="feelings.html?feeling=anxious" class="feeling-chip">🌀 Anxious</a>
+      <a href="feelings.html?feeling=grateful" class="feeling-chip">🌤 Grateful</a>
+      <a href="feelings.html?feeling=stuck" class="feeling-chip">🪨 Stuck</a>
+      <a href="feelings.html?feeling=heartbroken" class="feeling-chip">💔 Heartbroken</a>
+      <a href="feelings.html?feeling=motivated" class="feeling-chip">🔥 Motivated</a>
+      <a href="feelings.html?feeling=lonely" class="feeling-chip">🌙 Lonely</a>
+      <a href="feelings.html?feeling=angry" class="feeling-chip">⚡ Angry</a>
+      <a href="feelings.html?feeling=content" class="feeling-chip">🍃 Content</a>
+      <a href="feelings.html?feeling=lost" class="feeling-chip">🧭 Lost</a>
+    </div>
+
+    <a href="feelings.html" class="feelings-explore-link">Explore all feelings →</a>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div class="cta-strip-inner">
+    <div class="cta-strip-text">Joining takes 10 seconds. <em>Reading takes two minutes. The rest takes care of itself.</em></div>
+    <a class="cta-strip-link" href="#subscribe">Get your first drop →</a>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-bg">
+  <div class="testimonials-inner">
+    <div class="section-label">What readers say</div>
+    <h2>The Gita, <em>for all.</em></h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <p class="testimonial-text">I've owned the Bhagavad Gita for 11 years. Never got past chapter three. The Gita Drop got me to verse 90 before I noticed I was learning something.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background: #C04F2D;">PR</div>
+          <div>
+            <div class="author-name">Priya R.</div>
+            <div class="author-desc">Product manager, Bengaluru</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <p class="testimonial-text">It's the only email I open before coffee. Verse 2.47 about outcomes vs. actions completely changed how I think about my work. And it's funny, which helps.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background: #1A5C8A;">AK</div>
+          <div>
+            <div class="author-name">Arjun K.</div>
+            <div class="author-desc">Startup founder, Mumbai</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <p class="testimonial-text">I'm not religious at all. My parents would be shocked to know this is how I'm spending my mornings. I forwarded it to my entire book club. Non-preachy, as promised.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background: #7A8C6E;">SM</div>
+          <div>
+            <div class="author-name">Shruti M.</div>
+            <div class="author-desc">Author & educator, Delhi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section" id="subscribe">
+  <div class="cta-inner">
+    <div class="section-label">Begin today</div>
+    <h2>A small pause.<br><em>Every morning.</em></h2>
+    <p class="lead-text">
+      You've always meant to read the Gita. Here's the version that actually fits into your life — no guilt, no hustle, no incense required.
+    </p>
+    <form class="cta-form" onsubmit="handleSignup(event, 'cta')">
+      <input type="text" placeholder="your name" required>
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">I'm In →</button>
+    </form>
+    <p class="cta-footnote">Free for 7 days. Unsubscribe anytime. We dislike spam more than you do.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a class="footer-logo" href="#">The <span>Gita Drop</span></a>
+    <div class="footer-tagline">One verse. One minute. One shift.</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="merch.html">Shop Merch</a></li>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms</a></li>
+    <li><a href="refund.html">Refund Policy</a></li>
+    <li><a href="mailto:hello@thegitadrop.com" style="display:flex;align-items:center;gap:0.4rem;">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.7;flex-shrink:0">
+        <rect x="1" y="2.5" width="11" height="8" rx="1.5" stroke="currentColor" stroke-width="1.1"/>
+        <path d="M1 4.5L6.5 8L12 4.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+      </svg>
+      Contact
+    </a></li>
+  </ul>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  🙏 You're on the list. Tomorrow morning begins your journey.
+</div>
+
+<script>
+  /* ── SIGNUP HANDLER ── */
+  function handleSignup(e, source) {
+    e.preventDefault();
+    const input = e.target.querySelector('input[type="email"]');
+    const email = input.value;
+    if (!email) return;
+    input.value = '';
+    const nameField = e.target.querySelector('input[type="text"]');
+    if (nameField) nameField.value = '';
+    showToast();
+  }
+
+  function showToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4500);
+  }
+
+  /* ══════════════════════════════════════
+     1. SCROLL PROGRESS BAR
+  ══════════════════════════════════════ */
+  const progressBar = document.createElement('div');
+  progressBar.style.cssText = `
+    position:fixed;top:0;left:0;height:2px;width:0%;
+    background:linear-gradient(90deg,#C78B0E,#F0C84A,#C04F2D);
+    z-index:9999;transition:width 0.1s linear;pointer-events:none;
+  `;
+  document.body.prepend(progressBar);
+
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    progressBar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+
+  /* ══════════════════════════════════════
+     2. HERO PARALLAX — chariot image + bg
+  ══════════════════════════════════════ */
+  const heroImg = document.querySelector('.hero-chariot-img');
+  const heroSection = document.querySelector('.hero');
+
+  window.addEventListener('scroll', () => {
+    if (!heroSection) return;
+    const heroH = heroSection.offsetHeight;
+    const scrolled = window.scrollY;
+    if (scrolled > heroH * 1.5) return;
+
+    const rate = scrolled * 0.25;
+    if (heroImg) heroImg.style.transform = `translateX(4%) translateY(${rate}px)`;
+  }, { passive: true });
+
+  /* ══════════════════════════════════════
+     3. PARTICLE CANVAS on hero background
+  ══════════════════════════════════════ */
+  (function() {
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = `
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      pointer-events:none;z-index:0;opacity:0.55;
+    `;
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    hero.style.position = 'relative';
+    hero.prepend(canvas);
+
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [];
+
+    function resize() {
+      W = canvas.width  = hero.offsetWidth;
+      H = canvas.height = hero.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    const GOLD = 'rgba(199,139,14,';
+    const CREAM = 'rgba(240,200,74,';
+
+    function makeParticle() {
+      return {
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.5 + 0.4,
+        vx: (Math.random() - 0.5) * 0.18,
+        vy: -Math.random() * 0.35 - 0.1,
+        alpha: Math.random() * 0.5 + 0.1,
+        col: Math.random() > 0.5 ? GOLD : CREAM,
+        // twinkle
+        twinkleSpeed: Math.random() * 0.015 + 0.005,
+        twinkleDir: Math.random() > 0.5 ? 1 : -1,
+      };
+    }
+
+    for (let i = 0; i < 55; i++) particles.push(makeParticle());
+
+    function tick() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha += p.twinkleSpeed * p.twinkleDir;
+        if (p.alpha > 0.65 || p.alpha < 0.05) p.twinkleDir *= -1;
+
+        if (p.y < -4 || p.x < -4 || p.x > W + 4) {
+          Object.assign(p, makeParticle(), { y: H + 4, x: Math.random() * W });
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.col + p.alpha.toFixed(2) + ')';
+        ctx.fill();
+      });
+
+      // occasional larger sparkle cross
+      if (Math.random() < 0.018) {
+        const sx = Math.random() * W;
+        const sy = Math.random() * H;
+        const sl = Math.random() * 5 + 2;
+        ctx.strokeStyle = GOLD + '0.35)';
+        ctx.lineWidth = 0.8;
+        ctx.beginPath(); ctx.moveTo(sx - sl, sy); ctx.lineTo(sx + sl, sy); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(sx, sy - sl); ctx.lineTo(sx, sy + sl); ctx.stroke();
+      }
+
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+
+  /* ══════════════════════════════════════
+     4. SCROLL-REVEAL — staggered per section
+  ══════════════════════════════════════ */
+  const revealItems = [
+    { sel: '.how-step',        y: 40, delay: 120 },
+    { sel: '.feature-item',    y: 35, delay: 100 },
+    { sel: '.testimonial',     y: 30, delay: 150 },
+    { sel: '.kids-reason',     y: 28, delay: 80  },
+    { sel: '.story-body p',    y: 20, delay: 60  },
+    { sel: '.section-label',   y: 15, delay: 0   },
+    { sel: '.kids-quote-card', y: 25, delay: 0   },
+    { sel: '.kids-cta-wrap',   y: 20, delay: 0   },
+    { sel: '.feeling-chip',    y: 16, delay: 40  },
+    { sel: '.inline-cta',      y: 30, delay: 0   },
+  ];
+
+  revealItems.forEach(({ sel, y, delay }) => {
+    const els = document.querySelectorAll(sel);
+    els.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = `translateY(${y}px)`;
+      el.style.transition = `opacity 0.7s ease ${i * delay}ms, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${i * delay}ms`;
+      el.style.willChange = 'opacity, transform';
+    });
+  });
+
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0) scale(1)';
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  revealItems.forEach(({ sel }) => {
+    document.querySelectorAll(sel).forEach(el => revealObs.observe(el));
+  });
+
+  /* ══════════════════════════════════════
+     5. 3D TILT on how-steps & reason cards
+  ══════════════════════════════════════ */
+  const tiltEls = document.querySelectorAll('.how-step, .kids-reason, .testimonial, .story-callout');
+
+  tiltEls.forEach(el => {
+    el.style.transition = 'transform 0.25s ease, box-shadow 0.25s ease';
+    el.style.transformStyle = 'preserve-3d';
+    el.style.willChange = 'transform';
+
+    el.addEventListener('mousemove', e => {
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width  / 2;
+      const cy = rect.top  + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width  / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
+      const rotX = -dy * 6;
+      const rotY =  dx * 6;
+      el.style.transform = `perspective(700px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(6px) scale(1.02)`;
+      el.style.boxShadow = `${-dx * 8}px ${-dy * 8}px 24px rgba(199,139,14,0.12)`;
+    });
+
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = 'perspective(700px) rotateX(0) rotateY(0) translateZ(0) scale(1)';
+      el.style.boxShadow = '';
+    });
+  });
+
+  /* ══════════════════════════════════════
+     6. SECTION ENTRANCE — 3D perspective lift
+     Big h2s drift in with a subtle Z push
+  ══════════════════════════════════════ */
+  const h2s = document.querySelectorAll('h2:not(.kids-h):not(.kids-big-headline)');
+  h2s.forEach(h => {
+    h.style.opacity = '0';
+    h.style.transform = 'perspective(600px) translateZ(-30px) translateY(20px)';
+    h.style.transition = 'opacity 0.9s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1)';
+    h.style.willChange = 'opacity, transform';
+  });
+
+  const h2Obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'perspective(600px) translateZ(0) translateY(0)';
+        h2Obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  h2s.forEach(h => h2Obs.observe(h));
+
+  /* ══════════════════════════════════════
+     7. FEELING CHIPS — wave entrance
+  ══════════════════════════════════════ */
+  const chipObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const chips = entry.target.querySelectorAll('.feeling-chip');
+        chips.forEach((chip, i) => {
+          setTimeout(() => {
+            chip.style.opacity = '1';
+            chip.style.transform = 'translateY(0) scale(1)';
+          }, i * 45);
+        });
+        chipObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  const feelingsGrid = document.querySelector('.feelings-preview-grid');
+  if (feelingsGrid) {
+    feelingsGrid.querySelectorAll('.feeling-chip').forEach(chip => {
+      chip.style.opacity = '0';
+      chip.style.transform = 'translateY(12px) scale(0.92)';
+      chip.style.transition = 'opacity 0.45s ease, transform 0.45s cubic-bezier(0.34,1.56,0.64,1)';
+    });
+    chipObs.observe(feelingsGrid);
+  }
+
+  /* ══════════════════════════════════════
+     8. NAV — shrink on scroll
+  ══════════════════════════════════════ */
+  const nav = document.querySelector('nav');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 80) {
+      nav.style.padding = '0.75rem 3rem';
+      nav.style.boxShadow = '0 2px 20px rgba(26,15,46,0.08)';
+    } else {
+      nav.style.padding = '1.25rem 3rem';
+      nav.style.boxShadow = 'none';
+    }
+    lastScroll = y;
+  }, { passive: true });
+
+  /* ══════════════════════════════════════
+     9. HERO HEADLINE — letter stagger
+  ══════════════════════════════════════ */
+  (function() {
+    const h1 = document.querySelector('h1');
+    if (!h1) return;
+    // wrap each word
+    h1.innerHTML = h1.innerHTML.replace(/(<[^>]+>)|(\S+)/g, (match, tag, word) => {
+      if (tag) return tag;
+      return `<span class="h1-word" style="display:inline-block;opacity:0;transform:translateY(18px);transition:opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);">${word}</span> `;
+    });
+
+    let delay = 200;
+    document.querySelectorAll('.h1-word').forEach((w, i) => {
+      setTimeout(() => {
+        w.style.opacity = '1';
+        w.style.transform = 'translateY(0)';
+      }, delay + i * 80);
+    });
+  })();
+
+  /* ══════════════════════════════════════
+     10. KIDS SECTION — book float animation
+  ══════════════════════════════════════ */
+  const kidsSvg = document.querySelector('.kids-illu-wrap svg');
+  if (kidsSvg) {
+    kidsSvg.style.transition = 'transform 0.1s ease-out';
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      requestAnimationFrame(() => {
+        const rect = kidsSvg.getBoundingClientRect();
+        const center = window.innerHeight / 2;
+        const offset = (rect.top + rect.height / 2 - center) / center;
+        kidsSvg.style.transform = `translateY(${offset * -10}px) rotate(${offset * 0.6}deg)`;
+        ticking = false;
+      });
+      ticking = true;
+    }, { passive: true });
+  }
+
+  /* ══════════════════════════════════════
+     11. GOLD SHIMMER on section-labels
+  ══════════════════════════════════════ */
+  document.querySelectorAll('.section-label').forEach(label => {
+    label.style.backgroundImage = 'linear-gradient(90deg, #C78B0E 0%, #F0C84A 40%, #C78B0E 80%)';
+    label.style.backgroundSize = '200% auto';
+    label.style.webkitBackgroundClip = 'text';
+    label.style.webkitTextFillColor = 'transparent';
+    label.style.backgroundClip = 'text';
+    label.style.animation = 'shimmer 3s linear infinite';
+  });
+
+  /* ══════════════════════════════════════
+     12. INLINE CTA — slide in from sides
+  ══════════════════════════════════════ */
+  const inlineCTA = document.querySelector('.inline-cta-inner');
+  if (inlineCTA) {
+    const ctaText = inlineCTA.querySelector('.inline-cta-text');
+    const ctaForm = inlineCTA.querySelector('.inline-cta-form');
+    if (ctaText) {
+      ctaText.style.cssText += 'opacity:0;transform:translateX(-30px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.22,1,0.36,1);';
+    }
+    if (ctaForm) {
+      ctaForm.style.cssText += 'opacity:0;transform:translateX(30px);transition:opacity 0.7s ease 0.15s,transform 0.7s cubic-bezier(0.22,1,0.36,1) 0.15s;';
+    }
+    const ctaObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (ctaText) { ctaText.style.opacity='1'; ctaText.style.transform='translateX(0)'; }
+          if (ctaForm) { ctaForm.style.opacity='1'; ctaForm.style.transform='translateX(0)'; }
+          ctaObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    ctaObs.observe(inlineCTA);
+  }
+</script>
+
+<style>
+  @keyframes shimmer {
+    0%   { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+</style>
+</body>
+</html>
