@@ -1700,7 +1700,7 @@
     <a href="the-gita-drop.html#kids" style="font-family:var(--sans);font-size:0.85rem;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:0.04em;opacity:0.7;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">The Gita Droplet</a>
     <a href="gift.html" style="font-family:var(--sans);font-size:0.85rem;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:0.04em;opacity:0.7;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Gift the Gita</a>
     <a href="characters.html" style="font-family:var(--sans);font-size:0.85rem;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:0.04em;opacity:0.7;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">The Cast</a>
-    <a class="nav-cta" href="#subscribe">Subscribe Free →</a>
+    <a class="nav-cta" href="#subscribe">Claim Your Free Week →</a>
   </div>
 </nav>
 
@@ -1732,7 +1732,9 @@
     </div><!-- end .hero-content -->
 
     <div class="hero-video-col fade-in fade-in-3">
-      <video class="hero-video-el" src="hero-banner-video.mp4" autoplay muted loop playsinline></video>
+      <video class="hero-video-el" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback>
+        <source src="hero-banner-video.mp4" type="video/mp4">
+      </video>
     </div>
 
   </div>
@@ -1744,9 +1746,11 @@
   <!-- Background video blended with cream overlays -->
   <video
     class="story-video-bg"
-    src="story-bg.mp4"
-    autoplay muted loop playsinline
-  ></video>
+    autoplay muted loop playsinline preload="auto"
+    disablepictureinpicture
+  >
+    <source src="story-bg.mp4" type="video/mp4">
+  </video>
 
   <div class="story-inner">
 
@@ -1820,6 +1824,7 @@
       <div class="inline-cta-heading">Verse 1 could be waiting<br><em>in your inbox by morning.</em></div>
     </div>
     <form class="inline-cta-form" onsubmit="handleSignup(event, 'inline1')">
+      <input type="text" placeholder="your name" required>
       <input type="email" placeholder="your@email.com" required>
       <button type="submit">Subscribe Free</button>
     </form>
@@ -2139,6 +2144,22 @@
 </div>
 
 <script>
+  /* ── FORCE VIDEO PLAY ── */
+  function forcePlayVideos() {
+    document.querySelectorAll('video').forEach(v => {
+      v.muted = true;
+      v.play().catch(() => {});
+    });
+  }
+  // Try immediately
+  forcePlayVideos();
+  // Try again after page fully loads
+  window.addEventListener('load', forcePlayVideos);
+  // Try on first user interaction
+  ['click','touchstart','scroll','keydown'].forEach(evt => {
+    document.addEventListener(evt, forcePlayVideos, { once: true, passive: true });
+  });
+
   /* ── SIGNUP HANDLER ── */
   function handleSignup(e, source) {
     e.preventDefault();
