@@ -131,51 +131,40 @@
   .hero-video-col {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     overflow: hidden;
+    border-radius: 4px;
   }
 
   .hero-video-wrap {
     position: relative;
     width: 100%;
-    height: 100%;
-    min-height: 420px;
-    border-radius: 6px;
+    min-height: 480px;
     overflow: hidden;
+    border-radius: 4px;
   }
 
-  .hero-video-iframe {
+  .hero-video-el {
     position: absolute;
     top: 0; left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
-    border: none;
+    display: block;
   }
 
-  /* Multi-directional fade to blend into cream background */
-  .hero-video-fade {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(to right,  var(--cream) 0%, transparent 20%),
-      linear-gradient(to left,   var(--cream) 0%, transparent 20%),
-      linear-gradient(to bottom, var(--cream) 0%, transparent 15%),
-      linear-gradient(to top,    var(--cream) 0%, transparent 15%);
-    pointer-events: none;
-    z-index: 2;
-  }
-
+  /* Four-direction fade to blend seamlessly into cream background */
   .hero-video-col::after {
     content: '';
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to right, var(--cream) 0%, transparent 18%),
-      linear-gradient(to bottom, var(--cream) 0%, transparent 12%, transparent 75%, var(--cream) 100%),
-      linear-gradient(to left, var(--cream) 0%, transparent 15%);
+      linear-gradient(to right,  var(--cream) 0%, transparent 22%),
+      linear-gradient(to left,   var(--cream) 0%, transparent 18%),
+      linear-gradient(to bottom, var(--cream) 0%, transparent 14%),
+      linear-gradient(to top,    var(--cream) 0%, transparent 14%);
     pointer-events: none;
+    z-index: 2;
   }
 
   .hero-eyebrow {
@@ -1462,7 +1451,66 @@
     .hero { padding: 7rem 1.5rem 4rem; min-height: auto; }
     .hero-inner { grid-template-columns: 1fr; gap: 0; }
     .hero-video-col { order: -1; margin-bottom: -2rem; }
-    .hero-video-wrap { padding-top: 56.25%; }
+    .hero-video-wrap { min-height: 300px; }
+
+  /* ── STORY BOOMERANG VIDEO ── */
+  (function() {
+    const video  = document.getElementById('storyVideoSrc');
+    const canvas = document.getElementById('storyVideoCanvas');
+    if (!video || !canvas) return;
+    const ctx = canvas.getContext('2d');
+    const MAX_WIDTH = 960;
+    const frames = [];
+    let capturing = true, lastTime = -1, rafId;
+
+    function captureFrame() {
+      if (!capturing || video.readyState < 2) return;
+      if (video.currentTime === lastTime) return;
+      lastTime = video.currentTime;
+      const vw = video.videoWidth, vh = video.videoHeight;
+      if (!vw || !vh) return;
+      const scale = Math.min(1, MAX_WIDTH / vw);
+      const w = Math.round(vw * scale), h = Math.round(vh * scale);
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      c.getContext('2d').drawImage(video, 0, 0, w, h);
+      frames.push(c);
+    }
+
+    function startPlayback() {
+      if (!frames.length) return;
+      canvas.width  = frames[0].width;
+      canvas.height = frames[0].height;
+      canvas.style.display = 'block';
+      let idx = 0, dir = 1, last = 0;
+      const interval = 1000 / 30;
+      (function render(now) {
+        if (now - last >= interval) {
+          last = now;
+          ctx.drawImage(frames[idx], 0, 0);
+          idx += dir;
+          if (idx >= frames.length - 1) { idx = frames.length - 1; dir = -1; }
+          else if (idx <= 0)            { idx = 0; dir = 1; }
+        }
+        requestAnimationFrame(render);
+      })(0);
+    }
+
+    const hasVFC = typeof video.requestVideoFrameCallback === 'function';
+    function vfcLoop() { captureFrame(); if (capturing) video.requestVideoFrameCallback(vfcLoop); }
+    function rafLoop()  { captureFrame(); if (capturing) rafId = requestAnimationFrame(rafLoop); }
+
+    video.addEventListener('ended', () => { capturing = false; cancelAnimationFrame(rafId); startPlayback(); });
+    function onLoaded() {
+      video.play().catch(() => {});
+      if (hasVFC) video.requestVideoFrameCallback(vfcLoop);
+      else rafId = requestAnimationFrame(rafLoop);
+    }
+    video.addEventListener('loadedmetadata', onLoaded);
+    if (video.readyState >= 1) onLoaded();
+  })();
+
+</script>
     .features-grid { grid-template-columns: repeat(2, 1fr); }
     .testimonials-grid { grid-template-columns: 1fr; }
     .how-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -1756,12 +1804,10 @@
     <div class="hero-video-col fade-in fade-in-3">
       <div class="hero-video-wrap">
         <video
-          class="hero-video-iframe"
+          class="hero-video-el"
+          src="hero-banner-video.mp4"
           autoplay muted loop playsinline
-        >
-          <source src="hero banner video.mp4" type="video/mp4">
-        </video>
-        <div class="hero-video-fade"></div>
+        ></video>
       </div>
     </div>
 
@@ -1771,16 +1817,19 @@
 <!-- STORY SECTION -->
 <section class="story-section">
 
-  <!-- Boomerang video background — plays forward then reverses seamlessly -->
+  <!-- Boomerang background video: plays forward then reverses, seamlessly blended -->
   <video
     id="storyVideoSrc"
-    class="story-video-bg"
     src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260511_131941_d136af49-e243-493a-be14-6ff3f24e09e6.mp4"
     muted playsinline preload="auto"
     crossorigin="anonymous"
-    style="display:none"
+    style="display:none;position:absolute;inset:0;width:100%;height:100%;"
   ></video>
-  <canvas id="storyVideoCanvas" class="story-video-bg"></canvas>
+  <canvas
+    id="storyVideoCanvas"
+    class="story-video-bg"
+    style="display:none;"
+  ></canvas>
 
   <div class="story-inner">
 
@@ -2210,17 +2259,15 @@
   /* ══════════════════════════════════════
      2. HERO PARALLAX — chariot image + bg
   ══════════════════════════════════════ */
-  const heroImg = document.querySelector('.hero-chariot-img');
-  const heroSection = document.querySelector('.hero');
-
+  /* hero video parallax on scroll */
   window.addEventListener('scroll', () => {
+    const heroSection = document.querySelector('.hero');
     if (!heroSection) return;
-    const heroH = heroSection.offsetHeight;
     const scrolled = window.scrollY;
-    if (scrolled > heroH * 1.5) return;
-
-    const rate = scrolled * 0.25;
-    if (heroImg) heroImg.style.transform = `translateX(4%) translateY(${rate}px)`;
+    if (scrolled > heroSection.offsetHeight * 1.5) return;
+    const rate = scrolled * 0.18;
+    const vid = document.querySelector('.hero-video-el');
+    if (vid) vid.style.transform = `translateY(${rate}px)`;
   }, { passive: true });
 
   /* ══════════════════════════════════════
@@ -2515,67 +2562,6 @@
     }, { threshold: 0.2 });
     ctaObs.observe(inlineCTA);
   }
-  /* ── STORY SECTION BOOMERANG VIDEO ── */
-  (function() {
-    const video  = document.getElementById('storyVideoSrc');
-    const canvas = document.getElementById('storyVideoCanvas');
-    if (!video || !canvas) return;
-    const ctx = canvas.getContext('2d');
-    const MAX_WIDTH = 960;
-    const frames = [];
-    let capturing = true;
-    let lastTime  = -1;
-
-    function captureFrame() {
-      if (!capturing || video.readyState < 2) return;
-      if (video.currentTime === lastTime) return;
-      lastTime = video.currentTime;
-      const vw = video.videoWidth, vh = video.videoHeight;
-      if (!vw || !vh) return;
-      const scale = Math.min(1, MAX_WIDTH / vw);
-      const w = Math.round(vw * scale), h = Math.round(vh * scale);
-      const c = document.createElement('canvas');
-      c.width = w; c.height = h;
-      c.getContext('2d').drawImage(video, 0, 0, w, h);
-      frames.push(c);
-    }
-
-    function startPlayback() {
-      if (frames.length === 0) return;
-      canvas.width  = frames[0].width;
-      canvas.height = frames[0].height;
-      canvas.style.display = 'block';
-      let idx = 0, dir = 1, last = 0;
-      const interval = 1000 / 30;
-      function render(now) {
-        if (now - last >= interval) {
-          last = now;
-          ctx.drawImage(frames[idx], 0, 0);
-          idx += dir;
-          if (idx >= frames.length - 1) { idx = frames.length - 1; dir = -1; }
-          else if (idx <= 0)            { idx = 0;                  dir =  1; }
-        }
-        requestAnimationFrame(render);
-      }
-      requestAnimationFrame(render);
-    }
-
-    const hasVFC = typeof video.requestVideoFrameCallback === 'function';
-    let rafId;
-    function vfcLoop() { captureFrame(); if (capturing) video.requestVideoFrameCallback(vfcLoop); }
-    function rafLoop()  { captureFrame(); if (capturing) rafId = requestAnimationFrame(rafLoop); }
-
-    video.addEventListener('ended', () => { capturing = false; cancelAnimationFrame(rafId); startPlayback(); });
-
-    function onLoaded() {
-      video.play().catch(() => {});
-      if (hasVFC) video.requestVideoFrameCallback(vfcLoop);
-      else rafId = requestAnimationFrame(rafLoop);
-    }
-    video.addEventListener('loadedmetadata', onLoaded);
-    if (video.readyState >= 1) onLoaded();
-  })();
-
 </script>
 
 <style>
