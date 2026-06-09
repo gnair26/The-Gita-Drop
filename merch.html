@@ -443,27 +443,123 @@
     .modal { grid-template-columns: 1fr; }
     .modal-img { min-height: 260px; border-right: none; border-bottom: 1px solid var(--parchment); }
   }
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 600px) {
+    nav {
+      padding: 1rem 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .nav-logo { font-size: 1.25rem; }
+    .nav-links {
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .nav-link { font-size: 0.78rem; }
+    .nav-cta {
+      font-size: 0.72rem;
+      padding: 0.5rem 1rem;
+      white-space: nowrap;
+    }
+
+    .page-hero {
+      padding: 7rem 1.25rem 3rem;
+    }
+    .page-hero h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
+    .page-hero-sub { font-size: 0.95rem; }
+    .page-hero-badge { font-size: 0.75rem; padding: 0.4rem 1rem; }
+
+    .size-strip {
+      padding: 1rem 1.25rem;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .size-options { flex-wrap: wrap; }
+
+    .shop-section { padding: 3rem 1.25rem; }
+    .shop-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .shop-title { font-size: 1.75rem; }
+
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.875rem;
+    }
+    .product-name { font-size: 1rem; }
+    .product-verse { font-size: 0.75rem; }
+    .product-price { font-size: 0.9rem; }
+    .add-btn { font-size: 0.65rem; padding: 0.45rem 0.65rem; }
+    .colour-dot { width: 13px; height: 13px; }
+
+    .modal-overlay { padding: 0; align-items: flex-end; }
+    .modal {
+      grid-template-columns: 1fr;
+      max-height: 92vh;
+      border-radius: 12px 12px 0 0;
+      width: 100%;
+    }
+    .modal-img {
+      min-height: 220px;
+      border-right: none;
+      border-bottom: 1px solid var(--parchment);
+      padding: 2rem 1.5rem;
+    }
+    .modal-body {
+      padding: 1.5rem 1.25rem;
+      gap: 1rem;
+    }
+    .modal-title { font-size: 1.5rem; }
+    .modal-sizes { gap: 0.4rem; }
+    .modal-size-btn { width: 40px; height: 40px; font-size: 0.75rem; }
+    .modal-price { font-size: 1.6rem; }
+    .modal-add-btn { padding: 0.75rem 1.5rem; font-size: 0.75rem; }
+    .modal-close { top: 0.75rem; right: 0.75rem; }
+
+    footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 2rem 1.25rem;
+    }
+    .footer-links { gap: 1rem; flex-wrap: wrap; }
+
+    .cart-drawer {
+      width: calc(100% - 2rem);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      padding: 0.875rem 1.25rem;
+      white-space: normal;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .nav-links { gap: 0.5rem; }
+  }
+
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="the-gita-drop.html">The <span>Gita Drop</span></a>
+  <a class="nav-logo" href="index.html">The <span>Gita Drop</span></a>
   <div class="nav-links">
-    <a href="the-gita-drop.html" class="nav-link">Newsletter</a>
-    <a href="feelings.html" class="nav-link">How are you feeling?</a>
     <a href="merch.html" class="nav-link active">Merch</a>
-    <a href="the-gita-drop.html#subscribe" class="nav-cta">Subscribe Free →</a>
+    <a href="index.html#subscribe" class="nav-cta">Claim Your Free Week →</a>
   </div>
 </nav>
 
 <!-- PAGE HERO -->
 <div class="page-hero">
-  <div class="page-hero-eyebrow">The Gita Drop · Wear the Wisdom</div>
-  <h1>Ancient words.<br><em>Everyday threads.</em></h1>
-  <p class="page-hero-sub">Minimal, wearable, conversation-starting. Each design carries a verse — and a thought worth carrying with you.</p>
-  <div class="page-hero-badge">₹899/- · Free shipping above ₹1,499</div>
+  <div class="page-hero-eyebrow">The Merch Drop</div>
+  <h1><em>Everyday threads.</em></h1>
+  <p class="page-hero-sub">Your next favourite t-shirt.<br>You just haven't worn it yet.</p>
 </div>
 
 <!-- SIZE GUIDE STRIP -->
@@ -497,18 +593,12 @@
   </div>
 </div>
 
-<!-- PHILOSOPHY STRIP -->
-<div class="philosophy-strip">
-  <h2>Wear it. Start a conversation.<br><em>That's the point.</em></h2>
-  <p>Every design is a conversation opener. A quiet reminder. A verse that means something — on fabric you'll actually reach for.</p>
-</div>
+
 
 <!-- FOOTER -->
 <footer>
-  <a class="footer-logo" href="the-gita-drop.html">The <span>Gita Drop</span></a>
+  <a class="footer-logo" href="index.html">The <span>Gita Drop</span></a>
   <ul class="footer-links">
-    <li><a href="the-gita-drop.html">Newsletter</a></li>
-    <li><a href="feelings.html">Feelings</a></li>
     <li><a href="#">Sizing Guide</a></li>
     <li><a href="#">Returns</a></li>
   </ul>
