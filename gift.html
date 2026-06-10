@@ -246,7 +246,7 @@ textarea.form-input{resize:vertical;min-height:90px;line-height:1.6}
 /* ── WHAT THEY RECEIVE ── */
 .what-section{background:var(--ink);padding:5rem 4rem;color:var(--cream)}
 .what-inner{max-width:1100px;margin:0 auto}
-.what-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:3rem}
+.what-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-top:3rem}
 .what-item{
   background:rgba(250,246,239,0.04);border:1px solid rgba(250,246,239,0.08);
   border-radius:4px;padding:1.5rem;transition:all 0.2s;
@@ -306,7 +306,11 @@ footer{background:var(--ink);padding:2.5rem 4rem;display:flex;align-items:center
   .hero-left{padding:3rem 2rem 4rem}
   .try-inner{grid-template-columns:1fr;gap:3rem}
   .gift-form-grid{grid-template-columns:1fr}
-  .reasons-grid,.proof-grid,.what-grid{grid-template-columns:1fr}
+  .reasons-grid{grid-template-columns:1fr}
+  .what-grid{grid-template-columns:repeat(2,1fr)}
+  .proof-grid{grid-template-columns:repeat(3,1fr);gap:1rem}
+  .proof-card{padding:1.25rem}
+  .proof-text{font-size:0.9rem}
   .section,.gift-section,.proof-section,.what-section,.final-cta,.try-section{padding-left:1.5rem;padding-right:1.5rem}
   nav{padding:1rem 1.5rem}
   footer{flex-direction:column;padding:2rem 1.5rem}
@@ -323,7 +327,6 @@ footer{background:var(--ink);padding:2.5rem 4rem;display:flex;align-items:center
 <nav id="main-nav">
   <a class="nav-logo" href="the-gita-drop.html">The <span>Gita Drop</span></a>
   <div class="nav-right">
-    <a class="nav-link" href="the-gita-drop.html">Newsletter</a>
     <a class="nav-link" href="characters.html">The Cast</a>
     <a class="nav-cta" href="#gift-form">Gift the Gita →</a>
   </div>
@@ -350,7 +353,6 @@ footer{background:var(--ink);padding:2.5rem 4rem;display:flex;align-items:center
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1L7.5 14M2 6l5.5-5 5.5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Gift the Gita
       </a>
-      <a href="#try-first" class="btn-ghost">Try a verse yourself first ↓</a>
     </div>
 
     <div class="hero-proof">
@@ -365,7 +367,7 @@ footer{background:var(--ink);padding:2.5rem 4rem;display:flex;align-items:center
       </div>
       <div class="proof-sep"></div>
       <div class="proof-item">
-        <div class="proof-num">₹599</div>
+        <div class="proof-num">₹1599</div>
         <div class="proof-label">Lifetime access</div>
       </div>
     </div>
@@ -398,11 +400,6 @@ footer{background:var(--ink);padding:2.5rem 4rem;display:flex;align-items:center
           <rect width="230" height="6" rx="2" fill="rgba(199,139,14,0.5)"/>
           <!-- Logo text -->
           <text x="115" y="30" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="12" font-weight="500" fill="rgba(26,15,46,0.7)" letter-spacing="0.5">The Gita Drop</text>
-          <!-- Verse text lines -->
-          <line x1="20" y1="48" x2="210" y2="48" stroke="rgba(26,15,46,0.08)" stroke-width="1"/>
-          <text x="20" y="68" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="10" fill="rgba(26,15,46,0.5)">"You have a right to perform your</text>
-          <text x="20" y="82" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="10" fill="rgba(26,15,46,0.5)">actions, but not to their fruits."</text>
-          <text x="20" y="98" font-family="'DM Sans',sans-serif" font-size="7" fill="rgba(199,139,14,0.7)" letter-spacing="0.8">CHAPTER 2, VERSE 47</text>
           <!-- Body lines -->
           <line x1="20" y1="115" x2="210" y2="115" stroke="rgba(26,15,46,0.06)" stroke-width="0.8"/>
           <line x1="20" y1="125" x2="200" y2="125" stroke="rgba(26,15,46,0.06)" stroke-width="0.8"/>
@@ -463,8 +460,8 @@ footer{background:var(--ink);padding:2.5rem 4rem;display:flex;align-items:center
 <section class="why-section">
   <div class="section">
     <div class="section-eyebrow reveal">The best kind of gift</div>
-    <h2 class="section-h2 reveal">For the person who has<br><em>everything except clarity.</em></h2>
-    <p style="font-family:var(--sans);font-size:0.9rem;color:var(--ink-muted);font-weight:300;line-height:1.75;max-width:540px;margin-bottom:0" class="reveal">Most gifts are opened once. This one arrives 700 times. It is, objectively, a better use of ₹599 than anything you'll find on Amazon.</p>
+    <h2 class="section-h2 reveal">A gift that keeps<br><em>showing up.</em></h2>
+    <p style="font-family:var(--sans);font-size:0.9rem;color:var(--ink-muted);font-weight:300;line-height:1.75;max-width:540px;margin-bottom:0" class="reveal">One thoughtful gift. 700 daily drops. A reminder they'll carry long after the occasion is over.</p>
 
     <div class="reasons-grid">
       <div class="reason-card reveal">
@@ -476,11 +473,6 @@ footer{background:var(--ink);padding:2.5rem 4rem;display:flex;align-items:center
         <span class="reason-emoji">🧠</span>
         <div class="reason-title">For the overthinker in your life</div>
         <div class="reason-body">The Gita was literally written for someone mid-existential-crisis on a battlefield. If you know someone currently having their own version of that — this is for them.</div>
-      </div>
-      <div class="reason-card reveal">
-        <span class="reason-emoji">🌱</span>
-        <div class="reason-title">Wisdom before it's needed</div>
-        <div class="reason-body">The best time to plant an idea is before the hard moment arrives. Not after. A daily verse isn't just interesting — it's preparation.</div>
       </div>
       <div class="reason-card reveal">
         <span class="reason-emoji">📬</span>
@@ -521,23 +513,6 @@ footer{background:var(--ink);padding:2.5rem 4rem;display:flex;align-items:center
   </div>
 </section>
 
-<!-- TRY IT FIRST -->
-<section class="try-section" id="try-first">
-  <div class="try-inner">
-    <div class="try-left">
-      <div class="section-eyebrow reveal">Before you commit</div>
-      <h2 class="section-h2 reveal">Try a verse yourself.<br><em>Make sure it's right for them.</em></h2>
-      <p class="try-desc reveal">Sign up for the 7-day free trial and read the first week yourself. If you think it's worth sharing — and you will — gift it to someone. No pressure. No card needed.</p>
-      <div class="try-form-wrap reveal">
-        <form class="try-form" id="tryForm" onsubmit="handleTry(event)">
-          <input type="text" name="name" placeholder="your name" required>
-          <input type="email" name="email" placeholder="your@email.com" required>
-          <button type="submit">Start My Free 7-Day Trial →</button>
-        </form>
-        <div class="try-fine">Free for 7 days · No credit card · Unsubscribe anytime</div>
-      </div>
-    </div>
-</section>
 
 <!-- SOCIAL PROOF -->
 <section class="proof-section">
@@ -613,13 +588,8 @@ footer{background:var(--ink);padding:2.5rem 4rem;display:flex;align-items:center
 
 <!-- FINAL CTA -->
 <section class="final-cta">
-  <div class="section-eyebrow reveal" style="justify-content:center;margin-bottom:1.5rem">A thought before you go</div>
   <h2 class="final-cta-h2 reveal">The Gita was always meant<br><em>to be shared.</em></h2>
   <p class="final-cta-sub reveal">Krishna didn't give Arjuna a book. He sat down beside him and talked. Maybe that's what good gifts do — they sit with someone. Every morning.</p>
-  <div class="final-cta-verse reveal">
-    "It is better to live your own dharma imperfectly than to live an imitation of someone else's dharma perfectly."
-    <cite>Bhagavad Gita · Chapter 3, Verse 35</cite>
-  </div>
   <a href="#gift-form" class="btn-primary reveal" style="display:inline-flex;margin:0 auto">Gift the Gita →</a>
 </section>
 
@@ -627,7 +597,6 @@ footer{background:var(--ink);padding:2.5rem 4rem;display:flex;align-items:center
 <footer>
   <a class="footer-logo" href="the-gita-drop.html">The <span>Gita Drop</span></a>
   <ul class="footer-links">
-    <li><a href="the-gita-drop.html">Newsletter</a></li>
     <li><a href="characters.html">The Cast</a></li>
     <li><a href="feelings.html">How are you feeling?</a></li>
     <li><a href="merch.html">Merch</a></li>
