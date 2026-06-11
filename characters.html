@@ -47,7 +47,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:
 .section-full{padding:5rem 3rem;position:relative;z-index:1}
 
 .section-eyebrow{font-family:var(--sans);font-size:0.62rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:0.6rem}
-.section-eyebrow::before{content:'';display:block;width:18px;height:1px;background:var(--gold);opacity:0.5}
 .section-h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:400;color:var(--cream);margin-bottom:0.5rem;line-height:1.15}
 .section-h2 em{font-style:italic;color:var(--goldlt)}
 .section-intro{font-family:var(--sans);font-size:0.9rem;color:rgba(250,246,239,0.5);line-height:1.7;max-width:600px;margin-bottom:3rem;font-weight:300}
@@ -169,6 +168,7 @@ td .badge{display:inline-block;font-size:0.58rem;font-weight:600;letter-spacing:
 footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(199,139,14,0.1);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
 .flogo{font-family:var(--serif);font-size:1.2rem;color:var(--cream);text-decoration:none}
 .flogo span{color:var(--gold)}
+.ftagline{font-family:var(--sans);font-size:0.75rem;color:rgba(250,246,239,0.35);margin-top:0.2rem;letter-spacing:0.04em}
 .flinks{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap}
 .flinks a{font-family:var(--sans);font-size:0.75rem;color:rgba(250,246,239,0.35);text-decoration:none;transition:color 0.2s}
 .flinks a:hover{color:rgba(250,246,239,0.7)}
@@ -188,8 +188,8 @@ footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(199,139,14,0.1);padd
 <body>
 
 <nav>
-  <a class="nav-logo" href="the-gita-drop.html">The <span>Gita Drop</span></a>
-  <a class="nav-back" href="the-gita-drop.html">← Back to home</a>
+  <a class="nav-logo" href="index.html">The <span>Gita Drop</span></a>
+  <a class="nav-back" href="index.html">← Back to home</a>
 </nav>
 
 <div class="page-tabs">
@@ -204,11 +204,6 @@ footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(199,139,14,0.1);padd
   <div class="hero-eyebrow">The Cast of The Gita</div>
   <h1>Wait... <em>Who's Related</em><br>to Whom?</h1>
   <p class="hero-sub">Everyone at Kurukshetra was either a cousin, a student, or a teacher of everyone else. Arjuna knew all of them. That was the whole problem.</p>
-</div>
-
-<!-- TICKER 1 -->
-<div class="ticker">
-  <div class="ticker-inner" id="ticker1"></div>
 </div>
 
 <!-- ══ FAMILY TREE ══ -->
@@ -547,7 +542,7 @@ footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(199,139,14,0.1);padd
 <!-- CHARACTER CARDS -->
 <div class="section" id="cards">
   <div class="section-eyebrow">Key Characters</div>
-  <h2 class="section-h2">The Characters — <em>Hover to flip</em></h2>
+  <h2 class="section-h2">The Characters <em>Hover to flip</em></h2>
   <p class="section-intro">Every major character named in the Bhagavad Gita — with their correct genealogy, role, and a note on why they matter.</p>
 
   <div class="filter-row">
@@ -836,11 +831,17 @@ function findRelationship() {
 
 <!-- FOOTER -->
 <footer>
-  <a class="flogo" href="the-gita-drop.html">The <span>Gita Drop</span></a>
+  <div>
+    <a class="flogo" href="index.html">The <span>Gita Drop</span></a>
+    <div class="ftagline">One verse. One minute. One shift.</div>
+  </div>
   <ul class="flinks">
-    <li><a href="the-gita-drop.html">Home</a></li>
+    <li><a href="merch.html">Merch</a></li>
     <li><a href="feelings.html">How are you feeling?</a></li>
-    <li><a href="merch.html">Shop Merch</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="terms.html">Terms</a></li>
+    <li><a href="refund.html">Refund Policy</a></li>
+    <li><a href="#" onclick="return false;">Contact</a></li>
   </ul>
 </footer>
 
@@ -929,7 +930,7 @@ const chars = [
     role:'Firstborn of Kunti, before her marriage, by the Sun god Surya. Raised as a charioteer\'s son. The greatest warrior in the epic — and arguably its most tragic figure.',
     chips:['Son of Surya','Born before Kunti\'s marriage','Not counted as Pandava','King of Anga','Duryodhana\'s friend'],
     quote:'"I was born a king\'s son but raised as a charioteer. The world gave me nothing. Duryodhana gave me everything. My loyalty to him is dharma enough."',
-    lore:'Karna is Kunti\'s firstborn — born through a mantra that invoked the Sun god, before her marriage to Pandu. Frightened and unmarried, Kunti placed him in a basket on the Ashwa (or Ganga) river.     lore:'Karna is Kunti\'s firstborn — born through a mantra that invoked the Sun god, before her marriage to Pandu. Frightened and unmarried, Kunti placed him in a basket on the river. He was found and raised by the charioteer Adhiratha and his wife Radha. Because of his suta (charioteer-caste) upbringing, he was denied entry to royal tournaments. Duryodhana gave him a kingdom and his friendship. Karna knew his true identity before the war and chose Duryodhana anyway.',
+    lore:'Karna is Kunti\'s firstborn — born through a mantra that invoked the Sun god, before her marriage to Pandu. Frightened and unmarried, Kunti placed him in a basket on the river. He was found and raised by the charioteer Adhiratha and his wife Radha. Because of his suta (charioteer-caste) upbringing, he was denied entry to royal tournaments. Duryodhana gave him a kingdom and his friendship. Karna knew his true identity before the war and chose Duryodhana anyway.',
     rel:'<strong>Eldest son of Kunti</strong> (by Surya, before marriage). Not counted among the five Pandavas. <strong>Half-brother</strong> of all five Pandavas. <strong>Political ally</strong> of Duryodhana.',
     bg:'rgba(18,6,0,0.96)',bc:'rgba(240,200,74,0.4)',tc:'#F0D070',
   },
@@ -1093,7 +1094,6 @@ window.addEventListener('DOMContentLoaded', function() {
   } catch(e) { console.error('options build failed', e); }
   try { buildCards(); } catch(e) { console.error('buildCards failed', e); }
   try { buildWhoswho(); } catch(e) { console.error('buildWhoswho failed', e); }
-  try { buildTicker(); } catch(e) { console.error('buildTicker failed', e); }
   try { initScrollReveal(); } catch(e) { console.error('initScrollReveal failed', e); }
   try { initPageTabs(); } catch(e) { console.error('initPageTabs failed', e); }
 });
