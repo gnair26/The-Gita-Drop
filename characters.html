@@ -40,7 +40,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:
 .hero-sub{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:rgba(250,246,239,0.45);margin-bottom:2rem;line-height:1.55;max-width:600px;margin-left:auto;margin-right:auto}
 
 /* ACCURACY BADGE */
-.accuracy-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(74,122,98,0.12);border:1px solid rgba(74,122,98,0.35);border-radius:100px;padding:0.4rem 1rem;font-family:var(--sans);font-size:0.72rem;color:rgba(168,216,184,0.8);margin-bottom:1.5rem}
 
 /* SECTION WRAPPER */
 .section{padding:5rem 3rem;position:relative;z-index:1;max-width:1200px;margin:0 auto}
@@ -125,12 +124,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:
 
 /* RELATIONSHIP TABLE */
 .rel-table-wrap{overflow-x:auto;border:1px solid rgba(199,139,14,0.15);border-radius:10px}
+.rel-toggle-btn{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(199,139,14,0.08);border:1px solid rgba(199,139,14,0.25);color:var(--gold);font-family:var(--sans);font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.7rem 1.4rem;border-radius:100px;cursor:pointer;transition:all 0.2s;margin-bottom:1.25rem}
+.rel-toggle-btn:hover{background:rgba(199,139,14,0.15);border-color:rgba(199,139,14,0.4)}
+.rel-toggle-btn .chev{display:inline-block;transition:transform 0.25s ease;font-size:0.7rem}
+.rel-toggle-btn.open .chev{transform:rotate(180deg)}
+.rel-table-collapse{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.rel-table-collapse.open{max-height:4000px}
 table{width:100%;border-collapse:collapse}
 th{font-family:var(--sans);font-size:0.65rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);padding:0.85rem 1.25rem;text-align:left;background:rgba(199,139,14,0.07);border-bottom:1px solid rgba(199,139,14,0.15)}
 td{font-family:var(--sans);font-size:0.84rem;color:rgba(250,246,239,0.7);padding:0.8rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.04);line-height:1.55;font-weight:300}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:rgba(199,139,14,0.03)}
-td:first-child{font-weight:500;color:rgba(250,246,239,0.88);font-family:var(--serif);font-size:0.95rem}
+td:first-child{font-weight:500;color:rgba(250,246,239,0.88);font-family:var(--serif);font-size:0.95rem;white-space:nowrap}
 td .badge{display:inline-block;font-size:0.58rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.15rem 0.5rem;border-radius:100px;margin-left:0.4rem}
 .badge-blood{background:rgba(192,79,45,0.15);color:var(--terra);border:1px solid rgba(192,79,45,0.3)}
 .badge-marriage{background:rgba(107,76,154,0.15);color:#C4A8E4;border:1px solid rgba(107,76,154,0.3)}
@@ -196,10 +201,9 @@ footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(199,139,14,0.1);padd
 </div>
 
 <div class="hero" id="top">
-  <div class="hero-eyebrow">The Cast of The Gita · Factually Accurate Edition</div>
+  <div class="hero-eyebrow">The Cast of The Gita</div>
   <h1>Wait... <em>Who's Related</em><br>to Whom?</h1>
   <p class="hero-sub">Everyone at Kurukshetra was either a cousin, a student, or a teacher of everyone else. Arjuna knew all of them. That was the whole problem.</p>
-  <div class="accuracy-badge">✓ Corrected against the Critical Edition of the Mahabharata · All genealogies verified</div>
 </div>
 
 <!-- TICKER 1 -->
@@ -460,7 +464,7 @@ footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(199,139,14,0.1);padd
   <text x="385" y="555" font-family="'DM Sans',sans-serif" font-size="8"  fill="rgba(192,79,45,0.3)" text-anchor="middle">+ Duhshala (sister)</text>
 
   <!-- GEN 4: KARNA cx=390 y=510 (pre-marriage child of Kunti — shown separately) -->
-  <g class="tnode" data-n="Karna" data-r="Firstborn of Kunti & Surya · Before her marriage · Eldest by birth" data-d="Born before Kunti's marriage, through the Sun god Surya. Placed in a basket on the river and raised by the charioteer Adhiratha. Denied entry to royal tournaments because of his caste. Duryodhana gave him the kingdom of Anga and his friendship. Karna knew his true parentage before the war and still chose Duryodhana.">
+  <g class="tnode" data-n="Karna" data-r="Firstborn of Kunti & Surya · Before her marriage · Eldest by birth" data-d="Born before Kunti's marriage, through the Sun god Surya. Placed in a basket on the river and raised by the charioteer Adhiratha. Denied entry to royal tournaments because of his caste. Duryodhana gave him the kingdom of Anga and his friendship. Karna knew his true parentage before the war and still chose Duryodhana. Despite being Kunti's firstborn, he is shown separately and is not counted among the five Pandavas.">
     <rect x="315" y="510" width="150" height="50" rx="8" fill="rgba(199,139,14,0.2)" stroke="rgba(240,200,74,0.55)" stroke-width="2"/>
     <text class="tnode-name" x="390" y="530" fill="#F0D070" font-size="13" font-weight="500">Karna ☀️</text>
     <text class="tnode-sub"  x="390" y="548" fill="rgba(240,200,74,0.6)" font-size="7.5">Eldest by birth · Not counted</text>
@@ -489,7 +493,7 @@ footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(199,139,14,0.1);padd
   </g>
 
   <!-- GEN 4: NAKULA cx=980 y=510 -->
-  <g class="tnode" data-n="Nakula" data-r="4th Pandava · Son of Madri & Ashwini Kumars · Twin of Sahadeva" data-d="One of the twin sons of Madri (Pandu's second wife) and the Ashwini Kumars. Half-brother to the first three Pandavas through Pandu. Known for his beauty and mastery of horses.">
+  <g class="tnode" data-n="Nakula" data-r="4th Pandava · Son of Madri & Ashwini Kumars · Twin of Sahadeva" data-d="One of the twin sons of Madri (Pandu's second wife) and the Ashwini Kumars. Half-brother to the first three Pandavas through Pandu — Yudhishthira, Bhima and Arjuna are sons of Kunti, while Nakula and Sahadeva are sons of Madri. Known for his beauty and mastery of horses.">
     <rect x="905" y="510" width="150" height="50" rx="8" fill="rgba(74,122,98,0.15)" stroke="rgba(74,122,98,0.4)" stroke-width="1.5"/>
     <text class="tnode-name" x="980" y="530" fill="#B8E0C8" font-size="13">Nakula</text>
     <text class="tnode-sub"  x="980" y="548" fill="rgba(74,122,98,0.55)" font-size="8">4th Pandava · Madri's son</text>
@@ -537,16 +541,6 @@ footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(199,139,14,0.1);padd
 </svg>
     </div>
 
-    <!-- Nakula & Sahadeva note -->
-    <div style="margin-top:1.5rem;background:rgba(74,122,98,0.07);border:1px solid rgba(74,122,98,0.2);border-radius:8px;padding:1rem 1.5rem;font-family:var(--sans);font-size:0.82rem;color:rgba(250,246,239,0.55);line-height:1.65">
-      <strong style="color:rgba(168,216,184,0.8)">Notes on the tree:</strong>
-      <strong style="color:rgba(250,246,239,0.7)">Chitrangada</strong> (Shantanu and Satyavati's elder son) died young in battle before marrying — he is Vichitravirya's older brother and is not shown at scale.
-      <strong style="color:rgba(250,246,239,0.7)">Nakula and Sahadeva</strong> are sons of Pandu's second wife <strong style="color:rgba(250,246,239,0.7)">Madri</strong> and the Ashwini Kumars — Arjuna's half-brothers through Pandu.
-      <strong style="color:rgba(250,246,239,0.7)">Gandhari</strong> (Dhritarashtra's wife) and <strong style="color:rgba(250,246,239,0.7)">Madri</strong> (Pandu's second wife) are shown in the character cards.
-      <strong style="color:rgba(250,246,239,0.7)">Shurasena</strong> is the father (not grandfather) of both Vasudeva and Kunti — making Krishna and the Pandavas first cousins.
-      <strong style="color:rgba(250,246,239,0.7)">Karna</strong> is shown separately because he was born before Kunti's marriage and is not counted among the five Pandavas, despite being Kunti's firstborn.
-      <strong style="color:rgba(250,246,239,0.7)">Abhimanyu</strong> (Arjuna's son by Subhadra) and <strong style="color:rgba(250,246,239,0.7)">Balarama</strong> (Krishna's elder brother) are included in the character cards below.
-    </div>
   </div>
 </div>
 
@@ -755,6 +749,10 @@ function findRelationship() {
   <div class="section-eyebrow">Accurate genealogy</div>
   <h2 class="section-h2">The Relationship <em>Table</em></h2>
   <p class="section-intro">Every relationship type: blood, marriage, teacher-student, and political alliance — as recorded in the Critical Edition.</p>
+  <button class="rel-toggle-btn" id="relToggleBtn" onclick="toggleRelTable()">
+    <span id="relToggleLabel">Show full table (21 relationships)</span> <span class="chev">▾</span>
+  </button>
+  <div class="rel-table-collapse" id="relTableCollapse">
   <div class="rel-table-wrap">
     <table>
       <thead>
@@ -786,9 +784,8 @@ function findRelationship() {
       </tbody>
     </table>
   </div>
+  </div>
 </div>
-
-<!-- WHO'S WHO IN THE GITA -->
 <!-- WHY ARJUNA COLLAPSED -->
 <div class="section-full" id="conflict" style="padding-bottom:5rem">
   <div style="max-width:900px;margin:0 auto;padding:0 3rem">
@@ -1072,22 +1069,33 @@ const rels = {
 function getRelKey(a,b){ return rels[a+'_'+b] || rels[b+'_'+a] || null; }
 
 /* ══ POPULATE SELECTS ══ */
+function toggleRelTable(){
+  const c = document.getElementById('relTableCollapse');
+  const btn = document.getElementById('relToggleBtn');
+  const label = document.getElementById('relToggleLabel');
+  const open = c.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  label.textContent = open ? 'Hide full table' : 'Show full table (21 relationships)';
+}
+
 window.addEventListener('DOMContentLoaded', function() {
-  ['charA','charB'].forEach(id => {
-    const sel = document.getElementById(id);
-    if (!sel) return;
-    chars.forEach(c => {
-      const o = document.createElement('option');
-      o.value = c.id; o.textContent = c.name;
-      sel.appendChild(o);
-    });
-  });
-  buildCards();
-  buildWhoswho();
-  buildTicker();
   initTooltips();
-  initScrollReveal();
-  initPageTabs();
+  try {
+    ['charA','charB'].forEach(id => {
+      const sel = document.getElementById(id);
+      if (!sel) return;
+      chars.forEach(c => {
+        const o = document.createElement('option');
+        o.value = c.id; o.textContent = c.name;
+        sel.appendChild(o);
+      });
+    });
+  } catch(e) { console.error('options build failed', e); }
+  try { buildCards(); } catch(e) { console.error('buildCards failed', e); }
+  try { buildWhoswho(); } catch(e) { console.error('buildWhoswho failed', e); }
+  try { buildTicker(); } catch(e) { console.error('buildTicker failed', e); }
+  try { initScrollReveal(); } catch(e) { console.error('initScrollReveal failed', e); }
+  try { initPageTabs(); } catch(e) { console.error('initPageTabs failed', e); }
 });
 
 function findRel(){
