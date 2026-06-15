@@ -54,7 +54,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 3rem;display
   letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);
   margin-bottom:1.5rem;display:flex;align-items:center;gap:0.7rem;
 }
-.hero-eyebrow::before{content:'';display:block;width:22px;height:1px;background:var(--gold);opacity:0.5}
+.hero-eyebrow::before{content:'';display:block;width:0px;height:1px;background:transparent;opacity:0}
 
 .hero-h1{
   font-family:var(--serif);font-weight:300;
@@ -325,9 +325,13 @@ footer{background:var(--ink);padding:2.5rem 4rem;display:flex;align-items:center
 
 <!-- NAV -->
 <nav id="main-nav">
-  <a class="nav-logo" href="the-gita-drop.html">The <span>Gita Drop</span></a>
+  <a class="nav-logo" href="index.html">The <span>Gita Drop</span></a>
   <div class="nav-right">
-    <a class="nav-link" href="characters.html">The Cast</a>
+    <a class="nav-link" href="index.html#kids" style="display:flex;flex-direction:column;line-height:1.2;">
+      <span>The Gita Droplet</span>
+      <span style="font-family:var(--serif);font-style:italic;color:#9B7FB6;font-size:0.8rem;font-weight:400;letter-spacing:0;">for kids</span>
+    </a>
+    <a class="nav-link" href="merch.html">Gift Merch</a>
     <a class="nav-cta" href="#gift-form">Gift the Gita →</a>
   </div>
 </nav>
@@ -614,12 +618,12 @@ footer{background:var(--ink);padding:2.5rem 4rem;display:flex;align-items:center
       <div class="reason-card reveal">
         <span class="reason-emoji">🌅</span>
         <div class="reason-title">The gift that arrives every morning</div>
-        <div class="reason-body">Every day, for two years, they'll open their inbox and find something worth reading. Before the noise starts. Before the meetings. Before Monday has a chance to ruin everything.</div>
+        <div class="reason-body">Every day, for two years, they'll open their inbox and find something worth reading. Before the noise starts. Before the meetings. Before the world asks for their attention.</div>
       </div>
       <div class="reason-card reveal">
-        <span class="reason-emoji">🧠</span>
-        <div class="reason-title">For the overthinker in your life</div>
-        <div class="reason-body">The Gita was literally written for someone mid-existential-crisis on a battlefield. If you know someone currently having their own version of that — this is for them.</div>
+        <span class="reason-emoji">🎁</span>
+        <div class="reason-title">For the person who already has enough stuff</div>
+        <div class="reason-body">For anyone you'd like to gift a quieter, more thoughtful morning. A gift that stays with them long after it's been opened.</div>
       </div>
       <div class="reason-card reveal">
         <span class="reason-emoji">📬</span>
@@ -736,7 +740,7 @@ footer{background:var(--ink);padding:2.5rem 4rem;display:flex;align-items:center
 <!-- FINAL CTA -->
 <section class="final-cta">
   <h2 class="final-cta-h2 reveal">The Gita was always meant<br><em>to be shared.</em></h2>
-  <p class="final-cta-sub reveal">Krishna didn't give Arjuna a book. He sat down beside him and talked. Maybe that's what good gifts do — they sit with someone. Every morning.</p>
+  <p class="final-cta-sub reveal">Krishna didn't give Arjun a book. He sat beside him and shared a conversation.<br>Maybe that's what good gifts do — they sit with someone.<br>Some gifts are opened once. This one keeps arriving.</p>
   <a href="#gift-form" class="btn-primary reveal" style="display:inline-flex;margin:0 auto">Gift the Gita →</a>
 </section>
 
