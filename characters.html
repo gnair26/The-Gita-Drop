@@ -77,14 +77,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:
 .ftab:hover,.ftab.active{background:rgba(199,139,14,0.15);border-color:var(--gold);color:var(--goldlt)}
 
 /* CHARACTER CARDS GRID */
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:1.75rem}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:1.75rem;align-items:start}
 .ccard{perspective:1000px;cursor:pointer}
 .ccard.hidden{display:none}
-.ccard-inner{position:relative;transform-style:preserve-3d;transition:transform 0.65s cubic-bezier(0.34,1.1,0.64,1);border-radius:12px}
-.ccard:hover .ccard-inner{transform:rotateY(180deg)}
+.ccard-inner{position:relative;min-height:420px;transform-style:preserve-3d;transition:transform 0.65s cubic-bezier(0.34,1.1,0.64,1);border-radius:12px}
+.ccard.flipped .ccard-inner{transform:rotateY(180deg)}
 .ccard-front,.ccard-back{backface-visibility:hidden;border-radius:12px}
-.ccard-front{background:rgba(255,251,240,0.93);border:1.5px solid rgba(199,139,14,0.22);box-shadow:0 4px 28px rgba(0,0,0,0.4)}
-.ccard-back{position:absolute;inset:0;transform:rotateY(180deg);padding:1.6rem;display:flex;flex-direction:column;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.6)}
+.ccard-front{position:absolute;inset:0;background:rgba(255,251,240,0.93);border:1.5px solid rgba(199,139,14,0.22);box-shadow:0 4px 28px rgba(0,0,0,0.4);display:flex;flex-direction:column}
+.ccard-back{position:absolute;inset:0;transform:rotateY(180deg);padding:1.6rem;display:flex;flex-direction:column;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.6);overflow-y:auto;max-height:560px}
 
 .ccard-header{padding:1.4rem 1.4rem 0.9rem;border-bottom:1px solid rgba(199,139,14,0.12);position:relative}
 .ccard-emoji{font-size:2.6rem;display:block;margin-bottom:0.4rem;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2))}
@@ -97,17 +97,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:
 .t-teacher{background:rgba(58,107,138,0.12);color:#8ABCD4;border:1px solid rgba(58,107,138,0.3)}
 .t-other{background:rgba(107,76,154,0.12);color:#C4A8E4;border:1px solid rgba(107,76,154,0.25)}
 
-.ccard-body{padding:0.9rem 1.4rem 1.2rem}
+.ccard-body{padding:0.9rem 1.4rem 1.2rem;flex:1;display:flex;flex-direction:column}
 .ccard-role{font-family:var(--serif);font-style:italic;font-size:0.97rem;color:var(--ink-muted);line-height:1.55;margin-bottom:0.65rem}
 .ccard-chips{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.6rem}
 .chip{font-family:var(--sans);font-size:0.6rem;font-weight:500;letter-spacing:0.05em;padding:0.18rem 0.55rem;border-radius:100px;background:rgba(13,8,24,0.06);color:var(--ink-muted);border:1px solid rgba(13,8,24,0.1)}
-.ccard-hint{font-family:var(--sans);font-size:0.62rem;color:rgba(13,8,24,0.3);display:flex;align-items:center;gap:0.3rem}
+.ccard-hint{font-family:var(--sans);font-size:0.62rem;color:rgba(13,8,24,0.3);display:flex;align-items:center;gap:0.3rem;margin-top:auto;padding-top:0.6rem}
 
 .cb-name{font-family:var(--serif);font-size:1.15rem;font-weight:500;color:var(--cream);margin-bottom:0.4rem}
 .cb-quote{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--goldlt);line-height:1.55;padding-left:0.9rem;border-left:2px solid var(--gold);margin-bottom:0.85rem}
-.cb-lore{font-family:var(--sans);font-size:0.8rem;font-weight:300;color:rgba(250,246,239,0.62);line-height:1.7;flex:1}
+.cb-lore{font-family:var(--sans);font-size:0.8rem;font-weight:300;color:rgba(250,246,239,0.62);line-height:1.7}
 .cb-rel{margin-top:0.85rem;padding-top:0.85rem;border-top:1px solid rgba(199,139,14,0.18);font-family:var(--sans);font-size:0.73rem;color:rgba(250,246,239,0.42);line-height:1.6}
 .cb-rel strong{color:rgba(250,246,239,0.72);font-weight:500}
+
+/* thin scrollbar for overflowing card backs, so long bios never get silently clipped */
+.ccard-back::-webkit-scrollbar{width:5px}
+.ccard-back::-webkit-scrollbar-track{background:transparent}
+.ccard-back::-webkit-scrollbar-thumb{background:rgba(199,139,14,0.35);border-radius:10px}
+.ccard-back{scrollbar-width:thin;scrollbar-color:rgba(199,139,14,0.35) transparent}
 
 /* RELATIONSHIP FINDER */
 .finder-box{background:rgba(255,251,240,0.03);border:1px solid rgba(199,139,14,0.2);border-radius:10px;padding:2rem 2.5rem;backdrop-filter:blur(8px)}
@@ -182,6 +188,31 @@ footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(199,139,14,0.1);padd
   .section,.section-full{padding:4rem 1.5rem}
   .ww-grid,.conflict-grid{grid-template-columns:1fr}
   footer{flex-direction:column;gap:1rem;padding:2rem 1.5rem}
+}
+
+/* ── CONTACT MODAL ── */
+.contact-overlay{position:fixed;inset:0;z-index:500;background:rgba(13,8,24,0.78);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;padding:3.5rem 1.5rem;overflow-y:auto}
+.contact-overlay.show{display:flex}
+.contact-modal{background:var(--cream);color:var(--ink,#1A0F2E);width:100%;max-width:560px;border-radius:14px;padding:2.75rem 2.5rem 2.5rem;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.5);animation:contactIn 0.35s cubic-bezier(0.34,1.1,0.64,1)}
+@keyframes contactIn{from{opacity:0;transform:translateY(16px) scale(0.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.contact-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--ink-faint);font-size:1.4rem;line-height:1;cursor:pointer;padding:0.25rem;transition:color 0.2s}
+.contact-close:hover{color:var(--ink-muted)}
+.contact-eyebrow{font-family:var(--sans);font-size:0.68rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem}
+.contact-modal h3{font-family:var(--serif);font-size:2.1rem;font-weight:400;color:var(--ink-muted,#3A2E52);margin-bottom:0.5rem}
+.contact-sub{font-family:var(--sans);font-size:0.92rem;color:var(--ink-faint);margin-bottom:1.75rem}
+.contact-field{margin-bottom:1.4rem}
+.contact-field label{display:block;font-family:var(--sans);font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:0.5rem}
+.contact-field label .req{color:var(--terra);margin-left:0.15rem}
+.contact-field input,.contact-field textarea{width:100%;background:var(--cream);border:1.5px solid var(--parchment);border-radius:6px;padding:0.85rem 1rem;font-family:var(--sans);font-size:0.95rem;color:var(--ink);outline:none;transition:border-color 0.2s;resize:vertical}
+.contact-field input:focus,.contact-field textarea:focus{border-color:var(--gold)}
+.contact-field textarea{min-height:120px}
+.contact-submit{width:100%;background:var(--ink,#1A0F2E);color:var(--cream);border:none;padding:1rem 1.5rem;font-family:var(--sans);font-size:0.85rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:background 0.2s}
+.contact-submit:hover{background:var(--gold);color:var(--ink)}
+.contact-status{font-family:var(--sans);font-size:0.85rem;color:var(--gold);margin-top:0.9rem;text-align:center;display:none}
+.contact-status.show{display:block}
+@media(max-width:600px){
+  .contact-modal{padding:2.25rem 1.5rem 2rem}
+  .contact-modal h3{font-size:1.7rem}
 }
 </style>
 </head>
@@ -542,7 +573,7 @@ footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(199,139,14,0.1);padd
 <!-- CHARACTER CARDS -->
 <div class="section" id="cards">
   <div class="section-eyebrow">Key Characters</div>
-  <h2 class="section-h2">The Characters <em>Hover to flip</em></h2>
+  <h2 class="section-h2">The Characters <em>Click to flip</em></h2>
   <p class="section-intro">Every major character named in the Bhagavad Gita — with their correct genealogy, role, and a note on why they matter.</p>
 
   <div class="filter-row">
@@ -840,10 +871,36 @@ function findRelationship() {
     <li><a href="feelings.html">How are you feeling?</a></li>
     <li><a href="privacy.html">Privacy</a></li>
     <li><a href="terms.html">Terms</a></li>
-    <li><a href="refund.html">Refund Policy</a></li>
-    <li><a href="#" onclick="return false;">Contact</a></li>
+    <li><a href="Refund.html">Refund Policy</a></li>
+    <li><a href="#" onclick="openContactModal();return false;">Contact</a></li>
   </ul>
 </footer>
+
+<!-- ── CONTACT MODAL ── -->
+<div class="contact-overlay" id="contactOverlay" onclick="if(event.target===this)closeContactModal()">
+  <div class="contact-modal">
+    <button class="contact-close" onclick="closeContactModal()" aria-label="Close">✕</button>
+    <div class="contact-eyebrow">Get in touch</div>
+    <h3>Say hello.</h3>
+    <p class="contact-sub">We'll get back to you within 24 hours.</p>
+    <form id="contactForm" onsubmit="return handleContactSubmit(event)">
+      <div class="contact-field">
+        <label for="cfName">Your Name</label>
+        <input type="text" id="cfName" name="name" placeholder="Your name">
+      </div>
+      <div class="contact-field">
+        <label for="cfEmail">Your Email <span class="req">*</span></label>
+        <input type="email" id="cfEmail" name="email" placeholder="your@email.com" required>
+      </div>
+      <div class="contact-field">
+        <label for="cfMessage">Message <span class="req">*</span></label>
+        <textarea id="cfMessage" name="message" placeholder="What's on your mind?" required></textarea>
+      </div>
+      <button type="submit" class="contact-submit">Send Message →</button>
+      <div class="contact-status" id="contactStatus">Thanks — your message is on its way. We'll be in touch soon.</div>
+    </form>
+  </div>
+</div>
 
 <div class="tooltip" id="tooltip">
   <div class="tt-name" id="ttN"></div>
@@ -1139,7 +1196,7 @@ function buildCards() {
         +'<div class="ccard-body">'
           +'<div class="ccard-role">'+c.role+'</div>'
           +'<div class="ccard-chips">'+c.chips.map(t=>'<span class="chip">'+t+'</span>').join('')+'</div>'
-          +'<div class="ccard-hint">Hover to reveal their story</div>'
+          +'<div class="ccard-hint">Click to reveal their story</div>'
         +'</div>'
       +'</div>'
       +'<div class="ccard-back" style="background:'+c.bg+';border:1.5px solid '+c.bc+'">'
@@ -1150,21 +1207,17 @@ function buildCards() {
       +'</div>'
     +'</div>';
 
-    const inner = el.querySelector('.ccard-inner');
-    el.addEventListener('mousemove', e => {
-      if(inner.style.transform && inner.style.transform.includes('180deg')) return;
-      const r = el.getBoundingClientRect();
-      const x = (e.clientX-r.left)/r.width-0.5, y = (e.clientY-r.top)/r.height-0.5;
-      inner.style.transform = 'perspective(900px) rotateY('+(x*13)+'deg) rotateX('+(-y*9)+'deg) translateZ(6px)';
-    });
-    el.addEventListener('mouseleave', () => {
-      if(!inner.style.transform.includes('180deg'))
-        inner.style.transform = 'perspective(900px) rotateY(0) rotateX(0) translateZ(0)';
-    });
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', c.name + ' — click to flip for details');
     el.addEventListener('click', () => {
-      inner.style.transform = inner.style.transform.includes('180deg')
-        ? 'perspective(900px) rotateY(0deg)'
-        : 'perspective(900px) rotateY(180deg)';
+      el.classList.toggle('flipped');
+    });
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        el.classList.toggle('flipped');
+      }
     });
     grid.appendChild(el);
   });
@@ -1275,6 +1328,45 @@ function initPageTabs() {
     });
   },{passive:true});
 }
+
+/* ══ CONTACT MODAL ══ */
+function openContactModal() {
+  const ov = document.getElementById('contactOverlay');
+  if (!ov) return;
+  ov.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  const status = document.getElementById('contactStatus');
+  if (status) status.classList.remove('show');
+  const form = document.getElementById('contactForm');
+  if (form) form.style.display = '';
+  setTimeout(() => { const f = document.getElementById('cfName'); if (f) f.focus(); }, 50);
+}
+
+function closeContactModal() {
+  const ov = document.getElementById('contactOverlay');
+  if (!ov) return;
+  ov.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function handleContactSubmit(e) {
+  e.preventDefault();
+  // TODO: wire this up to your actual form backend / email service
+  // (e.g. Formspree, a serverless function, etc.) — this just confirms
+  // the UI flow for now so the button isn't a dead end.
+  const status = document.getElementById('contactStatus');
+  const form = document.getElementById('contactForm');
+  if (status) status.classList.add('show');
+  if (form) {
+    form.querySelector('.contact-submit').style.display = 'none';
+  }
+  setTimeout(closeContactModal, 1800);
+  return false;
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeContactModal();
+});
 </script>
 </body>
 </html>
