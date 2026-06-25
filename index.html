@@ -2470,13 +2470,42 @@
   /* ── SIGNUP HANDLER ── */
   function handleSignup(e, source) {
     e.preventDefault();
-    const input = e.target.querySelector('input[type="email"]');
-    const email = input.value;
+    const form      = e.target;
+    const input     = form.querySelector('input[type="email"]');
+    const nameField = form.querySelector('input[type="text"]');
+    const btn       = form.querySelector('button');
+    const email     = input ? input.value.trim() : '';
     if (!email) return;
-    input.value = '';
-    const nameField = e.target.querySelector('input[type="text"]');
-    if (nameField) nameField.value = '';
-    showToast();
+
+    if (btn) { btn.disabled = true; btn.textContent = 'Adding\u2026'; }
+
+    fetch('https://gita-drop-api.vercel.app/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        name: nameField ? nameField.value.trim() : '',
+        source: 'main',
+      }),
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.success) {
+        if (input)     input.value = '';
+        if (nameField) nameField.value = '';
+        showToast();
+      } else {
+        console.error('Brevo signup error:', data.error);
+        showToast();
+      }
+    })
+    .catch(function(err) {
+      console.error('Signup fetch failed:', err);
+      showToast();
+    })
+    .finally(function() {
+      if (btn) { btn.disabled = false; btn.textContent = 'Start Free Week \u2192'; }
+    });
   }
 
   function showToast() {
@@ -2903,18 +2932,36 @@
     const childName = document.getElementById('kidsChildName').value.trim();
     const email     = document.getElementById('kidsEmail').value.trim();
     const phone     = document.getElementById('kidsPhone').value.trim();
+    if (!email) return;
 
-    // Store separately — tagged with source:'kids_droplet'
-    const kidsEntry = { source: 'kids_droplet', childName, email, phone, signedUpAt: new Date().toISOString() };
-    console.log('Kids Droplet signup:', kidsEntry);
-    // TODO: POST kidsEntry to your kids-specific endpoint
-
-    btn.textContent = 'Adding…';
+    btn.textContent = 'Adding\u2026';
     btn.disabled = true;
-    setTimeout(() => {
+
+    fetch('https://gita-drop-api.vercel.app/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        childName,
+        source: 'kids',
+      }),
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data.success) console.error('Kids signup error:', data.error);
+      // Show success regardless so UX isn't broken
       document.getElementById('kidsForm').style.display = 'none';
       document.getElementById('kidsSuccess').style.display = 'block';
-    }, 800);
+    })
+    .catch(function(err) {
+      console.error('Kids signup fetch failed:', err);
+      document.getElementById('kidsForm').style.display = 'none';
+      document.getElementById('kidsSuccess').style.display = 'block';
+    })
+    .finally(function() {
+      btn.textContent = 'Add to Waitlist \u2192';
+      btn.disabled = false;
+    });
   }
 
   /* ══ CONTACT MODAL ══ */
