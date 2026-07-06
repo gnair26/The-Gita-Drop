@@ -1260,7 +1260,8 @@
     .inline-cta { padding: 3rem 1.5rem; }
     .inline-cta-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
     .inline-cta-form { width: 100%; }
-    .inline-cta-form input[type="email"] { flex: 1; width: auto; }
+    .inline-cta-form input[type="text"] { flex: 1; width: auto; min-width: 0; }
+    .inline-cta-form input[type="email"] { flex: 1; width: auto; min-width: 0; }
   }
 
   /* CTA STRIP */
@@ -1689,6 +1690,8 @@
     padding: 0.35rem 1rem;
     border-radius: 100px;
     margin-bottom: 1.5rem;
+    white-space: nowrap;
+    max-width: 100%;
   }
 
   /* big headline */
@@ -1906,6 +1909,7 @@
   @media (max-width: 860px) {
     .kids-cols { grid-template-columns: 1fr; gap: 2.5rem; }
     .kids-wrap { padding: 3rem 1.5rem 4rem; }
+    .kids-new-tag { font-size: 0.58rem; letter-spacing: 0.12em; padding: 0.3rem 0.8rem; }
     .kids-float-tag-a { left: 4px; }
     .kids-float-tag-b { right: 4px; }
   }
@@ -1966,8 +1970,8 @@
       The Gita Drop sends you one verse a day, in plain English, with the story behind it and a clear, honest look at what it means for your life today.
     </p>
     <form class="signup-form fade-in fade-in-4" onsubmit="handleSignup(event, 'hero')">
-      <input type="text" placeholder="your name" required>
-      <input type="email" placeholder="your@email.com" required>
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
       <button type="submit">7-Day Free Trial</button>
     </form>
     <div class="hero-meta-row" style="margin-top:0.75rem;max-width:440px;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
@@ -2071,8 +2075,8 @@
       <div class="inline-cta-heading">Verse 1 could be waiting in<br><em>your inbox by morning.</em></div>
     </div>
     <form class="inline-cta-form" onsubmit="handleSignup(event, 'inline1')">
-      <input type="text" placeholder="your name" required>
-      <input type="email" placeholder="your@email.com" required>
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
       <button type="submit">Deliver My First Verse</button>
     </form>
   </div>
@@ -2097,7 +2101,7 @@
     <div class="kids-section-sparkle" style="top:30%;left:1.5%;animation-delay:0.4s;background:var(--terra);opacity:0.3"></div>
     <div class="kids-section-sparkle" style="top:60%;right:2%;animation-delay:1.8s"></div>
     <div class="kids-section-sparkle" style="top:80%;left:8%;animation-delay:1s;width:4px;height:4px"></div>
-    <div class="kids-new-tag">✦ New &nbsp;·&nbsp; The Gita Droplet &nbsp;·&nbsp; Ages 6–12</div>
+    <div class="kids-new-tag">✦ New &nbsp;·&nbsp; Gita Droplet &nbsp;·&nbsp; Ages 6–12</div>
 
     <h2 class="kids-h">
       The best thing you can give a curious kid is
@@ -2355,8 +2359,8 @@
       You've always meant to read the Gita. Here's the version that actually fits into your life. No guilt, no hustle, no incense required.
     </p>
     <form class="cta-form" onsubmit="handleSignup(event, 'cta')">
-      <input type="text" placeholder="your name" required>
-      <input type="email" placeholder="your@email.com" required>
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
       <button type="submit">I'm In →</button>
     </form>
     <p class="cta-footnote">Free for 7 days. Unsubscribe anytime. We dislike spam more than you do.</p>
@@ -2411,7 +2415,7 @@
       </div>
       <div style="margin-bottom:1rem;">
         <label style="font-family:var(--sans);font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:0.35rem;">Preferred email ID <span style="color:var(--terra)">*</span></label>
-        <input id="kidsEmail" type="email" placeholder="your@email.com" required
+        <input id="kidsEmail" type="email" placeholder="Email" required
           style="width:100%;border:1.5px solid var(--parchment);border-radius:3px;padding:0.75rem 1rem;font-family:var(--sans);font-size:0.9rem;color:var(--ink);background:var(--cream);outline:none;box-sizing:border-box;transition:border-color 0.2s;"
           onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'">
       </div>
@@ -2462,7 +2466,7 @@
       </div>
       <div style="margin-bottom:1rem;">
         <label style="font-family:var(--sans);font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:0.35rem;">Your email <span style="color:var(--terra)">*</span></label>
-        <input id="contactEmail" type="email" placeholder="your@email.com" required
+        <input id="contactEmail" type="email" placeholder="Email" required
           style="width:100%;border:1.5px solid var(--parchment);border-radius:3px;padding:0.75rem 1rem;font-family:var(--sans);font-size:0.9rem;color:var(--ink);background:var(--cream);outline:none;box-sizing:border-box;transition:border-color 0.2s;"
           onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'">
       </div>
