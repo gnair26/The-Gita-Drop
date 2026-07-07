@@ -1,0 +1,45 @@
+# gitadrop.com — robots.txt
+# Allow standard search engine crawlers
+User-agent: *
+Allow: /
+
+# Explicitly welcome AI answer-engine / assistant crawlers (GEO).
+# Blocking these is the single most common mistake sites make when
+# trying to show up in ChatGPT, Perplexity, Google AI Overviews, etc.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://gitadrop.com/sitemap.xml
