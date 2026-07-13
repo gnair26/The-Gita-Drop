@@ -1625,19 +1625,19 @@
     position: fixed;
     bottom: 2rem;
     left: 50%;
-    max-width: calc(100% - 2rem);
+    max-width: min(480px, calc(100% - 2rem));
     transform: translateX(-50%) translateY(calc(100% + 2rem));
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     background: var(--ink);
     color: var(--cream);
-    padding: 1rem 2rem;
-    border-radius: 2px;
+    padding: 1.25rem 1.75rem;
+    border-radius: 6px;
     font-size: 0.9rem;
     font-family: var(--sans);
-    border-left: 3px solid var(--gold);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(199,139,14,0.15);
     z-index: 999;
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, visibility 0.3s;
   }
@@ -1647,6 +1647,30 @@
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    animation: toastPulse 1.8s ease-out 0.4s 2;
+  }
+
+  @keyframes toastPulse {
+    0%   { box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 0 0 rgba(199,139,14,0.5); }
+    70%  { box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 0 10px rgba(199,139,14,0); }
+    100% { box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 0 0 rgba(199,139,14,0); }
+  }
+
+  .toast-head {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .toast-body {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: rgba(250,246,239,0.82);
   }
 
   /* RESPONSIVE */
@@ -2594,7 +2618,8 @@
 
 <!-- TOAST -->
 <div class="toast" id="toast">
-  🙏 You're on the list. Tomorrow morning begins your journey.
+  <div class="toast-head">🙏 You're on the list!</div>
+  <div class="toast-body">Check Promotions or "All Mail" and drag this email into Primary, so tomorrow's verse actually finds you.</div>
 </div>
 
 <script> 
@@ -2643,7 +2668,7 @@
   function showToast() {
     const toast = document.getElementById('toast');
     toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 4500);
+    setTimeout(() => toast.classList.remove('show'), 6500);
   }
 
   /* ══════════════════════════════════════
