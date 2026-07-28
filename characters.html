@@ -250,336 +250,871 @@ footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(199,139,14,0.1);padd
 </div>
 
 <!-- ══ FAMILY TREE ══ -->
-<div class="section-full" id="tree">
-  <div class="section" style="padding-top:0;padding-bottom:2rem">
-    <div class="section-eyebrow">Generation by Generation</div>
-    <h2 class="section-h2">The Family Tree <em>you actually need</em></h2>
-    <p class="section-intro">Starting from King Shantanu. Every major character in the Bhagavad Gita appears below. Hover any node for their story.</p>
-  </div>
+<div id="tree">
+<!-- ============================================================
+     BEGIN: FAMILY TREE SECTION
+     Self-contained. No build step, no dependencies, no globals.
+     Every class and id is prefixed `gd-` so it cannot collide.
+     ============================================================ -->
 
-  <div style="max-width:1200px;margin:0 auto;padding:0 3rem">
-    <div class="tree-wrap">
-      <svg class="tree-svg" width="1600" height="700" viewBox="0 0 1600 700" xmlns="http://www.w3.org/2000/svg">
+<section class="gd-tree" id="gd-family-tree" aria-label="Mahabharat family tree">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Karla:wght@400;500;700&family=Tiro+Devanagari+Hindi&display=swap');
 
-  <!-- ═══════ GENERATION LABELS ═══════ -->
-  <text x="14" y="58"  font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">GEN 1</text>
-  <text x="14" y="158" font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">GEN 2</text>
-  <text x="14" y="258" font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">GEN 2</text>
-  <text x="14" y="340" font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">WIVES</text>
-  <text x="14" y="438" font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">GEN 3</text>
-  <text x="14" y="538" font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">GEN 4</text>
-  <text x="14" y="638" font-family="'DM Sans',sans-serif" font-size="8" font-weight="600" letter-spacing="0.12em" fill="rgba(250,246,239,0.18)" text-anchor="start">GEN 5</text>
+.gd-tree{
+  --gd-ink:#191B3D;
+  --gd-ink-soft:#5C5E86;
+  --gd-paper:#F4F2FB;
+  --gd-card:#FFFFFF;
+  --gd-line:#DCD8F0;
+  --gd-vermillion:#D6294A;
+  --gd-river:#1E9FD4;
+  --gd-brass:#C08A2A;
+  --gd-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --gd-body:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --gd-dev:"Tiro Devanagari Hindi",serif;
+  position:relative;box-sizing:border-box;
+  padding:clamp(28px,4vw,56px) clamp(14px,4vw,48px);
+  background:
+    radial-gradient(120% 55% at 12% 0%,#EDEAFB 0%,rgba(237,234,251,0) 60%),
+    radial-gradient(90% 50% at 100% 100%,#E7F4FA 0%,rgba(231,244,250,0) 55%),
+    var(--gd-paper);
+  color:var(--gd-ink);font-family:var(--gd-body);-webkit-font-smoothing:antialiased;
+}
+.gd-tree *,.gd-tree *::before,.gd-tree *::after{box-sizing:border-box;}
+.gd-inner{max-width:1240px;margin:0 auto;}
 
-  <!-- Horizontal generation guide lines -->
-  <line x1="50" y1="28"  x2="1590" y2="28"  stroke="rgba(199,139,14,0.04)" stroke-width="1"/>
-  <line x1="50" y1="128" x2="1590" y2="128" stroke="rgba(199,139,14,0.04)" stroke-width="1"/>
-  <line x1="50" y1="228" x2="1590" y2="228" stroke="rgba(199,139,14,0.04)" stroke-width="1"/>
-  <line x1="50" y1="408" x2="1590" y2="408" stroke="rgba(199,139,14,0.04)" stroke-width="1"/>
-  <line x1="50" y1="508" x2="1590" y2="508" stroke="rgba(199,139,14,0.04)" stroke-width="1"/>
+.gd-bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;padding:0 0 20px;border-bottom:1px solid var(--gd-line);}
+.gd-key{display:flex;flex-wrap:wrap;gap:8px 16px;}
+.gd-key span{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gd-ink-soft);}
+.gd-key i{display:block;width:24px;height:0;border-top-width:3px;border-radius:3px;}
+.gd-k-m i{border-top-style:solid;border-color:var(--gd-river);}
+.gd-k-b i{border-top-style:solid;border-color:var(--gd-vermillion);}
+.gd-k-n i{border-top-style:dotted;border-color:var(--gd-ink-soft);}
+.gd-k-d i{border-top-style:dashed;border-color:var(--gd-brass);}
+.gd-tools{display:flex;align-items:center;gap:8px;margin-left:auto;}
+.gd-btn{font-family:inherit;font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;padding:9px 15px;border-radius:999px;border:1.5px solid var(--gd-line);background:var(--gd-card);color:var(--gd-ink);transition:background .22s,color .22s,border-color .22s;}
+.gd-btn:hover{border-color:var(--gd-ink);}
+.gd-btn:focus-visible{outline:3px solid var(--gd-river);outline-offset:2px;}
+.gd-btn[aria-pressed="true"]{background:var(--gd-vermillion);border-color:var(--gd-vermillion);color:#fff;}
+.gd-zoom{display:inline-flex;align-items:center;border:1.5px solid var(--gd-line);border-radius:999px;background:var(--gd-card);overflow:hidden;}
+.gd-zoom button{font-family:inherit;font-size:15px;line-height:1;width:34px;height:34px;border:0;background:transparent;color:var(--gd-ink);cursor:pointer;}
+.gd-zoom button:hover{background:#EFECFB;}
+.gd-zoom span{font-size:11px;font-weight:700;min-width:42px;text-align:center;color:var(--gd-ink-soft);font-variant-numeric:tabular-nums;}
 
-  <!-- ═══════ CONNECTOR LINES ═══════ -->
+.gd-stage{
+  position:relative;margin:22px 0 0;border-radius:20px;
+  background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0));
+  border:1px solid var(--gd-line);
+  overflow:auto;cursor:grab;overscroll-behavior-x:contain;
+  height:clamp(460px,72vh,760px);
+  -webkit-overflow-scrolling:touch;
+}
+.gd-stage.gd-grabbing{cursor:grabbing;}
+.gd-stage::-webkit-scrollbar{height:9px;width:9px;}
+.gd-stage::-webkit-scrollbar-thumb{background:#CFC9EA;border-radius:9px;}
 
-  <!-- G1: Shantanu (cx=640) down to branch -->
-  <line x1="640" y1="80"  x2="640" y2="108" stroke="rgba(199,139,14,0.45)" stroke-width="1.5"/>
-  <line x1="240" y1="108" x2="1100" y2="108" stroke="rgba(199,139,14,0.3)"  stroke-width="1.5"/>
-  <!-- Ganga branch left -->
-  <line x1="240" y1="108" x2="240" y2="128"  stroke="rgba(58,107,138,0.5)"   stroke-width="1.5"/>
-  <!-- Satyavati branch right -->
-  <line x1="1100" y1="108" x2="1100" y2="128" stroke="rgba(199,139,14,0.45)" stroke-width="1.5"/>
+/* Intro cue — appears once when the tree first scrolls into view */
+.gd-stage-wrap{position:relative;}
+.gd-intro-cue{
+  position:absolute;inset:0;z-index:6;display:flex;align-items:center;justify-content:center;
+  border-radius:20px;padding:20px;text-align:center;
+  background:rgba(244,242,251,.62);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .5s ease,visibility .5s;
+}
+.gd-intro-cue.gd-cue-on{opacity:1;visibility:visible;}
+.gd-intro-cue-inner{
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  transform:translateY(8px);transition:transform .5s cubic-bezier(.2,.7,.3,1);
+}
+.gd-intro-cue.gd-cue-on .gd-intro-cue-inner{transform:none;}
+.gd-intro-cue-icon{color:var(--gd-vermillion);animation:gd-cue-tap 1.4s ease-in-out infinite;}
+@keyframes gd-cue-tap{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+.gd-intro-cue p{
+  margin:0;font-family:var(--gd-display);font-weight:600;font-size:clamp(17px,2.4vw,22px);
+  line-height:1.3;color:var(--gd-ink);max-width:22ch;
+}
+.gd-intro-cue p strong{color:var(--gd-vermillion);}
+@media (prefers-reduced-motion:reduce){
+  .gd-intro-cue-icon{animation:none;}
+}
+.gd-fit{transform-origin:0 0;margin:0 auto;}
+.gd-canvas{position:relative;width:max-content;padding:34px 30px 20px;}
+.gd-wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}
+.gd-wire{fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .4s ease,stroke-width .3s ease;}
+.gd-canvas.gd-intro .gd-wire{opacity:.92;}
+.gd-wire.gd-prev{opacity:.42;}
+.gd-wire.gd-lit{opacity:1;stroke-width:3.4;}
+.gd-w-drop{stroke:url(#gd-wgrad);stroke-width:2.6;}
+.gd-w-married{stroke:var(--gd-river);stroke-width:2.6;}
+.gd-w-blood{stroke:var(--gd-vermillion);stroke-width:2.6;}
+.gd-w-niyoga{stroke:var(--gd-ink-soft);stroke-width:2.4;stroke-dasharray:1 6;}
+.gd-w-divine{stroke:var(--gd-brass);stroke-width:2.4;stroke-dasharray:7 6;}
+.gd-w-aside{stroke:var(--gd-ink-soft);stroke-width:1.6;stroke-dasharray:2 6;opacity:.45;}
 
-  <!-- G2: Bhishma from Ganga -->
-  <line x1="240" y1="174" x2="240" y2="228"  stroke="rgba(58,107,138,0.45)"  stroke-width="1.5" stroke-dasharray="5,3"/>
+.gd-row{display:flex;justify-content:center;align-items:flex-start;gap:12px;padding-bottom:118px;position:relative;}
+.gd-row:last-child{padding-bottom:8px;}
+.gd-era{position:relative;z-index:2;text-align:center;margin:0 0 16px;}
+.gd-era>span{
+  display:inline-block;padding:7px 18px;border-radius:14px;background:var(--gd-paper);
+  font-family:var(--gd-display);font-size:11px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gd-vermillion);
+}
+.gd-era b{display:block;font-family:var(--gd-body);font-weight:400;letter-spacing:0;text-transform:none;font-size:13px;color:var(--gd-ink-soft);margin-top:4px;}
 
-  <!-- G2: Satyavati (1100) → Vyasa(680) + Vichitravirya(1020) -->
-  <line x1="1100" y1="174" x2="1100" y2="208" stroke="rgba(199,139,14,0.4)"  stroke-width="1.5"/>
-  <line x1="680"  y1="208" x2="1100" y2="208" stroke="rgba(199,139,14,0.3)"  stroke-width="1.5"/>
-  <line x1="680"  y1="208" x2="680"  y2="228"  stroke="rgba(107,76,154,0.55)" stroke-width="1.5"/>
-  <line x1="1020" y1="208" x2="1020" y2="228"  stroke="rgba(199,139,14,0.4)"  stroke-width="1.5"/>
+.gd-node{
+  position:relative;z-index:2;flex:0 0 112px;width:112px;
+  font-family:inherit;color:inherit;text-align:center;cursor:pointer;
+  background:var(--gd-card);border:1px solid var(--gd-line);border-radius:16px;
+  padding:11px 8px 10px;box-shadow:0 1px 2px rgba(25,27,61,.05);
+  transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s,border-color .3s,opacity .35s,filter .35s;
+}
+.gd-node:hover{transform:translateY(-4px);box-shadow:0 12px 26px -12px rgba(25,27,61,.3);border-color:#C3BBE8;}
+.gd-node:focus-visible{outline:3px solid var(--gd-river);outline-offset:3px;}
+.gd-node[aria-current="true"]{border-color:var(--gd-vermillion);box-shadow:0 0 0 3px rgba(214,41,74,.15),0 12px 26px -12px rgba(214,41,74,.4);}
+.gd-av{width:44px;height:44px;display:block;margin:0 auto 8px;border-radius:50%;}
+.gd-node:hover .gd-av{animation:gd-bob 1.6s ease-in-out infinite;}
+@keyframes gd-bob{50%{transform:translateY(-3px) rotate(-3deg);}}
+.gd-halo{transform-origin:50px 44px;animation:gd-spin 14s linear infinite;}
+@keyframes gd-spin{to{transform:rotate(360deg);}}
+.gd-rays{transform-origin:50px 44px;animation:gd-pulse 3.4s ease-in-out infinite;}
+@keyframes gd-pulse{50%{opacity:.35;transform:scale(1.09);}}
+.gd-wave{animation:gd-drift 5s ease-in-out infinite;}
+@keyframes gd-drift{50%{transform:translateX(-7px);}}
+.gd-nm,.gd-dv,.gd-rl{display:block;}
+.gd-nm{font-family:var(--gd-display);font-weight:600;font-size:12.5px;line-height:1.15;letter-spacing:-.01em;}
+.gd-dv{font-family:var(--gd-dev);font-size:9.5px;color:var(--gd-ink-soft);margin:2px 0 6px;}
+.gd-rl{font-size:10px;line-height:1.35;color:var(--gd-ink-soft);}
+.gd-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--gd-vermillion);}
 
-  <!-- Chitrangada note (older brother of Vichitravirya, died without issue) — just a stub label -->
-  <line x1="1020" y1="208" x2="880"  y2="208"  stroke="rgba(199,139,14,0.2)" stroke-width="1" stroke-dasharray="3,4"/>
-  <line x1="880"  y1="208" x2="880"  y2="228"  stroke="rgba(199,139,14,0.2)" stroke-width="1" stroke-dasharray="3,4"/>
+.gd-canvas .gd-node,.gd-canvas .gd-era{opacity:0;transform:translateY(14px);}
+.gd-tree.gd-ready .gd-canvas .gd-node,.gd-tree.gd-ready .gd-canvas .gd-era{
+  opacity:1;transform:none;
+  transition:opacity .55s ease var(--gd-d,0ms),transform .55s cubic-bezier(.2,.7,.3,1) var(--gd-d,0ms);
+}
 
-  <!-- G2b: Vichitravirya(1020) → wives Ambika(840) + Ambalika(1100) -->
-  <line x1="1020" y1="276" x2="1020" y2="308" stroke="rgba(199,139,14,0.35)" stroke-width="1.5"/>
-  <line x1="840"  y1="308" x2="1100" y2="308" stroke="rgba(199,139,14,0.3)"  stroke-width="1.5"/>
-  <line x1="840"  y1="308" x2="840"  y2="328"  stroke="rgba(199,139,14,0.4)"  stroke-width="1.5"/>
-  <line x1="1100" y1="308" x2="1100" y2="328"  stroke="rgba(199,139,14,0.4)"  stroke-width="1.5"/>
+.gd-tree.gd-spot .gd-node:not(.gd-is-gita),
+.gd-canvas.gd-tracing .gd-node:not(.gd-lit){opacity:.2;filter:grayscale(1);}
 
-  <!-- Shurasena(1380) → Vasudeva(1220) + Kunti(1040) -->
-  <line x1="1380" y1="228" x2="1380" y2="408" stroke="rgba(199,139,14,0.35)" stroke-width="1.5"/>
-  <line x1="1040" y1="408" x2="1380" y2="408" stroke="rgba(199,139,14,0.3)"  stroke-width="1.5"/>
-  <line x1="1220" y1="408" x2="1220" y2="428"  stroke="rgba(199,139,14,0.45)" stroke-width="1.5"/>
-  <line x1="1040" y1="408" x2="1040" y2="428"  stroke="rgba(199,139,14,0.35)" stroke-width="1.5"/>
+.gd-panel{
+  margin:18px 0 0;background:var(--gd-card);border:1px solid var(--gd-line);border-radius:20px;
+  padding:20px 22px;display:flex;gap:20px;align-items:flex-start;min-height:150px;
+}
+.gd-panel-av{flex:0 0 74px;}
+.gd-panel-av svg{width:74px;height:74px;border-radius:50%;display:block;}
+.gd-panel-body{flex:1 1 auto;min-width:0;}
+.gd-panel h3{font-family:var(--gd-display);font-weight:600;font-size:24px;line-height:1.15;margin:0;letter-spacing:-.015em;}
+.gd-panel .gd-p-dev{font-family:var(--gd-dev);font-size:14px;color:var(--gd-ink-soft);display:block;margin:2px 0 12px;}
+.gd-panel p{margin:0 0 10px;font-size:14.5px;line-height:1.6;max-width:62ch;}
+.gd-p-why{padding:11px 14px;border-radius:12px;background:linear-gradient(180deg,#F7F4FF,#F1EEFC);font-size:13.5px!important;}
+.gd-p-why::before{content:"In the Gita \2014 ";font-weight:700;color:var(--gd-vermillion);}
+.gd-p-empty{color:var(--gd-ink-soft);font-size:14.5px;line-height:1.6;margin:0;}
+.gd-p-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
+.gd-p-rel{display:block;font-size:12.5px;color:var(--gd-ink-soft);margin:-6px 0 12px;}
+.gd-p-rel em{font-style:normal;color:var(--gd-brass);font-weight:700;}
+.gd-chip-static{cursor:default;background:#FBF6EC;border-color:#E8D6AE;color:#8A6A1C;font-weight:700;}
+.gd-p-links b{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gd-ink-soft);align-self:center;margin-right:2px;}
+.gd-chip{font-family:inherit;font-size:12px;font-weight:500;padding:6px 12px;border-radius:999px;border:1px solid var(--gd-line);background:var(--gd-paper);color:var(--gd-ink);cursor:pointer;transition:border-color .2s,background .2s;}
+.gd-chip:hover{border-color:var(--gd-river);background:#fff;}
+.gd-chip:focus-visible{outline:3px solid var(--gd-river);outline-offset:2px;}
+.gd-badge{display:inline-block;margin:0 0 8px;padding:3px 9px;border-radius:999px;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(214,41,74,.1);color:var(--gd-vermillion);}
+.gd-hint{margin:12px 0 0;font-size:12px;color:var(--gd-ink-soft);}
 
-  <!-- Niyoga lines: Vyasa(680) dashes → Dhritarashtra(200) + Pandu(480) + Vidura(720) -->
-  <line x1="680" y1="276" x2="680" y2="390"  stroke="rgba(107,76,154,0.45)" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="200" y1="390" x2="720" y2="390"  stroke="rgba(107,76,154,0.35)" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="200" y1="390" x2="200" y2="410"   stroke="rgba(107,76,154,0.5)"  stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="480" y1="390" x2="480" y2="410"   stroke="rgba(107,76,154,0.5)"  stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="720" y1="390" x2="720" y2="410"   stroke="rgba(107,76,154,0.5)"  stroke-width="1.5" stroke-dasharray="4,3"/>
+@media (max-width:720px){
+  .gd-tools{margin-left:0;}
+  .gd-stage{height:clamp(400px,64vh,560px);}
+  .gd-panel{flex-direction:column;gap:14px;padding:18px;}
+  .gd-panel-av{flex:0 0 auto;}
+  .gd-panel h3{font-size:21px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .gd-tree *,.gd-tree *::before{animation:none!important;transition-duration:.001ms!important;}
+  .gd-canvas .gd-node,.gd-canvas .gd-era{opacity:1!important;transform:none!important;}
+}
+</style>
 
-  <!-- Ambika(840) → Dhritarashtra(200): diagonal note -->
-  <line x1="840" y1="352" x2="840" y2="385"  stroke="rgba(107,76,154,0.25)" stroke-width="1" stroke-dasharray="3,4"/>
-  <line x1="270" y1="385" x2="840" y2="385"  stroke="rgba(107,76,154,0.2)"  stroke-width="1" stroke-dasharray="3,4"/>
-  <line x1="270" y1="385" x2="270" y2="410"   stroke="rgba(107,76,154,0.25)" stroke-width="1" stroke-dasharray="3,4"/>
-  <!-- Ambalika(1100) → Pandu(480): diagonal note -->
-  <line x1="1100" y1="372" x2="1100" y2="395" stroke="rgba(107,76,154,0.22)" stroke-width="1" stroke-dasharray="3,4"/>
-  <line x1="550"  y1="395" x2="1100" y2="395" stroke="rgba(107,76,154,0.18)" stroke-width="1" stroke-dasharray="3,4"/>
-  <line x1="550"  y1="395" x2="550"  y2="410"  stroke="rgba(107,76,154,0.22)" stroke-width="1" stroke-dasharray="3,4"/>
-
-  <!-- Niyoga label -->
-  <text x="620" y="404" font-family="'DM Sans',sans-serif" font-size="8" fill="rgba(107,76,154,0.45)" text-anchor="middle" font-style="italic">niyoga — sage-fathered, sanctioned by dharma</text>
-
-  <!-- Dhritarashtra(200) → Kauravas: Duryodhana(80) + Dushasan(230) + "+98" -->
-  <line x1="200" y1="466" x2="200" y2="496"  stroke="rgba(192,79,45,0.5)"  stroke-width="1.5"/>
-  <line x1="80"  y1="496" x2="380" y2="496"  stroke="rgba(192,79,45,0.4)"  stroke-width="1.5"/>
-  <line x1="80"  y1="496" x2="80"  y2="510"   stroke="rgba(192,79,45,0.5)"  stroke-width="1.5"/>
-  <line x1="230" y1="496" x2="230" y2="510"   stroke="rgba(192,79,45,0.5)"  stroke-width="1.5"/>
-  <line x1="380" y1="496" x2="380" y2="510"   stroke="rgba(192,79,45,0.4)"  stroke-width="1.5"/>
-
-  <!-- Pandu(480) → Pandavas: Karna-note + Yudhi(530) + Bhima(680) + Arjuna(830) + Nakula(980) + Sahadeva(1130) -->
-  <!-- Karna (pre-marriage) special dashed branch from Kunti(1040) side -->
-  <line x1="1040" y1="480" x2="1040" y2="492" stroke="rgba(199,139,14,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="390"  y1="492" x2="1040" y2="492" stroke="rgba(199,139,14,0.25)" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="390"  y1="492" x2="390"  y2="510"  stroke="rgba(199,139,14,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
-
-  <!-- Pandu → 5 Pandavas spread -->
-  <line x1="480" y1="466" x2="480" y2="502"  stroke="rgba(74,122,98,0.5)"  stroke-width="1.5"/>
-  <line x1="480" y1="502" x2="1130" y2="502" stroke="rgba(74,122,98,0.4)"  stroke-width="1.5"/>
-  <line x1="530" y1="502" x2="530" y2="510"  stroke="rgba(74,122,98,0.5)"  stroke-width="1.5"/>
-  <line x1="680" y1="502" x2="680" y2="510"  stroke="rgba(74,122,98,0.5)"  stroke-width="1.5"/>
-  <line x1="830" y1="502" x2="830" y2="510"  stroke="rgba(74,122,98,0.5)"  stroke-width="1.5"/>
-  <line x1="980" y1="502" x2="980" y2="510"  stroke="rgba(74,122,98,0.5)"  stroke-width="1.5"/>
-  <line x1="1130" y1="502" x2="1130" y2="510" stroke="rgba(74,122,98,0.45)" stroke-width="1.5"/>
-
-  <!-- Kunti ↔ Vasudeva sibling dashed line -->
-  <line x1="1040" y1="454" x2="1040" y2="468" stroke="rgba(199,139,14,0.25)" stroke-width="1" stroke-dasharray="3,4"/>
-  <line x1="1040" y1="468" x2="1220" y2="468" stroke="rgba(199,139,14,0.2)"  stroke-width="1" stroke-dasharray="3,4"/>
-  <line x1="1220" y1="452" x2="1220" y2="468" stroke="rgba(199,139,14,0.25)" stroke-width="1" stroke-dasharray="3,4"/>
-  <text x="1130" y="464" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="rgba(199,139,14,0.35)" text-anchor="middle">siblings</text>
-
-  <!-- Vasudeva(1220) → Krishna(1300) + Subhadra(1460) -->
-  <line x1="1220" y1="476" x2="1220" y2="502" stroke="rgba(199,139,14,0.5)"  stroke-width="1.5"/>
-  <line x1="1220" y1="502" x2="1460" y2="502" stroke="rgba(199,139,14,0.4)"  stroke-width="1.5"/>
-  <line x1="1300" y1="502" x2="1300" y2="510" stroke="rgba(199,139,14,0.5)"  stroke-width="1.5"/>
-  <line x1="1460" y1="502" x2="1460" y2="510" stroke="rgba(199,139,14,0.4)"  stroke-width="1.5"/>
-
-  <!-- Arjuna(830) + Subhadra(1460) → Abhimanyu(830) marriage arc -->
-  <line x1="1460" y1="558" x2="1460" y2="578" stroke="rgba(107,76,154,0.3)"  stroke-width="1" stroke-dasharray="3,4"/>
-  <line x1="895"  y1="578" x2="1460" y2="578" stroke="rgba(107,76,154,0.25)" stroke-width="1" stroke-dasharray="3,4"/>
-  <line x1="895"  y1="560" x2="895"  y2="578"  stroke="rgba(107,76,154,0.3)"  stroke-width="1" stroke-dasharray="3,4"/>
-  <!-- Arjuna → Abhimanyu -->
-  <line x1="830" y1="562" x2="830" y2="616"  stroke="rgba(74,122,98,0.4)"  stroke-width="1.5"/>
-
-  <!-- Cousin note -->
-  <text x="1130" y="500" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="9" fill="rgba(199,139,14,0.3)" text-anchor="middle">∴ Krishna &amp; Pandavas = first cousins</text>
-
-  <!-- ═══════ NODES ═══════ -->
-
-  <!-- GEN 1: SHANTANU cx=640, y=30 -->
-  <g class="tnode" data-n="King Shantanu" data-r="King of Hastinapura · Generation 1" data-d="The founding ancestor of both the Pandava and Kaurava lines. He had two marriages: to Ganga (producing Bhishma) and to Satyavati (producing Chitrangada and Vichitravirya). Both marriages set in motion the events that lead to Kurukshetra.">
-    <rect x="540" y="30" width="200" height="50" rx="8" fill="rgba(199,139,14,0.2)" stroke="rgba(240,200,74,0.65)" stroke-width="2"/>
-    <text class="tnode-name" x="640" y="50" fill="#F0C84A" font-size="14" font-weight="500">King Shantanu</text>
-    <text class="tnode-sub"  x="640" y="67" fill="rgba(240,200,74,0.55)" font-size="8">Ancestor · King of Hastinapura</text>
-  </g>
-
-  <!-- GEN 2 LEFT: GANGA cx=240 -->
-  <g class="tnode" data-n="Ganga" data-r="First wife of Shantanu · Mother of Bhishma" data-d="The river goddess. First wife of Shantanu. Mother of Devavrata, who would become Bhishma. She left Shantanu after he broke their agreement, but their son Devavrata — later Bhishma — remained.">
-    <rect x="140" y="128" width="200" height="46" rx="8" fill="rgba(58,107,138,0.2)" stroke="rgba(58,107,138,0.55)" stroke-width="1.5"/>
-    <text class="tnode-name" x="240" y="146" fill="#A8C8E0" font-size="13">Ganga</text>
-    <text class="tnode-sub"  x="240" y="163" fill="rgba(168,200,224,0.55)" font-size="8">1st Wife · River Goddess</text>
-  </g>
-
-  <!-- GEN 2 RIGHT: SATYAVATI cx=1100 -->
-  <g class="tnode" data-n="Satyavati" data-r="Second wife of Shantanu · Mother of Vyasa, Chitrangada, Vichitravirya" data-d="A fisherwoman who became queen. Before marrying Shantanu she had already borne Vyasa (by sage Parashara). Her condition for the marriage — that her sons, not Bhishma, would inherit — led to Bhishma's terrible oath.">
-    <rect x="1000" y="128" width="200" height="46" rx="8" fill="rgba(107,76,154,0.2)" stroke="rgba(107,76,154,0.5)" stroke-width="1.5"/>
-    <text class="tnode-name" x="1100" y="146" fill="#C8A8E0" font-size="13">Satyavati</text>
-    <text class="tnode-sub"  x="1100" y="163" fill="rgba(200,168,224,0.55)" font-size="8">2nd Wife · Mother of Vyasa, Vichitra...</text>
-  </g>
-
-  <!-- GEN 2: BHISHMA cx=240, y=228 -->
-  <g class="tnode" data-n="Bhishma" data-r="Son of Shantanu & Ganga · Grand-Uncle · Never married" data-d="Born Devavrata. Renounced the throne and took a lifelong vow of celibacy so his father could marry Satyavati — that vow gave him the name Bhishma. Grand-uncle to both Pandavas and Kauravas. Commanded the Kaurava army for the first 10 days. Had the boon of choosing his own moment of death.">
-    <rect x="140" y="228" width="200" height="50" rx="8" fill="rgba(58,107,138,0.22)" stroke="rgba(58,107,138,0.6)" stroke-width="2"/>
-    <text class="tnode-name" x="240" y="249" fill="#A8C8E0" font-size="14" font-weight="500">Bhishma</text>
-    <text class="tnode-sub"  x="240" y="267" fill="rgba(168,200,224,0.6)" font-size="8">Grand-Uncle · Never married</text>
-  </g>
-
-  <!-- GEN 2: CHITRANGADA stub cx=880 -->
-  <g class="tnode" data-n="Chitrangada" data-r="Elder son of Shantanu & Satyavati · Died young" data-d="Elder son of Satyavati and Shantanu. Died young in battle before marrying or producing an heir. His death meant the line passed to his younger brother Vichitravirya.">
-    <rect x="790" y="228" width="180" height="46" rx="8" fill="rgba(199,139,14,0.07)" stroke="rgba(199,139,14,0.2)" stroke-width="1" stroke-dasharray="4,3"/>
-    <text class="tnode-name" x="880" y="246" fill="rgba(212,184,96,0.55)" font-size="12">Chitrangada</text>
-    <text class="tnode-sub"  x="880" y="263" fill="rgba(212,184,96,0.35)" font-size="8">Died without heirs · See note</text>
-  </g>
-
-  <!-- GEN 2: VYASA cx=680 -->
-  <g class="tnode" data-n="Vyasa" data-r="Son of Satyavati & sage Parashara · Author & father by niyoga" data-d="Born before Satyavati's marriage to Shantanu. He is both the author of the Mahabharata and a character in it. Through niyoga (a dharma-sanctioned arrangement), he fathered Dhritarashtra (through Ambika), Pandu (through Ambalika), and Vidura (through a maid) — all three of whom became the fathers of the war's two sides.">
-    <rect x="580" y="228" width="200" height="50" rx="8" fill="rgba(107,76,154,0.22)" stroke="rgba(107,76,154,0.55)" stroke-width="2"/>
-    <text class="tnode-name" x="680" y="249" fill="#C8A8E0" font-size="14" font-weight="500">Vyasa</text>
-    <text class="tnode-sub"  x="680" y="267" fill="rgba(200,168,224,0.6)" font-size="8">Sage · Author · Father by Niyoga</text>
-  </g>
-
-  <!-- GEN 2: VICHITRAVIRYA cx=1020 -->
-  <g class="tnode" data-n="Vichitravirya" data-r="Younger son of Satyavati & Shantanu · Died without heirs" data-d="Younger son of Satyavati. Married both Ambika and Ambalika (princesses of Kashi). Died young without fathering children. His death triggered the niyoga arrangement — Vyasa was called to continue the Kuru line.">
-    <rect x="920" y="228" width="200" height="50" rx="8" fill="rgba(199,139,14,0.1)" stroke="rgba(199,139,14,0.3)" stroke-width="1.5"/>
-    <text class="tnode-name" x="1020" y="249" fill="#D4A860" font-size="13">Vichitravirya</text>
-    <text class="tnode-sub"  x="1020" y="267" fill="rgba(212,168,96,0.55)" font-size="8">Son of Satyavati · Died without heirs</text>
-  </g>
-
-  <!-- GEN 2: SHURASENA cx=1380 -->
-  <g class="tnode" data-n="Shurasena" data-r="Yadava king · Father of Vasudeva and Kunti" data-d="King of the Yadava clan. Father of Vasudeva (Krishna's father) and Pritha (later renamed Kunti after being adopted by her uncle Kuntibhoja). Because Vasudeva and Kunti are siblings, their children Krishna and Arjuna are first cousins.">
-    <rect x="1280" y="228" width="200" height="50" rx="8" fill="rgba(199,139,14,0.14)" stroke="rgba(199,139,14,0.4)" stroke-width="1.5"/>
-    <text class="tnode-name" x="1380" y="249" fill="#E8C880" font-size="13">Shurasena</text>
-    <text class="tnode-sub"  x="1380" y="267" fill="rgba(232,200,128,0.55)" font-size="8">Father of Vasudeva &amp; Kunti (Pritha)</text>
-  </g>
-
-  <!-- GEN 2b: AMBIKA cx=840 y=328 -->
-  <g class="tnode" data-n="Ambika" data-r="Wife of Vichitravirya · Mother of Dhritarashtra (via Vyasa)" data-d="Princess of Kashi. Married Vichitravirya. After his death, Vyasa came to her for niyoga. She closed her eyes in fear — and her son Dhritarashtra was born blind.">
-    <rect x="740" y="328" width="200" height="46" rx="8" fill="rgba(199,139,14,0.08)" stroke="rgba(199,139,14,0.22)" stroke-width="1"/>
-    <text class="tnode-name" x="840" y="347" fill="#D4B870" font-size="13">Ambika</text>
-    <text class="tnode-sub"  x="840" y="364" fill="rgba(212,184,112,0.45)" font-size="8">Mother of Dhritarashtra</text>
-  </g>
-
-  <!-- GEN 2b: AMBALIKA cx=1100 y=328 -->
-  <g class="tnode" data-n="Ambalika" data-r="Wife of Vichitravirya · Mother of Pandu (via Vyasa)" data-d="Princess of Kashi. Married Vichitravirya. After his death, Vyasa came to her for niyoga. She turned pale with fear — and her son Pandu was born pale (pandu means pale in Sanskrit).">
-    <rect x="1000" y="328" width="200" height="46" rx="8" fill="rgba(199,139,14,0.08)" stroke="rgba(199,139,14,0.22)" stroke-width="1"/>
-    <text class="tnode-name" x="1100" y="347" fill="#D4B870" font-size="13">Ambalika</text>
-    <text class="tnode-sub"  x="1100" y="364" fill="rgba(212,184,112,0.45)" font-size="8">Mother of Pandu</text>
-  </g>
-
-  <!-- GEN 3: DHRITARASHTRA cx=200 y=410 -->
-  <g class="tnode" data-n="Dhritarashtra" data-r="Son of Vyasa & Ambika · Blind King · Father of Kauravas" data-d="Born blind because Ambika closed her eyes during niyoga. Married Gandhari, who blindfolded herself for life in solidarity. The Bhagavad Gita begins with his question: 'What are my sons doing on the field of Kurukshetra?'">
-    <rect x="100" y="410" width="200" height="54" rx="8" fill="rgba(192,79,45,0.16)" stroke="rgba(192,79,45,0.5)" stroke-width="2"/>
-    <text class="tnode-name" x="200" y="432" fill="#F5A090" font-size="13" font-weight="500">Dhritarashtra</text>
-    <text class="tnode-sub"  x="200" y="451" fill="rgba(192,79,45,0.65)" font-size="8">Blind King · Father of Kauravas</text>
-  </g>
-
-  <!-- GEN 3: PANDU cx=480 y=410 -->
-  <g class="tnode" data-n="Pandu" data-r="Son of Vyasa & Ambalika · Father of Pandavas · Cursed" data-d="Born pale. Became king of Hastinapura. Cursed by sage Kindama: if he touched a woman with desire, he would die. Hence his wives Kunti and Madri used the divine mantra to invoke gods as the fathers of their sons. Pandu died when he forgot the curse.">
-    <rect x="380" y="410" width="200" height="54" rx="8" fill="rgba(74,122,98,0.16)" stroke="rgba(74,122,98,0.55)" stroke-width="2"/>
-    <text class="tnode-name" x="480" y="432" fill="#A8D8B8" font-size="14" font-weight="500">Pandu</text>
-    <text class="tnode-sub"  x="480" y="451" fill="rgba(74,122,98,0.65)" font-size="8">Father of Pandavas · Cursed</text>
-  </g>
-
-  <!-- GEN 3: VIDURA cx=720 y=410 -->
-  <g class="tnode" data-n="Vidura" data-r="Son of Vyasa & a maid · Half-brother to both kings" data-d="Born of a palace maid, making him half-brother to Dhritarashtra and Pandu but of lower birth status. The wisest of the three. Said to be the earthly form of Yama. Warned Dhritarashtra repeatedly — and was not listened to.">
-    <rect x="620" y="410" width="200" height="54" rx="8" fill="rgba(107,76,154,0.16)" stroke="rgba(107,76,154,0.5)" stroke-width="2"/>
-    <text class="tnode-name" x="720" y="432" fill="#C8A8E0" font-size="14" font-weight="500">Vidura</text>
-    <text class="tnode-sub"  x="720" y="451" fill="rgba(107,76,154,0.65)" font-size="8">Half-Brother · Wisest Counsellor</text>
-  </g>
-
-  <!-- GEN 3: KUNTI cx=1040 y=428 -->
-  <g class="tnode" data-n="Kunti (Pritha)" data-r="Daughter of Shurasena · Sister of Vasudeva · Pandu's wife" data-d="Born Pritha, adopted by her uncle Kuntibhoja. Before her marriage she used a divine mantra to invoke the Sun god — producing Karna, whom she set adrift on a river. After marrying Pandu she used the mantra for Yudhishthira (Dharma), Bhima (Vayu), and Arjuna (Indra). She also shared it with Madri.">
-    <rect x="940" y="428" width="200" height="46" rx="8" fill="rgba(199,139,14,0.12)" stroke="rgba(199,139,14,0.35)" stroke-width="1.5"/>
-    <text class="tnode-name" x="1040" y="447" fill="#E8C880" font-size="13">Kunti (Pritha)</text>
-    <text class="tnode-sub"  x="1040" y="464" fill="rgba(232,200,128,0.55)" font-size="8">Sister of Vasudeva · Pandu's wife</text>
-  </g>
-
-  <!-- GEN 3: VASUDEVA cx=1220 y=428 -->
-  <g class="tnode" data-n="Vasudeva" data-r="Son of Shurasena · Father of Krishna, Balarama, Subhadra" data-d="Shurasena's son. Father of Krishna, Balarama, and Subhadra. His sister is Kunti (Pritha) — making the Pandavas his nephews and Krishna their first cousin.">
-    <rect x="1120" y="428" width="200" height="46" rx="8" fill="rgba(199,139,14,0.18)" stroke="rgba(199,139,14,0.5)" stroke-width="1.5"/>
-    <text class="tnode-name" x="1220" y="447" fill="#E8C880" font-size="13">Vasudeva</text>
-    <text class="tnode-sub"  x="1220" y="464" fill="rgba(232,200,128,0.6)" font-size="8">Krishna's Father · Kunti's Brother</text>
-  </g>
-
-  <!-- GEN 4: DURYODHANA cx=80 y=510 -->
-  <g class="tnode" data-n="Duryodhana" data-r="Eldest Kaurava · Son of Dhritarashtra & Gandhari" data-d="The eldest Kaurava. Refused to give the Pandavas even five villages. His pride made war inevitable. Was loyal to Karna when no one else would be.">
-    <rect x="20" y="510" width="140" height="50" rx="8" fill="rgba(192,79,45,0.2)" stroke="rgba(192,79,45,0.65)" stroke-width="2"/>
-    <text class="tnode-name" x="90" y="530" fill="#F5A090" font-size="12" font-weight="500">Duryodhana</text>
-    <text class="tnode-sub"  x="90" y="548" fill="rgba(192,79,45,0.7)" font-size="8">Eldest Kaurava</text>
-  </g>
-
-  <!-- GEN 4: DUSHASAN cx=230 y=510 -->
-  <g class="tnode" data-n="Dushasana" data-r="2nd Kaurava · Son of Dhritarashtra" data-d="Second of the 100 Kaurava brothers. Dragged Draupadi into the assembly hall and attempted to disrobe her publicly. Bhima swore to drink his blood — and kept that oath during the war.">
-    <rect x="160" y="510" width="140" height="50" rx="8" fill="rgba(192,79,45,0.14)" stroke="rgba(192,79,45,0.4)" stroke-width="1.5"/>
-    <text class="tnode-name" x="230" y="530" fill="#F5B0A0" font-size="12">Dushasana</text>
-    <text class="tnode-sub"  x="230" y="548" fill="rgba(192,79,45,0.6)" font-size="8">2nd Kaurava</text>
-  </g>
-
-  <!-- +98 more label -->
-  <text x="385" y="530" font-family="'DM Sans',sans-serif" font-size="9"  fill="rgba(192,79,45,0.4)" text-anchor="middle">+98 more</text>
-  <text x="385" y="543" font-family="'DM Sans',sans-serif" font-size="9"  fill="rgba(192,79,45,0.4)" text-anchor="middle">brothers</text>
-  <text x="385" y="555" font-family="'DM Sans',sans-serif" font-size="8"  fill="rgba(192,79,45,0.3)" text-anchor="middle">+ Duhshala (sister)</text>
-
-  <!-- GEN 4: KARNA cx=390 y=510 (pre-marriage child of Kunti — shown separately) -->
-  <g class="tnode" data-n="Karna" data-r="Firstborn of Kunti & Surya · Before her marriage · Eldest by birth" data-d="Born before Kunti's marriage, through the Sun god Surya. Placed in a basket on the river and raised by the charioteer Adhiratha. Denied entry to royal tournaments because of his caste. Duryodhana gave him the kingdom of Anga and his friendship. Karna knew his true parentage before the war and still chose Duryodhana. Despite being Kunti's firstborn, he is shown separately and is not counted among the five Pandavas.">
-    <rect x="315" y="510" width="150" height="50" rx="8" fill="rgba(199,139,14,0.2)" stroke="rgba(240,200,74,0.55)" stroke-width="2"/>
-    <text class="tnode-name" x="390" y="530" fill="#F0D070" font-size="13" font-weight="500">Karna ☀️</text>
-    <text class="tnode-sub"  x="390" y="548" fill="rgba(240,200,74,0.6)" font-size="7.5">Eldest by birth · Not counted</text>
-  </g>
-
-  <!-- GEN 4: YUDHISHTHIRA cx=530 y=510 -->
-  <g class="tnode" data-n="Yudhishthira" data-r="1st Pandava · Son of Kunti & Dharma (Yama)" data-d="Eldest Pandava. Son of Kunti and Yama (the god of Dharma/Death). Never lied — except once during the war, saying 'Ashwatthama is dead' to bring Drona down. He bet his kingdom, brothers, and Draupadi in a dice game.">
-    <rect x="455" y="510" width="150" height="50" rx="8" fill="rgba(74,122,98,0.18)" stroke="rgba(74,122,98,0.55)" stroke-width="1.8"/>
-    <text class="tnode-name" x="530" y="530" fill="#A8D8B8" font-size="12">Yudhishtira</text>
-    <text class="tnode-sub"  x="530" y="548" fill="rgba(74,122,98,0.65)" font-size="8">1st Pandava · By Dharma</text>
-  </g>
-
-  <!-- GEN 4: BHIMA cx=680 y=510 -->
-  <g class="tnode" data-n="Bhima" data-r="2nd Pandava · Son of Kunti & Vayu (Wind God)" data-d="Second Pandava, born of the wind god Vayu. Immense physical strength. Swore to kill all 100 Kauravas and drink Dushasana's blood. He kept both vows.">
-    <rect x="605" y="510" width="150" height="50" rx="8" fill="rgba(74,122,98,0.18)" stroke="rgba(74,122,98,0.5)" stroke-width="1.5"/>
-    <text class="tnode-name" x="680" y="530" fill="#A8D8B8" font-size="14" font-weight="500">Bhima</text>
-    <text class="tnode-sub"  x="680" y="548" fill="rgba(74,122,98,0.6)" font-size="8">2nd Pandava · By Vayu</text>
-  </g>
-
-  <!-- GEN 4: ARJUNA cx=830 y=506 (highlighted) -->
-  <g class="tnode" data-n="Arjuna" data-r="3rd Pandava · Son of Kunti & Indra · Protagonist of the Gita" data-d="Third Pandava, son of Indra the king of the gods. The greatest archer of his age. The entire Bhagavad Gita is Krishna speaking to Arjuna. He is Krishna's first cousin (their parents Vasudeva and Kunti are siblings). He later married Subhadra, Krishna's sister.">
-    <rect x="750" y="504" width="160" height="58" rx="8" fill="rgba(74,122,98,0.32)" stroke="rgba(74,122,98,0.85)" stroke-width="2.5"/>
-    <text class="tnode-name" x="830" y="527" fill="#78DBA8" font-size="15" font-weight="600">Arjuna</text>
-    <text class="tnode-sub"  x="830" y="546" fill="rgba(74,122,98,0.85)" font-size="8">3rd Pandava · By Indra</text>
-    <text x="830" y="557" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="7" fill="rgba(120,219,168,0.55)">★ Protagonist of the Gita</text>
-  </g>
-
-  <!-- GEN 4: NAKULA cx=980 y=510 -->
-  <g class="tnode" data-n="Nakula" data-r="4th Pandava · Son of Madri & Ashwini Kumars · Twin of Sahadeva" data-d="One of the twin sons of Madri (Pandu's second wife) and the Ashwini Kumars. Half-brother to the first three Pandavas through Pandu — Yudhishthira, Bhima and Arjuna are sons of Kunti, while Nakula and Sahadeva are sons of Madri. Known for his beauty and mastery of horses.">
-    <rect x="905" y="510" width="150" height="50" rx="8" fill="rgba(74,122,98,0.15)" stroke="rgba(74,122,98,0.4)" stroke-width="1.5"/>
-    <text class="tnode-name" x="980" y="530" fill="#B8E0C8" font-size="13">Nakula</text>
-    <text class="tnode-sub"  x="980" y="548" fill="rgba(74,122,98,0.55)" font-size="8">4th Pandava · Madri's son</text>
-  </g>
-
-  <!-- GEN 4: SAHADEVA cx=1130 y=510 -->
-  <g class="tnode" data-n="Sahadeva" data-r="5th Pandava · Son of Madri & Ashwini Kumars · Twin of Nakula" data-d="Youngest Pandava. Twin of Nakula, both sons of Madri and the Ashwini Kumars. Highly knowledgeable. His mother Madri died on Pandu's pyre; Kunti raised both twins.">
-    <rect x="1055" y="510" width="150" height="50" rx="8" fill="rgba(74,122,98,0.12)" stroke="rgba(74,122,98,0.35)" stroke-width="1.5"/>
-    <text class="tnode-name" x="1130" y="530" fill="#B8E0C8" font-size="13">Sahadeva</text>
-    <text class="tnode-sub"  x="1130" y="548" fill="rgba(74,122,98,0.5)" font-size="8">5th Pandava · Madri's son · Twin</text>
-  </g>
-
-  <!-- GEN 4: KRISHNA cx=1300 y=510 (highlighted) -->
-  <g class="tnode" data-n="Krishna" data-r="Son of Vasudeva · First cousin of Pandavas · Narrator of the Gita" data-d="Son of Vasudeva and Devaki. First cousin of the Pandavas (Vasudeva and Kunti are siblings). He offered both sides a choice before the war: himself unarmed, or his entire Narayani army. Arjuna chose Krishna. Duryodhana chose the army. The Gita is what Krishna said as Arjuna's charioteer.">
-    <rect x="1210" y="504" width="180" height="58" rx="8" fill="rgba(199,139,14,0.3)" stroke="rgba(240,200,74,0.8)" stroke-width="2.5"/>
-    <text class="tnode-name" x="1300" y="527" fill="#F0C84A" font-size="15" font-weight="600">Krishna</text>
-    <text class="tnode-sub"  x="1300" y="546" fill="rgba(199,139,14,0.9)" font-size="8">Cousin of Pandavas · The Gita</text>
-    <text x="1300" y="557" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="7" fill="rgba(240,200,74,0.5)">★ The Teacher</text>
-  </g>
-
-  <!-- GEN 4: SUBHADRA cx=1460 y=510 -->
-  <g class="tnode" data-n="Subhadra" data-r="Daughter of Vasudeva · Krishna's sister · Arjuna's wife" data-d="Krishna's sister. Married Arjuna with Krishna's approval. Mother of Abhimanyu. Subhadra fell asleep while Arjuna was teaching her the Chakravyuha formation — Abhimanyu in the womb heard only how to enter, not how to exit.">
-    <rect x="1380" y="510" width="160" height="50" rx="8" fill="rgba(199,139,14,0.15)" stroke="rgba(199,139,14,0.45)" stroke-width="1.5"/>
-    <text class="tnode-name" x="1460" y="530" fill="#E8C880" font-size="13">Subhadra</text>
-    <text class="tnode-sub"  x="1460" y="548" fill="rgba(232,200,128,0.6)" font-size="8">Krishna's sister · Arjuna's wife</text>
-  </g>
-
-  <!-- GEN 5: ABHIMANYU cx=830 y=616 -->
-  <g class="tnode" data-n="Abhimanyu" data-r="Son of Arjuna & Subhadra · Krishna's nephew" data-d="Arjuna's son by Subhadra. Heard how to enter the Chakravyuha while in the womb — but his mother fell asleep before Arjuna could explain the exit. He entered the formation on Day 13 of the war and was killed inside it, aged approximately 16. His son Parikshit survived and continued the Pandava line.">
-    <rect x="750" y="616" width="160" height="50" rx="8" fill="rgba(74,122,98,0.12)" stroke="rgba(74,122,98,0.35)" stroke-width="1.5"/>
-    <text class="tnode-name" x="830" y="636" fill="#A8D8B8" font-size="13">Abhimanyu</text>
-    <text class="tnode-sub"  x="830" y="654" fill="rgba(74,122,98,0.5)" font-size="8">Son of Arjuna &amp; Subhadra</text>
-  </g>
-
-  <!-- LEGEND -->
-  <g transform="translate(50,678)">
-    <rect width="10" height="10" rx="2" fill="rgba(74,122,98,0.5)"  stroke="rgba(74,122,98,0.8)"  stroke-width="1"/><text x="15" y="9" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(250,246,239,0.4)">Pandava line</text>
-    <rect x="120" width="10" height="10" rx="2" fill="rgba(192,79,45,0.5)" stroke="rgba(192,79,45,0.8)" stroke-width="1"/><text x="135" y="9" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(250,246,239,0.4)">Kaurava line</text>
-    <rect x="240" width="10" height="10" rx="2" fill="rgba(199,139,14,0.5)" stroke="rgba(240,200,74,0.7)" stroke-width="1"/><text x="255" y="9" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(250,246,239,0.4)">Divine / Yadava</text>
-    <rect x="370" width="10" height="10" rx="2" fill="rgba(107,76,154,0.5)" stroke="rgba(107,76,154,0.7)" stroke-width="1"/><text x="385" y="9" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(250,246,239,0.4)">Sage lineage</text>
-    <line x1="480" y1="5" x2="502" y2="5" stroke="rgba(199,139,14,0.45)" stroke-width="1.2" stroke-dasharray="3,3"/><text x="507" y="9" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(250,246,239,0.38)">Dashed = niyoga / sibling / marriage</text>
-    <text x="760" y="9" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(250,246,239,0.28)">Hover any node for details</text>
-  </g>
-
-</svg>
+  <div class="gd-inner">
+    <div class="gd-bar">
+      <div class="gd-key">
+        <span class="gd-k-m"><i></i>Married</span>
+        <span class="gd-k-b"><i></i>Bloodline</span>
+        <span class="gd-k-n"><i></i>Niyoga</span>
+        <span class="gd-k-d"><i></i>Divine parent</span>
+      </div>
+      <div class="gd-tools">
+        <button class="gd-btn" type="button" aria-pressed="false" data-gd-spot>Only Gita characters</button>
+        <div class="gd-zoom">
+          <button type="button" data-gd-zoom="-" aria-label="Zoom out">&minus;</button>
+          <span data-gd-zlabel>100%</span>
+          <button type="button" data-gd-zoom="+" aria-label="Zoom in">+</button>
+          <button type="button" data-gd-zoom="fit" aria-label="Fit whole tree" title="Fit whole tree">&#9723;</button>
+        </div>
+      </div>
     </div>
 
+    <div class="gd-stage-wrap">
+      <div class="gd-stage" data-gd-stage>
+        <div class="gd-fit" data-gd-fit>
+          <div class="gd-canvas" data-gd-canvas></div>
+        </div>
+      </div>
+      <div class="gd-intro-cue" data-gd-cue aria-hidden="true">
+        <div class="gd-intro-cue-inner">
+          <span class="gd-intro-cue-icon" aria-hidden="true">
+            <svg viewBox="0 0 44 44" width="44" height="44" fill="none">
+              <circle cx="22" cy="22" r="20" stroke="currentColor" stroke-width="2" opacity=".35"/>
+              <path d="M22 13v11m0 0 4.5-4.5M22 24l-4.5-4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <p><strong>Tap anyone</strong> to reveal their bloodline</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="gd-panel" data-gd-panel></div>
   </div>
+
+<script>
+(function () {
+  var root = document.getElementById('gd-family-tree');
+  if (!root || root.dataset.gdReady) return;
+  root.dataset.gdReady = '1';
+
+  var P = {
+    ganga:{n:'Ganga',d:'गंगा',h:195,gear:'flow',fx:'water',s:'River goddess',
+      r:'A river goddess who married Shantanu on strict terms, and left the moment he broke them.',
+      rel:'Shantanu\u2019s first wife'},
+    shantanu:{n:'Shantanu',d:'शांतनु',h:258,gear:'crown',s:'Where the line begins',
+      r:'King of Hastinapur. Every single person below him on this tree descends from him.',
+      rel:'The root of the tree'},
+    satya:{n:'Satyavati',d:'सत्यवती',h:332,gear:'veil',s:'Set the terms',
+      r:'A ferryman\u2019s daughter. She would only marry Shantanu if her sons, not his, would rule.',
+      rel:'Shantanu\u2019s second wife'},
+    parashara:{n:'Parashara',d:'पराशर',h:40,gear:'sage',s:'Vyasa\u2019s father',
+      r:'A sage Satyavati met before her marriage. Their son grew up to write the epic.',
+      rel:'Satyavati\u2019s first union'},
+
+    bhishma:{n:'Bhishma',d:'भीष्म',h:212,gear:'helm',gita:true,s:'Gave up the throne',
+      r:'Renounced the crown and swore never to marry, so his father could have Satyavati.',
+      rel:'Son of Ganga and Shantanu',
+      why:'Arjuna names him first when he refuses to fight. The grand-uncle who raised both sides now commands the army opposite him.'},
+    chitra:{n:'Chitrangada',d:'चित्रांगद',h:18,gear:'crown',s:'Died young',
+      r:'Took the throne after Shantanu and was killed in a duel before he could leave an heir.',
+      rel:'Son of Shantanu and Satyavati'},
+    vichitra:{n:'Vichitravirya',d:'विचित्रवीर्य',h:282,gear:'crown',s:'No heirs',
+      r:'The next king. He died childless, and the dynasty stalls completely right here.',
+      rel:'Son of Shantanu and Satyavati'},
+    ambika:{n:'Ambika',d:'अंबिका',h:314,gear:'veil',s:'Shut her eyes',
+      r:'Widowed young. She closed her eyes during the niyoga rite, and her son was born blind.',
+      rel:'Vichitravirya\u2019s wife'},
+    ambalika:{n:'Ambalika',d:'अंबालिका',h:346,gear:'veil',s:'Turned pale',
+      r:'Widowed young. She went pale during the rite, and her son was born pale and frail.',
+      rel:'Vichitravirya\u2019s wife'},
+    vyasa:{n:'Vyasa',d:'व्यास',h:46,gear:'sage',gita:true,s:'Wrote all of this',
+      r:'Satyavati called her first son back to father children for her second son\u2019s widows.',
+      rel:'Son of Satyavati and Parashara',
+      why:'He is the author. The entire epic, the Gita included, is his composition, and he is also the grandfather of the men fighting in it.'},
+
+    dhrita:{n:'Dhritarashtra',d:'धृतराष्ट्र',h:250,gear:'crown',eyes:'shut',gita:true,s:'Born blind',
+      r:'Passed over for the throne because of his blindness. Father of the hundred Kauravas.',
+      rel:'Son of Ambika and Vyasa',
+      why:'He speaks the first line of the Gita. The whole text is Sanjaya answering his one question: what are my sons doing out there?'},
+    gandhari:{n:'Gandhari',d:'गांधारी',h:300,gear:'blind',s:'Blindfolded for life',
+      r:'Tied a cloth over her eyes on her wedding day so she would see no more than her husband.',
+      rel:'Dhritarashtra\u2019s wife'},
+    pandu:{n:'Pandu',d:'पांडु',h:168,gear:'crown',s:'Cursed',
+      r:'Ruled in his blind brother\u2019s place until a curse made fathering a child fatal to him.',
+      rel:'Son of Ambalika and Vyasa'},
+    kunti:{n:'Kunti',d:'कुंती',h:340,gear:'veil',s:'Could call any god',
+      r:'Held a boon that summoned any god she named. She had already tested it once, as a girl.',
+      rel:'Pandu\u2019s first wife'},
+    madri:{n:'Madri',d:'माद्री',h:30,gear:'veil',s:'Mother of the twins',
+      r:'Pandu\u2019s second wife. She borrowed Kunti\u2019s boon once and got twins from it.',
+      rel:'Pandu\u2019s second wife'},
+    vidura:{n:'Vidura',d:'विदुर',h:190,gear:'topknot',s:'The wisest counsel',
+      r:'Same father as the two kings, but born to a maid, so he advises the throne instead of sitting on it.',
+      rel:'Son of a palace maid and Vyasa'},
+    sanjaya:{n:'Sanjaya',d:'संजय',h:104,gear:'topknot',gita:true,s:'Narrates the Gita',
+      r:'The blind king\u2019s charioteer and counsel. Vyasa gave him sight that reaches across distance.',
+      rel:'Not blood \u2014 the narrator',
+      why:'Every word reaches us through him. He sits in the palace, watches the battlefield, and says it all out loud.'},
+
+    duryo:{n:'Duryodhana',d:'दुर्योधन',h:354,gear:'crown',gita:true,s:'Yields nothing',
+      r:'Eldest of the hundred. He refuses the Pandavas land the width of a needle.',
+      rel:'Son of Dhritarashtra and Gandhari',
+      why:'The Gita opens on him, nervously pointing out enemy commanders to his old teacher. His nerves start the whole conversation.'},
+    kauravas:{n:'99 Kauravas',d:'कौरव',h:8,gear:'helm',stack:true,s:'Nearly all die',
+      r:'Duryodhana\u2019s ninety-nine brothers. Almost none of them survive Kurukshetra.',
+      rel:'Sons of Dhritarashtra and Gandhari'},
+
+    karna:{n:'Karna',d:'कर्ण',h:38,gear:'helm',fx:'rays',gita:true,s:'The unnamed brother',god:'Surya, god of the sun',
+      r:'Kunti\u2019s firstborn, fathered by Surya, the sun. She set him adrift on a river as a baby and a charioteer raised him.',
+      rel:'Kunti\u2019s firstborn',
+      why:'He is the Pandavas\u2019 eldest brother and nobody says so out loud. He fights for Duryodhana, against his own blood.'},
+    draupadi:{n:'Draupadi',d:'द्रौपदी',h:344,gear:'veil',s:'Wife of all five',
+      r:'Won by Arjuna at an archery contest, then married to all five brothers at once.',
+      rel:'Married to the five Pandavas'},
+    yudhi:{n:'Yudhishthira',d:'युधिष्ठिर',h:210,gear:'crown',fx:'halo',gita:true,s:'Never lies',god:'Yama, god of justice',
+      r:'Eldest Pandava, fathered by Yama, god of justice and death \u2014 which is why he is incapable of lying, and why gambling the kingdom away stings so much.',
+      rel:'Son of Kunti',
+      why:'Named in Arjuna\u2019s roll-call of the men he would have to kill in order to win.'},
+    bhima:{n:'Bhima',d:'भीम',h:26,gear:'topknot',fx:'halo',gita:true,s:'The strong one',god:'Vayu, god of wind',
+      r:'Fathered by Vayu, god of wind. The strongest of the five, and the one who answers Duryodhana\u2019s conch with his own.',
+      rel:'Son of Kunti',
+      why:'His conch-blast in chapter one is the sound that makes the Kaurava side lose its nerve.'},
+    arjuna:{n:'Arjuna',d:'अर्जुन',h:204,gear:'crown',fx:'halo',gita:true,s:'Puts the bow down',god:'Indra, king of the gods',
+      r:'Fathered by Indra, god of thunder and king of the gods. The archer \u2014 and the one who breaks down at the front and asks the question.',
+      rel:'Son of Kunti',
+      why:'The Gita is one conversation and he is half of it. He sees his own family in both armies and lowers his bow.'},
+    nakula:{n:'Nakula',d:'नकुल',h:158,gear:'topknot',fx:'halo',s:'Twin, horseman',god:'The Ashvins, gods of healing',
+      r:'Fathered by the Ashvins, the twin gods of healing, along with his brother Sahadeva. A famous horseman, and famously the handsome one.',
+      rel:'Son of Madri'},
+    sahadeva:{n:'Sahadeva',d:'सहदेव',h:176,gear:'topknot',fx:'halo',s:'Twin, sees ahead',god:'The Ashvins, gods of healing',
+      r:'Fathered by the Ashvins, the twin gods of healing, along with his brother Nakula. He knows what is coming and is not permitted to say it.',
+      rel:'Son of Madri'},
+    subhadra:{n:'Subhadra',d:'सुभद्रा',h:320,gear:'veil',s:'Krishna\u2019s sister',
+      r:'Krishna\u2019s sister. Marrying Arjuna ties the two houses together for good.',
+      rel:'Arjuna\u2019s wife'},
+    krishna:{n:'Krishna',d:'कृष्ण',h:236,skin:'#7A8FE0',gear:'plume',fx:'halo',gita:true,s:'Drives the chariot',
+      r:'Kunti\u2019s nephew, so the Pandavas\u2019 cousin. He drives Arjuna\u2019s chariot, carrying no weapon.',
+      rel:'Cousin \u2014 outside the Kuru line',
+      why:'He speaks almost the whole text. He chose the reins over an army, which is the only reason he is standing close enough to answer.'},
+
+    abhi:{n:'Abhimanyu',d:'अभिमन्यु',h:14,gear:'helm',gita:true,s:'Dies at sixteen',
+      r:'Sixteen years old. He learned how to break into the enemy formation, never how to leave it.',
+      rel:'Son of Arjuna and Subhadra',
+      why:'His death inside that formation is what turns Arjuna from a man who would not fight into one who will.'},
+    uttara:{n:'Uttara',d:'उत्तरा',h:306,gear:'veil',s:'Carries the last heir',
+      r:'Widowed while pregnant. By the end of the war the entire dynasty rests on her.',
+      rel:'Abhimanyu\u2019s wife'},
+    parikshit:{n:'Parikshit',d:'परीक्षित',h:264,gear:'crown',s:'The line survives',
+      r:'Born after the war into a family that no longer exists, and crowned king anyway.',
+      rel:'Son of Abhimanyu and Uttara'}
+  };
+
+  var ROWS = [
+    {era:'Generation one', sub:'A king, two wives, one impossible promise',
+     ids:['ganga','shantanu','satya','parashara']},
+    {era:'Generation two', sub:'The vow that empties the throne',
+     ids:['bhishma','chitra','ambika','vichitra','ambalika','vyasa']},
+    {era:'Generation three', sub:'Two brothers, and neither one is whole',
+     ids:['gandhari','dhrita','kunti','pandu','madri','vidura','sanjaya']},
+    {era:'Generation four', sub:'The cousins who meet at Kurukshetra',
+     ids:['duryo','kauravas','karna','draupadi','yudhi','bhima','nakula','sahadeva','arjuna','subhadra','krishna']},
+    {era:'Generation five', sub:'The war takes almost everyone',
+     ids:['abhi','uttara']},
+    {era:'Generation six', sub:'One heir left standing',
+     ids:['parikshit']}
+  ];
+
+  var UNIONS = [
+    {a:'ganga',   b:'shantanu', t:'married', k:['bhishma']},
+    {a:'shantanu',b:'satya',    t:'married', k:['chitra','vichitra']},
+    {a:'satya',   b:'parashara',t:'married', k:['vyasa']},
+
+    {a:'ambika',  b:'vichitra', t:'married', k:[]},
+    {a:'vichitra',b:'ambalika', t:'married', k:[]},
+    {a:'ambika',  b:'vyasa',    t:'niyoga',  k:['dhrita']},
+    {a:'ambalika',b:'vyasa',    t:'niyoga',  k:['pandu']},
+    {a:'vyasa',                 t:'niyoga',  k:['vidura']},
+
+    {a:'gandhari',b:'dhrita',   t:'married', k:['duryo','kauravas']},
+    {a:'kunti',   b:'pandu',    t:'married', k:[]},
+    {a:'pandu',   b:'madri',    t:'married', k:[]},
+    {a:'kunti',                 t:'divine',  k:['karna','yudhi','bhima','arjuna'], raised:'pandu'},
+    {a:'madri',                 t:'divine',  k:['nakula','sahadeva'], raised:'pandu'},
+
+    {a:'draupadi',b:'yudhi',    t:'married', k:[]},
+    {a:'draupadi',b:'bhima',    t:'married', k:[]},
+    {a:'draupadi',b:'nakula',   t:'married', k:[]},
+    {a:'draupadi',b:'sahadeva', t:'married', k:[]},
+    {a:'draupadi',b:'arjuna',   t:'married', k:[]},
+    {a:'subhadra',b:'krishna',  t:'blood',   k:[]},
+    {a:'arjuna',  b:'subhadra', t:'married', k:['abhi']},
+
+    {a:'abhi',    b:'uttara',   t:'married', k:['parikshit']}
+  ];
+
+  var ASIDES = [
+    {a:'sanjaya', b:'dhrita',  ab:'Narrates to',  ba:'Narrated by'},
+    {a:'kunti',   b:'krishna', ab:'Nephew',       ba:'Aunt'}
+  ];
+
+  function av(c, uid, cls) {
+    var h = c.h, skin = c.skin || 'hsl(' + h + ',34%,66%)';
+    var robe = 'hsl(' + h + ',52%,42%)', trim = 'hsl(' + h + ',60%,30%)';
+    var id = 'gd-' + uid, s = '';
+    s += '<svg class="' + (cls || 'gd-av') + '" viewBox="0 0 100 100" aria-hidden="true" focusable="false">';
+    s += '<defs><linearGradient id="' + id + 'g" x1="0" y1="0" x2="0" y2="1">' +
+         '<stop offset="0" stop-color="hsl(' + h + ',72%,93%)"/>' +
+         '<stop offset="1" stop-color="hsl(' + h + ',48%,78%)"/></linearGradient>' +
+         '<clipPath id="' + id + 'c"><circle cx="50" cy="50" r="49"/></clipPath></defs>';
+    s += '<circle cx="50" cy="50" r="49" fill="url(#' + id + 'g)"/><g clip-path="url(#' + id + 'c)">';
+    if (c.fx === 'rays') {
+      s += '<g class="gd-rays" fill="#F2B733" opacity=".85">';
+      for (var a = 0; a < 12; a++) {
+        s += '<rect x="49" y="6" width="2.4" height="12" rx="1.2" transform="rotate(' + (a * 30) + ' 50 44)"/>';
+      }
+      s += '</g>';
+    }
+    if (c.fx === 'halo') {
+      s += '<circle class="gd-halo" cx="50" cy="44" r="30" fill="none" stroke="#E0AE3C" stroke-width="2.2" stroke-dasharray="5 7" opacity=".75"/>';
+    }
+    if (c.stack) {
+      s += '<circle cx="26" cy="52" r="16" fill="' + trim + '" opacity=".45"/><circle cx="74" cy="52" r="16" fill="' + trim + '" opacity=".45"/>';
+    }
+    s += '<path d="M12 102 Q20 70 50 70 Q80 70 88 102 Z" fill="' + robe + '"/>';
+    s += '<path d="M50 70 L44 102 L56 102 Z" fill="' + trim + '" opacity=".55"/>';
+    s += '<circle cx="50" cy="44" r="19" fill="' + skin + '"/>';
+    if (c.gear === 'sage') {
+      s += '<path d="M31 42 Q30 22 50 22 Q70 22 69 42 Q60 30 50 32 Q40 30 31 42Z" fill="#F0EDF7"/>' +
+           '<path d="M38 58 Q50 76 62 58 Q58 68 50 69 Q42 68 38 58Z" fill="#F0EDF7"/>';
+    } else if (c.gear === 'flow') {
+      s += '<path d="M28 46 Q28 22 50 22 Q72 22 72 46 L72 76 Q66 52 50 52 Q34 52 28 76Z" fill="hsl(' + h + ',48%,32%)"/>';
+    } else if (c.gear === 'topknot') {
+      s += '<path d="M31 44 Q31 24 50 24 Q69 24 69 44 Q60 34 50 34 Q40 34 31 44Z" fill="#2A2340"/><circle cx="50" cy="21" r="7" fill="#2A2340"/>';
+    } else if (c.gear === 'veil') {
+      s += '<path d="M26 44 Q26 20 50 20 Q74 20 74 44 L74 80 Q68 56 50 56 Q32 56 26 80Z" fill="hsl(' + h + ',56%,58%)" opacity=".92"/>' +
+           '<circle cx="50" cy="44" r="14" fill="' + skin + '"/><circle cx="50" cy="29" r="2.6" fill="#D6294A"/>';
+    } else if (c.gear === 'blind') {
+      s += '<path d="M26 44 Q26 20 50 20 Q74 20 74 44 L74 80 Q68 56 50 56 Q32 56 26 80Z" fill="hsl(' + h + ',44%,62%)" opacity=".92"/>' +
+           '<circle cx="50" cy="44" r="14" fill="' + skin + '"/>';
+    } else if (c.gear === 'helm') {
+      s += '<path d="M30 44 Q30 21 50 21 Q70 21 70 44 L70 47 Q60 38 50 38 Q40 38 30 47Z" fill="' + trim + '"/>' +
+           '<rect x="47.5" y="10" width="5" height="13" rx="2.5" fill="#E0AE3C"/>';
+    } else if (c.gear === 'plume') {
+      s += '<path d="M31 44 Q31 24 50 24 Q69 24 69 44 Q60 34 50 34 Q40 34 31 44Z" fill="#241C3D"/>' +
+           '<path d="M50 22 Q44 8 52 4 Q60 9 54 22Z" fill="#1E9FD4"/><ellipse cx="52.5" cy="10" rx="2.6" ry="3.4" fill="#E0AE3C"/>';
+    } else {
+      s += '<path d="M31 44 Q31 24 50 24 Q69 24 69 44 Q60 34 50 34 Q40 34 31 44Z" fill="#2A2340"/>' +
+           '<path d="M30 30 L34 17 L42 26 L50 12 L58 26 L66 17 L70 30 Z" fill="#E0AE3C"/><circle cx="50" cy="17" r="3" fill="#D6294A"/>';
+    }
+    if (c.gear === 'blind') {
+      s += '<rect x="33" y="41" width="34" height="7" rx="3.5" fill="#F0EDF7"/>';
+    } else if (c.eyes === 'shut') {
+      s += '<path d="M40 45 Q44 49 48 45M52 45 Q56 49 60 45" stroke="#241C3D" stroke-width="1.8" fill="none" stroke-linecap="round"/>';
+    } else {
+      s += '<ellipse cx="44" cy="45" rx="2.2" ry="2.6" fill="#241C3D"/><ellipse cx="56" cy="45" rx="2.2" ry="2.6" fill="#241C3D"/>';
+    }
+    if (c.fx === 'water') {
+      s += '<g class="gd-wave" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" opacity=".65">' +
+           '<path d="M-6 84 Q8 78 22 84 T50 84 T78 84 T106 84"/><path d="M-6 94 Q8 88 22 94 T50 94 T78 94 T106 94"/></g>';
+    }
+    s += '</g></svg>';
+    return s;
+  }
+
+  var esc = function (t) {
+    return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  };
+  var canvas = root.querySelector('[data-gd-canvas]');
+  var stage = root.querySelector('[data-gd-stage]');
+  var fit = root.querySelector('[data-gd-fit]');
+  var panel = root.querySelector('[data-gd-panel]');
+  var cue = root.querySelector('[data-gd-cue]');
+  var cueTimer = null, cueDone = false;
+  function showCue() {
+    if (cueDone || !cue) return;
+    cue.classList.add('gd-cue-on');
+    cueTimer = setTimeout(hideCue, 3000);
+  }
+  function hideCue() {
+    if (!cue) return;
+    cueDone = true;
+    clearTimeout(cueTimer);
+    cue.classList.remove('gd-cue-on');
+  }
+  var uid = 0, html = '';
+
+  html += '<svg class="gd-wires" data-gd-svg xmlns="http://www.w3.org/2000/svg"><defs>' +
+          '<linearGradient id="gd-wgrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">' +
+          '<stop offset="0" stop-color="#1E9FD4"/><stop offset="0.5" stop-color="#7B6BD6"/>' +
+          '<stop offset="1" stop-color="#D6294A"/></linearGradient></defs>' +
+          '<g data-gd-g></g></svg>';
+
+  ROWS.forEach(function (row) {
+    html += '<p class="gd-era"><span>' + esc(row.era) + '<b>' + esc(row.sub) + '</b></span></p><div class="gd-row">';
+    row.ids.forEach(function (id) {
+      var c = P[id]; uid++;
+      html += '<button class="gd-node' + (c.gita ? ' gd-is-gita' : '') + '" type="button" data-id="' +
+              id + '" aria-current="false">' + av(c, uid) +
+              (c.gita ? '<span class="gd-dot" title="Appears in the Gita"></span>' : '') +
+              '<span class="gd-nm">' + esc(c.n) + '</span>' +
+              '<span class="gd-dv">' + esc(c.d) + '</span>' +
+              '<span class="gd-rl">' + esc(c.s) + '</span></button>';
+    });
+    html += '</div>';
+  });
+  canvas.innerHTML = html;
+
+  var svg = canvas.querySelector('[data-gd-svg]');
+  var wireG = canvas.querySelector('[data-gd-g]');
+  var nodeEls = {};
+  Array.prototype.forEach.call(canvas.querySelectorAll('.gd-node'), function (el) {
+    nodeEls[el.getAttribute('data-id')] = el;
+  });
+
+  function box(id) {
+    var el = nodeEls[id];
+    return { cx: el.offsetLeft + el.offsetWidth / 2, t: el.offsetTop, b: el.offsetTop + el.offsetHeight };
+  }
+  function elbow(x1, y1, x2, y2, ym) {
+    if (Math.abs(x2 - x1) < 1.5) return 'M' + x1 + ' ' + y1 + 'V' + y2;
+    var r = Math.min(11, Math.abs(x2 - x1) / 2, Math.abs(ym - y1), Math.abs(y2 - ym));
+    var s = x2 > x1 ? 1 : -1;
+    return 'M' + x1 + ' ' + y1 + 'V' + (ym - r) + 'Q' + x1 + ' ' + ym + ' ' + (x1 + s * r) + ' ' + ym +
+           'H' + (x2 - s * r) + 'Q' + x2 + ' ' + ym + ' ' + x2 + ' ' + (ym + r) + 'V' + y2;
+  }
+  function rowOf(id) {
+    for (var i = 0; i < ROWS.length; i++) if (ROWS[i].ids.indexOf(id) > -1) return i;
+    return 0;
+  }
+  function idxOf(id) { return ROWS[rowOf(id)].ids.indexOf(id); }
+
+  var wires = [];
+  function build() {
+    var w = canvas.offsetWidth, h = canvas.offsetHeight;
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    svg.querySelector('#gd-wgrad').setAttribute('y2', h);
+
+    var rowTops = [], rowBots = [];
+    Array.prototype.forEach.call(canvas.querySelectorAll('.gd-row'), function (r, i) {
+      rowTops[i] = r.offsetTop;
+      rowBots[i] = r.offsetTop + r.offsetHeight - (i === ROWS.length - 1 ? 8 : 118);
+    });
+
+    var slots = {}, out = '';
+    wires = [];
+
+    UNIONS.forEach(function (u, ui) {
+      var A = box(u.a), B = u.b ? box(u.b) : null;
+      var ri = rowOf(u.a);
+      var span = B ? Math.abs(idxOf(u.a) - idxOf(u.b)) : 0;
+      var barY = Math.max(A.b, B ? B.b : 0) + 14 + span * 7;
+      var ux, bar;
+      if (B) {
+        ux = (A.cx + B.cx) / 2;
+        bar = 'M' + A.cx + ' ' + A.b + 'V' + barY + 'H' + B.cx + 'V' + B.b;
+      } else {
+        ux = A.cx; barY = A.b + 16;
+        bar = 'M' + A.cx + ' ' + A.b + 'V' + barY;
+      }
+      out += '<path class="gd-wire gd-w-' + u.t + '" data-u="' + ui + '" data-r="' + ri + '" d="' + bar + '"/>';
+      wires.push({ u: ui, kid: null });
+
+      if (u.k.length) {
+        slots[ri] = (slots[ri] || 0) + 1;
+        var busY = rowBots[ri] + 58 + slots[ri] * 9;
+        if (busY < barY + 12) busY = barY + 12;
+        if (busY > rowTops[ri + 1] - 10) busY = rowTops[ri + 1] - 10;
+        u.k.forEach(function (kid) {
+          var K = box(kid);
+          var cls = u.t === 'divine' ? 'gd-w-divine' : 'gd-w-drop';
+          out += '<path class="gd-wire ' + cls + '" data-u="' + ui + '" data-c="' + kid +
+                 '" data-r="' + ri + '" d="' + elbow(ux, barY, K.cx, K.t, busY) + '"/>';
+          wires.push({ u: ui, kid: kid });
+        });
+      }
+    });
+
+    ASIDES.forEach(function (x) {
+      var A = box(x.a), B = box(x.b);
+      var d;
+      if (rowOf(x.a) === rowOf(x.b)) {
+        var my = Math.max(A.b, B.b) + 40;
+        d = 'M' + A.cx + ' ' + A.b + 'Q' + A.cx + ' ' + my + ' ' + ((A.cx + B.cx) / 2) + ' ' + my +
+            'T' + B.cx + ' ' + B.b;
+      } else {
+        d = 'M' + A.cx + ' ' + A.b + 'Q' + ((A.cx + B.cx) / 2 + 90) + ' ' + ((A.b + B.t) / 2) +
+            ' ' + B.cx + ' ' + B.t;
+      }
+      out += '<path class="gd-wire gd-w-aside" data-x="' + x.a + ',' + x.b + '" d="' + d + '"/>';
+    });
+
+    wireG.innerHTML = out;
+  }
+
+  var z = 1, zLabel = root.querySelector('[data-gd-zlabel]');
+  function apply(nz, keepCentre) {
+    var cw = canvas.offsetWidth, ch = canvas.offsetHeight;
+    var midX = (stage.scrollLeft + stage.clientWidth / 2) / z;
+    var midY = (stage.scrollTop + stage.clientHeight / 2) / z;
+    z = Math.max(0.35, Math.min(1.6, nz));
+    fit.style.transform = 'scale(' + z + ')';
+    fit.style.width = (cw * z) + 'px';
+    fit.style.height = (ch * z) + 'px';
+    zLabel.textContent = Math.round(z * 100) + '%';
+    if (keepCentre) {
+      stage.scrollLeft = midX * z - stage.clientWidth / 2;
+      stage.scrollTop = midY * z - stage.clientHeight / 2;
+    }
+  }
+  function fitAll() {
+    var pad = 8;
+    apply(Math.min(1, (stage.clientWidth - pad) / canvas.offsetWidth,
+                      (stage.clientHeight - pad) / canvas.offsetHeight));
+    stage.scrollLeft = (fit.offsetWidth - stage.clientWidth) / 2;
+    stage.scrollTop = 0;
+  }
+  function fitWidth() {
+    apply(Math.max(0.45, Math.min(1, (stage.clientWidth - 8) / canvas.offsetWidth)));
+    stage.scrollLeft = (fit.offsetWidth - stage.clientWidth) / 2;
+    stage.scrollTop = 0;
+  }
+  root.querySelectorAll('[data-gd-zoom]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = b.getAttribute('data-gd-zoom');
+      if (k === 'fit') fitAll();
+      else apply(z + (k === '+' ? 0.15 : -0.15), true);
+    });
+  });
+
+  var down = null;
+  stage.addEventListener('pointerdown', function (e) {
+    hideCue();
+    if (e.target.closest && e.target.closest('.gd-node')) return;
+    down = { x: e.clientX, y: e.clientY, l: stage.scrollLeft, t: stage.scrollTop };
+    stage.classList.add('gd-grabbing');
+    stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener('pointermove', function (e) {
+    if (!down) return;
+    stage.scrollLeft = down.l - (e.clientX - down.x);
+    stage.scrollTop = down.t - (e.clientY - down.y);
+  });
+  ['pointerup', 'pointercancel'].forEach(function (ev) {
+    stage.addEventListener(ev, function () { down = null; stage.classList.remove('gd-grabbing'); });
+  });
+
+  var parentUnion = {}, byParent = {};
+  UNIONS.forEach(function (u, i) {
+    u.k.forEach(function (kid) { parentUnion[kid] = i; });
+    [u.a, u.b].forEach(function (p) { if (p) (byParent[p] = byParent[p] || []).push(i); });
+  });
+
+  function trace(id) {
+    var nodes = {}, uns = {}, kids = {};
+    nodes[id] = 1;
+    (function up(x) {
+      var ui = parentUnion[x]; if (ui === undefined) return;
+      uns[ui] = 1; kids[x] = 1;
+      var u = UNIONS[ui];
+      [u.a, u.b].forEach(function (p) { if (p && !nodes[p]) { nodes[p] = 1; up(p); } });
+    })(id);
+    (function downFn(x) {
+      (byParent[x] || []).forEach(function (ui) {
+        var u = UNIONS[ui];
+        if (!u.k.length) return;
+        uns[ui] = 1;
+        u.k.forEach(function (kd) { if (!nodes[kd]) { nodes[kd] = 1; kids[kd] = 1; downFn(kd); } });
+      });
+    })(id);
+    (byParent[id] || []).forEach(function (ui) {
+      uns[ui] = 1;
+      var u = UNIONS[ui];
+      [u.a, u.b].forEach(function (p) { if (p) nodes[p] = 1; });
+    });
+    return { nodes: nodes, uns: uns, kids: kids };
+  }
+
+  var current = null;
+  function relatives(id) {
+    var out = [];
+    var pu = parentUnion[id];
+    if (pu !== undefined) {
+      [UNIONS[pu].a, UNIONS[pu].b].forEach(function (p) { if (p) out.push(['Parent', p]); });
+      if (UNIONS[pu].raised) out.push(['Raised by', UNIONS[pu].raised]);
+    }
+    (byParent[id] || []).forEach(function (ui) {
+      var u = UNIONS[ui];
+      var sp = u.a === id ? u.b : u.a;
+      if (sp && u.t === 'married') out.push(['Married', sp]);
+      if (sp && u.t === 'blood') out.push(['Sibling', sp]);
+      u.k.forEach(function (kd) { out.push(['Child', kd]); });
+    });
+    ASIDES.forEach(function (x) {
+      if (x.a === id) out.push([x.ab, x.b]);
+      if (x.b === id) out.push([x.ba, x.a]);
+    });
+    return out;
+  }
+
+  function select(id) {
+    hideCue();
+    var c = P[id];
+    current = id;
+    Array.prototype.forEach.call(canvas.querySelectorAll('.gd-node'), function (el) {
+      el.setAttribute('aria-current', el.getAttribute('data-id') === id ? 'true' : 'false');
+    });
+    var t = trace(id);
+    canvas.classList.remove('gd-intro');
+    canvas.classList.add('gd-tracing');
+    Array.prototype.forEach.call(canvas.querySelectorAll('.gd-node'), function (el) {
+      el.classList.toggle('gd-lit', !!t.nodes[el.getAttribute('data-id')]);
+    });
+    Array.prototype.forEach.call(wireG.querySelectorAll('.gd-wire'), function (p) {
+      var u = p.getAttribute('data-u'), kd = p.getAttribute('data-c');
+      var ax = p.getAttribute('data-x');
+      var on = ax ? ax.split(',').indexOf(id) > -1
+                  : (u !== null && t.uns[u] && (!kd || t.nodes[kd]));
+      p.classList.remove('gd-prev');
+      p.classList.toggle('gd-lit', !!on);
+    });
+
+    var links = relatives(id).map(function (pair) {
+      return '<button class="gd-chip" type="button" data-go="' + pair[1] + '">' +
+             pair[0] + ': ' + esc(P[pair[1]].n) + '</button>';
+    }).join('');
+
+    panel.innerHTML =
+      '<div class="gd-panel-av">' + av(c, 'p' + id, '') + '</div><div class="gd-panel-body">' +
+      (c.gita ? '<span class="gd-badge">In the Gita</span>' : '') +
+      '<h3>' + esc(c.n) + '</h3><span class="gd-p-dev">' + esc(c.d) + '</span>' +
+      '<span class="gd-p-rel">' + esc(c.rel) +
+        (c.god ? ' \u00b7 divine father: <em>' + esc(c.god) + '</em>' : '') + '</span>' +
+      '<p>' + esc(c.r) + '</p>' +
+      (c.why ? '<p class="gd-p-why">' + esc(c.why) + '</p>' : '') +
+      (links ? '<div class="gd-p-links"><b>Connections</b>' + links + '</div>' : '') +
+      '<p class="gd-hint">Their line is lit in the tree above. ' +
+      '<button class="gd-chip" type="button" data-clear>Clear</button></p></div>';
+    var el = nodeEls[id];
+    if (el) {
+      var want = el.offsetLeft * z + el.offsetWidth * z / 2 - stage.clientWidth / 2;
+      stage.scrollTo({ left: want, top: Math.max(0, el.offsetTop * z - stage.clientHeight / 2), behavior: 'smooth' });
+    }
+  }
+
+  function clearSel() {
+    current = null;
+    canvas.classList.remove('gd-tracing');
+    Array.prototype.forEach.call(canvas.querySelectorAll('.gd-node'), function (el) {
+      el.setAttribute('aria-current', 'false'); el.classList.remove('gd-lit');
+    });
+    Array.prototype.forEach.call(wireG.querySelectorAll('.gd-wire'), function (p) {
+      p.classList.remove('gd-lit'); p.classList.remove('gd-prev');
+    });
+    panel.innerHTML = '<div class="gd-panel-body"><p class="gd-p-empty">' +
+      '<strong>Tap anyone in the tree.</strong> The connecting lines stay hidden until you do \u2014 ' +
+      'then that person\u2019s whole line draws itself in, every ancestor back to Shantanu.</p></div>';
+  }
+
+  root.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || !t.closest) return;
+    if (t.closest('[data-clear]')) { clearSel(); return; }
+    var chip = t.closest('[data-go]');
+    if (chip) { select(chip.getAttribute('data-go')); return; }
+    var n = t.closest('.gd-node');
+    if (n && canvas.contains(n)) {
+      var id = n.getAttribute('data-id');
+      if (id === current) clearSel(); else select(id);
+    }
+  });
+
+  var canHover = !!(window.matchMedia && window.matchMedia('(hover:hover)').matches);
+  function preview(id) {
+    var t = id ? trace(id) : null;
+    Array.prototype.forEach.call(wireG.querySelectorAll('.gd-wire'), function (p) {
+      if (!t) { p.classList.remove('gd-prev'); return; }
+      var u = p.getAttribute('data-u'), kd = p.getAttribute('data-c');
+      var ax = p.getAttribute('data-x');
+      var on = ax ? ax.split(',').indexOf(id) > -1
+                  : (u !== null && t.uns[u] && (!kd || t.nodes[kd]));
+      p.classList.toggle('gd-prev', !!on);
+    });
+  }
+  if (canHover) {
+    canvas.addEventListener('pointerover', function (e) {
+      if (current || !e.target.closest) return;
+      var n = e.target.closest('.gd-node');
+      if (n) preview(n.getAttribute('data-id'));
+    });
+    canvas.addEventListener('pointerout', function (e) {
+      if (current || !e.target.closest) return;
+      if (e.target.closest('.gd-node')) preview(null);
+    });
+  }
+
+  var spot = root.querySelector('[data-gd-spot]');
+  spot.addEventListener('click', function () {
+    var on = spot.getAttribute('aria-pressed') === 'true';
+    spot.setAttribute('aria-pressed', on ? 'false' : 'true');
+    spot.textContent = on ? 'Only Gita characters' : 'Show everyone';
+    root.classList.toggle('gd-spot', !on);
+  });
+
+  var reduce = !!(window.matchMedia &&
+                  window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  function relayout() { build(); }
+
+  function boot() {
+    build();
+    fitWidth();
+    clearSel();
+    root.classList.add('gd-ready');
+    if (!reduce) {
+      var d = 0;
+      Array.prototype.forEach.call(canvas.querySelectorAll('.gd-era'), function (el, i) {
+        el.style.setProperty('--gd-d', (i * 220) + 'ms');
+      });
+      Array.prototype.forEach.call(canvas.querySelectorAll('.gd-row'), function (r, i) {
+        Array.prototype.forEach.call(r.children, function (n, j) {
+          n.style.setProperty('--gd-d', (i * 220 + j * 45 + 90) + 'ms');
+        });
+      });
+      canvas.classList.add('gd-intro');
+      var last = 0;
+      Array.prototype.forEach.call(wireG.querySelectorAll('.gd-wire'), function (p) {
+        var len = 0;
+        try { len = p.getTotalLength(); } catch (err) { return; }
+        var r = parseInt(p.getAttribute('data-r') || '0', 10);
+        p.style.strokeDasharray = len + ' ' + len;
+        p.style.strokeDashoffset = len;
+        p.getBoundingClientRect();
+        p.style.transition = 'stroke-dashoffset .75s ease ' + (r * 220 + 260) +
+                             'ms, opacity .35s, stroke-width .35s';
+        p.style.strokeDashoffset = '0';
+        setTimeout(function () {
+          p.style.strokeDasharray = ''; p.style.strokeDashoffset = '';
+        }, r * 220 + 1150);
+        if (r * 220 + 1150 > last) last = r * 220 + 1150;
+      });
+      setTimeout(function () { canvas.classList.remove('gd-intro'); }, last + 700);
+      setTimeout(showCue, Math.min(last + 300, 1400));
+    } else {
+      setTimeout(showCue, 400);
+    }
+  }
+
+  var started = false;
+  function start() { if (started) return; started = true; boot(); }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) {
+      if (en[0].isIntersecting) { start(); io.disconnect(); }
+    }, { threshold: 0.05 });
+    io.observe(root);
+  } else { start(); }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (started) relayout(); });
+
+  var rt;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () {
+      if (!started) return;
+      relayout();
+      apply(z, false);
+      if (current) select(current);
+    }, 160);
+  });
+})();
+</script>
+</section>
+<!-- ============================================================
+     END: FAMILY TREE SECTION
+     ============================================================ -->
 </div>
 
 <!-- CHARACTER CARDS -->
