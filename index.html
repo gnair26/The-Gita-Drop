@@ -2098,7 +2098,55 @@
     </form>
     <div class="hero-meta-row" style="margin-top:0.75rem;max-width:440px;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
       <p style="font-size:0.78rem;color:var(--ink-faint);font-family:var(--sans);">No credit card needed for trial.</p>
-      <p style="font-size:0.78rem;font-weight:500;color:var(--gold);font-family:var(--sans);white-space:nowrap;"><span style="text-decoration:line-through;color:var(--ink-faint);font-weight:400;">₹1,999</span> ₹1,599 · 700 days · Lifetime Access</p>
+      <p id="price-line" style="font-size:0.78rem;font-weight:500;color:var(--gold);font-family:var(--sans);white-space:nowrap;">
+        <span id="price-was" style="text-decoration:line-through;color:var(--ink-faint);font-weight:400;">₹1,999</span>
+        <span id="price-now">₹1,599</span> / year · Lifetime Access
+      </p>
+      <script>
+      /* Geo-aware pricing. India sees the discounted rupee price; everyone else sees USD. */
+      (function () {
+        var PRICING = {
+          IN:    { was: '\u20B91,999', now: '\u20B91,599' },
+          WORLD: { was: null,           now: '$39' }
+        };
+
+        function render(p) {
+          var was = document.getElementById('price-was');
+          var now = document.getElementById('price-now');
+          if (!was || !now) return;
+          now.textContent = p.now;
+          if (p.was) {
+            was.textContent = p.was;
+            was.style.display = '';
+          } else {
+            was.style.display = 'none';
+          }
+        }
+
+        /* Tier 1: timezone. Runs synchronously, so the right price is painted first. */
+        var inIndia = false;
+        try {
+          var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+          inIndia = /^Asia\/(Kolkata|Calcutta)$/.test(tz);
+        } catch (e) {
+          inIndia = true; /* Fall back to the home market if the API is unavailable. */
+        }
+        render(inIndia ? PRICING.IN : PRICING.WORLD);
+
+        /* Tier 2: IP lookup. Corrects a misleading timezone. Delete this block to drop the dependency. */
+        try {
+          fetch('https://ipapi.co/country/', { cache: 'force-cache' })
+            .then(function (r) { return r.ok ? r.text() : null; })
+            .then(function (country) {
+              if (!country) return;
+              country = country.trim().toUpperCase();
+              if (country.length !== 2) return;
+              render(country === 'IN' ? PRICING.IN : PRICING.WORLD);
+            })
+            .catch(function () { /* keep the timezone result */ });
+        } catch (e) { /* keep the timezone result */ }
+      })();
+      </script>
     </div>
 
     </div><!-- end .hero-content -->
