@@ -3400,22 +3400,37 @@
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
-    // mailto fallback — opens email client pre-filled
-    const subject = encodeURIComponent('Message from ' + (name || email));
-    const body    = encodeURIComponent(
-      'Name: ' + name + '\n' +
-      'Email: ' + email + '\n\n' +
-      'Message:\n' + msg
-    );
-    window.location.href = 'mailto:hello@gitadrop.com?subject=' + subject + '&body=' + body;
-
-    // Show success after short delay
-    setTimeout(function() {
-      document.getElementById('contactForm').style.display = 'none';
-      document.getElementById('contactSuccess').style.display = 'block';
+    // Sends the message to hello@gitadrop.com via Formspree (form ID: xaenyoap).
+    fetch('https://formspree.io/f/xaenyoap', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        message: msg,
+        _subject: 'New contact message from ' + (name || email)
+      })
+    })
+    .then(function (res) {
+      if (res.ok) {
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('contactSuccess').style.display = 'block';
+      } else {
+        return res.json().then(function (data) {
+          throw new Error((data && data.error) ? data.error : 'Submission failed');
+        });
+      }
+    })
+    .catch(function () {
+      // Fallback: open the visitor's email app pre-filled, so the message isn't lost
+      var subject = encodeURIComponent('Message from ' + (name || email));
+      var body = encodeURIComponent('Name: ' + name + '\n' + 'Email: ' + email + '\n\n' + 'Message:\n' + msg);
+      window.location.href = 'mailto:hello@gitadrop.com?subject=' + subject + '&body=' + body;
+    })
+    .finally(function () {
       btn.textContent = 'Send Message →';
       btn.disabled = false;
-    }, 800);
+    });
   }
 
 </script>
