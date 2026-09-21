@@ -521,18 +521,35 @@ window.addEventListener('resize', function() {
   }
 });
 
-// ── Currency display: ₹3699 in India, $89 elsewhere ──
-(function() {
+// ── Visitor currency: INR in India, USD elsewhere ──
+// 1) Instant guess from the device time zone / language (no network call).
+// 2) Then confirm from the visitor's IP address via api.country.is (free, no key).
+// The result is stored in window.GD_CURRENCY and used by the gift form at checkout.
+window.GD_CURRENCY = (function() {
   try {
     var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase();
     var lang = (navigator.language || '').toLowerCase();
     var isIndia = tz.indexOf('kolkata') !== -1 || tz.indexOf('calcutta') !== -1 || lang === 'en-in' || lang.indexOf('-in') !== -1;
-    if (!isIndia) {
-      var el = document.getElementById('proofPrice');
-      if (el) el.textContent = '$89';
-    }
-  } catch (e) {}
+    return isIndia ? 'INR' : 'USD';
+  } catch (e) { return 'INR'; }
 })();
+
+function gdApplyPrice() {
+  var el = document.getElementById('proofPrice');
+  if (el) el.textContent = window.GD_CURRENCY === 'INR' ? '\u20B93699' : '$89';
+}
+
+document.addEventListener('DOMContentLoaded', gdApplyPrice);
+
+fetch('https://api.country.is/')
+  .then(function(res) { return res.ok ? res.json() : Promise.reject(); })
+  .then(function(data) {
+    if (data && data.country) {
+      window.GD_CURRENCY = data.country === 'IN' ? 'INR' : 'USD';
+      gdApplyPrice();
+    }
+  })
+  .catch(function() { /* keep the time-zone guess */ });
 
 (function() {
   const lid = document.getElementById('giftLid');
@@ -1092,6 +1109,10 @@ async function handleGift(e) {
   const recipientEmail = document.getElementById('gift-email').value.trim();
   const giverName      = document.getElementById('gift-sender').value.trim();
   const giftNote       = document.getElementById('gift-note').value.trim();
+  const countryCode    = document.getElementById('gift-country').value;
+  const phoneDigits    = document.getElementById('gift-phone').value.replace(/\D/g, '');
+  const recipientPhone = countryCode + phoneDigits;          // e.g. +919876543210
+  const currency       = window.GD_CURRENCY === 'USD' ? 'USD' : 'INR';
   const submitBtn      = e.target.querySelector('button[type="submit"]');
 
   if (!recipientName || !recipientEmail || !giverName) return;
@@ -1105,7 +1126,7 @@ async function handleGift(e) {
     const res = await fetch(`${API_BASE}/api/create-order`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({}),
+      body: JSON.stringify({ currency }),   // server sets the amount: INR → ₹3699, USD → $89
     });
     orderData = await res.json();
     if (!orderData.orderId) throw new Error('No order ID');
@@ -1148,7 +1169,9 @@ async function handleGift(e) {
             giverEmail: '',
             recipientName,
             recipientEmail,
+            recipientPhone,
             giftNote,
+            currency,
           }),
         });
         const verifyData = await verifyRes.json();
