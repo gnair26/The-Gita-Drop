@@ -736,16 +736,219 @@ window.addEventListener('resize', function() {
           <label class="form-label" for="gift-email">Their email address <span>*</span></label>
           <input class="form-input" id="gift-email" type="email" placeholder="arjuna@pandava.in" required>
         </div>
+        <div class="form-group" style="grid-column:1/-1">
+          <label class="form-label" for="gift-phone">Their phone number <span>*</span></label>
+          <div style="display:flex;gap:0.5rem;align-items:stretch">
+            <select class="form-input" id="gift-country" style="flex:0 0 auto;width:auto;max-width:9.5rem;padding-right:1.8rem">
+              <option value="+91" selected>🇮🇳 India +91</option>
+              <option value="+1" data-c="US">🇺🇸 United States +1</option>
+              <option value="+93" data-c="AF">🇦🇫 Afghanistan +93</option>
+              <option value="+355" data-c="AL">🇦🇱 Albania +355</option>
+              <option value="+213" data-c="DZ">🇩🇿 Algeria +213</option>
+              <option value="+376" data-c="AD">🇦🇩 Andorra +376</option>
+              <option value="+244" data-c="AO">🇦🇴 Angola +244</option>
+              <option value="+1" data-c="AG">🇦🇬 Antigua and Barbuda +1</option>
+              <option value="+54" data-c="AR">🇦🇷 Argentina +54</option>
+              <option value="+374" data-c="AM">🇦🇲 Armenia +374</option>
+              <option value="+61" data-c="AU">🇦🇺 Australia +61</option>
+              <option value="+43" data-c="AT">🇦🇹 Austria +43</option>
+              <option value="+994" data-c="AZ">🇦🇿 Azerbaijan +994</option>
+              <option value="+1" data-c="BS">🇧🇸 Bahamas +1</option>
+              <option value="+973" data-c="BH">🇧🇭 Bahrain +973</option>
+              <option value="+880" data-c="BD">🇧🇩 Bangladesh +880</option>
+              <option value="+1" data-c="BB">🇧🇧 Barbados +1</option>
+              <option value="+375" data-c="BY">🇧🇾 Belarus +375</option>
+              <option value="+32" data-c="BE">🇧🇪 Belgium +32</option>
+              <option value="+501" data-c="BZ">🇧🇿 Belize +501</option>
+              <option value="+229" data-c="BJ">🇧🇯 Benin +229</option>
+              <option value="+975" data-c="BT">🇧🇹 Bhutan +975</option>
+              <option value="+591" data-c="BO">🇧🇴 Bolivia +591</option>
+              <option value="+387" data-c="BA">🇧🇦 Bosnia and Herzegovina +387</option>
+              <option value="+267" data-c="BW">🇧🇼 Botswana +267</option>
+              <option value="+55" data-c="BR">🇧🇷 Brazil +55</option>
+              <option value="+673" data-c="BN">🇧🇳 Brunei +673</option>
+              <option value="+359" data-c="BG">🇧🇬 Bulgaria +359</option>
+              <option value="+226" data-c="BF">🇧🇫 Burkina Faso +226</option>
+              <option value="+257" data-c="BI">🇧🇮 Burundi +257</option>
+              <option value="+855" data-c="KH">🇰🇭 Cambodia +855</option>
+              <option value="+237" data-c="CM">🇨🇲 Cameroon +237</option>
+              <option value="+1" data-c="CA">🇨🇦 Canada +1</option>
+              <option value="+238" data-c="CV">🇨🇻 Cape Verde +238</option>
+              <option value="+236" data-c="CF">🇨🇫 Central African Republic +236</option>
+              <option value="+235" data-c="TD">🇹🇩 Chad +235</option>
+              <option value="+56" data-c="CL">🇨🇱 Chile +56</option>
+              <option value="+86" data-c="CN">🇨🇳 China +86</option>
+              <option value="+57" data-c="CO">🇨🇴 Colombia +57</option>
+              <option value="+269" data-c="KM">🇰🇲 Comoros +269</option>
+              <option value="+242" data-c="CG">🇨🇬 Congo +242</option>
+              <option value="+243" data-c="CD">🇨🇩 Congo (DRC) +243</option>
+              <option value="+506" data-c="CR">🇨🇷 Costa Rica +506</option>
+              <option value="+385" data-c="HR">🇭🇷 Croatia +385</option>
+              <option value="+53" data-c="CU">🇨🇺 Cuba +53</option>
+              <option value="+357" data-c="CY">🇨🇾 Cyprus +357</option>
+              <option value="+420" data-c="CZ">🇨🇿 Czech Republic +420</option>
+              <option value="+45" data-c="DK">🇩🇰 Denmark +45</option>
+              <option value="+253" data-c="DJ">🇩🇯 Djibouti +253</option>
+              <option value="+1" data-c="DM">🇩🇲 Dominica +1</option>
+              <option value="+1" data-c="DO">🇩🇴 Dominican Republic +1</option>
+              <option value="+593" data-c="EC">🇪🇨 Ecuador +593</option>
+              <option value="+20" data-c="EG">🇪🇬 Egypt +20</option>
+              <option value="+503" data-c="SV">🇸🇻 El Salvador +503</option>
+              <option value="+240" data-c="GQ">🇬🇶 Equatorial Guinea +240</option>
+              <option value="+291" data-c="ER">🇪🇷 Eritrea +291</option>
+              <option value="+372" data-c="EE">🇪🇪 Estonia +372</option>
+              <option value="+268" data-c="SZ">🇸🇿 Eswatini +268</option>
+              <option value="+251" data-c="ET">🇪🇹 Ethiopia +251</option>
+              <option value="+679" data-c="FJ">🇫🇯 Fiji +679</option>
+              <option value="+358" data-c="FI">🇫🇮 Finland +358</option>
+              <option value="+33" data-c="FR">🇫🇷 France +33</option>
+              <option value="+241" data-c="GA">🇬🇦 Gabon +241</option>
+              <option value="+220" data-c="GM">🇬🇲 Gambia +220</option>
+              <option value="+995" data-c="GE">🇬🇪 Georgia +995</option>
+              <option value="+49" data-c="DE">🇩🇪 Germany +49</option>
+              <option value="+233" data-c="GH">🇬🇭 Ghana +233</option>
+              <option value="+30" data-c="GR">🇬🇷 Greece +30</option>
+              <option value="+1" data-c="GD">🇬🇩 Grenada +1</option>
+              <option value="+502" data-c="GT">🇬🇹 Guatemala +502</option>
+              <option value="+224" data-c="GN">🇬🇳 Guinea +224</option>
+              <option value="+245" data-c="GW">🇬🇼 Guinea-Bissau +245</option>
+              <option value="+592" data-c="GY">🇬🇾 Guyana +592</option>
+              <option value="+509" data-c="HT">🇭🇹 Haiti +509</option>
+              <option value="+504" data-c="HN">🇭🇳 Honduras +504</option>
+              <option value="+852" data-c="HK">🇭🇰 Hong Kong +852</option>
+              <option value="+36" data-c="HU">🇭🇺 Hungary +36</option>
+              <option value="+354" data-c="IS">🇮🇸 Iceland +354</option>
+              <option value="+62" data-c="ID">🇮🇩 Indonesia +62</option>
+              <option value="+98" data-c="IR">🇮🇷 Iran +98</option>
+              <option value="+964" data-c="IQ">🇮🇶 Iraq +964</option>
+              <option value="+353" data-c="IE">🇮🇪 Ireland +353</option>
+              <option value="+972" data-c="IL">🇮🇱 Israel +972</option>
+              <option value="+39" data-c="IT">🇮🇹 Italy +39</option>
+              <option value="+225" data-c="CI">🇨🇮 Ivory Coast +225</option>
+              <option value="+1" data-c="JM">🇯🇲 Jamaica +1</option>
+              <option value="+81" data-c="JP">🇯🇵 Japan +81</option>
+              <option value="+962" data-c="JO">🇯🇴 Jordan +962</option>
+              <option value="+7" data-c="KZ">🇰🇿 Kazakhstan +7</option>
+              <option value="+254" data-c="KE">🇰🇪 Kenya +254</option>
+              <option value="+686" data-c="KI">🇰🇮 Kiribati +686</option>
+              <option value="+965" data-c="KW">🇰🇼 Kuwait +965</option>
+              <option value="+996" data-c="KG">🇰🇬 Kyrgyzstan +996</option>
+              <option value="+856" data-c="LA">🇱🇦 Laos +856</option>
+              <option value="+371" data-c="LV">🇱🇻 Latvia +371</option>
+              <option value="+961" data-c="LB">🇱🇧 Lebanon +961</option>
+              <option value="+266" data-c="LS">🇱🇸 Lesotho +266</option>
+              <option value="+231" data-c="LR">🇱🇷 Liberia +231</option>
+              <option value="+218" data-c="LY">🇱🇾 Libya +218</option>
+              <option value="+423" data-c="LI">🇱🇮 Liechtenstein +423</option>
+              <option value="+370" data-c="LT">🇱🇹 Lithuania +370</option>
+              <option value="+352" data-c="LU">🇱🇺 Luxembourg +352</option>
+              <option value="+853" data-c="MO">🇲🇴 Macau +853</option>
+              <option value="+261" data-c="MG">🇲🇬 Madagascar +261</option>
+              <option value="+265" data-c="MW">🇲🇼 Malawi +265</option>
+              <option value="+60" data-c="MY">🇲🇾 Malaysia +60</option>
+              <option value="+960" data-c="MV">🇲🇻 Maldives +960</option>
+              <option value="+223" data-c="ML">🇲🇱 Mali +223</option>
+              <option value="+356" data-c="MT">🇲🇹 Malta +356</option>
+              <option value="+692" data-c="MH">🇲🇭 Marshall Islands +692</option>
+              <option value="+222" data-c="MR">🇲🇷 Mauritania +222</option>
+              <option value="+230" data-c="MU">🇲🇺 Mauritius +230</option>
+              <option value="+52" data-c="MX">🇲🇽 Mexico +52</option>
+              <option value="+691" data-c="FM">🇫🇲 Micronesia +691</option>
+              <option value="+373" data-c="MD">🇲🇩 Moldova +373</option>
+              <option value="+377" data-c="MC">🇲🇨 Monaco +377</option>
+              <option value="+976" data-c="MN">🇲🇳 Mongolia +976</option>
+              <option value="+382" data-c="ME">🇲🇪 Montenegro +382</option>
+              <option value="+212" data-c="MA">🇲🇦 Morocco +212</option>
+              <option value="+258" data-c="MZ">🇲🇿 Mozambique +258</option>
+              <option value="+95" data-c="MM">🇲🇲 Myanmar +95</option>
+              <option value="+264" data-c="NA">🇳🇦 Namibia +264</option>
+              <option value="+674" data-c="NR">🇳🇷 Nauru +674</option>
+              <option value="+977" data-c="NP">🇳🇵 Nepal +977</option>
+              <option value="+31" data-c="NL">🇳🇱 Netherlands +31</option>
+              <option value="+64" data-c="NZ">🇳🇿 New Zealand +64</option>
+              <option value="+505" data-c="NI">🇳🇮 Nicaragua +505</option>
+              <option value="+227" data-c="NE">🇳🇪 Niger +227</option>
+              <option value="+234" data-c="NG">🇳🇬 Nigeria +234</option>
+              <option value="+850" data-c="KP">🇰🇵 North Korea +850</option>
+              <option value="+389" data-c="MK">🇲🇰 North Macedonia +389</option>
+              <option value="+47" data-c="NO">🇳🇴 Norway +47</option>
+              <option value="+968" data-c="OM">🇴🇲 Oman +968</option>
+              <option value="+92" data-c="PK">🇵🇰 Pakistan +92</option>
+              <option value="+680" data-c="PW">🇵🇼 Palau +680</option>
+              <option value="+970" data-c="PS">🇵🇸 Palestine +970</option>
+              <option value="+507" data-c="PA">🇵🇦 Panama +507</option>
+              <option value="+675" data-c="PG">🇵🇬 Papua New Guinea +675</option>
+              <option value="+595" data-c="PY">🇵🇾 Paraguay +595</option>
+              <option value="+51" data-c="PE">🇵🇪 Peru +51</option>
+              <option value="+63" data-c="PH">🇵🇭 Philippines +63</option>
+              <option value="+48" data-c="PL">🇵🇱 Poland +48</option>
+              <option value="+351" data-c="PT">🇵🇹 Portugal +351</option>
+              <option value="+974" data-c="QA">🇶🇦 Qatar +974</option>
+              <option value="+40" data-c="RO">🇷🇴 Romania +40</option>
+              <option value="+7" data-c="RU">🇷🇺 Russia +7</option>
+              <option value="+250" data-c="RW">🇷🇼 Rwanda +250</option>
+              <option value="+1" data-c="KN">🇰🇳 Saint Kitts and Nevis +1</option>
+              <option value="+1" data-c="LC">🇱🇨 Saint Lucia +1</option>
+              <option value="+1" data-c="VC">🇻🇨 Saint Vincent and the Grenadines +1</option>
+              <option value="+685" data-c="WS">🇼🇸 Samoa +685</option>
+              <option value="+378" data-c="SM">🇸🇲 San Marino +378</option>
+              <option value="+239" data-c="ST">🇸🇹 Sao Tome and Principe +239</option>
+              <option value="+966" data-c="SA">🇸🇦 Saudi Arabia +966</option>
+              <option value="+221" data-c="SN">🇸🇳 Senegal +221</option>
+              <option value="+381" data-c="RS">🇷🇸 Serbia +381</option>
+              <option value="+248" data-c="SC">🇸🇨 Seychelles +248</option>
+              <option value="+232" data-c="SL">🇸🇱 Sierra Leone +232</option>
+              <option value="+65" data-c="SG">🇸🇬 Singapore +65</option>
+              <option value="+421" data-c="SK">🇸🇰 Slovakia +421</option>
+              <option value="+386" data-c="SI">🇸🇮 Slovenia +386</option>
+              <option value="+677" data-c="SB">🇸🇧 Solomon Islands +677</option>
+              <option value="+252" data-c="SO">🇸🇴 Somalia +252</option>
+              <option value="+27" data-c="ZA">🇿🇦 South Africa +27</option>
+              <option value="+82" data-c="KR">🇰🇷 South Korea +82</option>
+              <option value="+211" data-c="SS">🇸🇸 South Sudan +211</option>
+              <option value="+34" data-c="ES">🇪🇸 Spain +34</option>
+              <option value="+94" data-c="LK">🇱🇰 Sri Lanka +94</option>
+              <option value="+249" data-c="SD">🇸🇩 Sudan +249</option>
+              <option value="+597" data-c="SR">🇸🇷 Suriname +597</option>
+              <option value="+46" data-c="SE">🇸🇪 Sweden +46</option>
+              <option value="+41" data-c="CH">🇨🇭 Switzerland +41</option>
+              <option value="+963" data-c="SY">🇸🇾 Syria +963</option>
+              <option value="+886" data-c="TW">🇹🇼 Taiwan +886</option>
+              <option value="+992" data-c="TJ">🇹🇯 Tajikistan +992</option>
+              <option value="+255" data-c="TZ">🇹🇿 Tanzania +255</option>
+              <option value="+66" data-c="TH">🇹🇭 Thailand +66</option>
+              <option value="+670" data-c="TL">🇹🇱 Timor-Leste +670</option>
+              <option value="+228" data-c="TG">🇹🇬 Togo +228</option>
+              <option value="+676" data-c="TO">🇹🇴 Tonga +676</option>
+              <option value="+1" data-c="TT">🇹🇹 Trinidad and Tobago +1</option>
+              <option value="+216" data-c="TN">🇹🇳 Tunisia +216</option>
+              <option value="+90" data-c="TR">🇹🇷 Turkey +90</option>
+              <option value="+993" data-c="TM">🇹🇲 Turkmenistan +993</option>
+              <option value="+688" data-c="TV">🇹🇻 Tuvalu +688</option>
+              <option value="+256" data-c="UG">🇺🇬 Uganda +256</option>
+              <option value="+380" data-c="UA">🇺🇦 Ukraine +380</option>
+              <option value="+971" data-c="AE">🇦🇪 United Arab Emirates +971</option>
+              <option value="+44" data-c="GB">🇬🇧 United Kingdom +44</option>
+              <option value="+598" data-c="UY">🇺🇾 Uruguay +598</option>
+              <option value="+998" data-c="UZ">🇺🇿 Uzbekistan +998</option>
+              <option value="+678" data-c="VU">🇻🇺 Vanuatu +678</option>
+              <option value="+379" data-c="VA">🇻🇦 Vatican City +379</option>
+              <option value="+58" data-c="VE">🇻🇪 Venezuela +58</option>
+              <option value="+84" data-c="VN">🇻🇳 Vietnam +84</option>
+              <option value="+967" data-c="YE">🇾🇪 Yemen +967</option>
+              <option value="+260" data-c="ZM">🇿🇲 Zambia +260</option>
+              <option value="+263" data-c="ZW">🇿🇼 Zimbabwe +263</option>
+            </select>
+            <input class="form-input" id="gift-phone" type="tel" placeholder="98765 43210" style="flex:1 1 auto" required>
+          </div>
+          <p style="font-family:var(--sans);font-size:0.8rem;line-height:1.5;color:var(--ink-faint);margin:0.5rem 0 0">Make sure this is their WhatsApp number. We&rsquo;ll send them a little heads-up that a Gita Drop is coming their way, so your thoughtful gift doesn&rsquo;t get lost in the inbox.</p>
+        </div>
 
         <div style="grid-column:1/-1;font-family:var(--sans);font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faint);padding-bottom:0.5rem;border-bottom:1px solid var(--parchment);margin-top:0.5rem">ABOUT YOU</div>
 
-        <div class="form-group">
+        <div class="form-group" style="grid-column:1/-1">
           <label class="form-label" for="gift-sender">Your name <span>*</span></label>
           <input class="form-input" id="gift-sender" type="text" placeholder="Your name" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="gift-occasion">The occasion</label>
-          <input class="form-input" id="gift-occasion" type="text" placeholder="Birthday, just because, surviving the year…">
         </div>
 
         <div class="form-group" style="grid-column:1/-1">
