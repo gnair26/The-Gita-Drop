@@ -2132,15 +2132,17 @@
           inIndia = true; /* Fall back to the home market if the API is unavailable. */
         }
         render(inIndia ? PRICING.IN : PRICING.WORLD);
+        /* Remember the result so the signup forms can send it to Brevo. */
+        window.GD_COUNTRY = inIndia ? 'IN' : '';
 
         /* Tier 2: IP lookup. Corrects a misleading timezone. Delete this block to drop the dependency. */
         try {
-          fetch('https://ipapi.co/country/', { cache: 'force-cache' })
-            .then(function (r) { return r.ok ? r.text() : null; })
-            .then(function (country) {
-              if (!country) return;
-              country = country.trim().toUpperCase();
+          fetch('https://api.country.is/')
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (data) {
+              var country = data && data.country ? String(data.country).trim().toUpperCase() : '';
               if (country.length !== 2) return;
+              window.GD_COUNTRY = country;
               render(country === 'IN' ? PRICING.IN : PRICING.WORLD);
             })
             .catch(function () { /* keep the timezone result */ });
@@ -2891,6 +2893,8 @@
         email,
         name: nameField ? nameField.value.trim() : '',
         source: 'main',
+        country: window.GD_COUNTRY || '',                        // e.g. "IN", "US" ("" if unknown)
+        priceRegion: window.GD_COUNTRY === 'IN' ? 'IN' : 'INTL', // decides ₹1,599 vs $39 on day 7
       }),
     })
     .then(function(r) { return r.json(); })
@@ -3348,7 +3352,9 @@
       body: JSON.stringify({
         email,
         childName,
+        phone,
         source: 'kids',
+        country: window.GD_COUNTRY || '',
       }),
     })
     .then(function(r) { return r.json(); })
