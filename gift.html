@@ -963,9 +963,13 @@ fetch('https://api.country.is/')
 
         <div style="grid-column:1/-1;font-family:var(--sans);font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faint);padding-bottom:0.5rem;border-bottom:1px solid var(--parchment);margin-top:0.5rem">ABOUT YOU</div>
 
-        <div class="form-group" style="grid-column:1/-1">
+        <div class="form-group">
           <label class="form-label" for="gift-sender">Your name <span>*</span></label>
           <input class="form-input" id="gift-sender" type="text" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="gift-sender-email">Your email address <span>*</span></label>
+          <input class="form-input" id="gift-sender-email" type="email" placeholder="you@example.com" required>
         </div>
 
         <div class="form-group" style="grid-column:1/-1">
@@ -1108,6 +1112,7 @@ async function handleGift(e) {
   const recipientName  = document.getElementById('gift-fname').value.trim();
   const recipientEmail = document.getElementById('gift-email').value.trim();
   const giverName      = document.getElementById('gift-sender').value.trim();
+  const giverEmail     = document.getElementById('gift-sender-email').value.trim();
   const giftNote       = document.getElementById('gift-note').value.trim();
   const countryCode    = document.getElementById('gift-country').value;
   const phoneDigits    = document.getElementById('gift-phone').value.replace(/\D/g, '');
@@ -1115,7 +1120,7 @@ async function handleGift(e) {
   const currency       = window.GD_CURRENCY === 'USD' ? 'USD' : 'INR';
   const submitBtn      = e.target.querySelector('button[type="submit"]');
 
-  if (!recipientName || !recipientEmail || !giverName) return;
+  if (!recipientName || !recipientEmail || !giverName || !giverEmail) return;
 
   // ── Step 1: Create Razorpay order on our server ──
   submitBtn.textContent = 'Preparing payment…';
@@ -1146,7 +1151,7 @@ async function handleGift(e) {
     name: 'The Gita Drop',
     description: `A gift for ${recipientName}`,
     image: '',
-    prefill: { name: giverName },
+    prefill: { name: giverName, email: giverEmail },
     theme: { color: '#C78B0E' },
     modal: {
       ondismiss: function() {
@@ -1166,7 +1171,7 @@ async function handleGift(e) {
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_signature:  response.razorpay_signature,
             giverName,
-            giverEmail: '',
+            giverEmail,
             recipientName,
             recipientEmail,
             recipientPhone,
