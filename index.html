@@ -1787,6 +1787,39 @@
     border-bottom: 3px dashed #F0C84A;
   }
 
+  /* Top-left "coming soon" corner ribbon */
+  .kids-launch-ribbon {
+    position: absolute;
+    top: 0; left: 0;
+    width: 210px; height: 210px;
+    overflow: hidden;
+    z-index: 6;
+    pointer-events: none;
+  }
+  .kids-launch-ribbon span {
+    position: absolute;
+    display: block;
+    width: 300px;
+    left: -74px; top: 46px;
+    transform: rotate(-45deg);
+    text-align: center;
+    padding: 0.6rem 0;
+    background: var(--ink);
+    color: var(--gold-light);
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    box-shadow: 0 6px 20px rgba(26,15,46,0.28);
+    border-top: 1px solid rgba(240,200,74,0.45);
+    border-bottom: 1px solid rgba(240,200,74,0.45);
+  }
+  @media (max-width: 600px) {
+    .kids-launch-ribbon { width: 164px; height: 164px; }
+    .kids-launch-ribbon span { width: 240px; left: -62px; top: 36px; font-size: 0.6rem; letter-spacing: 0.12em; padding: 0.5rem 0; }
+  }
+
   .kids-wave-top,.kids-wave-bottom{line-height:0;display:block;overflow:hidden}
   .kids-wave-top svg,.kids-wave-bottom svg{width:100%;height:52px;display:block}
 
@@ -1803,19 +1836,22 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: #1A0F2E;
-    color: #F0C84A;
+    background: linear-gradient(135deg, var(--terra) 0%, var(--terra-light) 100%);
+    color: #FFF3E6;
     font-family: var(--sans);
     font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    padding: 0.35rem 1rem;
+    padding: 0.5rem 1.15rem;
     border-radius: 100px;
-    margin-bottom: 1.5rem;
+    margin: 0.4rem 0 1.5rem 92px;
     white-space: nowrap;
     max-width: 100%;
+    box-shadow: 0 6px 18px rgba(192,79,45,0.28);
+    border: 1px solid rgba(255,255,255,0.18);
   }
+  .kids-tag-star { color: var(--gold-light); font-size: 0.8rem; line-height: 1; }
 
   /* big headline */
   .kids-h {
@@ -2032,7 +2068,7 @@
   @media (max-width: 860px) {
     .kids-cols { grid-template-columns: 1fr; gap: 2.5rem; }
     .kids-wrap { padding: 3rem 1.5rem 4rem; }
-    .kids-new-tag { font-size: 0.58rem; letter-spacing: 0.12em; padding: 0.3rem 0.8rem; }
+    .kids-new-tag { font-size: 0.58rem; letter-spacing: 0.12em; padding: 0.4rem 0.9rem; margin: 0.3rem 0 1.3rem 58px; }
     .kids-float-tag-a { left: 4px; }
     .kids-float-tag-b { right: 4px; }
   }
@@ -2055,7 +2091,8 @@
   <div class="nav-links-desktop">
     <!-- MERCH LINK HIDDEN — remove the style="display:none" below to bring it back -->
     <a href="merch.html" style="display:none;font-family:var(--sans);font-size:0.85rem;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:0.04em;opacity:0.7;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Shop Merch</a>
-    <a href="#kids" style="font-family:var(--sans);font-size:0.85rem;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:0.04em;opacity:0.7;transition:opacity 0.2s;display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
+    <!-- GITA DROPLET (KIDS) NAV LINK HIDDEN — launching Jan 2027. Remove style="display:none" to bring it back -->
+    <a href="#kids" style="display:none;font-family:var(--sans);font-size:0.85rem;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:0.04em;opacity:0.7;transition:opacity 0.2s;flex-direction:column;align-items:flex-start;gap:1px;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
       The Gita Droplet
       <span style="font-family:Georgia,serif;font-style:italic;font-size:0.78rem;font-weight:700;color:#7b5ea7;letter-spacing:0.02em;line-height:1;">for kids</span>
     </a>
@@ -2078,7 +2115,8 @@
   <div class="nav-mobile-panel" id="navMobilePanel">
     <!-- MERCH LINK HIDDEN — remove style="display:none" to bring it back -->
     <a href="merch.html" style="display:none;">Shop Merch</a>
-    <a href="#kids">The Gita Droplet <em style="font-style:italic;color:#7b5ea7;">for kids</em></a>
+    <!-- GITA DROPLET (KIDS) NAV LINK HIDDEN — launching Jan 2027. Remove style="display:none" to bring it back -->
+    <a href="#kids" style="display:none;">The Gita Droplet <em style="font-style:italic;color:#7b5ea7;">for kids</em></a>
     <a href="gift.html">Gift the Gita</a>
     <a href="characters.html">The Cast <em style="font-style:italic;color:#7b5ea7;">Family Tree</em></a>
     <a href="stories.html">Epic Stories <em style="font-style:italic;color:#7b5ea7;">Unexpected Plot Twists</em></a>
@@ -2462,6 +2500,9 @@
 <!-- KIDS SECTION -->
 <section class="kids-section" id="kids">
 
+  <!-- Coming-soon corner ribbon -->
+  <div class="kids-launch-ribbon" aria-label="Launching January 2027"><span>✦ Launching Jan 2027</span></div>
+
   <div class="kids-wave-top">
     <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,26 C200,52 400,0 600,26 C800,52 1000,0 1200,26 C1320,40 1400,18 1440,26 L1440,52 L0,52Z" fill="#FFFBF0"/>
@@ -2478,7 +2519,7 @@
     <div class="kids-section-sparkle" style="top:30%;left:1.5%;animation-delay:0.4s;background:var(--terra);opacity:0.3"></div>
     <div class="kids-section-sparkle" style="top:60%;right:2%;animation-delay:1.8s"></div>
     <div class="kids-section-sparkle" style="top:80%;left:8%;animation-delay:1s;width:4px;height:4px"></div>
-    <div class="kids-new-tag">✦ New &nbsp;·&nbsp; Gita Droplet &nbsp;·&nbsp; Ages 6–12</div>
+    <div class="kids-new-tag"><span class="kids-tag-star">✦</span> Gita Droplet &nbsp;·&nbsp; Ages 6–12</div>
 
     <h2 class="kids-h">
       The best thing you can give a curious kid is
