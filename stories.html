@@ -75,50 +75,68 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "url": "https://gitadrop.com/stories.html#story-dog-at-heavens-gate",
-      "name": "The Dog at Heaven\u2019s Gate"
+      "url": "https://gitadrop.com/karna-secret-birth-kunti-son.html",
+      "name": "The Hero Who Was Lied To His Whole Life"
     },
     {
       "@type": "ListItem",
       "position": 2,
-      "url": "https://gitadrop.com/stories.html#story-karnas-secret",
-      "name": "Karna\u2019s Secret"
+      "url": "https://gitadrop.com/yudhishthira-dog-heaven-gate-story.html",
+      "name": "He Reached Heaven’s Gate, Then Said No"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "url": "https://gitadrop.com/stories.html#story-eklavyas-thumb",
-      "name": "Eklavya\u2019s Thumb"
+      "url": "https://gitadrop.com/game-of-dice-mahabharata-draupadi.html",
+      "name": "How One Rigged Game Started the Biggest War in History"
     },
     {
       "@type": "ListItem",
       "position": 4,
-      "url": "https://gitadrop.com/stories.html#story-the-game-of-dice",
-      "name": "The Game of Dice"
+      "url": "https://gitadrop.com/eklavya-thumb-dronacharya-story.html",
+      "name": "He Out-Shot a Prince With No Teacher. The Fee Was His Thumb."
     },
     {
       "@type": "ListItem",
       "position": 5,
-      "url": "https://gitadrop.com/stories.html#story-bhishmas-vow",
-      "name": "Bhishma\u2019s Vow"
+      "url": "https://gitadrop.com/krishna-peace-mission-five-villages.html",
+      "name": "The Whole War Came Down to Five Villages"
     },
     {
       "@type": "ListItem",
       "position": 6,
-      "url": "https://gitadrop.com/stories.html#story-abhimanyu-chakravyuha",
-      "name": "Abhimanyu and the Maze"
+      "url": "https://gitadrop.com/abhimanyu-chakravyuha-story.html",
+      "name": "The Boy Who Learned How to Get In, But Not How to Get Out"
     },
     {
       "@type": "ListItem",
       "position": 7,
-      "url": "https://gitadrop.com/stories.html#story-krishnas-peace-mission",
-      "name": "Krishna\u2019s Peace Mission"
+      "url": "https://gitadrop.com/why-draupadi-had-five-husbands.html",
+      "name": "Why Did One Woman Marry Five Brothers?"
     },
     {
       "@type": "ListItem",
       "position": 8,
-      "url": "https://gitadrop.com/stories.html#story-birth-of-the-gita",
-      "name": "The Day Arjuna Froze"
+      "url": "https://gitadrop.com/vikarna-the-only-kaurava-who-spoke-up.html",
+      "name": "99 Brothers Stayed Silent. One Stood Up."
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "url": "https://gitadrop.com/what-happened-before-the-bhagavad-gita.html",
+      "name": "Everything That Led to the Most Famous Conversation Ever"
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "url": "https://gitadrop.com/why-is-krishna-blue.html",
+      "name": "Why Is Krishna Always Painted Blue?"
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "url": "https://gitadrop.com/oppenheimer-bhagavad-gita-quote.html",
+      "name": "What Oppenheimer Actually Quoted at the First Atom Bomb"
     }
   ]
 }
@@ -180,10 +198,11 @@
 
   /* ── GRID ── */
   .stories-grid { max-width:1120px; margin:1.5rem auto 4rem; padding:0 1.5rem; display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:1.8rem; }
-  .story-card { background:#fff; border:1px solid var(--parchment); border-radius:10px; overflow:hidden; cursor:pointer; display:flex; flex-direction:column; transition:transform .25s, box-shadow .25s, border-color .25s; outline:none; }
+  .story-card { background:#fff; border:1px solid var(--parchment); border-radius:10px; overflow:hidden; cursor:pointer; display:flex; flex-direction:column; transition:transform .25s, box-shadow .25s, border-color .25s; outline:none; text-decoration:none; color:inherit; }
   .story-card:hover, .story-card:focus-visible { transform:translateY(-5px); box-shadow:0 18px 40px rgba(26,15,46,0.12); border-color:var(--gold-light); }
   .story-cover { aspect-ratio:400/230; overflow:hidden; background:var(--cream-dark); }
   .story-cover svg { width:100%; height:100%; display:block; }
+  .story-cover img { width:100%; height:100%; object-fit:cover; display:block; }
   .story-body { padding:1.3rem 1.4rem 1.5rem; display:flex; flex-direction:column; flex:1; }
   .story-cat { font-family:var(--sans); font-size:0.66rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--terra); margin-bottom:0.5rem; }
   .story-title { font-family:var(--serif); font-size:1.5rem; font-weight:500; line-height:1.15; color:var(--ink); margin-bottom:0.5rem; }
@@ -276,228 +295,114 @@
 
   <div class="search-wrap">
     <svg class="search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.6"/><line x1="12.5" y1="12.5" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    <input id="storySearch" class="search-input" type="search" placeholder="Search stories — try 'Karna', 'dice', 'thumb'…" aria-label="Search stories by keyword" oninput="filterStories()">
+    <input id="storySearch" class="search-input" type="search" placeholder="Search stories by name or theme&hellip;" aria-label="Search stories by keyword" oninput="filterStories()">
   </div>
   <div class="search-count" id="searchCount" aria-live="polite"></div>
 </header>
 
 <!-- GRID -->
 <main class="stories-grid" id="storiesGrid">
-      <article class="story-card" data-id="dog-at-heavens-gate" data-keywords="the dog at heaven’s gate the final test yudhishthira climbs toward paradise with a stray dog at his heel. at the gate, he’s told the dog can’t come in. his answer changes everything. after the war, after the grief, the five pandavas and their wife draupadi set out on one last walk: a climb up the great mountain toward the gates of heaven. one by one, they fall along the way. only yudhishthira keeps walking, and he isn’t alone. a thin, hungry stray dog has been following him the whole time, and he never once shoos it away. at the summit, indra arrives in a blazing chariot. ‘come,’ he says. ‘step in. heaven is waiting for you.’ then he adds the condition: the dog stays behind. yudhishthira doesn’t argue about theology. he just refuses. ‘this creature trusted me and walked with me. i will not buy my own comfort by abandoning someone loyal.’ he turns down heaven itself rather than leave the dog at the door. here’s the twist. the dog isn’t a dog. it’s dharma, the god of righteousness, wearing its most unglamorous disguise, testing whether a man’s goodness survives when there’s nothing left to gain and no one watching who matters. the lesson lands quietly: character isn’t what you do for the powerful. it’s what you refuse to do to the powerless, even when the reward for looking away is literally paradise." tabindex="0" role="button" aria-label="Read: The Dog at Heaven’s Gate" onclick="openStory('dog-at-heavens-gate')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openStory('dog-at-heavens-gate')}">
-        <div class="story-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g0" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C04F2D"/><stop offset="1" stop-color="#E8724A"/></linearGradient><radialGradient id="g0r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g0)"/><rect width="400" height="260" fill="url(#g0r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><circle cx="0" cy="6" r="12" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="-11" cy="-8" r="4.5" fill="currentColor"/><circle cx="11" cy="-8" r="4.5" fill="currentColor"/><circle cx="-18" cy="3" r="4" fill="currentColor"/><circle cx="18" cy="3" r="4" fill="currentColor"/></g></svg></div>
+      <a class="story-card" href="karna-secret-birth-kunti-son.html" data-keywords="the hero who was lied to his whole life the enemy who was family he was the eldest brother of the men he swore to kill. everyone knew. nobody told him until it was far too late to matter. karna kunti surya pandava charioteer suta radheya eldest brother" aria-label="Read: The Hero Who Was Lied To His Whole Life">
+        <div class="story-cover"><img src="images/stories/karna-secret-birth-kunti-son-card.jpg" alt="The Hero Who Was Lied To His Whole Life" loading="lazy" width="800" height="450"></div>
         <div class="story-body">
-          <div class="story-cat">The Final Test</div>
-          <h2 class="story-title">The Dog at Heaven’s Gate</h2>
-          <p class="story-teaser">Yudhishthira climbs toward paradise with a stray dog at his heel. At the gate, he’s told the dog can’t come in. His answer changes everything.</p>
-          <div class="story-meta"><span class="story-read">4 min read</span><span class="story-link">Read the twist →</span></div>
+          <div class="story-cat">The enemy who was family</div>
+          <h2 class="story-title">The Hero Who Was Lied To His Whole Life</h2>
+          <p class="story-teaser">He was the eldest brother of the men he swore to kill. Everyone knew. Nobody told him until it was far too late to matter.</p>
+          <div class="story-meta"><span class="story-link">Read the story &rarr;</span></div>
         </div>
-      </article>
-      <article class="story-card" data-id="karnas-secret" data-keywords="karna’s secret the enemy who was family the greatest warrior on the losing side spends his whole life being called low-born. he never learns the truth until it’s far too late to change sides. karna is the fighter everyone underestimates. abandoned as a baby, floated down a river in a basket, raised by a charioteer. brilliant with a bow, but mocked his entire life for not being ‘royal enough’ to compete with princes. so when duryodhana is the one person who treats him with respect, karna’s loyalty becomes absolute. he picks a side and never wavers, even when that side is clearly in the wrong. the twist is devastating. karna is actually the eldest son of kunti, which makes him the older brother of the very pandavas he’s sworn to destroy. the men he calls enemies are his own blood. his mother knows. krishna knows. karna finds out only near the end, when walking away would mean betraying the one friend who ever believed in him. he chooses loyalty over the family that discarded him, and it costs him his life. karna’s story is the gita’s most human tragedy: a good man whose loyalty was real and whose cause was wrong, undone less by his enemies than by a secret everyone kept from him." tabindex="0" role="button" aria-label="Read: Karna’s Secret" onclick="openStory('karnas-secret')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openStory('karnas-secret')}">
-        <div class="story-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C78B0E"/><stop offset="1" stop-color="#F0C84A"/></linearGradient><radialGradient id="g1r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g1)"/><rect width="400" height="260" fill="url(#g1r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><circle cx="0" cy="0" r="16" fill="none" stroke="currentColor" stroke-width="2.4"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(0)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(30)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(60)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(90)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(120)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(150)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(180)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(210)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(240)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(270)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(300)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(330)"/></g></svg></div>
+      </a>
+      <a class="story-card" href="yudhishthira-dog-heaven-gate-story.html" data-keywords="he reached heaven’s gate, then said no the final test a stray dog followed him the whole way up. at the top, the gods told him to leave it behind. his answer is the whole point. yudhishthira dog heaven dharma swarga pandava loyalty" aria-label="Read: He Reached Heaven’s Gate, Then Said No">
+        <div class="story-cover"><img src="images/stories/yudhishthira-dog-heaven-gate-story-card.jpg" alt="He Reached Heaven’s Gate, Then Said No" loading="lazy" width="800" height="450"></div>
         <div class="story-body">
-          <div class="story-cat">The Enemy Who Was Family</div>
-          <h2 class="story-title">Karna’s Secret</h2>
-          <p class="story-teaser">The greatest warrior on the losing side spends his whole life being called low-born. He never learns the truth until it’s far too late to change sides.</p>
-          <div class="story-meta"><span class="story-read">5 min read</span><span class="story-link">Read the twist →</span></div>
+          <div class="story-cat">The final test</div>
+          <h2 class="story-title">He Reached Heaven’s Gate, Then Said No</h2>
+          <p class="story-teaser">A stray dog followed him the whole way up. At the top, the gods told him to leave it behind. His answer is the whole point.</p>
+          <div class="story-meta"><span class="story-link">Read the story &rarr;</span></div>
         </div>
-      </article>
-      <article class="story-card" data-id="eklavyas-thumb" data-keywords="eklavya’s thumb the price of a promise a forest boy is refused a teacher, so he teaches himself and becomes better than the prince. then the teacher comes to collect a fee he never earned. eklavya wants to learn archery from dronacharya, the finest teacher in the land. drona refuses him, because eklavya is a tribal boy and the lessons are reserved for princes. eklavya doesn’t sulk. he builds a clay statue of drona in the forest, bows to it as his teacher, and practises alone. years later he’s so good that he outshoots arjuna, drona’s star pupil and supposed best archer alive. now the uncomfortable part. drona has promised arjuna he’d be the greatest. a self-taught forest boy threatens that promise. so drona walks up to the devoted eklavya and asks for guru dakshina, the traditional fee a student owes a teacher. the fee? eklavya’s right thumb. without it, he can never draw a bow the same way again. and the twist that still stings centuries later: eklavya gives it. instantly. he cuts off his own thumb and offers it to a man who never actually taught him a thing, out of pure respect for the idea of a teacher. it’s a story about devotion, injustice, and the quiet brutality of gatekeeping, and about who really deserved the title of ‘great’ that day." tabindex="0" role="button" aria-label="Read: Eklavya’s Thumb" onclick="openStory('eklavyas-thumb')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openStory('eklavyas-thumb')}">
-        <div class="story-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A3F60"/><stop offset="1" stop-color="#7b5ea7"/></linearGradient><radialGradient id="g2r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g2)"/><rect width="400" height="260" fill="url(#g2r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><path d="M-14 -22 A 30 30 0 0 1 -14 22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><line x1="-14" y1="-22" x2="-14" y2="22" stroke="currentColor" stroke-width="2"/><line x1="-14" y1="0" x2="22" y2="0" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M22 0 L15 -5 M22 0 L15 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></g></svg></div>
+      </a>
+      <a class="story-card" href="game-of-dice-mahabharata-draupadi.html" data-keywords="how one rigged game started the biggest war in history one bad night he bet his kingdom. then his brothers. then his wife. and a room full of honourable men watched it happen and said nothing. game of dice draupadi shakuni duryodhana gambling kingdom war" aria-label="Read: How One Rigged Game Started the Biggest War in History">
+        <div class="story-cover"><img src="images/stories/game-of-dice-mahabharata-draupadi-card.jpg" alt="How One Rigged Game Started the Biggest War in History" loading="lazy" width="800" height="450"></div>
         <div class="story-body">
-          <div class="story-cat">The Price of a Promise</div>
-          <h2 class="story-title">Eklavya’s Thumb</h2>
-          <p class="story-teaser">A forest boy is refused a teacher, so he teaches himself and becomes better than the prince. Then the teacher comes to collect a fee he never earned.</p>
-          <div class="story-meta"><span class="story-read">4 min read</span><span class="story-link">Read the twist →</span></div>
+          <div class="story-cat">One bad night</div>
+          <h2 class="story-title">How One Rigged Game Started the Biggest War in History</h2>
+          <p class="story-teaser">He bet his kingdom. Then his brothers. Then his wife. And a room full of honourable men watched it happen and said nothing.</p>
+          <div class="story-meta"><span class="story-link">Read the story &rarr;</span></div>
         </div>
-      </article>
-      <article class="story-card" data-id="the-game-of-dice" data-keywords="the game of dice one bad night a kingdom, a fortune, four brothers, and finally a wife, all wagered away in a single rigged game. this is how the great war actually started. yudhishthira, the eldest pandava, has one fatal flaw: he cannot refuse a game of dice, and he cannot read a cheater. his cousin duryodhana invites him to play. the dice are controlled by shakuni, a master manipulator who never loses. yudhishthira bets his wealth and loses. he bets his kingdom and loses. he bets his brothers, then himself, then, horrifyingly, his wife draupadi. what follows is the most shameful scene in the epic: draupadi dragged into court and publicly humiliated, while a room full of ‘honourable’ men stay silent because the rules of the game technically allow it. the twist isn’t supernatural. it’s psychological. one intelligent, dignified man loses everything not in battle but in a moment of ego and addiction, unable to walk away from a table he was always going to lose at. this single night plants the seed for the entire kurukshetra war. the gita, that famous battlefield conversation, exists because of a dice game nobody had the courage to stop. the takeaway is almost unbearably modern: the decisions that wreck us are rarely the dramatic ones. they’re the ones we make when we refuse to fold." tabindex="0" role="button" aria-label="Read: The Game of Dice" onclick="openStory('the-game-of-dice')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openStory('the-game-of-dice')}">
-        <div class="story-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7A8C6E"/><stop offset="1" stop-color="#A8BCA0"/></linearGradient><radialGradient id="g3r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g3)"/><rect width="400" height="260" fill="url(#g3r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><rect x="-20" y="-20" width="40" height="40" rx="8" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="-9" cy="-9" r="3" fill="currentColor"/><circle cx="9" cy="-9" r="3" fill="currentColor"/><circle cx="0" cy="0" r="3" fill="currentColor"/><circle cx="-9" cy="9" r="3" fill="currentColor"/><circle cx="9" cy="9" r="3" fill="currentColor"/></g></svg></div>
+      </a>
+      <a class="story-card" href="eklavya-thumb-dronacharya-story.html" data-keywords="he out-shot a prince with no teacher. the fee was his thumb. the price of a promise the guru who refused to train him showed up years later to collect payment for lessons he never actually gave. eklavya drona dronacharya thumb archery guru dakshina arjuna" aria-label="Read: He Out-Shot a Prince With No Teacher. The Fee Was His Thumb.">
+        <div class="story-cover"><img src="images/stories/eklavya-thumb-dronacharya-story-card.jpg" alt="He Out-Shot a Prince With No Teacher. The Fee Was His Thumb." loading="lazy" width="800" height="450"></div>
         <div class="story-body">
-          <div class="story-cat">One Bad Night</div>
-          <h2 class="story-title">The Game of Dice</h2>
-          <p class="story-teaser">A kingdom, a fortune, four brothers, and finally a wife, all wagered away in a single rigged game. This is how the great war actually started.</p>
-          <div class="story-meta"><span class="story-read">5 min read</span><span class="story-link">Read the twist →</span></div>
+          <div class="story-cat">The price of a promise</div>
+          <h2 class="story-title">He Out-Shot a Prince With No Teacher. The Fee Was His Thumb.</h2>
+          <p class="story-teaser">The guru who refused to train him showed up years later to collect payment for lessons he never actually gave.</p>
+          <div class="story-meta"><span class="story-link">Read the story &rarr;</span></div>
         </div>
-      </article>
-      <article class="story-card" data-id="bhishmas-vow" data-keywords="bhishma’s vow the vow that broke a dynasty a prince gives up his throne and swears never to marry, all to make his father happy. the promise outlives everyone it was meant to protect. prince devavrata’s father falls in love with a fisherwoman. her family will only agree to the marriage if her future son, not devavrata, inherits the throne. so devavrata makes a staggering sacrifice. he renounces his claim to the kingdom, and then, to remove any doubt about his descendants ever competing for it, he vows lifelong celibacy. the heavens are so moved they rename him bhishma, ‘he of the terrible vow.’ it sounds noble. and it is. but the twist unspools slowly over decades. that one rigid promise locks bhishma into serving whoever sits on the throne, even when the throne is occupied by the wrong people doing the wrong things. when draupadi is humiliated, bhishma, the most powerful man in the room, stays silent. his vow has handcuffed his conscience to his duty. he ends up fighting on the side he knows is unjust, because he swore an oath long ago. bhishma’s life asks a question the gita keeps circling: what happens when loyalty to a promise quietly replaces loyalty to what’s right? sometimes the most honourable vow becomes the most expensive cage." tabindex="0" role="button" aria-label="Read: Bhishma’s Vow" onclick="openStory('bhishmas-vow')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openStory('bhishmas-vow')}">
-        <div class="story-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1A0F2E"/><stop offset="1" stop-color="#4A3F60"/></linearGradient><radialGradient id="g4r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g4)"/><rect width="400" height="260" fill="url(#g4r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><line x1="-22" y1="14" x2="22" y2="-14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><line x1="-22" y1="-14" x2="22" y2="14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M22 -14 L15 -14 M22 -14 L22 -7 M22 14 L15 14 M22 14 L22 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></g></svg></div>
+      </a>
+      <a class="story-card" href="krishna-peace-mission-five-villages.html" data-keywords="the whole war came down to five villages the war that almost wasn’t before a single arrow flew, krishna asked for a deal that would have saved millions of lives. one man said no. krishna peace five villages duryodhana war envoy hastinapura" aria-label="Read: The Whole War Came Down to Five Villages">
+        <div class="story-cover"><img src="images/stories/krishna-peace-mission-five-villages-card.jpg" alt="The Whole War Came Down to Five Villages" loading="lazy" width="800" height="450"></div>
         <div class="story-body">
-          <div class="story-cat">The Vow That Broke a Dynasty</div>
-          <h2 class="story-title">Bhishma’s Vow</h2>
-          <p class="story-teaser">A prince gives up his throne and swears never to marry, all to make his father happy. The promise outlives everyone it was meant to protect.</p>
-          <div class="story-meta"><span class="story-read">4 min read</span><span class="story-link">Read the twist →</span></div>
+          <div class="story-cat">The war that almost wasn’t</div>
+          <h2 class="story-title">The Whole War Came Down to Five Villages</h2>
+          <p class="story-teaser">Before a single arrow flew, Krishna asked for a deal that would have saved millions of lives. One man said no.</p>
+          <div class="story-meta"><span class="story-link">Read the story &rarr;</span></div>
         </div>
-      </article>
-      <article class="story-card" data-id="abhimanyu-chakravyuha" data-keywords="abhimanyu and the maze half a lesson a young warrior learns how to break into an impossible military formation. he never learned how to get back out. he goes in anyway. the chakravyuha is a spinning, spiral battle formation so complex that only a handful of warriors in the world know how to penetrate it. abhimanyu, the teenage son of arjuna, learned the secret while still in his mother’s womb, overhearing his father explain it. but arjuna fell asleep halfway through the telling. so abhimanyu knows exactly how to break into the maze, and nothing at all about how to escape it. on the day it matters, the enemy forms the chakravyuha specifically because arjuna has been lured away. someone has to break in. abhimanyu volunteers, knowing he only has half the knowledge. he fights his way to the centre, brilliant and fearless, taking down seasoned warriors twice his age. and then he’s trapped, exactly as he knew he would be, surrounded by the greatest fighters of the age who gang up on one exhausted boy. the twist is the heartbreak: his courage was never in question. his preparation was. he had the entry and not the exit, and he chose to go in regardless. it’s a story about brave people sent to do the impossible with incomplete information, and the grown-ups who should have known better." tabindex="0" role="button" aria-label="Read: Abhimanyu and the Maze" onclick="openStory('abhimanyu-chakravyuha')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openStory('abhimanyu-chakravyuha')}">
-        <div class="story-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C78B0E"/><stop offset="1" stop-color="#C04F2D"/></linearGradient><radialGradient id="g5r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g5)"/><rect width="400" height="260" fill="url(#g5r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><path d="M0 0 m0 0 a4 4 0 1 1 6 4 a10 10 0 1 1 -14 8 a16 16 0 1 1 22 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></g></svg></div>
+      </a>
+      <a class="story-card" href="abhimanyu-chakravyuha-story.html" data-keywords="the boy who learned how to get in, but not how to get out the worst nap in literature he overheard the secret in the womb. his father fell asleep before finishing the escape. he walked into the trap anyway. abhimanyu chakravyuha arjuna maze formation subhadra trap" aria-label="Read: The Boy Who Learned How to Get In, But Not How to Get Out">
+        <div class="story-cover"><img src="images/stories/abhimanyu-chakravyuha-story-card.jpg" alt="The Boy Who Learned How to Get In, But Not How to Get Out" loading="lazy" width="800" height="450"></div>
         <div class="story-body">
-          <div class="story-cat">Half a Lesson</div>
-          <h2 class="story-title">Abhimanyu and the Maze</h2>
-          <p class="story-teaser">A young warrior learns how to break into an impossible military formation. He never learned how to get back out. He goes in anyway.</p>
-          <div class="story-meta"><span class="story-read">4 min read</span><span class="story-link">Read the twist →</span></div>
+          <div class="story-cat">The worst nap in literature</div>
+          <h2 class="story-title">The Boy Who Learned How to Get In, But Not How to Get Out</h2>
+          <p class="story-teaser">He overheard the secret in the womb. His father fell asleep before finishing the escape. He walked into the trap anyway.</p>
+          <div class="story-meta"><span class="story-link">Read the story &rarr;</span></div>
         </div>
-      </article>
-      <article class="story-card" data-id="krishnas-peace-mission" data-keywords="krishna’s peace mission the war that almost wasn’t before a single arrow flew, krishna himself walked into the enemy court and asked for just five villages. the refusal is what sealed the war. people remember krishna as the charioteer who delivers the gita in the middle of a battlefield. they forget he spent enormous effort trying to make sure that battle never happened. on the eve of war, krishna goes personally to duryodhana’s court as a peace envoy. the pandavas, who have a legitimate claim to half the kingdom, lower their demand dramatically. forget half. give us just five villages, one for each brother, and we’ll call off the war. thousands of lives spared over five villages. duryodhana’s answer is infamous. he won’t give the pandavas enough land to fit the point of a needle. the twist reframes the whole epic. kurukshetra isn’t the story of people who wanted to fight. it’s the story of what happens when one person’s ego makes peace impossible, no matter how much the other side is willing to concede. krishna exhausts every peaceful option first. only when the door is slammed shut does the chariot roll onto the field. the gita’s teaching on duty lands differently once you know war was the last resort, not the first." tabindex="0" role="button" aria-label="Read: Krishna’s Peace Mission" onclick="openStory('krishnas-peace-mission')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openStory('krishnas-peace-mission')}">
-        <div class="story-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7b5ea7"/><stop offset="1" stop-color="#C04F2D"/></linearGradient><radialGradient id="g6r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g6)"/><rect width="400" height="260" fill="url(#g6r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><path d="M0 18 C -18 6 -18 -14 0 -22 C 18 -14 18 6 0 18 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M0 18 C -8 4 -8 -10 0 -18 C 8 -10 8 4 0 18 Z" fill="none" stroke="currentColor" stroke-width="2"/></g></svg></div>
+      </a>
+      <a class="story-card" href="why-draupadi-had-five-husbands.html" data-keywords="why did one woman marry five brothers? the most-asked question in the epic it starts with a single careless sentence from their mother, and nobody in the room was willing to take it back. draupadi five husbands pandava marriage kunti arjuna polyandry" aria-label="Read: Why Did One Woman Marry Five Brothers?">
+        <div class="story-cover"><img src="images/stories/why-draupadi-had-five-husbands-card.jpg" alt="Why Did One Woman Marry Five Brothers?" loading="lazy" width="800" height="450"></div>
         <div class="story-body">
-          <div class="story-cat">The War That Almost Wasn’t</div>
-          <h2 class="story-title">Krishna’s Peace Mission</h2>
-          <p class="story-teaser">Before a single arrow flew, Krishna himself walked into the enemy court and asked for just five villages. The refusal is what sealed the war.</p>
-          <div class="story-meta"><span class="story-read">4 min read</span><span class="story-link">Read the twist →</span></div>
+          <div class="story-cat">The most-asked question in the epic</div>
+          <h2 class="story-title">Why Did One Woman Marry Five Brothers?</h2>
+          <p class="story-teaser">It starts with a single careless sentence from their mother, and nobody in the room was willing to take it back.</p>
+          <div class="story-meta"><span class="story-link">Read the story &rarr;</span></div>
         </div>
-      </article>
-      <article class="story-card" data-id="birth-of-the-gita" data-keywords="the day arjuna froze where it all begins the best archer alive looks across the battlefield, sees his own family on the other side, and simply puts his bow down. what krishna says next becomes the gita. this is the moment the whole thing hinges on, and it’s not a fight. it’s a breakdown. arjuna, the finest warrior of his generation, rides his chariot into the gap between the two armies to survey the field. and then he sees them: his cousins, his teachers, his grandfather, his childhood heroes, lined up to be killed. his hands shake. his bow, the famous gandiva, slips from his grip. he sits down in the chariot and says he would rather die than fight. it’s a strikingly modern moment: a high performer, at the peak of his skill, suddenly paralysed by the meaning of what he’s about to do. what follows isn’t a pep talk. krishna, his charioteer, responds with 700 verses on duty, action, attachment, fear, death, and how to act when every option feels wrong. that conversation is the bhagavad gita. the twist most people miss: the gita isn’t spoken in a temple or a quiet forest. it’s delivered in the most stressful sixty minutes imaginable, to a man having a panic attack, moments before the worst day of his life. that’s why it still travels so well. it was built for the exact moment you feel like putting your bow down too." tabindex="0" role="button" aria-label="Read: The Day Arjuna Froze" onclick="openStory('birth-of-the-gita')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openStory('birth-of-the-gita')}">
-        <div class="story-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g7" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A7A62"/><stop offset="1" stop-color="#C78B0E"/></linearGradient><radialGradient id="g7r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g7)"/><rect width="400" height="260" fill="url(#g7r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><circle cx="0" cy="0" r="20" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="0" cy="0" r="5" fill="none" stroke="currentColor" stroke-width="2.4"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(0)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(30)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(60)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(90)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(120)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(150)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(180)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(210)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(240)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(270)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(300)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(330)"/></g></svg></div>
+      </a>
+      <a class="story-card" href="vikarna-the-only-kaurava-who-spoke-up.html" data-keywords="99 brothers stayed silent. one stood up. named in chapter 1, verse 8 in the ugliest moment of the mahabharata, exactly one kaurava said what everyone else was thinking. it cost him. vikarna kaurava draupadi dice hall duryodhana courage" aria-label="Read: 99 Brothers Stayed Silent. One Stood Up.">
+        <div class="story-cover"><img src="images/stories/vikarna-the-only-kaurava-who-spoke-up-card.jpg" alt="99 Brothers Stayed Silent. One Stood Up." loading="lazy" width="800" height="450"></div>
         <div class="story-body">
-          <div class="story-cat">Where It All Begins</div>
-          <h2 class="story-title">The Day Arjuna Froze</h2>
-          <p class="story-teaser">The best archer alive looks across the battlefield, sees his own family on the other side, and simply puts his bow down. What Krishna says next becomes the Gita.</p>
-          <div class="story-meta"><span class="story-read">5 min read</span><span class="story-link">Read the twist →</span></div>
+          <div class="story-cat">Named in Chapter 1, Verse 8</div>
+          <h2 class="story-title">99 Brothers Stayed Silent. One Stood Up.</h2>
+          <p class="story-teaser">In the ugliest moment of the Mahabharata, exactly one Kaurava said what everyone else was thinking. It cost him.</p>
+          <div class="story-meta"><span class="story-link">Read the story &rarr;</span></div>
         </div>
-      </article>
+      </a>
+      <a class="story-card" href="what-happened-before-the-bhagavad-gita.html" data-keywords="everything that led to the most famous conversation ever start here before krishna said a word on the battlefield: eighteen years of grudges, exile, and one unforgivable game of dice. before the bhagavad gita mahabharata background setup kurukshetra arjuna" aria-label="Read: Everything That Led to the Most Famous Conversation Ever">
+        <div class="story-cover"><img src="images/stories/what-happened-before-the-bhagavad-gita-card.jpg" alt="Everything That Led to the Most Famous Conversation Ever" loading="lazy" width="800" height="450"></div>
+        <div class="story-body">
+          <div class="story-cat">Start here</div>
+          <h2 class="story-title">Everything That Led to the Most Famous Conversation Ever</h2>
+          <p class="story-teaser">Before Krishna said a word on the battlefield: eighteen years of grudges, exile, and one unforgivable game of dice.</p>
+          <div class="story-meta"><span class="story-link">Read the story &rarr;</span></div>
+        </div>
+      </a>
+      <a class="story-card" href="why-is-krishna-blue.html" data-keywords="why is krishna always painted blue? a question with four answers there are four competing explanations. one is poetic, one is practical, and one is basically a printing accident. krishna blue colour color vishnu skin poison why painted" aria-label="Read: Why Is Krishna Always Painted Blue?">
+        <div class="story-cover"><img src="images/stories/why-is-krishna-blue-card.jpg" alt="Why Is Krishna Always Painted Blue?" loading="lazy" width="800" height="450"></div>
+        <div class="story-body">
+          <div class="story-cat">A question with four answers</div>
+          <h2 class="story-title">Why Is Krishna Always Painted Blue?</h2>
+          <p class="story-teaser">There are four competing explanations. One is poetic, one is practical, and one is basically a printing accident.</p>
+          <div class="story-meta"><span class="story-link">Read the story &rarr;</span></div>
+        </div>
+      </a>
+      <a class="story-card" href="oppenheimer-bhagavad-gita-quote.html" data-keywords="what oppenheimer actually quoted at the first atom bomb the most famous line, slightly wrong “now i am become death.” everyone knows the line. almost nobody knows he slightly mistranslated it, or what it really means. oppenheimer bhagavad gita quote now i am become death atom bomb trinity krishna" aria-label="Read: What Oppenheimer Actually Quoted at the First Atom Bomb">
+        <div class="story-cover"><img src="images/stories/oppenheimer-bhagavad-gita-quote-card.jpg" alt="What Oppenheimer Actually Quoted at the First Atom Bomb" loading="lazy" width="800" height="450"></div>
+        <div class="story-body">
+          <div class="story-cat">The most famous line, slightly wrong</div>
+          <h2 class="story-title">What Oppenheimer Actually Quoted at the First Atom Bomb</h2>
+          <p class="story-teaser">“Now I am become Death.” Everyone knows the line. Almost nobody knows he slightly mistranslated it, or what it really means.</p>
+          <div class="story-meta"><span class="story-link">Read the story &rarr;</span></div>
+        </div>
+      </a>
   <div class="no-results" id="noResults">No stories matched that. Try another word.</div>
 </main>
-
-<!-- READER OVERLAY -->
-<div class="reader-overlay" id="readerOverlay" onclick="if(event.target===this)closeStory()">
-  <div class="reader-panel" role="dialog" aria-modal="true" aria-label="Story reader">
-    <button class="reader-close" onclick="closeStory()" aria-label="Close story">✕</button>
-    <div id="readerMount">
-  <article class="reader-article" id="story-dog-at-heavens-gate" style="display:none">
-    <div class="reader-cat">The Final Test</div>
-    <h1 class="reader-title">The Dog at Heaven’s Gate</h1>
-    <div class="reader-sub">4 min read · from the Mahabharata</div>
-    <div class="reader-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g0" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C04F2D"/><stop offset="1" stop-color="#E8724A"/></linearGradient><radialGradient id="g0r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g0)"/><rect width="400" height="260" fill="url(#g0r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><circle cx="0" cy="6" r="12" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="-11" cy="-8" r="4.5" fill="currentColor"/><circle cx="11" cy="-8" r="4.5" fill="currentColor"/><circle cx="-18" cy="3" r="4" fill="currentColor"/><circle cx="18" cy="3" r="4" fill="currentColor"/></g></svg></div>
-    <p>After the war, after the grief, the five Pandavas and their wife Draupadi set out on one last walk: a climb up the great mountain toward the gates of heaven. One by one, they fall along the way. Only Yudhishthira keeps walking, and he isn’t alone. A thin, hungry stray dog has been following him the whole time, and he never once shoos it away.</p>
-<p>At the summit, Indra arrives in a blazing chariot. ‘Come,’ he says. ‘Step in. Heaven is waiting for you.’ Then he adds the condition: the dog stays behind.</p>
-<p>Yudhishthira doesn’t argue about theology. He just refuses. ‘This creature trusted me and walked with me. I will not buy my own comfort by abandoning someone loyal.’ He turns down heaven itself rather than leave the dog at the door.</p>
-<p>Here’s the twist. The dog isn’t a dog. It’s Dharma, the god of righteousness, wearing its most unglamorous disguise, testing whether a man’s goodness survives when there’s nothing left to gain and no one watching who matters.</p>
-<p>The lesson lands quietly: character isn’t what you do for the powerful. It’s what you refuse to do to the powerless, even when the reward for looking away is literally paradise.</p>
-    <div class="reader-cta">
-      <p class="reader-cta-h">Liked that twist?</p>
-      <p class="reader-cta-p">The Gita Drop sends one story like this, in plain modern language, to your inbox every morning.</p>
-      <a class="reader-cta-btn" href="index.html#subscribe">Start your free 7-day week →</a>
-    </div>
-  </article>
-  <article class="reader-article" id="story-karnas-secret" style="display:none">
-    <div class="reader-cat">The Enemy Who Was Family</div>
-    <h1 class="reader-title">Karna’s Secret</h1>
-    <div class="reader-sub">5 min read · from the Mahabharata</div>
-    <div class="reader-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C78B0E"/><stop offset="1" stop-color="#F0C84A"/></linearGradient><radialGradient id="g1r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g1)"/><rect width="400" height="260" fill="url(#g1r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><circle cx="0" cy="0" r="16" fill="none" stroke="currentColor" stroke-width="2.4"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(0)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(30)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(60)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(90)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(120)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(150)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(180)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(210)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(240)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(270)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(300)"/><line x1="0" y1="-26" x2="0" y2="-21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" transform="rotate(330)"/></g></svg></div>
-    <p>Karna is the fighter everyone underestimates. Abandoned as a baby, floated down a river in a basket, raised by a charioteer. Brilliant with a bow, but mocked his entire life for not being ‘royal enough’ to compete with princes.</p>
-<p>So when Duryodhana is the one person who treats him with respect, Karna’s loyalty becomes absolute. He picks a side and never wavers, even when that side is clearly in the wrong.</p>
-<p>The twist is devastating. Karna is actually the eldest son of Kunti, which makes him the older brother of the very Pandavas he’s sworn to destroy. The men he calls enemies are his own blood. His mother knows. Krishna knows. Karna finds out only near the end, when walking away would mean betraying the one friend who ever believed in him.</p>
-<p>He chooses loyalty over the family that discarded him, and it costs him his life.</p>
-<p>Karna’s story is the Gita’s most human tragedy: a good man whose loyalty was real and whose cause was wrong, undone less by his enemies than by a secret everyone kept from him.</p>
-    <div class="reader-cta">
-      <p class="reader-cta-h">Liked that twist?</p>
-      <p class="reader-cta-p">The Gita Drop sends one story like this, in plain modern language, to your inbox every morning.</p>
-      <a class="reader-cta-btn" href="index.html#subscribe">Start your free 7-day week →</a>
-    </div>
-  </article>
-  <article class="reader-article" id="story-eklavyas-thumb" style="display:none">
-    <div class="reader-cat">The Price of a Promise</div>
-    <h1 class="reader-title">Eklavya’s Thumb</h1>
-    <div class="reader-sub">4 min read · from the Mahabharata</div>
-    <div class="reader-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A3F60"/><stop offset="1" stop-color="#7b5ea7"/></linearGradient><radialGradient id="g2r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g2)"/><rect width="400" height="260" fill="url(#g2r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><path d="M-14 -22 A 30 30 0 0 1 -14 22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><line x1="-14" y1="-22" x2="-14" y2="22" stroke="currentColor" stroke-width="2"/><line x1="-14" y1="0" x2="22" y2="0" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M22 0 L15 -5 M22 0 L15 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></g></svg></div>
-    <p>Eklavya wants to learn archery from Dronacharya, the finest teacher in the land. Drona refuses him, because Eklavya is a tribal boy and the lessons are reserved for princes.</p>
-<p>Eklavya doesn’t sulk. He builds a clay statue of Drona in the forest, bows to it as his teacher, and practises alone. Years later he’s so good that he outshoots Arjuna, Drona’s star pupil and supposed best archer alive.</p>
-<p>Now the uncomfortable part. Drona has promised Arjuna he’d be the greatest. A self-taught forest boy threatens that promise. So Drona walks up to the devoted Eklavya and asks for guru dakshina, the traditional fee a student owes a teacher.</p>
-<p>The fee? Eklavya’s right thumb. Without it, he can never draw a bow the same way again.</p>
-<p>And the twist that still stings centuries later: Eklavya gives it. Instantly. He cuts off his own thumb and offers it to a man who never actually taught him a thing, out of pure respect for the idea of a teacher.</p>
-<p>It’s a story about devotion, injustice, and the quiet brutality of gatekeeping, and about who really deserved the title of ‘great’ that day.</p>
-    <div class="reader-cta">
-      <p class="reader-cta-h">Liked that twist?</p>
-      <p class="reader-cta-p">The Gita Drop sends one story like this, in plain modern language, to your inbox every morning.</p>
-      <a class="reader-cta-btn" href="index.html#subscribe">Start your free 7-day week →</a>
-    </div>
-  </article>
-  <article class="reader-article" id="story-the-game-of-dice" style="display:none">
-    <div class="reader-cat">One Bad Night</div>
-    <h1 class="reader-title">The Game of Dice</h1>
-    <div class="reader-sub">5 min read · from the Mahabharata</div>
-    <div class="reader-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7A8C6E"/><stop offset="1" stop-color="#A8BCA0"/></linearGradient><radialGradient id="g3r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g3)"/><rect width="400" height="260" fill="url(#g3r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><rect x="-20" y="-20" width="40" height="40" rx="8" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="-9" cy="-9" r="3" fill="currentColor"/><circle cx="9" cy="-9" r="3" fill="currentColor"/><circle cx="0" cy="0" r="3" fill="currentColor"/><circle cx="-9" cy="9" r="3" fill="currentColor"/><circle cx="9" cy="9" r="3" fill="currentColor"/></g></svg></div>
-    <p>Yudhishthira, the eldest Pandava, has one fatal flaw: he cannot refuse a game of dice, and he cannot read a cheater.</p>
-<p>His cousin Duryodhana invites him to play. The dice are controlled by Shakuni, a master manipulator who never loses. Yudhishthira bets his wealth and loses. He bets his kingdom and loses. He bets his brothers, then himself, then, horrifyingly, his wife Draupadi.</p>
-<p>What follows is the most shameful scene in the epic: Draupadi dragged into court and publicly humiliated, while a room full of ‘honourable’ men stay silent because the rules of the game technically allow it.</p>
-<p>The twist isn’t supernatural. It’s psychological. One intelligent, dignified man loses everything not in battle but in a moment of ego and addiction, unable to walk away from a table he was always going to lose at.</p>
-<p>This single night plants the seed for the entire Kurukshetra war. The Gita, that famous battlefield conversation, exists because of a dice game nobody had the courage to stop.</p>
-<p>The takeaway is almost unbearably modern: the decisions that wreck us are rarely the dramatic ones. They’re the ones we make when we refuse to fold.</p>
-    <div class="reader-cta">
-      <p class="reader-cta-h">Liked that twist?</p>
-      <p class="reader-cta-p">The Gita Drop sends one story like this, in plain modern language, to your inbox every morning.</p>
-      <a class="reader-cta-btn" href="index.html#subscribe">Start your free 7-day week →</a>
-    </div>
-  </article>
-  <article class="reader-article" id="story-bhishmas-vow" style="display:none">
-    <div class="reader-cat">The Vow That Broke a Dynasty</div>
-    <h1 class="reader-title">Bhishma’s Vow</h1>
-    <div class="reader-sub">4 min read · from the Mahabharata</div>
-    <div class="reader-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1A0F2E"/><stop offset="1" stop-color="#4A3F60"/></linearGradient><radialGradient id="g4r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g4)"/><rect width="400" height="260" fill="url(#g4r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><line x1="-22" y1="14" x2="22" y2="-14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><line x1="-22" y1="-14" x2="22" y2="14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M22 -14 L15 -14 M22 -14 L22 -7 M22 14 L15 14 M22 14 L22 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></g></svg></div>
-    <p>Prince Devavrata’s father falls in love with a fisherwoman. Her family will only agree to the marriage if her future son, not Devavrata, inherits the throne.</p>
-<p>So Devavrata makes a staggering sacrifice. He renounces his claim to the kingdom, and then, to remove any doubt about his descendants ever competing for it, he vows lifelong celibacy. The heavens are so moved they rename him Bhishma, ‘he of the terrible vow.’</p>
-<p>It sounds noble. And it is. But the twist unspools slowly over decades. That one rigid promise locks Bhishma into serving whoever sits on the throne, even when the throne is occupied by the wrong people doing the wrong things.</p>
-<p>When Draupadi is humiliated, Bhishma, the most powerful man in the room, stays silent. His vow has handcuffed his conscience to his duty. He ends up fighting on the side he knows is unjust, because he swore an oath long ago.</p>
-<p>Bhishma’s life asks a question the Gita keeps circling: what happens when loyalty to a promise quietly replaces loyalty to what’s right? Sometimes the most honourable vow becomes the most expensive cage.</p>
-    <div class="reader-cta">
-      <p class="reader-cta-h">Liked that twist?</p>
-      <p class="reader-cta-p">The Gita Drop sends one story like this, in plain modern language, to your inbox every morning.</p>
-      <a class="reader-cta-btn" href="index.html#subscribe">Start your free 7-day week →</a>
-    </div>
-  </article>
-  <article class="reader-article" id="story-abhimanyu-chakravyuha" style="display:none">
-    <div class="reader-cat">Half a Lesson</div>
-    <h1 class="reader-title">Abhimanyu and the Maze</h1>
-    <div class="reader-sub">4 min read · from the Mahabharata</div>
-    <div class="reader-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C78B0E"/><stop offset="1" stop-color="#C04F2D"/></linearGradient><radialGradient id="g5r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g5)"/><rect width="400" height="260" fill="url(#g5r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><path d="M0 0 m0 0 a4 4 0 1 1 6 4 a10 10 0 1 1 -14 8 a16 16 0 1 1 22 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></g></svg></div>
-    <p>The Chakravyuha is a spinning, spiral battle formation so complex that only a handful of warriors in the world know how to penetrate it.</p>
-<p>Abhimanyu, the teenage son of Arjuna, learned the secret while still in his mother’s womb, overhearing his father explain it. But Arjuna fell asleep halfway through the telling. So Abhimanyu knows exactly how to break into the maze, and nothing at all about how to escape it.</p>
-<p>On the day it matters, the enemy forms the Chakravyuha specifically because Arjuna has been lured away. Someone has to break in. Abhimanyu volunteers, knowing he only has half the knowledge.</p>
-<p>He fights his way to the centre, brilliant and fearless, taking down seasoned warriors twice his age. And then he’s trapped, exactly as he knew he would be, surrounded by the greatest fighters of the age who gang up on one exhausted boy.</p>
-<p>The twist is the heartbreak: his courage was never in question. His preparation was. He had the entry and not the exit, and he chose to go in regardless.</p>
-<p>It’s a story about brave people sent to do the impossible with incomplete information, and the grown-ups who should have known better.</p>
-    <div class="reader-cta">
-      <p class="reader-cta-h">Liked that twist?</p>
-      <p class="reader-cta-p">The Gita Drop sends one story like this, in plain modern language, to your inbox every morning.</p>
-      <a class="reader-cta-btn" href="index.html#subscribe">Start your free 7-day week →</a>
-    </div>
-  </article>
-  <article class="reader-article" id="story-krishnas-peace-mission" style="display:none">
-    <div class="reader-cat">The War That Almost Wasn’t</div>
-    <h1 class="reader-title">Krishna’s Peace Mission</h1>
-    <div class="reader-sub">4 min read · from the Mahabharata</div>
-    <div class="reader-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7b5ea7"/><stop offset="1" stop-color="#C04F2D"/></linearGradient><radialGradient id="g6r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g6)"/><rect width="400" height="260" fill="url(#g6r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><path d="M0 18 C -18 6 -18 -14 0 -22 C 18 -14 18 6 0 18 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M0 18 C -8 4 -8 -10 0 -18 C 8 -10 8 4 0 18 Z" fill="none" stroke="currentColor" stroke-width="2"/></g></svg></div>
-    <p>People remember Krishna as the charioteer who delivers the Gita in the middle of a battlefield. They forget he spent enormous effort trying to make sure that battle never happened.</p>
-<p>On the eve of war, Krishna goes personally to Duryodhana’s court as a peace envoy. The Pandavas, who have a legitimate claim to half the kingdom, lower their demand dramatically. Forget half. Give us just five villages, one for each brother, and we’ll call off the war. Thousands of lives spared over five villages.</p>
-<p>Duryodhana’s answer is infamous. He won’t give the Pandavas enough land to fit the point of a needle.</p>
-<p>The twist reframes the whole epic. Kurukshetra isn’t the story of people who wanted to fight. It’s the story of what happens when one person’s ego makes peace impossible, no matter how much the other side is willing to concede.</p>
-<p>Krishna exhausts every peaceful option first. Only when the door is slammed shut does the chariot roll onto the field. The Gita’s teaching on duty lands differently once you know war was the last resort, not the first.</p>
-    <div class="reader-cta">
-      <p class="reader-cta-h">Liked that twist?</p>
-      <p class="reader-cta-p">The Gita Drop sends one story like this, in plain modern language, to your inbox every morning.</p>
-      <a class="reader-cta-btn" href="index.html#subscribe">Start your free 7-day week →</a>
-    </div>
-  </article>
-  <article class="reader-article" id="story-birth-of-the-gita" style="display:none">
-    <div class="reader-cat">Where It All Begins</div>
-    <h1 class="reader-title">The Day Arjuna Froze</h1>
-    <div class="reader-sub">5 min read · from the Mahabharata</div>
-    <div class="reader-cover"><svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g7" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A7A62"/><stop offset="1" stop-color="#C78B0E"/></linearGradient><radialGradient id="g7r" cx="0.3" cy="0.25" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="400" height="260" fill="url(#g7)"/><rect width="400" height="260" fill="url(#g7r)"/><circle cx="330" cy="40" r="70" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/><circle cx="60" cy="230" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/><g transform="translate(200 130)" color="#FAF6EF" opacity="0.95"><circle cx="0" cy="0" r="20" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="0" cy="0" r="5" fill="none" stroke="currentColor" stroke-width="2.4"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(0)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(30)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(60)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(90)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(120)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(150)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(180)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(210)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(240)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(270)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(300)"/><line x1="0" y1="-5" x2="0" y2="-20" stroke="currentColor" stroke-width="1.8" transform="rotate(330)"/></g></svg></div>
-    <p>This is the moment the whole thing hinges on, and it’s not a fight. It’s a breakdown.</p>
-<p>Arjuna, the finest warrior of his generation, rides his chariot into the gap between the two armies to survey the field. And then he sees them: his cousins, his teachers, his grandfather, his childhood heroes, lined up to be killed. His hands shake. His bow, the famous Gandiva, slips from his grip. He sits down in the chariot and says he would rather die than fight.</p>
-<p>It’s a strikingly modern moment: a high performer, at the peak of his skill, suddenly paralysed by the meaning of what he’s about to do.</p>
-<p>What follows isn’t a pep talk. Krishna, his charioteer, responds with 700 verses on duty, action, attachment, fear, death, and how to act when every option feels wrong. That conversation is the Bhagavad Gita.</p>
-<p>The twist most people miss: the Gita isn’t spoken in a temple or a quiet forest. It’s delivered in the most stressful sixty minutes imaginable, to a man having a panic attack, moments before the worst day of his life.</p>
-<p>That’s why it still travels so well. It was built for the exact moment you feel like putting your bow down too.</p>
-    <div class="reader-cta">
-      <p class="reader-cta-h">Liked that twist?</p>
-      <p class="reader-cta-p">The Gita Drop sends one story like this, in plain modern language, to your inbox every morning.</p>
-      <a class="reader-cta-btn" href="index.html#subscribe">Start your free 7-day week →</a>
-    </div>
-  </article>
-    </div>
-  </div>
-</div>
 
 <!-- FOOTER -->
 <footer>
@@ -573,7 +478,7 @@
   });
 
   /* ── SEARCH ── */
-  var TOTAL=8;
+  var TOTAL=11;
   function filterStories() {
     var q=document.getElementById('storySearch').value.trim().toLowerCase();
     var cards=document.querySelectorAll('.story-card');
@@ -588,23 +493,6 @@
     cnt.textContent = q==='' ? '' : (shown+' of '+TOTAL+' '+(shown===1?'story':'stories'));
   }
 
-  /* ── READER ── */
-  function openStory(id) {
-    document.querySelectorAll('.reader-article').forEach(function(a){ a.style.display='none'; });
-    var art=document.getElementById('story-'+id);
-    if(!art) return;
-    art.style.display='block';
-    var ov=document.getElementById('readerOverlay');
-    ov.classList.add('open');
-    ov.scrollTop=0;
-    document.body.style.overflow='hidden';
-    if(history.replaceState) history.replaceState(null,'','#story-'+id);
-  }
-  function closeStory() {
-    document.getElementById('readerOverlay').classList.remove('open');
-    document.body.style.overflow='';
-    if(history.replaceState) history.replaceState(null,'',location.pathname);
-  }
 
   /* ── CONTACT MODAL ── */
   function openContactModal() {
@@ -619,11 +507,7 @@
 
   /* ── ESC + deep links ── */
   document.addEventListener('keydown', function(e){
-    if(e.key==='Escape'){ closeStory(); closeContactModal(); }
-  });
-  window.addEventListener('DOMContentLoaded', function(){
-    var h=location.hash;
-    if(h && h.indexOf('#story-')===0){ openStory(h.replace('#story-','')); }
+    if(e.key==='Escape'){ closeContactModal(); }
   });
 </script>
 </body>
