@@ -2137,62 +2137,8 @@
     <form class="signup-form fade-in fade-in-4" onsubmit="handleSignup(event, 'hero')">
       <input type="text" placeholder="Name" required>
       <input type="email" placeholder="Email" required>
-      <button type="submit">7-Day Free Trial</button>
+      <button type="submit">Send me my first verse</button>
     </form>
-    <div class="hero-meta-row" style="margin-top:0.75rem;max-width:440px;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-      <p style="font-size:0.78rem;color:var(--ink-faint);font-family:var(--sans);">No credit card needed for trial.</p>
-      <p id="price-line" style="font-size:0.78rem;font-weight:500;color:var(--gold);font-family:var(--sans);white-space:nowrap;">
-        <span id="price-was" style="text-decoration:line-through;color:var(--ink-faint);font-weight:400;">₹1,999</span>
-        <span id="price-now">₹1,599</span> / year · Lifetime Access
-      </p>
-      <script>
-      /* Geo-aware pricing. India sees the discounted rupee price; everyone else sees USD. */
-      (function () {
-        var PRICING = {
-          IN:    { was: '\u20B91,999', now: '\u20B91,599' },
-          WORLD: { was: null,           now: '$39' }
-        };
-
-        function render(p) {
-          var was = document.getElementById('price-was');
-          var now = document.getElementById('price-now');
-          if (!was || !now) return;
-          now.textContent = p.now;
-          if (p.was) {
-            was.textContent = p.was;
-            was.style.display = '';
-          } else {
-            was.style.display = 'none';
-          }
-        }
-
-        /* Tier 1: timezone. Runs synchronously, so the right price is painted first. */
-        var inIndia = false;
-        try {
-          var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-          inIndia = /^Asia\/(Kolkata|Calcutta)$/.test(tz);
-        } catch (e) {
-          inIndia = true; /* Fall back to the home market if the API is unavailable. */
-        }
-        render(inIndia ? PRICING.IN : PRICING.WORLD);
-        /* Remember the result so the signup forms can send it to Brevo. */
-        window.GD_COUNTRY = inIndia ? 'IN' : '';
-
-        /* Tier 2: IP lookup. Corrects a misleading timezone. Delete this block to drop the dependency. */
-        try {
-          fetch('https://api.country.is/')
-            .then(function (r) { return r.ok ? r.json() : null; })
-            .then(function (data) {
-              var country = data && data.country ? String(data.country).trim().toUpperCase() : '';
-              if (country.length !== 2) return;
-              window.GD_COUNTRY = country;
-              render(country === 'IN' ? PRICING.IN : PRICING.WORLD);
-            })
-            .catch(function () { /* keep the timezone result */ });
-        } catch (e) { /* keep the timezone result */ }
-      })();
-      </script>
-    </div>
 
     </div><!-- end .hero-content -->
 
@@ -2781,6 +2727,60 @@
       <input type="email" placeholder="Email" required>
       <button type="submit">I'm In →</button>
     </form>
+    <div class="cta-meta" style="margin-top:1.15rem;display:flex;flex-direction:column;align-items:center;gap:0.4rem;">
+      <p id="price-line" style="font-size:0.9rem;font-weight:500;color:var(--gold);font-family:var(--sans);">
+        <span id="price-was" style="text-decoration:line-through;color:var(--ink-faint);font-weight:400;">₹1,999</span>
+        <span id="price-now">₹1,599</span> / year
+      </p>
+      <p style="font-size:0.8rem;color:var(--ink-faint);font-family:var(--sans);">No credit card needed for trial.</p>
+    </div>
+      <script>
+      /* Geo-aware pricing. India sees the discounted rupee price; everyone else sees USD. */
+      (function () {
+        var PRICING = {
+          IN:    { was: '\u20B91,999', now: '\u20B91,599' },
+          WORLD: { was: null,           now: '$39' }
+        };
+
+        function render(p) {
+          var was = document.getElementById('price-was');
+          var now = document.getElementById('price-now');
+          if (!was || !now) return;
+          now.textContent = p.now;
+          if (p.was) {
+            was.textContent = p.was;
+            was.style.display = '';
+          } else {
+            was.style.display = 'none';
+          }
+        }
+
+        /* Tier 1: timezone. Runs synchronously, so the right price is painted first. */
+        var inIndia = false;
+        try {
+          var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+          inIndia = /^Asia\/(Kolkata|Calcutta)$/.test(tz);
+        } catch (e) {
+          inIndia = true; /* Fall back to the home market if the API is unavailable. */
+        }
+        render(inIndia ? PRICING.IN : PRICING.WORLD);
+        /* Remember the result so the signup forms can send it to Brevo. */
+        window.GD_COUNTRY = inIndia ? 'IN' : '';
+
+        /* Tier 2: IP lookup. Corrects a misleading timezone. Delete this block to drop the dependency. */
+        try {
+          fetch('https://api.country.is/')
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (data) {
+              var country = data && data.country ? String(data.country).trim().toUpperCase() : '';
+              if (country.length !== 2) return;
+              window.GD_COUNTRY = country;
+              render(country === 'IN' ? PRICING.IN : PRICING.WORLD);
+            })
+            .catch(function () { /* keep the timezone result */ });
+        } catch (e) { /* keep the timezone result */ }
+      })();
+      </script>
     <p class="cta-footnote">Free for 7 days. Unsubscribe anytime. We dislike spam more than you do.</p>
   </div>
 </section>
