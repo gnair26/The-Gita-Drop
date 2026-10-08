@@ -1621,33 +1621,53 @@
   }
 
   /* TOAST */
+  /* Dimmed, blurred backdrop behind the success modal */
+  .toast-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 998;
+    background: rgba(26,15,46,0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s ease, visibility 0.35s;
+  }
+  .toast-overlay.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
   .toast {
     position: fixed;
-    bottom: 2rem;
+    top: 50%;
     left: 50%;
-    max-width: min(480px, calc(100% - 2rem));
-    transform: translateX(-50%) translateY(calc(100% + 2rem));
+    width: min(540px, calc(100% - 2.5rem));
+    transform: translate(-50%, -50%) scale(0.9);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     background: var(--ink);
     color: var(--cream);
-    padding: 1.25rem 1.75rem;
-    border-radius: 6px;
+    padding: 2.25rem 2.5rem;
+    border-radius: 14px;
     font-size: 0.9rem;
     font-family: var(--sans);
-    border-left: 4px solid var(--gold);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(199,139,14,0.15);
-    z-index: 999;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, visibility 0.3s;
+    text-align: center;
+    border-top: 5px solid var(--gold);
+    box-shadow: 0 30px 90px rgba(0,0,0,0.5), 0 0 0 1px rgba(199,139,14,0.2);
+    z-index: 1000;
+    transition: transform 0.45s cubic-bezier(0.34, 1.5, 0.5, 1), opacity 0.3s ease, visibility 0.3s;
   }
 
   .toast.show {
-    transform: translateX(-50%) translateY(0);
+    transform: translate(-50%, -50%) scale(1);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    animation: toastPulse 1.8s ease-out 0.4s 2;
+    animation: toastPulse 1.8s ease-out 0.45s 2;
   }
 
   @keyframes toastPulse {
@@ -1658,19 +1678,22 @@
 
   .toast-head {
     font-family: var(--serif);
-    font-size: 1.05rem;
+    font-size: 1.65rem;
     font-weight: 500;
     color: var(--gold-light);
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.6rem;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
   }
 
   .toast-body {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    color: rgba(250,246,239,0.82);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(250,246,239,0.88);
+    max-width: 30rem;
+    margin: 0 auto;
   }
 
   /* RESPONSIVE */
@@ -2914,7 +2937,8 @@
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast">
+<div class="toast-overlay" id="toastOverlay"></div>
+<div class="toast" id="toast" role="alert" aria-live="assertive">
   <div class="toast-head">🙏 You're on the list!</div>
   <div class="toast-body">Check Promotions or "All emails" and drag this email into Primary, so tomorrow's verse finds you.</div>
 </div>
@@ -2965,10 +2989,27 @@
   }
 
   function showToast() {
-    const toast = document.getElementById('toast');
+    const toast   = document.getElementById('toast');
+    const overlay = document.getElementById('toastOverlay');
+    overlay.classList.add('show');
     toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 6500);
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(hideToast, 3800);
   }
+  function hideToast() {
+    clearTimeout(window.__toastTimer);
+    const toast   = document.getElementById('toast');
+    const overlay = document.getElementById('toastOverlay');
+    if (toast)   toast.classList.remove('show');
+    if (overlay) overlay.classList.remove('show');
+  }
+  (function () {
+    var ov = document.getElementById('toastOverlay');
+    if (ov) ov.addEventListener('click', hideToast);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') hideToast();
+    });
+  })();
 
   /* ══════════════════════════════════════
      1. SCROLL PROGRESS BAR
