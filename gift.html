@@ -1141,7 +1141,10 @@ fetch('https://api.country.is/')
             </select>
             <input class="form-input" id="gift-phone" type="tel" placeholder="98765 43210" style="flex:1 1 auto" required>
           </div>
-          <p style="font-family:var(--sans);font-size:0.8rem;line-height:1.5;color:var(--ink-faint);margin:0.5rem 0 0">Use their WhatsApp number &mdash; we&rsquo;ll send a heads-up so your gift doesn&rsquo;t get lost in their inbox.</p>
+          <label for="gift-wa-notify" style="display:flex;gap:0.6rem;align-items:flex-start;margin:0.75rem 0 0;font-family:var(--sans);font-size:0.85rem;line-height:1.5;color:var(--ink-muted);cursor:pointer">
+            <input type="checkbox" id="gift-wa-notify" checked style="flex:0 0 auto;width:1.05rem;height:1.05rem;margin-top:0.15rem;accent-color:#C78B0E;cursor:pointer">
+            <span>Send a WhatsApp message to notify <strong id="gift-wa-name" style="color:var(--ink);font-weight:600">them</strong> after payment, so the gift doesn&rsquo;t get lost in their inbox.</span>
+          </label>
         </div>
 
         <div style="grid-column:1/-1;font-family:var(--sans);font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faint);padding-bottom:0.5rem;border-bottom:1px solid var(--parchment);margin-top:0.5rem">ABOUT YOU</div>
@@ -1245,6 +1248,13 @@ fetch('https://api.country.is/')
     <span class="success-emoji" id="successEmoji">🎁</span>
     <div class="success-title" id="successTitle">Gift sent.</div>
     <div class="success-body" id="successBody">The Gita Drop is on its way.</div>
+    <div id="successWa" style="display:none;margin:-0.5rem 0 1.5rem">
+      <p style="font-family:var(--sans);font-size:0.85rem;line-height:1.6;color:var(--ink-muted);margin:0 0 0.9rem">One last step: WhatsApp will open with your message ready. Just tap <strong style="color:var(--ink)">Send</strong>.</p>
+      <a id="successWaBtn" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;background:#25D366;color:#fff;text-decoration:none;font-family:var(--sans);font-size:0.85rem;font-weight:600;letter-spacing:0.03em;padding:0.85rem 1.6rem;border-radius:6px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+        <span id="successWaLabel">Send on WhatsApp</span>
+      </a>
+    </div>
     <button class="success-close" onclick="closeSuccess()">Back to the page</button>
   </div>
 </div>
@@ -1365,6 +1375,7 @@ async function handleGift(e) {
   const recipientPhone = countryCode + phoneDigits;          // e.g. +919876543210
   const currency       = window.GD_CURRENCY === 'USD' ? 'USD' : 'INR';
   const submitBtn      = e.target.querySelector('button[type="submit"]');
+  const notifyWhatsApp = document.getElementById('gift-wa-notify').checked;
 
   if (!recipientName || !recipientEmail || !giverName || !giverEmail) return;
 
@@ -1434,6 +1445,9 @@ async function handleGift(e) {
             `Done. ${recipientName} is getting the Gita.`,
             `They'll receive a welcome email shortly, with your name included. Their 700-morning journey begins tomorrow. That was a genuinely good thing to do, ${giverName}.`
           );
+          if (notifyWhatsApp) {
+            showWhatsAppNotify(recipientName, giverName, countryCode, phoneDigits, giftNote);
+          }
         } else {
           alert('Payment received but confirmation failed. Please email hello@gitadrop.com with your payment ID: ' + response.razorpay_payment_id);
         }
@@ -1454,7 +1468,38 @@ function showSuccess(emoji, title, body){
   document.getElementById('successEmoji').textContent = emoji;
   document.getElementById('successTitle').textContent = title;
   document.getElementById('successBody').textContent  = body;
+  document.getElementById('successWa').style.display  = 'none';
   document.getElementById('successOverlay').classList.add('show');
+}
+
+/* ── WHATSAPP HEADS-UP (sent from the gifter's own phone) ── */
+// Keep the checkbox label in sync with the recipient's name as it's typed
+(function(){
+  const nameInput = document.getElementById('gift-fname');
+  const nameLabel = document.getElementById('gift-wa-name');
+  if (!nameInput || !nameLabel) return;
+  const sync = () => { nameLabel.textContent = nameInput.value.trim() || 'them'; };
+  nameInput.addEventListener('input', sync);
+  document.getElementById('giftForm').addEventListener('reset', () => setTimeout(sync, 0));
+})();
+
+function showWhatsAppNotify(recipientName, giverName, countryCode, phoneDigits, giftNote){
+  // wa.me needs digits only, with country code and no leading zero on the local number
+  const waNumber = (countryCode + phoneDigits.replace(/^0+/, '')).replace(/\D/g, '');
+  if (!waNumber) return;
+
+  // ---- THE WHATSAPP MESSAGE (edit wording here) ----
+  const message =
+    `Hi ${recipientName}! 🎁\n\n` +
+    `I've gifted you *The Gita Drop*: one verse from the Bhagavad Gita, delivered to your inbox every morning, with the story behind it and one small shift to try that day.\n\n` +
+    (giftNote ? `${giftNote}\n\n` : ``) +   // the gifter's personal note, only if they wrote one
+    `Your welcome email from The Gita Drop has just landed. If you can't find it, check your 'All emails' folder, and mark it as *Not spam* so the verses reach you every day.\n\n` +
+    `Your first verse arrives tomorrow morning. 🙏\n` +
+    `– ${giverName}`;
+
+  document.getElementById('successWaBtn').href = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(message);
+  document.getElementById('successWaLabel').textContent = `Send on WhatsApp to ${recipientName}`;
+  document.getElementById('successWa').style.display = 'block';
 }
 
 function closeSuccess(){
